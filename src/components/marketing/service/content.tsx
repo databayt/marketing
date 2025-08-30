@@ -1,16 +1,21 @@
 import BusinessCard from "./business-card";
-import GIF from "./design";
+import Design from "./design";
 import Branding from "./branding";
 import Creative from "./creative";
+import { Sales } from "./sales";
+import SectionHeading from "./section-heading";
 
 export default function ServiceContent() {
   return (
+    <>
     <div className="flex w-full flex-col py-14 mt-18 items-center">
-      <h1>Service</h1>
-      <BusinessCard />
-      <GIF />
+      <SectionHeading />
+      
+      <Design />
       <Branding />
       <Creative />
     </div>
+    <Sales />
+    </>
   );
 }

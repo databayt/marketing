@@ -23,7 +23,7 @@ export default async function PricingContent() {
   }
 
   return (
-    <div className="flex w-full flex-col py-14 items-center">
+    <div className="flex w-full flex-col py-14 mt-18 items-center">
       <PricingLoaderOverlay />
       <PricingHeader />
       <PricingCards userId={user?.id} subscriptionPlan={subscriptionPlan} userRole={user?.role} />

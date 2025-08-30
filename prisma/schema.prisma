@@ -24,6 +24,13 @@ model User {
   accounts           Account[]
   isTwoFactorEnabled Boolean   @default(false)
   twoFactorConfirmation TwoFactorConfirmation?
+  
+  // Web design business relationships
+  projects           Project[]
+  inquiries          Inquiry[]
+  testimonials       Testimonial[]
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
 }
 
 model Account {
@@ -78,73 +85,158 @@ model TwoFactorConfirmation {
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
+// Web Design Service Models
 
-// Subscription and Pricing Models
-
-model SubscriptionTier {
+model ServicePackage {
   id                String   @id @default(cuid())
   name              String   // basic, premium, enterprise
   description       String
-  monthlyPrice      Int     // Price in cents
-  annualPrice       Int     // Price in cents
-  maxStudents       Int
-  maxTeachers       Int
-  maxClasses        Int
-  features          String[] // Array of feature identifiers
+  price             Int      // Price in cents
+  features          String[] // Array of feature descriptions
+  deliveryTime      String   // e.g., "2-3 weeks", "1 month"
+  revisions         Int      // Number of revisions included
   isActive          Boolean  @default(true)
   
   // Stripe integration
-  monthlyPriceStripeId String? @unique
-  yearlyPriceStripeId  String? @unique
+  stripePriceId     String?  @unique
   
-  // Subscription relationships
-  subscriptions     Subscription[]
-  discounts         Discount[]
+  // Relationships
+  projects          Project[]
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@map("subscription_tiers")
+  @@map("service_packages")
 }
 
-model Discount {
+model Project {
   id                String   @id @default(cuid())
-  schoolId          String
-  tierId            String
-  code              String   @unique
-  type              String   // percentage, fixed
-  value             Int      // Percentage or fixed amount in cents
+  userId            String
+  servicePackageId  String
+  title             String
   description       String
-  validFrom         DateTime
-  validUntil        DateTime
-  maxUses           Int?     // Optional maximum number of uses
-  currentUses       Int      @default(0)
-  isActive          Boolean  @default(true)
-
+  status            ProjectStatus @default(PENDING)
+  budget            Int      // Budget in cents
+  startDate         DateTime?
+  completionDate    DateTime?
+  requirements      String?  // Additional requirements
+  
   // Relationships
-  school            School           @relation(fields: [schoolId], references: [id], onDelete: Cascade)
-  subscriptionTier  SubscriptionTier @relation(fields: [tierId], references: [id])
-  appliedDiscounts  AppliedDiscount[]
+  user              User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  servicePackage    ServicePackage   @relation(fields: [servicePackageId], references: [id])
+  milestones        Milestone[]
+  payments          Payment[]
+  
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@unique([schoolId, code])
-  @@map("discounts")
+  @@map("projects")
 }
 
-model AppliedDiscount {
-  id          String   @id @default(cuid())
-  schoolId    String
-  discountId  String
-  invoiceId   String
-  amount      Int      // Amount saved in cents
-  appliedAt   DateTime @default(now())
-
+model Milestone {
+  id          String        @id @default(cuid())
+  projectId   String
+  title       String
+  description String
+  status      MilestoneStatus @default(PENDING)
+  dueDate     DateTime
+  completedAt DateTime?
+  
   // Relationships
-  school      School   @relation(fields: [schoolId], references: [id], onDelete: Cascade)
-  discount    Discount @relation(fields: [discountId], references: [id])
-  invoice     Invoice  @relation(fields: [invoiceId], references: [id])
+  project     Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 
-  @@map("applied_discounts")
+  @@map("milestones")
+}
+
+model Payment {
+  id          String        @id @default(cuid())
+  projectId   String
+  amount      Int           // Amount in cents
+  status      PaymentStatus @default(PENDING)
+  stripePaymentId String?   @unique
+  paidAt      DateTime?
+  
+  // Relationships
+  project     Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("payments")
+}
+
+model Inquiry {
+  id          String   @id @default(cuid())
+  userId      String?
+  name        String
+  email       String
+  phone       String?
+  company     String?
+  projectType String   // "website", "app", "branding", etc.
+  description String
+  budget      String?  // "Under $1000", "$1000-$5000", etc.
+  timeline    String?  // "ASAP", "1-2 months", etc.
+  status      InquiryStatus @default(NEW)
+  
+  // Relationships
+  user        User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("inquiries")
+}
+
+model Testimonial {
+  id          String   @id @default(cuid())
+  userId      String?
+  clientName  String
+  company     String?
+  projectType String
+  rating      Int      // 1-5 stars
+  content     String
+  isApproved  Boolean  @default(false)
+  isFeatured  Boolean  @default(false)
+  
+  // Relationships
+  user        User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("testimonials")
+}
+
+// Enums
+enum ProjectStatus {
+  PENDING
+  IN_PROGRESS
+  REVIEW
+  COMPLETED
+  CANCELLED
+}
+
+enum MilestoneStatus {
+  PENDING
+  IN_PROGRESS
+  COMPLETED
+  DELAYED
+}
+
+enum PaymentStatus {
+  PENDING
+  PAID
+  FAILED
+  REFUNDED
+}
+
+enum InquiryStatus {
+  NEW
+  CONTACTED
+  PROPOSAL_SENT
+  NEGOTIATING
+  CONVERTED
+  LOST
 }

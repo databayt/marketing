@@ -21,8 +21,7 @@ export default function Creative() {
         <p className="text-lg text-muted-foreground leading-relaxed">
           We offer comprehensive creative services including content creation, 
           poster design, and professional video editing. Our team specializes in 
-          bringing your vision to life with high-quality, engaging content that 
-          captures attention and delivers results.
+          bringing your vision to life.
         </p>
       </div>
 
