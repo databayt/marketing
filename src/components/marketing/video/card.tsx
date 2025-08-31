@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 
 interface Video {
@@ -11,7 +12,7 @@ const VideoCard: React.FC<Video> = ({ id, title, thumbnail }) => {
   return (
     <Link href={`/video/${id}`}>
       <div className="w-full md:w-1/2 xl:w-1/3 p-4">
-        <img src={thumbnail} alt={title} className="w-full h-64 object-cover" />
+        <Image src={thumbnail} alt={title} width={400} height={256} className="w-full h-64 object-cover" />
         <h2 className="text-lg font-bold">{title}</h2>
       </div>
     </Link>

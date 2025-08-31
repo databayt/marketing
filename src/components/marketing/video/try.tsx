@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import { Card, CardContent } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 import { Play } from 'lucide-react';
@@ -29,9 +30,11 @@ const VideoCard: React.FC<VideoCardProps> = ({
       <DialogTrigger asChild>
         <Card className="group cursor-pointer overflow-hidden transition-all hover:shadow-lg">
           <div className="relative">
-            <img
+            <Image
               src={thumbnail}
               alt={title}
+              width={400}
+              height={192}
               className="h-48 w-full object-cover transition-transform duration-200 group-hover:scale-105"
             />
             <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 transition-opacity group-hover:opacity-100">
