@@ -38,7 +38,7 @@ export default function SiteFooter() {
       <div className="mt-[32px] pb-[50px] flex justify-between w-full gap-8 flex-col md:flex-row flex-wrap">
         {/* Mobile: Product and Company in one row */}
         <div className="flex flex-row md:flex-col gap-8 md:gap-0 w-full md:w-auto">
-          <div>
+          <div className="w-1/2 md:w-auto">
             <p className={`mb-[12px] font-medium ${
               isCurrentlyDark ? "text-muted-foreground" : "text-muted"
             }`}>Product</p>
@@ -54,7 +54,7 @@ export default function SiteFooter() {
               ))}
             </div>
           </div>
-          <div>
+          <div className="w-1/2 md:w-auto">
             <p className={`mb-[12px] font-medium ${
               isCurrentlyDark ? "text-muted-foreground" : "text-muted"
             }`}>Company</p>
@@ -74,7 +74,7 @@ export default function SiteFooter() {
         
         {/* Mobile: Services and Support in one row */}
         <div className="flex flex-row md:flex-col gap-8 md:gap-0 w-full md:w-auto">
-          <div>
+          <div className="w-1/2 md:w-auto">
             <p className={`mb-[12px] font-medium ${
               isCurrentlyDark ? "text-muted-foreground" : "text-muted"
             }`}>Services</p>
@@ -90,7 +90,7 @@ export default function SiteFooter() {
               ))}
             </div>
           </div>
-          <div>
+          <div className="w-1/2 md:w-auto">
             <p className={`mb-[12px] font-medium ${
               isCurrentlyDark ? "text-muted-foreground" : "text-muted"
             }`}>Support</p>
