@@ -73,7 +73,7 @@ export default function SiteFooter() {
         </div>
         
         {/* Mobile: Services and Support in one row */}
-        <div className="flex flex-row md:flex-col gap-8 md:gap-0 w-full md:w-auto">
+        <div className="block md:hidden flex-row md:flex-col gap-8 md:gap-0 w-full md:w-auto">
           <div className="w-1/2 md:w-auto">
             <p className={`mb-[12px] font-medium ${
               isCurrentlyDark ? "text-muted-foreground" : "text-muted"
