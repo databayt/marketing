@@ -107,6 +107,75 @@ export default function SiteFooter() {
             </div>
           </div>
         </div>
+
+        {/* Desktop: Individual columns for better spacing */}
+        <div className="hidden lg:flex flex-col gap-8 w-full lg:w-auto lg:flex-row">
+          <div className="lg:w-auto">
+            <p className={`mb-[12px] font-medium ${
+              isCurrentlyDark ? "text-muted-foreground" : "text-muted"
+            }`}>Product</p>
+            <div className="flex flex-col gap-3">
+              {footerData.product.map((item, index) => (
+                <p key={index} className={`hover:cursor-pointer transition-colors ${
+                  isCurrentlyDark 
+                    ? "text-muted-foreground hover:text-foreground" 
+                    : "text-muted/80 hover:text-background"
+                }`}>
+                  {item}
+                </p>
+              ))}
+            </div>
+          </div>
+          <div className="lg:w-auto">
+            <p className={`mb-[12px] font-medium ${
+              isCurrentlyDark ? "text-muted-foreground" : "text-muted"
+            }`}>Company</p>
+            <div className="flex flex-col gap-3">
+              {footerData.company.map((item, index) => (
+                <p key={index} className={`hover:cursor-pointer transition-colors ${
+                  isCurrentlyDark 
+                    ? "text-muted-foreground hover:text-foreground" 
+                    : "text-muted/80 hover:text-background"
+                }`}>
+                  {item}
+                </p>
+              ))}
+            </div>
+          </div>
+          <div className="lg:w-auto">
+            <p className={`mb-[12px] font-medium ${
+              isCurrentlyDark ? "text-muted-foreground" : "text-muted"
+            }`}>Services</p>
+            <div className="flex flex-col gap-3">
+              {footerData.attioFor.map((item, index) => (
+                <p key={index} className={`hover:cursor-pointer transition-colors ${
+                  isCurrentlyDark 
+                    ? "text-muted-foreground hover:text-foreground" 
+                    : "text-muted/80 hover:text-background"
+                }`}>
+                  {item}
+                </p>
+              ))}
+            </div>
+          </div>
+          <div className="lg:w-auto">
+            <p className={`mb-[12px] font-medium ${
+              isCurrentlyDark ? "text-muted-foreground" : "text-muted"
+            }`}>Support</p>
+            <div className="flex flex-col gap-3">
+              {footerData.support.map((item, index) => (
+                <p key={index} className={`hover:cursor-pointer transition-colors ${
+                  isCurrentlyDark 
+                    ? "text-muted-foreground hover:text-foreground" 
+                    : "text-muted/80 hover:text-background"
+                }`}>
+                  {item}
+                </p>
+              ))}
+            </div>
+          </div>
+        </div>
+
         <div className="min-w-[300px]">
           <p className={`font-medium mb-4 ${
             isCurrentlyDark ? "text-muted-foreground" : "text-muted"
