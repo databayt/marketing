@@ -38,6 +38,7 @@ export const MobileNav = React.forwardRef<HTMLDivElement, MobileNavProps>(
               <Link
                 key={index}
                 href={item.disabled ? "#" : item.href}
+                onClick={onClose}
                 className={cn(
                   "flex w-full items-center rounded-md p-2 text-sm font-medium hover:underline",
                   item.disabled && "cursor-not-allowed opacity-60"

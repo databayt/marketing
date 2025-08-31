@@ -31,6 +31,9 @@ export default function Creative() {
           autoPlay
           muted
           loop
+          playsInline
+          disablePictureInPicture
+          disableRemotePlayback
           className="rounded-lg w-full md:w-[500px] h-[300px] md:h-[350px] object-cover"
           preload="metadata"
         >

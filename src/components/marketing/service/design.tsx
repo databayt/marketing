@@ -30,6 +30,9 @@ export default function Design() {
           autoPlay
           muted
           loop
+          playsInline
+          disablePictureInPicture
+          disableRemotePlayback
           className="rounded-lg w-full md:w-[500px] h-[300px] md:h-[400px] object-cover"
           preload="metadata"
         >
@@ -40,6 +43,9 @@ export default function Design() {
           autoPlay
           muted
           loop
+          playsInline
+          disablePictureInPicture
+          disableRemotePlayback
           className="rounded-lg w-full md:w-[500px] h-[300px] md:h-[400px] object-cover"
           preload="metadata"
         >
