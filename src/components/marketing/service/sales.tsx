@@ -5,15 +5,15 @@ export function Sales() {
   return (
     <div className="bg-[#0080FF] full-bleed">
       <div className="container-responsive">
-        <div className="flex flex-col lg:flex-row items-center gap-20">
+        <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-20">
           {/* Content Section - Now on the left */}
-          <div className="flex-1 text-center lg:text-left pl-12" >
+          <div className="flex-1 text-center lg:text-left lg:pl-12" >
           <h2 className="text-4xl font-bold text-muted mb-2">Let's work together</h2>
-            <p className="text-lg mb-4 max-w-lg text-muted">
+            <p className="text-lg mb-4 max-w-lg mx-auto lg:mx-0 text-muted">
               Ready to take your business to the next level? 
             </p>
            
-            <Button className="bg-muted hover:bg-muted/80 text-primary flex items-center gap-2">
+            <Button className="bg-muted hover:bg-muted/80 text-primary flex items-center gap-2 mx-auto lg:mx-0">
               <Image
                 src="/site/b.jpg"
                 alt="Gift box icon"
@@ -27,7 +27,7 @@ export function Sales() {
           
           {/* Image Section - Now on the right */}
           <div className="flex-1 flex justify-center lg:justify-end">
-            <div className="relative w-full pl-24">
+            <div className="relative w-full lg:pl-24">
               <Image
                 src="/site/a.png"
                 alt="Sales representative"

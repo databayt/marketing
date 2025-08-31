@@ -25,12 +25,12 @@ export default function Design() {
       </div>
 
       {/* Videos */}
-      <div className="flex gap-8 justify-center items-center">
+      <div className="flex flex-col md:flex-row gap-8 justify-center items-center">
         <video 
           autoPlay
           muted
           loop
-          className="rounded-lg w-[500px] h-[400px] object-cover"
+          className="rounded-lg w-full md:w-[500px] h-[300px] md:h-[400px] object-cover"
           preload="metadata"
         >
           <source src="/site/resize.mp4" type="video/mp4" />
@@ -40,7 +40,7 @@ export default function Design() {
           autoPlay
           muted
           loop
-          className="rounded-lg w-[500px] h-[400px] object-cover"
+          className="rounded-lg w-full md:w-[500px] h-[300px] md:h-[400px] object-cover"
           preload="metadata"
         >
           <source src="/site/creative.mp4" type="video/mp4" />
@@ -49,7 +49,7 @@ export default function Design() {
 
       {/* Image Row */}
       <div className="flex justify-center items-center mt-8 bg-amber-300">
-        <div className="flex">
+        <div className="flex flex-col md:flex-row">
           {/* <div className="aspect-square overflow-hidden rounded-lg animation-box">
             <div>
               <Image

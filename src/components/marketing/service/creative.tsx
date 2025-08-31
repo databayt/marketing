@@ -26,12 +26,12 @@ export default function Creative() {
       </div>
 
       {/* Video and Wallet */}
-      <div className="flex gap-8 justify-center items-center mb-8">
+      <div className="flex flex-col md:flex-row gap-8 justify-center items-center mb-8">
         <video 
           autoPlay
           muted
           loop
-          className="rounded-lg w-[500px] h-[350px] object-cover"
+          className="rounded-lg w-full md:w-[500px] h-[300px] md:h-[350px] object-cover"
           preload="metadata"
         >
           <source src="/site/order.mp4" type="video/mp4" />
@@ -42,54 +42,56 @@ export default function Creative() {
           alt="Wallet Animation"
           width={500}
           height={350}
-          className="rounded-lg w-[500px] h-[350px] object-cover"
+          className="rounded-lg w-full md:w-[500px] h-[300px] md:h-[350px] object-cover"
         />
       </div>
 
       {/* Images Row */}
       <div className="flex gap-0 justify-center items-center w-full">
-        <div className="w-1/4 h-[300px] overflow-hidden animation-box">
-          <div>
-            <Image
-              src="/site/5.jpg"
-              alt="Creative Work 1"
-              width={300}
-              height={300}
-              className="w-full h-full object-cover"
-            />
+        <div className="flex flex-col md:flex-row w-full">
+          <div className="w-full md:w-1/4 h-[300px] overflow-hidden animation-box">
+            <div>
+              <Image
+                src="/site/5.jpg"
+                alt="Creative Work 1"
+                width={300}
+                height={300}
+                className="w-full h-full object-cover"
+              />
+            </div>
           </div>
-        </div>
-        <div className="w-1/4 h-[300px] overflow-hidden animation-box">
-          <div>
-            <Image
-              src="/site/6.jpg"
-              alt="Creative Work 2"
-              width={300}
-              height={300}
-              className="w-full h-full object-cover"
-            />
+          <div className="w-full md:w-1/4 h-[300px] overflow-hidden animation-box">
+            <div>
+              <Image
+                src="/site/6.jpg"
+                alt="Creative Work 2"
+                width={300}
+                height={300}
+                className="w-full h-full object-cover"
+              />
+            </div>
           </div>
-        </div>
-        <div className="w-1/4 h-[300px] overflow-hidden animation-box">
-          <div>
-            <Image
-              src="/site/7.jpg"
-              alt="Creative Work 3"
-              width={300}
-              height={300}
-              className="w-full h-full object-cover"
-            />
+          <div className="w-full md:w-1/4 h-[300px] overflow-hidden animation-box">
+            <div>
+              <Image
+                src="/site/7.jpg"
+                alt="Creative Work 3"
+                width={300}
+                height={300}
+                className="w-full h-full object-cover"
+              />
+            </div>
           </div>
-        </div>
-        <div className="w-1/4 h-[300px] overflow-hidden animation-box">
-          <div>
-            <Image
-              src="/site/8.jpg"
-              alt="Creative Work 4"
-              width={300}
-              height={300}
-              className="w-full h-full object-cover"
-            />
+          <div className="w-full md:w-1/4 h-[300px] overflow-hidden animation-box">
+            <div>
+              <Image
+                src="/site/8.jpg"
+                alt="Creative Work 4"
+                width={300}
+                height={300}
+                className="w-full h-full object-cover"
+              />
+            </div>
           </div>
         </div>
       </div>
