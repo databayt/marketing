@@ -21,7 +21,7 @@ const ExpandButton = ({
   const variantClasses = {
     default: "bg-emerald-700 text-background border-2 border-emerald-700",
     outline: "border-2 border-black text-black",
-    white: "bg-background text-foreground border-2 border-background"
+    white: "bg-background text-foreground border-2 border-background max-w-40 md:w-auto"
   };
 
   if (href) {

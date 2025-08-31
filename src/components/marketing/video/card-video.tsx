@@ -45,11 +45,13 @@ export const HoverEffect = ({ items, className }: HoverEffectProps) => {
         >
             {items.map((item, idx) => (
                 <Link
-                    href={`/project/${item?.link}`} key={item?.link}
+                    href={item?.link.startsWith('http') ? item.link : `/project/${item?.link}`}
+                    target={item?.link.startsWith('http') ? '_blank' : undefined}
+                    rel={item?.link.startsWith('http') ? 'noopener noreferrer' : undefined}
+                    key={item?.link}
                     className="relative group block p-2 h-full w-full"
                     onMouseEnter={() => setHoveredIndex(idx)}
                     onMouseLeave={() => setHoveredIndex(null)}
-
                 >
                     <AnimatePresence>
                         {hoveredIndex === idx && (

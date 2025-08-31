@@ -56,7 +56,7 @@ const sponsors = [
 
 export default function LogoCloud() {
     return (
-        <section className=" overflow-hidden py-16">
+        <section className=" overflow-hidden mt-6 md:mt-0 py-8 md:py-16">
             <div className="group relative mx-auto max-w-7xl px-32">
                 <div className="flex flex-col items-center md:flex-row">
                     <div className="md:max-w-44 md:border-r md:pr-6">
