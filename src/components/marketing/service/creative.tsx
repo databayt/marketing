@@ -77,7 +77,7 @@ export default function Creative() {
           <div className="w-full md:w-1/4 h-[300px] overflow-hidden animation-box">
             <div>
               <Image
-                src="/site/7.jpg"
+                src="/site/9.jpg"
                 alt="Creative Work 3"
                 width={300}
                 height={300}
