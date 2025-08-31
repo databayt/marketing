@@ -5,7 +5,7 @@ import LogoCloud  from './logo-cloud';
 
 export function Hero() {
     return (
-        <header className="tt-hero py-20 mt-10 md:mt-14 gradient-top-right min-h-screen relative overflow-hidden">
+        <header className="tt-hero py-20 mt-14 gradient-top-right min-h-screen relative overflow-hidden">
             {/* Gradient Container with Background Image */}
             <div className="tt-gradient-container absolute top-40 md:top-0 -right-6 md:right-0 z-0">
                 <div className="tt-gradient-panel">
@@ -32,7 +32,7 @@ export function Hero() {
                         </h1>
                         <h1 className="block md:hidden font-heading font-black text-5xl sm:text-7xl md:text-6xl lg:text-[80px]">
                             Grows begin <br />
-                            here with a <br />
+                            here with the <br />
                             right design
                         </h1>
                         <p className="max-w-xs md:max-w-3xl leading-normal text-muted-foreground sm:text-xl sm:leading-8">
