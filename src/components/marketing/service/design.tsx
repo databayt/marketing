@@ -46,6 +46,56 @@ export default function Design() {
           <source src="/site/creative.mp4" type="video/mp4" />
         </video>
       </div>
+
+      {/* Image Row */}
+      <div className="flex justify-center items-center mt-8 bg-amber-300">
+        <div className="flex">
+          {/* <div className="aspect-square overflow-hidden rounded-lg animation-box">
+            <div>
+              <Image
+                src="/site/c.jpg"
+                alt="Design Image 1"
+                width={300}
+                height={300}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </div> */}
+          <div className="overflow-hidden animation-box">
+            <div>
+              <Image
+                src="/site/d.jpg"
+                alt="Design Image 2"
+                width={400}
+                height={300}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </div>
+          <div className="overflow-hidden  animation-box">
+            <div>
+              <Image
+                src="/site/e.jpg"
+                alt="Design Image 3"
+                width={400}
+                height={300}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </div>
+          <div className="overflow-hidden rounded-lg animation-box scale-98">
+            <div>
+              <Image
+                src="/site/f.jpg"
+                alt="Design Image 4"
+                width={400}
+                height={300}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

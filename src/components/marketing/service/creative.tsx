@@ -48,34 +48,50 @@ export default function Creative() {
 
       {/* Images Row */}
       <div className="flex gap-0 justify-center items-center w-full">
-        <Image
-          src="/site/5.jpg"
-          alt="Creative Work 1"
-          width={300}
-          height={300}
-          className="w-1/4 h-[300px] object-cover"
-        />
-        <Image
-          src="/site/6.jpg"
-          alt="Creative Work 2"
-          width={300}
-          height={300}
-          className="w-1/4 h-[300px] object-cover"
-        />
-        <Image
-          src="/site/7.jpg"
-          alt="Creative Work 3"
-          width={300}
-          height={300}
-          className="w-1/4 h-[300px] object-cover"
-        />
-        <Image
-          src="/site/8.jpg"
-          alt="Creative Work 4"
-          width={300}
-          height={300}
-          className="w-1/4 h-[300px] object-cover"
-        />
+        <div className="w-1/4 h-[300px] overflow-hidden animation-box">
+          <div>
+            <Image
+              src="/site/5.jpg"
+              alt="Creative Work 1"
+              width={300}
+              height={300}
+              className="w-full h-full object-cover"
+            />
+          </div>
+        </div>
+        <div className="w-1/4 h-[300px] overflow-hidden animation-box">
+          <div>
+            <Image
+              src="/site/6.jpg"
+              alt="Creative Work 2"
+              width={300}
+              height={300}
+              className="w-full h-full object-cover"
+            />
+          </div>
+        </div>
+        <div className="w-1/4 h-[300px] overflow-hidden animation-box">
+          <div>
+            <Image
+              src="/site/7.jpg"
+              alt="Creative Work 3"
+              width={300}
+              height={300}
+              className="w-full h-full object-cover"
+            />
+          </div>
+        </div>
+        <div className="w-1/4 h-[300px] overflow-hidden animation-box">
+          <div>
+            <Image
+              src="/site/8.jpg"
+              alt="Creative Work 4"
+              width={300}
+              height={300}
+              className="w-full h-full object-cover"
+            />
+          </div>
+        </div>
       </div>
     </div>
   );
