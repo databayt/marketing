@@ -86,10 +86,10 @@ function ParallaxText({ children, baseVelocity = 100 }: ParallaxProps) {
 export default function Parallax() {
   return (
     <section className="parallax-section full-bleed">
-      <ParallaxText baseVelocity={-0.5}>Compassionate</ParallaxText>
-      <ParallaxText baseVelocity={0.5}>Patient</ParallaxText>
-      <ParallaxText baseVelocity={-0.5}>Diagnosis</ParallaxText>
-      <ParallaxText baseVelocity={0.5}>Accessible</ParallaxText>
+      <ParallaxText baseVelocity={-0.5}>Design</ParallaxText>
+      <ParallaxText baseVelocity={0.5}>Automate</ParallaxText>
+      <ParallaxText baseVelocity={-0.5}>Analytics</ParallaxText>
+      <ParallaxText baseVelocity={0.5}>Efficient</ParallaxText>
     </section>
   );
 }

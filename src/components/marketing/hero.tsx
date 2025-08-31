@@ -30,7 +30,7 @@ export function Hero() {
                             Grows begins here <br />
                             with a right design
                         </h1>
-                        <h1 className="block md:hidden font-heading font-black text-4xl sm:text-7xl md:text-6xl lg:text-[80px]">
+                        <h1 className="block md:hidden font-heading font-black text-5xl sm:text-7xl md:text-6xl lg:text-[80px]">
                             Grows begins <br />
                             here with the <br />
                             right design
@@ -39,10 +39,10 @@ export function Hero() {
                         Every great brand grows from the right design. We craft elegant, functional, and impactful experiences that connect with people and inspire lasting engagement.
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 items-center mt-2">
-                            <ExpandButton variant="default" href="/appointment" className="hover:shadow-[4px_4px_0px_black]">
+                            <ExpandButton variant="default" href="/#" className="hover:shadow-[4px_4px_0px_black]">
                                 Appointment
                             </ExpandButton>
-                            <ExpandButton variant="outline" href="/services" className="hover:shadow-[4px_4px_0px_black]">
+                            <ExpandButton variant="outline" href="/service" className="hover:shadow-[4px_4px_0px_black]">
                                 Services
                             </ExpandButton>
                         </div>
