@@ -6,8 +6,11 @@ export default function PricingHeader() {
       <div className="flex justify-center">
         <Badge className="bg-muted text-foreground">ROI Guaranteed</Badge>
       </div>
-      <h1 className="font-heading">
+      <h1 className="font-heading hidden md:block">
         Simple. Transparent.
+      </h1>
+      <h1 className="font-heading block md:hidden">
+        Simple. <br /> Transparent.
       </h1>
       <p className="max-w-[85%] mx-auto leading-normal text-muted-foreground">
         All components and building blocks are open source — we charge for crafting fully functional masterpieces and ensuring their ongoing reliability.

@@ -26,7 +26,7 @@ export function PricingCards({ userId, subscriptionPlan, userRole }: PricingCard
   return (
     
       <div className="w-full flex flex-col items-center text-center">
-        {/* <HeaderSection label="Pricing" title="Start at full speed !" /> */}
+        <HeaderSection label="Pricing" title="Transform your digital presence" subtitle="Choose the perfect plan for your business needs" />
 
         <BillingToggle isYearly={isYearly} onChange={toggleBilling} />
 
