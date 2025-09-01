@@ -15,11 +15,11 @@ function ReadyToBuildSection() {
         </blockquote>
         <div className="flex items-center gap-3 mb-6">
           <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center">
-            <span className="text-white font-semibold text-lg">JD</span>
+            <span className="text-white font-semibold text-lg">AE</span>
           </div>
           <div>
-            <p className="text-white font-semibold">John Davis</p>
-            <p className="text-[#A0BFF8] text-sm">CEO, PixelCraft Studios</p>
+            <p className="text-white font-semibold">Ahmed Elardi</p>
+            <p className="text-[#A0BFF8] text-sm">CEO, Pixel Studios</p>
           </div>
         </div>
         
