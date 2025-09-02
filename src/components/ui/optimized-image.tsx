@@ -1,16 +1,16 @@
 "use client";
 
-import { Image as ImageKitImage } from '@imagekit/next';
-import { imagekitConfig } from '@/lib/imagekit';
+import { imagekitConfig, buildImagekitUrl } from '@/lib/imagekit';
 import type { ComponentProps } from 'react';
 
-interface OptimizedImageProps extends Omit<ComponentProps<typeof ImageKitImage>, 'urlEndpoint'> {
+interface OptimizedImageProps extends ComponentProps<'img'> {
   src: string;
   alt: string;
   width: number;
   height: number;
   transformation?: Array<Record<string, any>>;
   className?: string;
+  priority?: boolean;
 }
 
 export function OptimizedImage({
@@ -24,21 +24,10 @@ export function OptimizedImage({
   loading,
   ...props
 }: OptimizedImageProps) {
-  // Default transformations for optimization
-  const defaultTransformations = [
-    {
-      width,
-      height,
-      crop: 'maintain_ratio',
-      quality: 'auto',
-      format: 'auto'
-    }
-  ];
-
-  // Merge with custom transformations
-  const finalTransformations = transformation 
-    ? [...defaultTransformations, ...transformation]
-    : defaultTransformations;
+  // Generate ImageKit image URL with original parameter to bypass restrictions
+  const imageUrl = transformation 
+    ? buildImagekitUrl({ src, transformation })
+    : `${imagekitConfig.urlEndpoint}${src}?tr=orig-true`;
 
   // Handle loading priority logic
   const loadingProps = priority 
@@ -46,13 +35,11 @@ export function OptimizedImage({
     : { loading: loading || 'lazy' };
 
   return (
-    <ImageKitImage
-      urlEndpoint={imagekitConfig.urlEndpoint}
-      src={src}
+    <img
+      src={imageUrl}
       alt={alt}
       width={width}
       height={height}
-      transformation={finalTransformations}
       className={className}
       {...loadingProps}
       {...props}

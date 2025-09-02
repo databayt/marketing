@@ -11,7 +11,7 @@ export function Hero() {
                 <div className="tt-gradient-panel">
                     <OptimizedImage 
                         className="tt-gradient-image gradient-accordion-square w-screen h-auto md:w-[744px] block"
-                        src="/gradient-noise-green-red.png"
+                        src="/marketing/site/gradient-noise-green-red.png"
                         alt="decorative background"
                         width={744}
                         height={744}

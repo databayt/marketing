@@ -1,5 +1,8 @@
+"use client";
+
 import React from "react";
 import { OptimizedImage } from '@/components/ui/optimized-image';
+import { OptimizedVideo } from '@/components/ui/optimized-video';
 
 export default function Creative() {
   return (
@@ -27,18 +30,16 @@ export default function Creative() {
 
       {/* Video and Wallet */}
       <div className="flex flex-col md:flex-row gap-8 justify-center items-center mb-8">
-        <video 
+        <OptimizedVideo
+          src="/marketing/site/order.mp4"
           autoPlay
           muted
           loop
           playsInline
-          disablePictureInPicture
-          disableRemotePlayback
           className="rounded-lg w-full md:w-[500px] h-[300px] md:h-[350px] object-cover"
-          preload="metadata"
-        >
-          <source src="/marketing/site/order.mp4" type="video/mp4" />
-        </video>
+          width={500}
+          height={350}
+        />
         
         <OptimizedImage
           src="/marketing/site/wallet.gif"
@@ -57,9 +58,10 @@ export default function Creative() {
               <OptimizedImage
                 src="/marketing/site/5.jpg"
                 alt="Creative Work 1"
-                width={300}
-                height={300}
+                width={400}
+                height={400}
                 className="w-full h-full object-cover"
+                style={{ width: "auto", height: "auto" }}
               />
             </div>
           </div>
@@ -68,9 +70,10 @@ export default function Creative() {
               <OptimizedImage
                 src="/marketing/site/6.jpg"
                 alt="Creative Work 2"
-                width={300}
-                height={300}
+                width={400}
+                height={400}
                 className="w-full h-full object-cover"
+                style={{ width: "auto", height: "auto" }}
               />
             </div>
           </div>
@@ -79,9 +82,10 @@ export default function Creative() {
               <OptimizedImage
                 src="/marketing/site/9.jpg"
                 alt="Creative Work 3"
-                width={300}
-                height={300}
+                width={400}
+                height={400}
                 className="w-full h-full object-cover"
+                style={{ width: "auto", height: "auto" }}
               />
             </div>
           </div>
@@ -90,9 +94,10 @@ export default function Creative() {
               <OptimizedImage
                 src="/marketing/site/8.jpg"
                 alt="Creative Work 4"
-                width={300}
-                height={300}
+                width={400}
+                height={400}
                 className="w-full h-full object-cover"
+                style={{ width: "auto", height: "auto" }}
               />
             </div>
           </div>

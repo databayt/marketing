@@ -24,45 +24,29 @@ export function OptimizedVideo({
   muted,
   loop,
   preload,
+  playsInline,
+  controls,
   ...props
 }: OptimizedVideoProps) {
-  // Default transformations for video optimization
-  const defaultTransformations = [
-    {
-      width,
-      height,
-      quality: 'auto',
-      videoCodec: 'h264'
-    }
-  ];
+  // Generate ImageKit video URL with original parameter to bypass transformation limits
+  const videoUrl = `${imagekitConfig.urlEndpoint}${src}?tr=orig-true`;
 
-  // Merge with custom transformations
-  const finalTransformations = transformation 
-    ? [...defaultTransformations, ...transformation]
-    : defaultTransformations;
-
-  // Only generate poster if not autoplaying and no poster provided
-  const shouldShowPoster = !autoPlay && posterSrc !== undefined;
-  const posterUrl = shouldShowPoster && posterSrc 
+  // Generate poster URL if needed
+  const posterUrl = posterSrc 
     ? buildImagekitUrl({ src: posterSrc })
-    : shouldShowPoster 
-      ? buildImagekitUrl({ 
-          src: `${src}/ik-thumbnail.jpg`,
-          transformation: [{ width, height, crop: 'maintain_ratio' }]
-        })
-      : undefined;
+    : undefined;
 
   return (
-    <ImageKitVideo
-      urlEndpoint={imagekitConfig.urlEndpoint}
-      src={src}
+    <video
+      src={videoUrl}
       width={width}
       height={height}
-      transformation={finalTransformations}
       className={className}
       autoPlay={autoPlay}
       muted={muted}
       loop={loop}
+      playsInline={playsInline}
+      controls={controls}
       preload={preload || (autoPlay ? "auto" : "metadata")}
       poster={posterUrl}
       {...props}

@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { OptimizedImage } from '@/components/ui/optimized-image';
 import { OptimizedVideo } from '@/components/ui/optimized-video';
@@ -61,9 +63,6 @@ export default function Design() {
                 width={800}
                 height={600}
                 className="w-full h-full object-cover"
-                transformation={[
-                  { quality: 90, format: 'auto' }
-                ]}
               />
             </div>
           </div>
@@ -75,9 +74,6 @@ export default function Design() {
                 width={800}
                 height={600}
                 className="w-full h-full object-cover"
-                transformation={[
-                  { quality: 90, format: 'auto' }
-                ]}
               />
             </div>
           </div>
@@ -89,9 +85,6 @@ export default function Design() {
                 width={800}
                 height={600}
                 className="w-full h-full object-cover"
-                transformation={[
-                  { quality: 90, format: 'auto' }
-                ]}
               />
             </div>
           </div>

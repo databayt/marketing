@@ -36,9 +36,6 @@ export default function Branding() {
                 width={600}
                 height={600}
                 className="w-full h-full object-cover"
-                transformation={[
-                  { quality: 90, format: 'auto' }
-                ]}
               />
             </div>
           </div>
@@ -50,9 +47,6 @@ export default function Branding() {
                 width={600}
                 height={600}
                 className="w-full h-full object-cover"    
-                transformation={[
-                  { quality: 90, format: 'auto' }
-                ]}
               />
             </div>
           </div>
@@ -64,9 +58,6 @@ export default function Branding() {
                 width={600}
                 height={600}
                 className="w-full h-full object-cover"
-                transformation={[
-                  { quality: 90, format: 'auto' }
-                ]}
               />
             </div>
           </div>
@@ -78,9 +69,6 @@ export default function Branding() {
                 width={600}
                 height={600}
                 className="w-full h-full object-cover"
-                transformation={[
-                  { quality: 90, format: 'auto' }
-                ]}
               />
             </div>
           </div>
