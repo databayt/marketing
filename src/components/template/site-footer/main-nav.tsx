@@ -9,8 +9,8 @@ export default function MainNav() {
   const isCurrentlyDark = resolvedTheme === "dark";
   
   return (
-    <div className="hidden md:block">
-      <div>
+    <div className="hidden md:flex w-4/6">
+      <div className="w-1/4">
         <p className={`mb-[12px] font-medium ${
           isCurrentlyDark ? "text-muted-foreground" : "text-muted"
         }`}>Product</p>
@@ -26,7 +26,7 @@ export default function MainNav() {
           ))}
         </div>
       </div>
-      <div>
+      <div className="w-1/4">
         <p className={`mb-[12px] font-medium ${
           isCurrentlyDark ? "text-muted-foreground" : "text-muted"
         }`}>Company</p>
@@ -42,7 +42,7 @@ export default function MainNav() {
           ))}
         </div>
       </div>
-      <div>
+      <div className="w-1/4">
         <p className={`mb-[12px] font-medium ${
           isCurrentlyDark ? "text-muted-foreground" : "text-muted"
         }`}>Services</p>
@@ -58,7 +58,7 @@ export default function MainNav() {
           ))}
         </div>
       </div>
-      <div>
+      <div className="w-1/4" >
         <p className={`mb-[12px] font-medium ${
           isCurrentlyDark ? "text-muted-foreground" : "text-muted"
         }`}>Support</p>

@@ -30,7 +30,7 @@ export default function SiteFooter() {
       {/* Mobile Navigation - Hidden on lg+ screens */}
       <MobileNav />
 
-      <div className="mt-[32px] pb-[50px] flex justify-between w-full gap-8 flex-col md:flex-row flex-wrap">
+      <div className="py-10 flex">
         <MainNav />
         <ReadySection />
       </div>

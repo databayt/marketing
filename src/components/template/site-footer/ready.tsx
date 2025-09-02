@@ -18,7 +18,7 @@ export default function ReadySection() {
   const isCurrentlyDark = resolvedTheme === "dark";
   
   return (
-    <div className="min-w-[300px]">
+    <div className="min-w-[300px] w-2/6">
       <p className={`font-medium mb-4 ${
         isCurrentlyDark ? "text-muted-foreground" : "text-muted"
       }`}>Ready to build?</p>
