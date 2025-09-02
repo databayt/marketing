@@ -1,13 +1,13 @@
 import React from "react";
-import Image from "next/image";
+import { OptimizedImage } from '@/components/ui/optimized-image';
 
 export default function Creative() {
   return (
     <div className="py-8">
       {/* Heading with Icon */}
       <div className="flex items-center justify-center gap-3 mb-8">
-        <Image
-          src="/site/creative.png"
+        <OptimizedImage
+          src="/marketing/site/creative.png"
           alt="Creative Icon"
           width={32}
           height={32}
@@ -37,11 +37,11 @@ export default function Creative() {
           className="rounded-lg w-full md:w-[500px] h-[300px] md:h-[350px] object-cover"
           preload="metadata"
         >
-          <source src="/site/order.mp4" type="video/mp4" />
+          <source src="/marketing/site/order.mp4" type="video/mp4" />
         </video>
         
-        <Image
-          src="/site/wallet.gif"
+        <OptimizedImage
+          src="/marketing/site/wallet.gif"
           alt="Wallet Animation"
           width={500}
           height={350}
@@ -54,8 +54,8 @@ export default function Creative() {
         <div className="flex flex-col md:flex-row w-full">
           <div className="w-full md:w-1/4 h-[300px] overflow-hidden animation-box">
             <div>
-              <Image
-                src="/site/5.jpg"
+              <OptimizedImage
+                src="/marketing/site/5.jpg"
                 alt="Creative Work 1"
                 width={300}
                 height={300}
@@ -65,8 +65,8 @@ export default function Creative() {
           </div>
           <div className="w-full md:w-1/4 h-[300px] overflow-hidden animation-box">
             <div>
-              <Image
-                src="/site/6.jpg"
+              <OptimizedImage
+                src="/marketing/site/6.jpg"
                 alt="Creative Work 2"
                 width={300}
                 height={300}
@@ -76,8 +76,8 @@ export default function Creative() {
           </div>
           <div className="w-full md:w-1/4 h-[300px] overflow-hidden animation-box">
             <div>
-              <Image
-                src="/site/9.jpg"
+              <OptimizedImage
+                src="/marketing/site/9.jpg"
                 alt="Creative Work 3"
                 width={300}
                 height={300}
@@ -87,8 +87,8 @@ export default function Creative() {
           </div>
           <div className="w-full md:w-1/4 h-[300px] overflow-hidden animation-box">
             <div>
-              <Image
-                src="/site/8.jpg"
+              <OptimizedImage
+                src="/marketing/site/8.jpg"
                 alt="Creative Work 4"
                 width={300}
                 height={300}

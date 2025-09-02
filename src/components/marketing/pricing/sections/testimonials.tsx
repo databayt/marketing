@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { OptimizedImage } from '@/components/ui/optimized-image';
 
 import { testimonials } from "../config/landing";
 import { HeaderSection } from "@/components/atom/header-section";
@@ -22,7 +22,7 @@ export default function Testimonials() {
                   <div>
                     <div className="relative mb-4 flex items-center gap-3">
                       <span className="relative inline-flex size-10 shrink-0 items-center justify-center rounded-full">
-                        <Image
+                        <OptimizedImage
                           width={100}
                           height={100}
                           className="size-full rounded-full border"

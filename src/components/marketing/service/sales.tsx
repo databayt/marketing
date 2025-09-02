@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
+import { OptimizedImage } from '@/components/ui/optimized-image';
 
 export function Sales() {
   return (
@@ -14,8 +14,8 @@ export function Sales() {
             </p>
            
             <Button className="bg-muted hover:bg-muted/80 text-primary flex items-center gap-2 mx-auto lg:mx-0">
-              <Image
-                src="/site/b.jpg"
+              <OptimizedImage
+                src="/marketing/site/b.jpg"
                 alt="Gift box icon"
                 width={20}
                 height={20}
@@ -28,8 +28,8 @@ export function Sales() {
           {/* Image Section - Now on the right */}
           <div className="flex-1 flex justify-center lg:justify-end">
             <div className="relative w-full lg:pl-24">
-              <Image
-                src="/site/a.png"
+              <OptimizedImage
+                src="/marketing/site/a.png"
                 alt="Sales representative"
                 width={200}
                 height={200}

@@ -4,6 +4,7 @@ import { GeistMono } from "geist/font/mono";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/atom/theme-provider";
+import { ImageKitProvider } from "@/components/ui/imagekit-provider";
 import { Toaster } from "sonner";
 // import { SessionProvider } from "next-auth/react";
 // import { auth } from "@/auth";
@@ -34,11 +35,13 @@ export default async function RootLayout({
         {/* <SessionProvider session={session}> */}
          
             <ThemeProvider>
-              <div className="layout-container">
-                <Toaster position="bottom-right" />
-                
-                {children}
-              </div>
+              <ImageKitProvider>
+                <div className="layout-container">
+                  <Toaster position="bottom-right" />
+                  
+                  {children}
+                </div>
+              </ImageKitProvider>
             </ThemeProvider>
           
         {/* </SessionProvider> */}

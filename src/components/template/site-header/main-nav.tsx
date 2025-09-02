@@ -8,7 +8,7 @@ import { siteConfig } from "./constant"
 import { cn } from "@/lib/utils"
 import { Icons } from "./icons"
 import { MobileNav } from "./mobile-nav"
-import Image from "next/image"
+import { OptimizedImage } from '@/components/ui/optimized-image'
 
 interface MainNavProps {
   items?: MainNavItem[]
@@ -36,7 +36,7 @@ export function MainNav({ items, children }: MainNavProps) {
   return (
     <div className="flex gap-6 md:gap-10">
       <Link href="/" className="hidden items-center gap-2 md:flex">
-        <Image src="/site/logo.png" alt="Hogwarts Logo" width={16} height={16} className="dark:invert -mt-1" />
+        <OptimizedImage src="/marketing/site/logo.png" alt="Hogwarts Logo" width={16} height={16} className="dark:invert -mt-1" />
         <span className="hidden font-bold sm:inline-block  ">
           {siteConfig.name}
         </span>
@@ -64,7 +64,7 @@ export function MainNav({ items, children }: MainNavProps) {
         className="flex items-center space-x-2 md:hidden"
         onClick={() => setShowMobileMenu(!showMobileMenu)}
       >
-        {showMobileMenu ? <Icons.close /> : <Image src="/site/logo.png" alt="Menu" width={16} height={16} className="dark:invert" />}
+        {showMobileMenu ? <Icons.close /> : <OptimizedImage src="/marketing/site/logo.png" alt="Menu" width={16} height={16} className="dark:invert" />}
         <span className="font-bold text-sm">Menu</span>
       </button>
       {showMobileMenu && items && (

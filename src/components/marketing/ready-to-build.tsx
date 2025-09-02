@@ -1,7 +1,7 @@
 
 import { cn } from "@/lib/utils";
 import React from "react";
-import Image from "next/image";
+import { OptimizedImage } from '@/components/ui/optimized-image';
 import { Button } from "@/components/ui/button";
 
 function ReadyToBuildSection() {
@@ -26,7 +26,7 @@ function ReadyToBuildSection() {
     
       </div>
       <div>
-        <Image src="/site/build.png" alt="security" width={500} height={500} className="pr-5" />
+        <OptimizedImage src="/marketing/site/build.png" alt="security" width={500} height={500} className="pr-5" />
       </div>
     </section>
   );

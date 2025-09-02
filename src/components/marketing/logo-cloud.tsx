@@ -1,53 +1,53 @@
 import { InfiniteSlider } from '@/components/atom/infinite-slider'
 import { ProgressiveBlur } from '@/components/atom/progressive-blur'
-import Image from 'next/image'
+import { OptimizedImage } from '@/components/ui/optimized-image'
 
 const sponsors = [
     { 
         name: "Faisal", 
-        src: "/sponser/faisal.png", 
+        src: "/marketing/sponser/faisal.png", 
         width: 120, 
         height: 60, 
         className: "h-12 w-auto" 
     },
     { 
         name: "MTDT", 
-        src: "/sponser/mtdt.png", 
+        src: "/marketing/sponser/mtdt.png", 
         width: 120, 
         height: 60, 
         className: "h-12 w-auto" 
     },
     { 
         name: "Zain", 
-        src: "/sponser/zain.png", 
+        src: "/marketing/sponser/zain.png", 
         width: 100, 
         height: 50, 
         className: "h-10 w-auto" 
     },
     { 
         name: "Khartoum", 
-        src: "/sponser/khartoum.png", 
+        src: "/marketing/sponser/khartoum.png", 
         width: 120, 
         height: 60, 
         className: "h-12 w-auto" 
     },
     { 
         name: "Dal", 
-        src: "/sponser/dal.png", 
+        src: "/marketing/sponser/dal.png", 
         width: 120, 
         height: 60, 
         className: "h-12 w-auto" 
     },
     { 
         name: "249", 
-        src: "/sponser/249.png", 
+        src: "/marketing/sponser/249.png", 
         width: 100, 
         height: 50, 
         className: "h-10 w-auto" 
     },
     { 
         name: "University of Khartoum", 
-        src: "/sponser/uok.png", 
+        src: "/marketing/sponser/uok.png", 
         width: 110, 
         height: 55, 
         className: "h-11 w-auto" 
@@ -69,12 +69,15 @@ export default function LogoCloud() {
                             gap={112}>
                             {sponsors.map((sponsor, index) => (
                                 <div key={index} className="flex items-center justify-center">
-                                    <Image
+                                    <OptimizedImage
                                         src={sponsor.src}
                                         alt={sponsor.name}
                                         width={sponsor.width}
                                         height={sponsor.height}
                                         className={`${sponsor.className} object-contain opacity-70 hover:opacity-100 transition-opacity duration-300 dark:invert`}
+                                        transformation={[
+                                            { width: sponsor.width, height: sponsor.height, crop: "maintain_ratio", quality: 90 }
+                                        ]}
                                     />
                                 </div>
                             ))}

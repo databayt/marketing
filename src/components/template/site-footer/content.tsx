@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
+import { OptimizedImage } from '@/components/ui/optimized-image';
 import { useTheme } from "next-themes";
 import MobileNav from "./mobile-nav";
 import MainNav from "./main-nav";
@@ -18,8 +18,8 @@ export default function SiteFooter() {
         : "bg-foreground text-background border-border"
     }`}>
       <div>
-        <Image 
-          src="/site/logo.png" 
+        <OptimizedImage 
+          src="/marketing/site/logo.png" 
           alt="footer logo" 
           width={32} 
           height={32} 

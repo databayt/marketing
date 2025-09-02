@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import { OptimizedImage } from '@/components/ui/optimized-image'
 import React from 'react'
 
 const Contributors = () => {
@@ -32,11 +32,12 @@ const Contributors = () => {
     <div className="grid grid-cols-4 gap-4 md:grid-cols-10">
       {contributors.map((contributor, index) => (
         <div key={index} className="relative w-[85px] h-[85px] rounded-full overflow-hidden bg-gray-100">
-          <Image 
-            src={`/contributors/${contributor}`} 
+          <OptimizedImage 
+            src={`/marketing/contributors/${contributor}`} 
             alt="" 
-            fill
-            className="object-cover" 
+            width={85}
+            height={85}
+            className="object-cover w-full h-full" 
           />
         </div>
       ))}

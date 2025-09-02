@@ -5,9 +5,9 @@ export const projects: ProjectItem[] = [
     title: "Mkan",
     description: "Airbnb like Real estate, diversity of properties and hotels",
     link: "https://mk.databayt.org",
-    image: "/site/mkan.png",
-    imageDark: "/site/mkan.png",
-    imageLight: "/site/mkan.png",
+    image: "/marketing/site/mkan.png",
+    imageDark: "/marketing/site/mkan.png",
+    imageLight: "/marketing/site/mkan.png",
     date: "2024",
     author: "Real Estate Platform"
   },
@@ -15,9 +15,9 @@ export const projects: ProjectItem[] = [
     title: "Hogwarts",
     description: "Organization automation, attendance, exams, grades and more",
     link: "https://portsudan.databayt.org",
-    image: "/site/hogwarts.png",
-    imageDark: "/site/hogwarts-light.png",
-    imageLight: "/site/hogwarts-dark.png",
+    image: "/marketing/site/hogwarts-dark.png",
+    imageDark: "/marketing/site/hogwarts-light.png",
+    imageLight: "/marketing/site/hogwarts-dark.png",
     date: "2024",
     author: "Education System"
   },
@@ -25,9 +25,9 @@ export const projects: ProjectItem[] = [
     title: "NMBD",
     description: "National movement for building & development",
     link: "https://nmbdsd.org",
-    image: "/site/nmbd-dark.png",
-    imageDark: "/site/nmbd-light.png",
-    imageLight: "/site/nmbd-dark.png",
+    image: "/marketing/site/nmbd-dark.png",
+    imageDark: "/marketing/site/nmbd-light.png",
+    imageLight: "/marketing/site/nmbd-dark.png",
     date: "2024",
     author: "Development Organization"
   }

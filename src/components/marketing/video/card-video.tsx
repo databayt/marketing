@@ -2,7 +2,7 @@
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
-import Image from "next/image";
+import { OptimizedImage } from '@/components/ui/optimized-image';
 import { useState } from "react";
 import { VideoIcon } from "lucide-react";
 import { useTheme } from "next-themes";
@@ -73,7 +73,7 @@ export const HoverEffect = ({ items, className }: HoverEffectProps) => {
                     <Card>
                         <div className="h-48 relative w-full overflow-hidden rounded-lg">
                             
-                            <Image
+                            <OptimizedImage
                                 src={getImageSrc(item)}
                                 alt={item.title}
                                 fill

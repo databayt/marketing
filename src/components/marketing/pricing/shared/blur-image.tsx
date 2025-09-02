@@ -2,15 +2,15 @@
 
 import { useState } from "react";
 import type { ComponentProps } from "react";
-import Image from "next/image";
+import { OptimizedImage } from "@/components/ui/optimized-image";
 
 import { cn } from "@/lib/utils";
 
-export default function BlurImage(props: ComponentProps<typeof Image>) {
+export default function BlurImage(props: ComponentProps<typeof OptimizedImage>) {
   const [isLoading, setLoading] = useState(true);
 
   return (
-    <Image
+    <OptimizedImage
       {...props}
       alt={props.alt}
       className={cn(

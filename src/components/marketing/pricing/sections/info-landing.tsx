@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { OptimizedImage } from '@/components/ui/optimized-image';
 import { InfoLdg } from "../types";
 
 import { cn } from "@/lib/utils";
@@ -48,7 +48,7 @@ export default function InfoLanding({
           )}
         >
           <div className="aspect-video">
-            <Image
+            <OptimizedImage
               className="size-full object-cover object-center"
               src={data.image}
               alt={data.title}

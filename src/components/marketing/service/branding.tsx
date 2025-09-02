@@ -1,13 +1,13 @@
 import React from "react";
-import Image from "next/image";
+import { OptimizedImage } from '@/components/ui/optimized-image';
 
 export default function Branding() {
   return (
     <div className="py-8">
       {/* Heading with Icon */}
       <div className="flex items-center justify-center gap-3 mb-4">
-        <Image
-          src="/site/branding.png"
+        <OptimizedImage
+          src="/marketing/site/branding.png"
           alt="Branding Icon"
           width={32}
           height={32}
@@ -25,50 +25,64 @@ export default function Branding() {
       </div>
 
       {/* Four Images Grid */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 w-full">
-        
-        <div className="aspect-square overflow-hidden rounded-lg animation-box">
-          <div>
-            <Image
-              src="/site/2.jpg"
-              alt="Branding Example 2"
-              width={300}
-              height={300}
-              className="w-full h-full object-cover"
-            />
+      <div className="w-full">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 overflow-hidden w-full">
+          
+          <div className="aspect-square overflow-hidden rounded-lg animation-box">
+            <div>
+              <OptimizedImage
+                src="/marketing/site/2.jpg"
+                alt="Branding Example 2"
+                width={600}
+                height={600}
+                className="w-full h-full object-cover"
+                transformation={[
+                  { quality: 90, format: 'auto' }
+                ]}
+              />
+            </div>
           </div>
-        </div>
-        <div className="aspect-square overflow-hidden rounded-lg animation-box">
-          <div>
-            <Image
-              src="/site/1.jpg"
-              alt="Branding Example 1"
-              width={300}
-              height={300}
-              className="w-full h-full object-cover"
-            />
+          <div className="aspect-square overflow-hidden rounded-lg animation-box">
+            <div>
+              <OptimizedImage
+                src="/marketing/site/1.jpg"
+                alt="Branding Example 1"
+                width={600}
+                height={600}
+                className="w-full h-full object-cover"    
+                transformation={[
+                  { quality: 90, format: 'auto' }
+                ]}
+              />
+            </div>
           </div>
-        </div>
-        <div className="aspect-square overflow-hidden rounded-lg animation-box">
-          <div>
-            <Image
-              src="/site/3.jpg"
-              alt="Branding Example 3"
-              width={300}
-              height={300}
-              className="w-full h-full object-cover"
-            />
+          <div className="aspect-square overflow-hidden rounded-lg animation-box">
+            <div>
+              <OptimizedImage
+                src="/marketing/site/3.jpg"
+                alt="Branding Example 3"
+                width={600}
+                height={600}
+                className="w-full h-full object-cover"
+                transformation={[
+                  { quality: 90, format: 'auto' }
+                ]}
+              />
+            </div>
           </div>
-        </div>
-        <div className="aspect-square overflow-hidden rounded-lg animation-box">
-          <div>
-            <Image
-              src="/site/4.jpg"
-              alt="Branding Example 4"
-              width={300}
-              height={300}
-              className="w-full h-full object-cover"
-            />
+          <div className="aspect-square overflow-hidden rounded-lg animation-box">
+            <div>
+              <OptimizedImage
+                src="/marketing/site/4.jpg"
+                alt="Branding Example 4"
+                width={600}
+                height={600}
+                className="w-full h-full object-cover"
+                transformation={[
+                  { quality: 90, format: 'auto' }
+                ]}
+              />
+            </div>
           </div>
         </div>
       </div>

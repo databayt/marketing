@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import React, { useEffect, useState, useCallback } from "react";
-import Image from "next/image";
+import { OptimizedImage } from '@/components/ui/optimized-image';
 
 export const InfiniteMovingCards = ({
   items,
@@ -103,7 +103,7 @@ export const InfiniteMovingCards = ({
             key={item.name}
           >
             {item.image ? (
-              <Image
+              <OptimizedImage
                 src={item.image}
                 alt={item.name}
                 width={160}

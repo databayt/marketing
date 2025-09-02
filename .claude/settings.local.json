@@ -1,8 +1,13 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npm run typecheck:*)",
-      "Bash(pnpm run:*)"
+      "Bash(pnpm run typecheck:*)",
+      "Bash(pnpm run:*)",
+      "WebFetch(domain:docs.imagekit.io)",
+      "WebFetch(domain:imagekit.io)",
+      "Bash(pnpm add:*)",
+      "WebSearch",
+      "Bash(find:*)"
     ],
     "deny": [],
     "ask": []

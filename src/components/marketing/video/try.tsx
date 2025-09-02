@@ -1,5 +1,5 @@
 import React from 'react';
-import Image from 'next/image';
+import { OptimizedImage } from '@/components/ui/optimized-image';
 import { Card, CardContent } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 import { Play } from 'lucide-react';
@@ -30,7 +30,7 @@ const VideoCard: React.FC<VideoCardProps> = ({
       <DialogTrigger asChild>
         <Card className="group cursor-pointer overflow-hidden transition-all hover:shadow-lg">
           <div className="relative">
-            <Image
+            <OptimizedImage
               src={thumbnail}
               alt={title}
               width={400}

@@ -1,6 +1,6 @@
 import * as React from "react"
 import Link from "next/link"
-import Image from "next/image"
+import { OptimizedImage } from '@/components/ui/optimized-image'
 
 import { MainNavItem } from "./type"
 import { siteConfig } from "./constant"
@@ -30,7 +30,7 @@ export const MobileNav = React.forwardRef<HTMLDivElement, MobileNavProps>(
           onClick={(e) => e.stopPropagation()}
         >
           <Link href="/" className="flex items-center space-x-2">
-            <Image src="/site/logo.png" alt="Logo" width={16} height={16} className="dark:invert" />
+            <OptimizedImage src="/marketing/site/logo.png" alt="Logo" width={16} height={16} className="dark:invert" />
             <span className="font-bold">{siteConfig.name}</span>
           </Link>
           <nav className="grid grid-flow-row auto-rows-max text-sm">

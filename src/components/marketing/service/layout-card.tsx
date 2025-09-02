@@ -1,5 +1,5 @@
 import React from "react";
-import Image from "next/image";
+import { OptimizedImage } from '@/components/ui/optimized-image';
 // import MainButton from "../common/MainButton";
 
 interface IProps {
@@ -28,7 +28,7 @@ function MainLayoutCard({ title, description, rightSideImageUrl }: IProps) {
         </div>
       </div>
       <div>
-        <Image
+        <OptimizedImage
           src={rightSideImageUrl}
           width={500}
           height={400}
