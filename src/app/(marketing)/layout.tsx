@@ -7,11 +7,12 @@ export default function SiteLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div data-slot="site-layout">
+    <div data-slot="site-layout" className="min-h-screen flex flex-col">
       <SiteHeader />
       <main 
         data-slot="main-content"
         role="main"
+        className="flex-1"
       >
         {children}
       </main>

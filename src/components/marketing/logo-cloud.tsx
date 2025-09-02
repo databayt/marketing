@@ -56,8 +56,8 @@ const sponsors = [
 
 export default function LogoCloud() {
     return (
-        <section className=" overflow-hidden mt-6 md:mt-0 py-8 md:py-16">
-            <div className="group relative mx-auto max-w-7xl px-32">
+        <section className="overflow-hidden mt-6 md:mt-0 py-8 md:py-16">
+            <div className="group relative mx-auto max-w-7xl ">
                 <div className="flex flex-col items-center md:flex-row">
                     <div className="md:max-w-44 md:border-r md:pr-6">
                         <p className="text-end text-sm">Trusted by amazing clients</p>
@@ -75,16 +75,13 @@ export default function LogoCloud() {
                                         width={sponsor.width}
                                         height={sponsor.height}
                                         className={`${sponsor.className} object-contain opacity-70 hover:opacity-100 transition-opacity duration-300 dark:invert`}
-                                        transformation={[
-                                            { width: sponsor.width, height: sponsor.height, crop: "maintain_ratio", quality: 90 }
-                                        ]}
                                     />
                                 </div>
                             ))}
                         </InfiniteSlider>
 
-                        <div className="bg-linear-to-r from-background absolute inset-y-0 left-0 w-20"></div>
-                        <div className="bg-linear-to-l from-background absolute inset-y-0 right-0 w-20"></div>
+                        <div className="bg-gradient-to-r from-background absolute inset-y-0 left-0 w-20"></div>
+                        <div className="bg-gradient-to-l from-background absolute inset-y-0 right-0 w-20"></div>
                         <ProgressiveBlur
                             className="pointer-events-none absolute left-0 top-0 h-full w-20"
                             direction="left"

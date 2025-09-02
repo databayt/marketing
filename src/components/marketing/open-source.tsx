@@ -6,8 +6,7 @@ import { siteConfig } from '../template/site-header/constant'
 
 const OpenSource = () => {
   return (
-    <div className="py-20">
-        <div className="mx-auto flex  flex-col items-center justify-center gap-4 text-center">
+    <div className="mx-auto flex flex-col items-center justify-center gap-4 text-center">
           <h2 className="font-heading text-3xl leading-[1.1] sm:text-3xl md:text-6xl">
             Proudly Open Source
           </h2>
@@ -32,9 +31,7 @@ const OpenSource = () => {
           </div>
           <Contributors />
           {/* <Landing /> */}
-          
         </div>
-      </div>
   )
 }
 

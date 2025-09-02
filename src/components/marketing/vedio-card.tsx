@@ -1,6 +1,8 @@
 "use client"
 import React from 'react'
 import { Button } from '@/components/ui/button'
+import { OptimizedVideo } from '@/components/ui/optimized-video'
+import { OptimizedImage } from '@/components/ui/optimized-image'
 
 export interface VideoCardProps {
   logo: string
@@ -9,6 +11,7 @@ export interface VideoCardProps {
   ctaText: string
   secondaryCtaText: string
   videoSrc?: string
+  imageSrc?: string
   videoPoster?: string
   className?: string
 }
@@ -19,7 +22,8 @@ const VideoCard = ({
   description,
   ctaText,
   secondaryCtaText,
-  videoSrc = "/site/dream.mp4",
+  videoSrc = "/marketing/site/dream.mp4",
+  imageSrc,
   videoPoster,
   className
 }: VideoCardProps) => {
@@ -103,21 +107,28 @@ const VideoCard = ({
         {/* Video/Image Section - Right for horizontal, top for vertical */}
         <div className={`${isVertical ? 'w-full' : 'lg:w-[60%]'} bg-gray-900 dark:bg-black overflow-hidden`}>
           <div className="relative h-40 lg:h-full min-h-[250px]">
-            <video
-              className="w-full h-full object-cover pointer-events-none"
-              autoPlay
-              muted
-              loop
-              playsInline
-              controls={false}
-              disablePictureInPicture
-              controlsList="nodownload nofullscreen noremoteplayback"
-              onContextMenu={(e) => e.preventDefault()}
-            >
-              <source src={videoSrc} type="video/mp4" />
-              <source src="/site/dream.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
+            {imageSrc ? (
+              <OptimizedImage
+                src={imageSrc}
+                alt={title}
+                width={800}
+                height={400}
+                className="w-full h-full object-cover"
+              />
+            ) : (
+              <OptimizedVideo
+                src={videoSrc}
+                className="w-full h-full object-cover pointer-events-none"
+                autoPlay
+                muted
+                loop
+                playsInline
+                controls={false}
+                onContextMenu={(e: React.MouseEvent) => e.preventDefault()}
+                width={800}
+                height={400}
+              />
+            )}
           </div>
         </div>
 

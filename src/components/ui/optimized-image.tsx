@@ -29,10 +29,13 @@ export function OptimizedImage({
     ? buildImagekitUrl({ src, transformation })
     : `${imagekitConfig.urlEndpoint}${src}?tr=orig-true`;
 
-  // Handle loading priority logic
+  // Handle loading priority logic - convert priority to loading attribute
   const loadingProps = priority 
-    ? { priority: true } 
+    ? { loading: 'eager' } 
     : { loading: loading || 'lazy' };
+
+  // Filter out Next.js Image specific props that shouldn't be passed to img element
+  const { fill, sizes, quality, placeholder, blurDataURL, onLoad, onError, ...imgProps } = props;
 
   return (
     <img
@@ -42,7 +45,7 @@ export function OptimizedImage({
       height={height}
       className={className}
       {...loadingProps}
-      {...props}
+      {...imgProps}
     />
   );
 }

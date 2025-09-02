@@ -2,7 +2,7 @@ import React from "react";
 
 const Stack = () => {
   return (
-    <div className="space-y-8 py-20 ">
+    <div className="space-y-8">
       <div className="mx-auto flex max-w-full flex-col items-center space-y-4 text-center">
         <h2 className="font-heading text-3xl leading-[1.1] sm:text-3xl md:text-6xl">
           Stack
