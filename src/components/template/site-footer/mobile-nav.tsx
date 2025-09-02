@@ -48,12 +48,12 @@ export default function MobileNav() {
       
       {/* Mobile: Services and Support in one row */}
       <div className="flex flex-row gap-8 w-full">
-        <div className="w-1/2">
+      <div className="w-1/2">
           <p className={`mb-[12px] font-medium ${
             isCurrentlyDark ? "text-muted-foreground" : "text-muted"
-          }`}>Services</p>
+          }`}>Support</p>
           <div className="flex flex-col gap-3">
-            {footerData.attioFor.map((item, index) => (
+            {footerData.support.map((item, index) => (
               <p key={index} className={`hover:cursor-pointer transition-colors ${
                 isCurrentlyDark 
                   ? "text-muted-foreground hover:text-foreground" 
@@ -67,9 +67,9 @@ export default function MobileNav() {
         <div className="w-1/2">
           <p className={`mb-[12px] font-medium ${
             isCurrentlyDark ? "text-muted-foreground" : "text-muted"
-          }`}>Support</p>
+          }`}>Services</p>
           <div className="flex flex-col gap-3">
-            {footerData.support.map((item, index) => (
+            {footerData.attioFor.map((item, index) => (
               <p key={index} className={`hover:cursor-pointer transition-colors ${
                 isCurrentlyDark 
                   ? "text-muted-foreground hover:text-foreground" 
