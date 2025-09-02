@@ -51,12 +51,12 @@
   }
   
   .parallax span.solid {
-    color: #000;
+    color: var(--foreground);
   }
   
   .parallax span.outline {
     color: transparent;
-    -webkit-text-stroke: 3px #000;
+    -webkit-text-stroke: 3px var(--foreground);
     border: none;
     outline: none;
     background: transparent;
@@ -68,7 +68,7 @@
     }
     
     .parallax span.outline {
-      -webkit-text-stroke: 2px #000;
+      -webkit-text-stroke: 2px var(--foreground);
     }
     
     .parallax span {
