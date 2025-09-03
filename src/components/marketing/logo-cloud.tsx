@@ -73,7 +73,7 @@ export default function LogoCloud() {
                             {t.marketing.logoCloud.trustedBy}
                         </p>
                     </div>
-                    <div className="relative py-6 md:w-[calc(100%-11rem)]">
+                    <div className="relative py-6 md:w-[calc(100%-11rem)]" style={{direction: 'ltr'}}>
                         <InfiniteSlider
                             speedOnHover={20}
                             speed={40}
