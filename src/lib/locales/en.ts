@@ -76,6 +76,71 @@ export const en = {
     logoCloud: {
       trustedBy: "Trusted by amazing clients",
     },
+    projects: {
+      mkan: {
+        title: "Mkan",
+        description: "Airbnb like Real estate, diversity of properties and hotels",
+        category: "Real Estate Platform"
+      },
+      hogwarts: {
+        title: "Hogwarts",
+        description: "Organization automation, attendance, exams, grades and more",
+        category: "Education System"
+      },
+      nmbd: {
+        title: "NMBD",
+        description: "National movement for building & development",
+        category: "Development Organization"
+      }
+    },
+    featureCards: {
+      discovery: {
+        title: "Discovery",
+        subtitle: "& Research"
+      },
+      design: {
+        title: "Design",
+        subtitle: "& Prototyping"
+      },
+      development: {
+        title: "Development",
+        subtitle: "& Testing"
+      },
+      launch: {
+        title: "Launch",
+        subtitle: "& Support"
+      }
+    },
+    content: {
+      storyTeller: {
+        logo: "Story TELLER",
+        title: "AI Story Generation",
+        description: "Transform your ideas into compelling stories with our talented storytelling team. Create engaging narratives, scripts, and content that captivates your audience.",
+        ctaText: "Start Writing",
+        secondaryCtaText: "Learn More"
+      },
+      dreamMachine: {
+        logo: "Dream MACHINE",
+        title: "AI-Powered Video Creation",
+        description: "Bring your ideas to life — ideate, visualize, and design unique themes with ease. Share your dreams with the world using our intuitive wizard.",
+        ctaText: "Try Now",
+        secondaryCtaText: "Get Expert"
+      },
+      codebase: {
+        logo: "CODEBASE",
+        title: "AI Story Generation",
+        description: "Automate the boring. at Databayt we're building codebase for business automation.",
+        ctaText: "Databayt",
+        secondaryCtaText: "Codebase"
+      },
+      acme: {
+        logo: "ACME",
+        title: "AI-Powered Video Creation",
+        description: "Company automation. managing projects, auto-generate reports, calculations, and docs",
+        ctaText: "Live Preview",
+        secondaryCtaText: "Get App"
+      }
+    },
   },
   footer: {
     copyright: "All rights reserved",

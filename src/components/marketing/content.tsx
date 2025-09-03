@@ -1,3 +1,5 @@
+"use client";
+
 import { Hero } from "./hero";
 import { Ready } from "./ready";
 import ReadyToBuildSection from "./ready-to-build";
@@ -9,8 +11,10 @@ import OpenSource from "./open-source";
 import Stack from "./stack";
 import FeaturedProjects from "./video/featured-video";
 import LogoCloud from "./logo-cloud";
+import { useTranslations } from '@/lib/use-translations';
 
 export default function SiteContent() {
+  const { t } = useTranslations();
   return (
     <div>
       <Hero />
@@ -20,20 +24,20 @@ export default function SiteContent() {
       <section className="py-10">
         <div className="container mx-auto space-y-16">
           <VideoCard
-            logo="Story TELLER"
-            title="AI Story Generation"
-            description="Transform your ideas into compelling stories with our talented storytelling team. Create engaging narratives, scripts, and content that captivates your audience."
-            ctaText="Start Writing"
-            secondaryCtaText="Learn More"
+            logo={t.marketing.content.storyTeller.logo}
+            title={t.marketing.content.storyTeller.title}
+            description={t.marketing.content.storyTeller.description}
+            ctaText={t.marketing.content.storyTeller.ctaText}
+            secondaryCtaText={t.marketing.content.storyTeller.secondaryCtaText}
             videoSrc="/marketing/site/story.mp4"
             videoPoster="/marketing/sample-poster.jpg"
           />
           <VideoCard
-            logo="Dream MACHINE"
-            title="AI-Powered Video Creation"
-            description="Bring your ideas to life — ideate, visualize, and design unique themes with ease. Share your dreams with the world using our intuitive wizard."
-            ctaText="Try Now"
-            secondaryCtaText="Get Expert"
+            logo={t.marketing.content.dreamMachine.logo}
+            title={t.marketing.content.dreamMachine.title}
+            description={t.marketing.content.dreamMachine.description}
+            ctaText={t.marketing.content.dreamMachine.ctaText}
+            secondaryCtaText={t.marketing.content.dreamMachine.secondaryCtaText}
             videoSrc="/marketing/site/dream.mp4"
             videoPoster="/marketing/sample-poster.jpg"
           />
@@ -45,20 +49,20 @@ export default function SiteContent() {
         <div className="container mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <VerticalImageCard
-              logo="CODEBASE"
-              title="AI Story Generation"
-              description="Automate the boring. at Databayt we're building codebase for business automation."
-              ctaText="Databayt"
-              secondaryCtaText="Codebase"
+              logo={t.marketing.content.codebase.logo}
+              title={t.marketing.content.codebase.title}
+              description={t.marketing.content.codebase.description}
+              ctaText={t.marketing.content.codebase.ctaText}
+              secondaryCtaText={t.marketing.content.codebase.secondaryCtaText}
               imageSrc="/marketing/site/codebase.png"
               imageAlt="Codebase automation platform preview"
             />
             <VerticalImageCard
-              logo="ACME"
-              title="AI-Powered Video Creation"
-              description="Company automation. managing projects, auto-generate reports, calculations, and docs"
-              ctaText="Live Preview"
-              secondaryCtaText="Get App"
+              logo={t.marketing.content.acme.logo}
+              title={t.marketing.content.acme.title}
+              description={t.marketing.content.acme.description}
+              ctaText={t.marketing.content.acme.ctaText}
+              secondaryCtaText={t.marketing.content.acme.secondaryCtaText}
               imageSrc="/marketing/site/acme-preview.jpg"
               imageAlt="ACME company automation platform preview"
             />

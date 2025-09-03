@@ -35,7 +35,7 @@ const VideoCard = ({
     <div
       className="overflow-hidden rounded-3xl bg-muted"
     >
-      <div className={`flex ${isVertical ? 'flex-col' : `flex-col ${isRTL ? 'lg:flex-row-reverse' : 'lg:flex-row'}`}`}>
+      <div className={`flex ${isVertical ? 'flex-col' : 'flex-col lg:flex-row'}`}>
         {/* Text Content Section - Left for horizontal, bottom for vertical */}
         {!isVertical && (
           <div className="lg:w-[40%] p-8">
@@ -65,7 +65,7 @@ const VideoCard = ({
               </div>
 
               {/* Call to Action Buttons */}
-              <div className={`flex flex-col gap-3 pt-6 ${isRTL ? 'sm:flex-row-reverse' : 'sm:flex-row'}`}>
+              <div className={`flex flex-col gap-3 pt-6 ${isRTL ? 'sm:flex-row-reverse items-start' : 'sm:flex-row items-start'}`}>
                 <Button 
                   size="lg"
                   className="bg-black hover:bg-gray-800 text-white font-medium px-6 py-3 rounded-lg"
@@ -163,7 +163,7 @@ const VideoCard = ({
               </div>
 
               {/* Call to Action Buttons */}
-              <div className={`flex flex-col gap-3 pt-6 ${isRTL ? 'sm:flex-row-reverse' : 'sm:flex-row'}`}>
+              <div className={`flex flex-col gap-3 pt-6 ${isRTL ? 'sm:flex-row-reverse items-start' : 'sm:flex-row items-start'}`}>
                 <Button 
                   size="lg"
                   className="bg-black hover:bg-gray-800 text-white font-medium px-6 py-3 rounded-lg"

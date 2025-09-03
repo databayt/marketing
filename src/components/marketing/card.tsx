@@ -1,5 +1,8 @@
+"use client";
+
 import React from 'react'
 import { cn } from '@/lib/utils'
+import { useTranslations } from '@/lib/use-translations'
 
 interface FeatureCardProps {
   number: string
@@ -48,32 +51,34 @@ const FeatureCard = ({
 }
 
 const FeatureCards = () => {
+  const { t } = useTranslations()
+  
   const features = [
     {
       number: "01",
-      title: "Discovery",
-      subtitle: "& Research",
+      title: t.marketing.featureCards.discovery.title,
+      subtitle: t.marketing.featureCards.discovery.subtitle,
       borderColor: "border-blue-500",
       strokeColor: "#3b82f6"
     },
     {
       number: "02", 
-      title: "Design",
-      subtitle: "& Prototyping",
+      title: t.marketing.featureCards.design.title,
+      subtitle: t.marketing.featureCards.design.subtitle,
       borderColor: "border-cyan-500",
       strokeColor: "#06b6d4"
     },
     {
       number: "03",
-      title: "Development",
-      subtitle: "& Testing", 
+      title: t.marketing.featureCards.development.title,
+      subtitle: t.marketing.featureCards.development.subtitle, 
       borderColor: "border-teal-500",
       strokeColor: "#14b8a6"
     },
     {
       number: "04",
-      title: "Launch",
-      subtitle: "& Support",
+      title: t.marketing.featureCards.launch.title,
+      subtitle: t.marketing.featureCards.launch.subtitle,
       borderColor: "border-emerald-500",
       strokeColor: "#10b981"
     }

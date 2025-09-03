@@ -76,6 +76,71 @@ export const ar = {
     logoCloud: {
       trustedBy: "نحظى بثقة عملاء\nرائعين",
     },
+    projects: {
+      mkan: {
+        title: "مكان",
+        description: "منصة عقارية تشبه Airbnb، تنوع في العقارات والفنادق",
+        category: "منصة عقارية"
+      },
+      hogwarts: {
+        title: "هوجوارتس",
+        description: "أتمتة المؤسسات، الحضور، الامتحانات، الدرجات وأكثر",
+        category: "نظام تعليمي"
+      },
+      nmbd: {
+        title: "الحركة الوطنية",
+        description: "الحركة الوطنية للبناء والتنمية",
+        category: "منظمة تنموية"
+      }
+    },
+    featureCards: {
+      discovery: {
+        title: "الاستطلاع",
+        subtitle: "والبحث"
+      },
+      design: {
+        title: "التصميم",
+        subtitle: "والنماذج"
+      },
+      development: {
+        title: "التطوير",
+        subtitle: "والاختبار"
+      },
+      launch: {
+        title: "الإطلاق",
+        subtitle: "والدعم"
+      }
+    },
+    content: {
+      storyTeller: {
+        logo: "حكواتي",
+        title: "توليد القصص بالذكاء الاصطناعي",
+        description: "حول أفكارك إلى قصص جذابة مع فريق الحكي الموهوب لدينا. إنشاء السرد الجذاب والنصوص والمحتوى الذي يأسر جمهورك.",
+        ctaText: "ابدأ الكتابة",
+        secondaryCtaText: "اعرف المزيد"
+      },
+      dreamMachine: {
+        logo: "آلة الأحلام",
+        title: "إنتاج الفيديو بالذكاء الاصطناعي",
+        description: "أحي أفكارك — تصور وصمم وأنشئ موضوعات فريدة بسهولة. شارك أحلامك مع العالم باستخدام معالجنا البديهي.",
+        ctaText: "جرب الآن",
+        secondaryCtaText: "احصل على خبير"
+      },
+      codebase: {
+        logo: "قاعدة الكود",
+        title: "توليد القصص بالذكاء الاصطناعي",
+        description: "أتمت الممل. في داتابيت نحن نبني قاعدة كود لأتمتة الأعمال.",
+        ctaText: "داتابيت",
+        secondaryCtaText: "قاعدة الكود"
+      },
+      acme: {
+        logo: "أكمي",
+        title: "إنتاج الفيديو بالذكاء الاصطناعي",
+        description: "أتمتة الشركة. إدارة المشاريع، توليد التقارير تلقائياً، الحسابات والمستندات",
+        ctaText: "معاينة مباشرة",
+        secondaryCtaText: "احصل على التطبيق"
+      }
+    },
   },
   footer: {
     copyright: "جميع الحقوق محفوظة",
