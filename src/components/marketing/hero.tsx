@@ -13,7 +13,7 @@ export function Hero() {
             <div className="relative z-10">
                 <div className="text-center">
                     <div className={`flex flex-col items-center gap-4 text-center ${isRTL ? 'rtl' : ''}`}>
-                        <h1 className={`hidden md:block font-heading font-black text-3xl sm:text-5xl ${locale === 'ar' ? 'md:text-6xl lg:text-8xl' : 'md:text-5xl lg:text-7xl'}`}>
+                        <h1 className={`hidden md:block font-heading font-black text-3xl sm:text-5xl ${locale === 'ar' ? 'md:text-6xl lg:text-8xl' : 'md:text-5xl lg:text-8xl'}`}>
                             {t.marketing.hero.title.split('\n').map((line, index) => (
                                 <React.Fragment key={index}>
                                     {line}
@@ -33,12 +33,25 @@ export function Hero() {
                             {t.marketing.hero.subtitle}
                         </p>
                         <div className={`flex flex-col sm:flex-row gap-4 items-center mt-2 ${isRTL ? 'sm:flex-row-reverse' : ''}`}>
-                            <ExpandButton variant="default" href="/#" className="hover:shadow-[4px_4px_0px_black]">
-                                {t.marketing.hero.appointment}
-                            </ExpandButton>
-                            <ExpandButton variant="outline" href="/service" className="hover:shadow-[4px_4px_0px_black]">
-                                {t.marketing.hero.services}
-                            </ExpandButton>
+                            {locale === 'ar' ? (
+                                <>
+                                    <ExpandButton variant="outline" href="/service" className="hover:shadow-[4px_4px_0px_black]">
+                                        {t.marketing.hero.services}
+                                    </ExpandButton>
+                                    <ExpandButton variant="default" href="/#" className="hover:shadow-[4px_4px_0px_black]">
+                                        {t.marketing.hero.appointment}
+                                    </ExpandButton>
+                                </>
+                            ) : (
+                                <>
+                                    <ExpandButton variant="default" href="/#" className="hover:shadow-[4px_4px_0px_black]">
+                                        {t.marketing.hero.appointment}
+                                    </ExpandButton>
+                                    <ExpandButton variant="outline" href="/service" className="hover:shadow-[4px_4px_0px_black]">
+                                        {t.marketing.hero.services}
+                                    </ExpandButton>
+                                </>
+                            )}
                         </div>
                     </div>
                 </div>
