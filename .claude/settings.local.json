@@ -12,7 +12,8 @@
       "Bash(dir:*)",
       "Bash(pnpm build:*)",
       "Bash(rm:*)",
-      "Bash(git add:*)"
+      "Bash(taskkill:*)",
+      "Bash(\"taskkill\" \"/F\" \"/IM\" \"node.exe\")"
     ],
     "deny": [],
     "ask": []
