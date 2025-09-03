@@ -69,7 +69,7 @@ export default function LogoCloud() {
             <div className="group relative mx-auto max-w-7xl ">
                 <div className={`flex flex-col items-center md:flex-row ${isRTL ? 'md:flex-row-reverse' : ''}`}>
                     <div className={`md:max-w-44 ${isRTL ? 'md:border-l md:pl-6' : 'md:border-r md:pr-6'}`}>
-                        <p className={`text-sm ${isRTL ? 'text-start' : 'text-end'}`}>
+                        <p className="text-end text-sm whitespace-pre-line">
                             {t.marketing.logoCloud.trustedBy}
                         </p>
                     </div>

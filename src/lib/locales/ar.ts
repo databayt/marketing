@@ -74,7 +74,7 @@ export const ar = {
       enterprise: "المؤسسات",
     },
     logoCloud: {
-      trustedBy: "نحظى بثقة عملاء رائعين",
+      trustedBy: "نحظى بثقة عملاء\nرائعين",
     },
   },
   footer: {
