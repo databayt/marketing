@@ -16,7 +16,7 @@ export const ar = {
     contact: "اتصل بنا",
     services: "الخدمات",
     pricing: "التسعير",
-    login: "تسجيل الدخول",
+    login: "دخول",
     register: "التسجيل",
     logout: "تسجيل الخروج",
     profile: "الملف الشخصي",
@@ -27,6 +27,8 @@ export const ar = {
     light: "فاتح",
     dark: "داكن",
     system: "النظام",
+    platform: "منصة",
+    brandName: "داتابيت",
   },
   navigation: {
     menu: "القائمة",

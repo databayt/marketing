@@ -27,6 +27,8 @@ export const en = {
     light: "Light",
     dark: "Dark",
     system: "System",
+    platform: "Platform",
+    brandName: "Databayt",
   },
   navigation: {
     menu: "Menu",

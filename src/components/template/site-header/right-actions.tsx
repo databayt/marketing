@@ -6,12 +6,18 @@ import { LanguageToggle } from '@/components/ui/language-toggle'
 import { Button, buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import Link from 'next/link'
+import { useParams } from 'next/navigation'
+import { getTranslations, type Locale } from '@/lib/locales'
 
 interface RightActionsProps {
   isAuthenticated: boolean;
 }
 
 export function RightActions({ isAuthenticated }: RightActionsProps) {
+  const params = useParams()
+  const locale = (params?.locale as Locale) || 'en'
+  const t = getTranslations(locale)
+  
   return (
     <div className="flex items-center">
       {isAuthenticated ? (
@@ -19,17 +25,17 @@ export function RightActions({ isAuthenticated }: RightActionsProps) {
           variant="link"
           asChild
         >
-          {/* <LogoutButton>Logout</LogoutButton> */}
+          {/* <LogoutButton>{t.common.logout}</LogoutButton> */}
         </Button>
       ) : (
         <Link
-          href="/login"
+          href={`/${locale}/login`}
           className={cn(
             buttonVariants({ variant: "link"}),
             
           )}
         >
-          Login
+          {t.common.login}
         </Link>
       )}
       <LanguageToggle />
