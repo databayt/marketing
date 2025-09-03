@@ -1,31 +1,36 @@
+'use client';
+
 import React from 'react';
 import ExpandButton from '@/components/atom/expand-button';
+import { useTranslations } from '@/lib/use-translations';
 
 export function Hero() {
+    const { t, isRTL } = useTranslations();
+
     return (
         <section className="tt-hero h-screen mt-10 relative flex items-center justify-center">
             {/* Hero Content */}
             <div className="relative z-10 px-6 sm:px-8 lg:px-12">
                 <div className="max-w-7xl mx-auto text-center">
-                    <div className="flex flex-col items-center gap-4 text-center">
+                    <div className={`flex flex-col items-center gap-4 text-center ${isRTL ? 'rtl' : ''}`}>
                         <h1 className="hidden md:block font-heading font-black text-3xl sm:text-5xl md:text-6xl lg:text-8xl">
-                            Grows begins here <br />
-                            with a right design
+                            {t.marketing.hero.title.split(' ').slice(0, 4).join(' ')} <br />
+                            {t.marketing.hero.title.split(' ').slice(4).join(' ')}
                         </h1>
                         <h1 className="block md:hidden font-heading font-black text-5xl sm:text-7xl md:text-6xl lg:text-[80px]">
-                            Grows begin <br />
-                            here with the <br />
-                            right design
+                            {t.marketing.hero.titleMobile.split(' ').slice(0, 2).join(' ')} <br />
+                            {t.marketing.hero.titleMobile.split(' ').slice(2, 5).join(' ')} <br />
+                            {t.marketing.hero.titleMobile.split(' ').slice(5).join(' ')}
                         </h1>
                         <p className="max-w-xs md:max-w-3xl leading-normal text-muted-foreground sm:text-xl sm:leading-8">
-                        Every great brand grows from the right design. We craft elegant, functional, and impactful experiences that connect with people and inspire lasting engagement.
+                            {t.marketing.hero.subtitle}
                         </p>
-                        <div className="flex flex-col sm:flex-row gap-4 items-center mt-2">
+                        <div className={`flex flex-col sm:flex-row gap-4 items-center mt-2 ${isRTL ? 'sm:flex-row-reverse' : ''}`}>
                             <ExpandButton variant="default" href="/#" className="hover:shadow-[4px_4px_0px_black]">
-                                Appointment
+                                {t.marketing.hero.appointment}
                             </ExpandButton>
                             <ExpandButton variant="outline" href="/service" className="hover:shadow-[4px_4px_0px_black]">
-                                Services
+                                {t.marketing.hero.services}
                             </ExpandButton>
                         </div>
                     </div>

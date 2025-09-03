@@ -8,7 +8,8 @@
       "Bash(pnpm add:*)",
       "WebSearch",
       "Bash(find:*)",
-      "Bash(pnpm dev:*)"
+      "Bash(pnpm dev:*)",
+      "Bash(dir:*)"
     ],
     "deny": [],
     "ask": []

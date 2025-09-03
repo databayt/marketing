@@ -1,6 +1,7 @@
 'use client';
 
 import { ModeSwitcher } from './mode-switcher'
+import { LanguageToggle } from '@/components/ui/language-toggle'
 // import { LogoutButton } from '@/components/auth/logout-button'
 import { Button, buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
@@ -31,6 +32,7 @@ export function RightActions({ isAuthenticated }: RightActionsProps) {
           Login
         </Link>
       )}
+      <LanguageToggle />
       <ModeSwitcher />
     </div>
   );
