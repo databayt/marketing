@@ -73,7 +73,7 @@ export default function LogoCloud() {
                             {t.marketing.logoCloud.trustedBy}
                         </p>
                     </div>
-                    <div className={`relative py-6 md:w-[calc(100%-11rem)]`} style={{direction: isRTL ? 'rtl' : 'ltr'}}>
+                    <div className="relative py-6 md:w-[calc(100%-11rem)]">
                         <InfiniteSlider
                             speedOnHover={20}
                             speed={40}
@@ -91,16 +91,16 @@ export default function LogoCloud() {
                             ))}
                         </InfiniteSlider>
 
-                        <div className={`${isRTL ? 'bg-gradient-to-l' : 'bg-gradient-to-r'} from-background absolute inset-y-0 ${isRTL ? 'right-0' : 'left-0'} w-20`}></div>
-                        <div className={`${isRTL ? 'bg-gradient-to-r' : 'bg-gradient-to-l'} from-background absolute inset-y-0 ${isRTL ? 'left-0' : 'right-0'} w-20`}></div>
+                        <div className="bg-gradient-to-r from-background absolute inset-y-0 left-0 w-20"></div>
+                        <div className="bg-gradient-to-l from-background absolute inset-y-0 right-0 w-20"></div>
                         <ProgressiveBlur
-                            className={`pointer-events-none absolute ${isRTL ? 'right-0' : 'left-0'} top-0 h-full w-20`}
-                            direction={isRTL ? 'right' : 'left'}
+                            className="pointer-events-none absolute left-0 top-0 h-full w-20"
+                            direction="left"
                             blurIntensity={1}
                         />
                         <ProgressiveBlur
-                            className={`pointer-events-none absolute ${isRTL ? 'left-0' : 'right-0'} top-0 h-full w-20`}
-                            direction={isRTL ? 'left' : 'right'}
+                            className="pointer-events-none absolute right-0 top-0 h-full w-20"
+                            direction="right"
                             blurIntensity={1}
                         />
                     </div>
