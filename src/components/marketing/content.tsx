@@ -4,6 +4,7 @@ import ReadyToBuildSection from "./ready-to-build";
 import Parallax from "./parallax-text";
 import { FeatureCards } from "./card";
 import VideoCard from "./vedio-card";
+import VerticalImageCard from "./vertical-image-card";
 import OpenSource from "./open-source";
 import Stack from "./stack";
 import FeaturedProjects from "./video/featured-video";
@@ -39,29 +40,27 @@ export default function SiteContent() {
         </div>
       </section>
       
-      {/* Vertical Layout Video Cards */}
+      {/* Vertical Layout Image Cards */}
       <section className="py-10">
         <div className="container mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <VideoCard
+            <VerticalImageCard
               logo="CODEBASE"
               title="AI Story Generation"
               description="Automate the boring. at Databayt we're building codebase for business automation."
               ctaText="Databayt"
               secondaryCtaText="Codebase"
-              videoSrc="/marketing/site/codebase.mp4"
-              videoPoster="/marketing/sample-poster.jpg"
-              className="flex-col"
+              imageSrc="/marketing/site/codebase.png"
+              imageAlt="Codebase automation platform preview"
             />
-            <VideoCard
-              logo=" ACME"
+            <VerticalImageCard
+              logo="ACME"
               title="AI-Powered Video Creation"
               description="Company automation. managing projects, auto-generate reports, calculations, and docs"
               ctaText="Live Preview"
               secondaryCtaText="Get App"
-              videoSrc="/marketing/site/acme.mp4"
-              videoPoster="/marketing/sample-poster.jpg"
-              className="flex-col"
+              imageSrc="/marketing/site/acme-preview.jpg"
+              imageAlt="ACME company automation platform preview"
             />
           </div>
         </div>
