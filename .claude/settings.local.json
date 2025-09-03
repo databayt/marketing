@@ -9,7 +9,10 @@
       "WebSearch",
       "Bash(find:*)",
       "Bash(pnpm dev:*)",
-      "Bash(dir:*)"
+      "Bash(dir:*)",
+      "Bash(pnpm build:*)",
+      "Bash(rm:*)",
+      "Bash(git add:*)"
     ],
     "deny": [],
     "ask": []
