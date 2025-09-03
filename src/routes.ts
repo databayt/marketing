@@ -13,7 +13,15 @@ export const publicRoutes = [
   "/pricing",
   "/about",
   "/service",
-
+  // Internationalized routes
+  "/en",
+  "/en/pricing",
+  "/en/about", 
+  "/en/service",
+  "/ar",
+  "/ar/pricing",
+  "/ar/about",
+  "/ar/service",
 ];
 
 /**
@@ -23,10 +31,22 @@ export const publicRoutes = [
  */
 export const authRoutes = [
   "/login",
-  "/register",
+  "/register", 
+  "/join",
   "/error",
   "/reset",
-  "/new-password"
+  "/new-password",
+  // Internationalized auth routes
+  "/en/login",
+  "/en/join",
+  "/en/error", 
+  "/en/reset",
+  "/en/new-password",
+  "/ar/login",
+  "/ar/join",
+  "/ar/error",
+  "/ar/reset", 
+  "/ar/new-password"
 ];
 
 /**
