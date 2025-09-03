@@ -54,8 +54,8 @@ export const en = {
   },
   marketing: {
     hero: {
-      title: "Automate the boring, elevate the wondrous",
-      titleMobile: "Automate the boring, elevate the wondrous",
+      title: "Automate the boring,\nelevate the wondrous",
+      titleMobile: "Automate the boring,\nelevate the wondrous",
       subtitle: "Every great brand grows from the right design. We craft elegant, functional, and impactful experiences that connect with people and inspire lasting engagement.",
       appointment: "Appointment",
       services: "Services",
