@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
+import { Rubik } from "next/font/google";
 import "../globals.css";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/atom/theme-provider";
@@ -10,6 +11,13 @@ import { getTranslations, type Locale } from "@/lib/locales";
 import { getDictionary } from "@/lib/dictionaries";
 // import { SessionProvider } from "next-auth/react";
 // import { auth } from "@/auth";
+
+// Configure Rubik font for Arabic
+const rubik = Rubik({
+  subsets: ['arabic', 'latin'],
+  display: 'swap',
+  variable: '--font-rubik',
+});
 
 export async function generateMetadata({
   params,
@@ -55,8 +63,9 @@ export default async function LocaleLayout({
       <body
         className={cn(
           "font-sans antialiased",
-          GeistSans.className,
-          GeistMono.variable
+          isRTL ? rubik.className : GeistSans.className,
+          GeistMono.variable,
+          rubik.variable
         )}
       >
         {/* <SessionProvider session={session}> */}
