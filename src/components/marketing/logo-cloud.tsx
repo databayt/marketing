@@ -67,8 +67,8 @@ export default function LogoCloud() {
     return (
         <section className="overflow-hidden mt-6 md:mt-0 py-8 md:py-16">
             <div className="group relative mx-auto max-w-7xl ">
-                <div className={`flex flex-col items-center md:flex-row ${isRTL ? 'md:flex-row-reverse' : ''}`}>
-                    <div className={`md:max-w-44 ${isRTL ? 'md:border-l md:pl-6' : 'md:border-r md:pr-6'}`}>
+                <div className="flex flex-col items-center md:flex-row">
+                    <div className={`md:max-w-44 md:border-r md:pr-6`}>
                         <p className="text-end text-sm whitespace-pre-line">
                             {t.marketing.logoCloud.trustedBy}
                         </p>
