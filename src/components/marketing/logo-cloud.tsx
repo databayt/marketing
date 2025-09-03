@@ -68,18 +68,18 @@ export default function LogoCloud() {
         <section className="overflow-hidden mt-6 md:mt-0 py-8 md:py-16">
             <div className="group relative mx-auto max-w-7xl ">
                 <div className="flex flex-col items-center md:flex-row">
-                    <div className={`md:max-w-44 md:border-r md:pr-6`}>
+                    <div className={`md:max-w-44 ${isRTL ? 'md:border-l md:pl-6' : 'md:border-r md:pr-6'}`}>
                         <p className="text-end text-sm whitespace-pre-line">
                             {t.marketing.logoCloud.trustedBy}
                         </p>
                     </div>
-                    <div className={`relative py-6 md:w-[calc(100%-11rem)] ${isRTL ? '-scale-x-100' : ''}`}>
+                    <div className={`relative py-6 md:w-[calc(100%-11rem)]`} style={{direction: isRTL ? 'rtl' : 'ltr'}}>
                         <InfiniteSlider
                             speedOnHover={20}
                             speed={40}
                             gap={112}>
                             {sponsors.map((sponsor, index) => (
-                                <div key={index} className={`flex items-center justify-center ${isRTL ? '-scale-x-100' : ''}`}>
+                                <div key={index} className="flex items-center justify-center">
                                     <OptimizedImage
                                         src={sponsor.src}
                                         alt={sponsor.name}
