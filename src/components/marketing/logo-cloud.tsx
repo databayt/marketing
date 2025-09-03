@@ -1,6 +1,10 @@
+'use client'
+
 import { InfiniteSlider } from '@/components/atom/infinite-slider'
 import { ProgressiveBlur } from '@/components/atom/progressive-blur'
 import { OptimizedImage } from '@/components/ui/optimized-image'
+import { useParams } from 'next/navigation'
+import { getTranslations, type Locale } from '@/lib/locales'
 
 const sponsors = [
     { 
@@ -55,18 +59,26 @@ const sponsors = [
 ]
 
 export default function LogoCloud() {
+    const params = useParams()
+    const locale = (params?.locale as Locale) || 'en'
+    const t = getTranslations(locale)
+    const isRTL = locale === 'ar'
+    
     return (
         <section className="overflow-hidden mt-6 md:mt-0 py-8 md:py-16">
             <div className="group relative mx-auto max-w-7xl ">
-                <div className="flex flex-col items-center md:flex-row">
-                    <div className="md:max-w-44 md:border-r md:pr-6">
-                        <p className="text-end text-sm">Trusted by amazing clients</p>
+                <div className={`flex flex-col items-center md:flex-row ${isRTL ? 'md:flex-row-reverse' : ''}`}>
+                    <div className={`md:max-w-44 ${isRTL ? 'md:border-l md:pl-6' : 'md:border-r md:pr-6'}`}>
+                        <p className={`text-sm ${isRTL ? 'text-start' : 'text-end'}`}>
+                            {t.marketing.logoCloud.trustedBy}
+                        </p>
                     </div>
                     <div className="relative py-6 md:w-[calc(100%-11rem)]">
                         <InfiniteSlider
                             speedOnHover={20}
                             speed={40}
-                            gap={112}>
+                            gap={112}
+                            reverse={isRTL}>
                             {sponsors.map((sponsor, index) => (
                                 <div key={index} className="flex items-center justify-center">
                                     <OptimizedImage
@@ -80,16 +92,16 @@ export default function LogoCloud() {
                             ))}
                         </InfiniteSlider>
 
-                        <div className="bg-gradient-to-r from-background absolute inset-y-0 left-0 w-20"></div>
-                        <div className="bg-gradient-to-l from-background absolute inset-y-0 right-0 w-20"></div>
+                        <div className={`${isRTL ? 'bg-gradient-to-l' : 'bg-gradient-to-r'} from-background absolute inset-y-0 ${isRTL ? 'right-0' : 'left-0'} w-20`}></div>
+                        <div className={`${isRTL ? 'bg-gradient-to-r' : 'bg-gradient-to-l'} from-background absolute inset-y-0 ${isRTL ? 'left-0' : 'right-0'} w-20`}></div>
                         <ProgressiveBlur
-                            className="pointer-events-none absolute left-0 top-0 h-full w-20"
-                            direction="left"
+                            className={`pointer-events-none absolute ${isRTL ? 'right-0' : 'left-0'} top-0 h-full w-20`}
+                            direction={isRTL ? 'right' : 'left'}
                             blurIntensity={1}
                         />
                         <ProgressiveBlur
-                            className="pointer-events-none absolute right-0 top-0 h-full w-20"
-                            direction="right"
+                            className={`pointer-events-none absolute ${isRTL ? 'left-0' : 'right-0'} top-0 h-full w-20`}
+                            direction={isRTL ? 'left' : 'right'}
                             blurIntensity={1}
                         />
                     </div>

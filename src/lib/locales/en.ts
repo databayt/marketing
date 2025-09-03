@@ -73,6 +73,9 @@ export const en = {
       pro: "Pro",
       enterprise: "Enterprise",
     },
+    logoCloud: {
+      trustedBy: "Trusted by amazing clients",
+    },
   },
   footer: {
     copyright: "All rights reserved",

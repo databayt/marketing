@@ -73,6 +73,9 @@ export const ar = {
       pro: "احترافي",
       enterprise: "المؤسسات",
     },
+    logoCloud: {
+      trustedBy: "نحظى بثقة عملاء رائعين",
+    },
   },
   footer: {
     copyright: "جميع الحقوق محفوظة",
