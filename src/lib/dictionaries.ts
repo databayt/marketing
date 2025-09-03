@@ -1,13 +1,15 @@
-import { type Locale, getTranslations } from './locales';
+import { type Locale, getTranslations, type TranslationKeys } from './locales';
 
-interface Dictionary {
+interface Metadata {
   metadata: {
     title: string;
     description: string;
   };
 }
 
-export async function getDictionary(locale: Locale): Promise<Dictionary & ReturnType<typeof getTranslations>> {
+export type Dictionary = TranslationKeys & Metadata;
+
+export async function getDictionary(locale: Locale): Promise<Dictionary> {
   const translations = getTranslations(locale);
   
   return {

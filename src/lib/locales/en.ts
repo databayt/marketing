@@ -78,6 +78,11 @@ export const en = {
     copyright: "All rights reserved",
     poweredBy: "Powered by",
   },
+  errors: {
+    notFound: "Page Not Found",
+    serverError: "Something went wrong",
+    unauthorized: "You are not authorized to access this page",
+  },
 } as const;
 
 export type TranslationKeys = typeof en;

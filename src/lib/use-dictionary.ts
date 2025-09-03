@@ -1,5 +1,7 @@
-import { getDictionary, type Dictionary } from '@/lib/dictionaries';
-import type { Locale } from '@/lib/locales';
+import { getDictionary } from '@/lib/dictionaries';
+import type { Locale, TranslationKeys } from '@/lib/locales';
+
+export type Dictionary = TranslationKeys;
 
 // Server-side dictionary hook
 export async function useDictionary(locale: Locale): Promise<Dictionary> {

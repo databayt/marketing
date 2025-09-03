@@ -78,4 +78,9 @@ export const ar = {
     copyright: "جميع الحقوق محفوظة",
     poweredBy: "مدعوم بواسطة",
   },
+  errors: {
+    notFound: "الصفحة غير موجودة",
+    serverError: "حدث خطأ ما",
+    unauthorized: "غير مسموح لك بالوصول إلى هذه الصفحة",
+  },
 } as const;
