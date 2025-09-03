@@ -2,6 +2,7 @@
 import React from 'react'
 import { Button } from '@/components/ui/button'
 import { OptimizedImage } from '@/components/ui/optimized-image'
+import { useTranslations } from '@/lib/use-translations'
 
 export interface VerticalImageCardProps {
   logo: string
@@ -24,6 +25,7 @@ const VerticalImageCard = ({
   imageAlt,
   className
 }: VerticalImageCardProps) => {
+  const { isRTL } = useTranslations()
   return (
     <div
       className={`overflow-hidden rounded-3xl bg-muted ${className || ''}`}
@@ -48,7 +50,7 @@ const VerticalImageCard = ({
           <div className="flex flex-col h-full justify-between">
             {/* Logo and Title */}
             <div className="space-y-6">
-              <div className="text-center lg:text-left">
+              <div className={`text-center ${isRTL ? 'lg:text-right' : 'lg:text-left'}`}>
                 {logo.split(' ').length === 1 ? (
                   <div className="text-3xl lg:text-4xl font-bold uppercase tracking-wide">
                     {logo}
@@ -71,7 +73,7 @@ const VerticalImageCard = ({
             </div>
 
             {/* Call to Action Buttons */}
-            <div className="flex flex-col sm:flex-row gap-3 pt-6">
+            <div className={`flex flex-col gap-3 pt-6 ${isRTL ? 'sm:flex-row-reverse' : 'sm:flex-row'}`}>
               <Button 
                 size="lg"
                 className="bg-black hover:bg-gray-800 text-white font-medium px-6 py-3 rounded-lg"

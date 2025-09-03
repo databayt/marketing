@@ -13,7 +13,7 @@ export function Hero() {
             <div className="relative z-10">
                 <div className="text-center">
                     <div className={`flex flex-col items-center gap-4 text-center ${isRTL ? 'rtl' : ''}`}>
-                        <h1 className={`hidden md:block font-heading font-black text-3xl sm:text-5xl md:text-6xl ${locale === 'ar' ? 'lg:text-8xl' : 'lg:text-[85px] '}`}>
+                        <h1 className={`hidden md:block font-heading font-black text-3xl sm:text-5xl md:text-6xl ${locale === 'ar' ? 'lg:text-8xl' : 'lg:text-[90px] '}`}>
                             {t.marketing.hero.title.split('\n').map((line, index) => (
                                 <React.Fragment key={index}>
                                     {line}
