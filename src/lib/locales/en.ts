@@ -54,8 +54,8 @@ export const en = {
   },
   marketing: {
     hero: {
-      title: "Grows begins here with a right design",
-      titleMobile: "Grows begin here with the right design",
+      title: "Automate the boring, elevate the wondrous",
+      titleMobile: "Automate the boring, elevate the wondrous",
       subtitle: "Every great brand grows from the right design. We craft elegant, functional, and impactful experiences that connect with people and inspire lasting engagement.",
       appointment: "Appointment",
       services: "Services",
