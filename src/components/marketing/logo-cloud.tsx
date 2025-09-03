@@ -73,14 +73,13 @@ export default function LogoCloud() {
                             {t.marketing.logoCloud.trustedBy}
                         </p>
                     </div>
-                    <div className="relative py-6 md:w-[calc(100%-11rem)]">
+                    <div className={`relative py-6 md:w-[calc(100%-11rem)] ${isRTL ? '-scale-x-100' : ''}`}>
                         <InfiniteSlider
                             speedOnHover={20}
                             speed={40}
-                            gap={112}
-                            reverse={isRTL}>
+                            gap={112}>
                             {sponsors.map((sponsor, index) => (
-                                <div key={index} className="flex items-center justify-center">
+                                <div key={index} className={`flex items-center justify-center ${isRTL ? '-scale-x-100' : ''}`}>
                                     <OptimizedImage
                                         src={sponsor.src}
                                         alt={sponsor.name}
