@@ -68,7 +68,7 @@ function ParallaxText({ children, baseVelocity = 100 }: ParallaxProps) {
    * dynamically generated number of children.
    */
   return (
-    <div className="parallax">
+    <div className="parallax" dir="ltr">
       <motion.div className="scroller" style={{ x }}>
         <span className="solid">{children} </span>
         <span className="outline">{children} </span>
@@ -85,7 +85,7 @@ function ParallaxText({ children, baseVelocity = 100 }: ParallaxProps) {
 
 export default function Parallax() {
   return (
-    <section className="parallax-section full-bleed">
+    <section className="parallax-section full-bleed" dir="ltr">
       <ParallaxText baseVelocity={-0.5}>Design</ParallaxText>
       <ParallaxText baseVelocity={0.5}>Automate</ParallaxText>
       <ParallaxText baseVelocity={-0.5}>Analytics</ParallaxText>
