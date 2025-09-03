@@ -14,13 +14,20 @@ export function Hero() {
                 <div className="max-w-7xl mx-auto text-center">
                     <div className={`flex flex-col items-center gap-4 text-center ${isRTL ? 'rtl' : ''}`}>
                         <h1 className="hidden md:block font-heading font-black text-3xl sm:text-5xl md:text-6xl lg:text-8xl">
-                            {t.marketing.hero.title.split(' ').slice(0, 4).join(' ')} <br />
-                            {t.marketing.hero.title.split(' ').slice(4).join(' ')}
+                            {t.marketing.hero.title.split('\n').map((line, index) => (
+                                <React.Fragment key={index}>
+                                    {line}
+                                    {index < t.marketing.hero.title.split('\n').length - 1 && <br />}
+                                </React.Fragment>
+                            ))}
                         </h1>
                         <h1 className="block md:hidden font-heading font-black text-5xl sm:text-7xl md:text-6xl lg:text-[80px]">
-                            {t.marketing.hero.titleMobile.split(' ').slice(0, 2).join(' ')} <br />
-                            {t.marketing.hero.titleMobile.split(' ').slice(2, 5).join(' ')} <br />
-                            {t.marketing.hero.titleMobile.split(' ').slice(5).join(' ')}
+                            {t.marketing.hero.titleMobile.split('\n').map((line, index) => (
+                                <React.Fragment key={index}>
+                                    {line}
+                                    {index < t.marketing.hero.titleMobile.split('\n').length - 1 && <br />}
+                                </React.Fragment>
+                            ))}
                         </h1>
                         <p className="max-w-xs md:max-w-3xl leading-normal text-muted-foreground sm:text-xl sm:leading-8">
                             {t.marketing.hero.subtitle}

@@ -7,6 +7,7 @@ import { ThemeProvider } from "@/components/atom/theme-provider";
 import { ImageKitProvider } from "@/components/ui/imagekit-provider";
 import { Toaster } from "sonner";
 import { getTranslations, type Locale } from "@/lib/locales";
+import { getDictionary } from "@/lib/dictionaries";
 // import { SessionProvider } from "next-auth/react";
 // import { auth } from "@/auth";
 
@@ -16,11 +17,25 @@ export async function generateMetadata({
   params: Promise<{ locale: Locale }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const t = getTranslations(locale);
+  const dict = await getDictionary(locale);
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3001';
   
   return {
-    title: "Databayt",
-    description: "Web design",
+    title: dict.metadata.title,
+    description: dict.metadata.description,
+    openGraph: {
+      title: dict.metadata.title,
+      description: dict.metadata.description,
+      locale: locale,
+      alternateLocale: locale === 'en' ? 'ar' : 'en',
+    },
+    alternates: {
+      languages: {
+        en: `${baseUrl}/en`,
+        ar: `${baseUrl}/ar`,
+        'x-default': `${baseUrl}/en`,
+      },
+    },
   };
 }
 
