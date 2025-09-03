@@ -10,7 +10,7 @@ export function Hero() {
     return (
         <section className="tt-hero h-screen mt-10 relative flex items-center justify-center">
             {/* Hero Content */}
-            <div className="relative z-10 px-6 sm:px-8 lg:px-12">
+            <div className="relative z-10">
                 <div className="text-center">
                     <div className={`flex flex-col items-center gap-4 text-center ${isRTL ? 'rtl' : ''}`}>
                         <h1 className="hidden md:block font-heading font-black text-3xl sm:text-5xl md:text-6xl lg:text-8xl">
