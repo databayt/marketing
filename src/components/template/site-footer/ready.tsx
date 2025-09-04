@@ -12,19 +12,21 @@ import {
   WhatsAppIcon
 } from "@/components/atom/icons";
 import { useTheme } from "next-themes";
+import { useTranslations } from '@/lib/use-translations';
 
 export default function ReadySection() {
   const { resolvedTheme } = useTheme();
+  const { t } = useTranslations();
   const isCurrentlyDark = resolvedTheme === "dark";
   
   return (
     <div className="min-w-[300px] w-2/6">
       <p className={`font-medium mb-4 ${
         isCurrentlyDark ? "text-muted-foreground" : "text-muted"
-      }`}>Ready to build?</p>
+      }`}>{t.marketing.footer.readyToBuild}</p>
       <ExpandButton variant="white" className="group flex items-center mb-6">
         <span className="order-1 transition-all duration-300 group-hover:order-2">
-          Get started
+          {t.marketing.footer.getStarted}
         </span>
         <ArrowRight className="order-2 ml-2 group-hover:ml-0 group-hover:mr-2 h-4 w-4 transition-all duration-300 group-hover:order-1 group-hover:translate-x-1" />
       </ExpandButton>

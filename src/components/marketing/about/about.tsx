@@ -3,6 +3,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import { Content } from "./content";
 import Link from "next/link";
+import { useTranslations } from '@/lib/use-translations';
 
 // Hook to detect mobile device
 const useIsMobile = () => {
@@ -22,6 +23,7 @@ const useIsMobile = () => {
 };
 
 const About = () => {
+  const { t, isRTL } = useTranslations();
   const containerRef = useRef<HTMLDivElement>(null);
   const leftContentRef = useRef<HTMLDivElement>(null);
   const boxRef = useRef<HTMLDivElement>(null);
@@ -314,12 +316,12 @@ const About = () => {
   }, [isDragging, dragStartY, boxStartTop, scrollPercentage, textSpeedFactor, isMobile]);
 
   return (
-    <div ref={containerRef} className="full-bleed mx-auto px-4 md:px-14 bg-primary text-white">
-      <Link href="/" className="absolute top-8 right-8 text-white hover:text-white/70 transition-colors hover:underline">back</Link>  
-      <div className="flex flex-col lg:flex-row h-[100vh]">
+    <div ref={containerRef} className={`full-bleed mx-auto px-4 md:px-14 bg-primary text-white ${isRTL ? 'font-heading' : ''}`}>
+      <Link href="/" className={`absolute top-8 ${isRTL ? 'left-8' : 'right-8'} text-white hover:text-white/70 transition-colors hover:underline`}>{t.marketing.about.backLink}</Link>  
+      <div className={`flex flex-col lg:flex-row h-[100vh] ${isRTL ? 'lg:flex-row-reverse' : ''}`}>
         {/* Left Column - Content at scale with custom scrollbar - hidden on mobile */}
-        <div ref={leftColumnRef} className="w-full relative pt-36 pl-0 md:pl-4 h-full hidden md:block">
-          <div ref={leftContentRef} style={{ transform: `scale(${scaleValue})`, transformOrigin: 'top left' }}>
+        <div ref={leftColumnRef} className={`w-full relative pt-36 h-full hidden md:block ${isRTL ? 'pr-0 md:pr-4' : 'pl-0 md:pl-4'}`}>
+          <div ref={leftContentRef} style={{ transform: `scale(${scaleValue})`, transformOrigin: isRTL ? 'top right' : 'top left' }}>
             <Content />
           </div>
           {/* Transparent tracker box - with cursor styling for drag - hidden on mobile */}
@@ -327,7 +329,7 @@ const About = () => {
             ref={boxRef}
             className="absolute w-40 h-24 mt-44 border border-muted-foreground hover:border-white hover:border-opacity-70 hidden md:block"
             style={{
-              left: '-20px',
+              [isRTL ? 'right' : 'left']: '-20px',
               top: `${initialBoxTop}px`,
               userSelect: 'none',
               zIndex: 10
@@ -341,7 +343,7 @@ const About = () => {
         </div>
 
         {/* Right Column - Content at normal scale with hidden scrollbar */}
-        <div className="w-full -ml-0 md:-ml-40 h-full relative z-50">
+        <div className={`w-full h-full relative z-50 ${isRTL ? '-mr-0 md:-mr-40' : '-ml-0 md:-ml-40'}`}>
           <div 
             ref={rightContentRef}
             className="h-full overflow-auto md:overflow-hidden no-scrollbar"

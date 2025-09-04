@@ -16,7 +16,21 @@
       "Bash(\"taskkill\" \"/F\" \"/IM\" \"node.exe\")",
       "Bash(git add:*)",
       "Bash(git commit:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Read(/D:\\repo\\template\\src\\components\\marketing/**)",
+      "Read(/D:\\repo\\template\\src\\components\\template\\site-footer/**)",
+      "Read(/D:\\repo\\template\\src\\components\\template\\site-footer/**)",
+      "Read(/D:\\repo\\template\\src\\components\\template\\site-footer/**)",
+      "Read(/D:\\repo\\template\\src\\components\\template\\site-footer/**)",
+      "Read(/D:\\repo\\template\\src\\components\\template\\site-footer/**)",
+      "Read(/D:\\repo\\template\\src\\lib/**)",
+      "Read(/D:\\repo\\template\\src\\lib\\locales/**)",
+      "Read(/D:\\repo\\template\\src\\lib\\locales/**)",
+      "Read(/D:\\repo\\template\\src\\components\\marketing/**)",
+      "Read(/D:\\repo\\template\\src\\app\\[locale]\\about/**)",
+      "Read(/D:\\repo\\template\\src\\components\\marketing\\about/**)",
+      "Read(/D:\\repo\\template\\src\\components\\marketing\\about/**)",
+      "Read(/D:\\repo\\template\\src\\lib\\locales/**)"
     ],
     "deny": [],
     "ask": []
