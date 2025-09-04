@@ -104,7 +104,38 @@ export const en = {
       product: "Product",
       company: "Company", 
       services: "Services",
-      support: "Support"
+      support: "Support",
+      readyToBuild: "Ready to build?",
+      getStarted: "Get started"
+    },
+    stack: {
+      title: "Stack",
+      descriptionMobile: "Databayt leverages state-of-the-art technology to craft innovative applications.",
+      description: "Databayt leverages state-of-the-art technology to craft innovative and modern applications, delivering seamless performance.",
+      nextjs: {
+        title: "Next.js 15",
+        description: "App dir, Routing, Layouts, Loading UI and API routes."
+      },
+      react: {
+        title: "React 19", 
+        description: "Server and Client Components.\nUse hook."
+      },
+      database: {
+        title: "Database",
+        description: "ORM using Prisma and deployed on PlanetScale."
+      },
+      components: {
+        title: "Components",
+        description: "UI components built using Radix UI and styled with Tailwind CSS."
+      },
+      authentication: {
+        title: "Authentication",
+        description: "Authentication using Auth.js and middlewares."
+      },
+      subscriptions: {
+        title: "Subscriptions",
+        description: "Free and paid subscriptions using\nStripe."
+      }
     },
     projects: {
       mkan: {

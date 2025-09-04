@@ -104,7 +104,38 @@ export const ar = {
       product: "المنتج",
       company: "الشركة",
       services: "الخدمات", 
-      support: "الدعم"
+      support: "الدعم",
+      readyToBuild: "مستعد للبناء؟",
+      getStarted: "ابدأ الآن"
+    },
+    stack: {
+      title: "التقنيات المستخدمة",
+      descriptionMobile: "تستفيد داتابيت من أحدث التقنيات لصنع تطبيقات مبتكرة.",
+      description: "تستفيد داتابيت من أحدث التقنيات لصنع تطبيقات مبتكرة وحديثة، مما يوفر أداءً سلساً.",
+      nextjs: {
+        title: "Next.js 15",
+        description: "دليل التطبيق، التوجيه، التخطيطات، واجهة التحميل ومسارات API."
+      },
+      react: {
+        title: "React 19",
+        description: "مكونات الخادم والعميل.\nاستخدام الخطافات."
+      },
+      database: {
+        title: "قاعدة البيانات", 
+        description: "ORM باستخدام Prisma ومنشور على PlanetScale."
+      },
+      components: {
+        title: "المكونات",
+        description: "مكونات واجهة المستخدم مبنية باستخدام Radix UI ومصممة بـ Tailwind CSS."
+      },
+      authentication: {
+        title: "المصادقة",
+        description: "المصادقة باستخدام Auth.js والوسطاء."
+      },
+      subscriptions: {
+        title: "الاشتراكات", 
+        description: "اشتراكات مجانية ومدفوعة باستخدام\nStripe."
+      }
     },
     projects: {
       mkan: {
