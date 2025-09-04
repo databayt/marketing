@@ -9,6 +9,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { getCtaLabel, getIncludesHeading, getPriceDisplay, getYearlyTotal, isStarterTitle, isProTitle } from "./constants";
+import { useTranslations } from '@/lib/use-translations';
 import { Separator } from "@/components/ui/separator";
 
 interface PricingCardProps {
@@ -20,9 +21,10 @@ interface PricingCardProps {
 }
 
 export function PricingCard({ offer, isYearly, userId, subscriptionPlan, userRole }: PricingCardProps) {
+  const { t } = useTranslations();
   const isPro = isProTitle(offer.title);
   const isStarter = isStarterTitle(offer.title);
-  const priceDisplay = getPriceDisplay(offer, isYearly);
+  const priceDisplay = getPriceDisplay(offer, isYearly, t);
 
   const ctaArea = (
     <>
@@ -35,7 +37,7 @@ export function PricingCard({ offer, isYearly, userId, subscriptionPlan, userRol
               
             )}
           >
-            Start trial
+{getCtaLabel(offer.title, t)}
           </Link>
         ) : (
           <BillingFormButton
@@ -63,7 +65,7 @@ export function PricingCard({ offer, isYearly, userId, subscriptionPlan, userRol
             "hover:scale-[1.01] transition-transform rounded-full",
           )}
         >
-          {getCtaLabel(offer.title)}
+{getCtaLabel(offer.title, t)}
         </Link>
       )}
       {(!userId || !subscriptionPlan) && isPro && (
@@ -74,7 +76,7 @@ export function PricingCard({ offer, isYearly, userId, subscriptionPlan, userRol
     </>
   );
 
-  const includesHeading = getIncludesHeading(offer.title);
+  const includesHeading = getIncludesHeading(offer.title, t);
 
   return (
     <Card

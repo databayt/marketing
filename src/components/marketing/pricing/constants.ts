@@ -5,18 +5,18 @@ export const isProTitle = (title: string): boolean => title.toLowerCase() === "p
 
 export const isStarterTitle = (title: string): boolean => title.toLowerCase() === "hobby";
 
-export const getIncludesHeading = (title: string): string =>
+export const getIncludesHeading = (title: string, t: any): string =>
   isStarterTitle(title)
-    ? "Includes"
+    ? t.marketing.pricing.constants.includes
     : isProTitle(title)
-    ? "Everything in Hobby, plus"
-    : "Everything in Pro, plus";
+    ? t.marketing.pricing.constants.everythingInHobby
+    : t.marketing.pricing.constants.everythingInPro;
 
-export const getCtaLabel = (title: string): string =>
-  isStarterTitle(title) ? "Start trial" : isProTitle(title) ? "Get Pro" : "Get Ultra";
+export const getCtaLabel = (title: string, t: any): string =>
+  isStarterTitle(title) ? t.marketing.pricing.constants.startTrial : isProTitle(title) ? t.marketing.pricing.constants.getPro : t.marketing.pricing.constants.getUltra;
 
-export const getPriceDisplay = (offer: SubscriptionPlan, isYearly: boolean): string => {
-  if (offer.prices.monthly === 0) return "Free";
+export const getPriceDisplay = (offer: SubscriptionPlan, isYearly: boolean, t: any): string => {
+  if (offer.prices.monthly === 0) return t.marketing.pricing.constants.free;
   if (isYearly) {
     const discountedPerMonth = offer.prices.monthly * 0.8;
     return `$${discountedPerMonth}`;
@@ -30,13 +30,61 @@ export const getYearlyTotal = (offer: SubscriptionPlan): number => {
 };
 
 // Pricing data moved here from subscriptions.ts
+export const getPricingData = (t: any): SubscriptionPlan[] => [
+  {
+    title: "Hobby",
+    description: t.marketing.pricing.plans.hobby.description,
+    benefits: t.marketing.pricing.plans.hobby.benefits,
+    limitations: [],
+    prices: {
+      monthly: 0,
+      yearly: 0,
+    },
+    stripeIds: {
+      monthly: null,
+      yearly: null,
+    },
+  },
+  {
+    title: "Pro", 
+    description: t.marketing.pricing.plans.pro.description,
+    benefits: t.marketing.pricing.plans.pro.benefits,
+    limitations: [],
+    prices: {
+      monthly: 20,
+      yearly: 192,
+    },
+    stripeIds: {
+      monthly: env.NEXT_PUBLIC_STRIPE_PRO_MONTHLY_PLAN_ID ?? null,
+      yearly: env.NEXT_PUBLIC_STRIPE_PRO_YEARLY_PLAN_ID ?? null,
+    },
+  },
+  {
+    title: "Ultra",
+    description: t.marketing.pricing.plans.ultra.description,
+    benefits: t.marketing.pricing.plans.ultra.benefits,
+    limitations: [],
+    prices: {
+      monthly: 200,
+      yearly: 1920,
+    },
+    stripeIds: {
+      monthly:
+        env.NEXT_PUBLIC_STRIPE_BUSINESS_MONTHLY_PLAN_ID ?? env.NEXT_PUBLIC_STRIPE_ULTRA_MONTHLY_PLAN_ID ?? null,
+      yearly:
+        env.NEXT_PUBLIC_STRIPE_BUSINESS_YEARLY_PLAN_ID ?? env.NEXT_PUBLIC_STRIPE_ULTRA_YEARLY_PLAN_ID ?? null,
+    },
+  },
+];
+
+// Keep original for backward compatibility
 export const pricingData: SubscriptionPlan[] = [
   {
     title: "Hobby",
     description: "Get started for free",
     benefits: [
       "Up to 5 pages website",
-      "Basic responsive design",
+      "Basic responsive design", 
       "Contact form integration",
     ],
     limitations: [],

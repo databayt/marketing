@@ -1,3 +1,5 @@
+"use client";
+
 import { PlansRow } from "@/components/marketing/pricing/types";
 import { CircleCheck, Info } from "lucide-react";
 
@@ -9,8 +11,11 @@ import {
 } from "@/components/ui/popover";
 import { HeaderSection } from "@/components/atom/header-section";
 import MaxWidthWrapper from "@/components/marketing/pricing/shared/max-width-wrapper";
+import { useTranslations } from '@/lib/use-translations';
 
 export function ComparePlans() {
+  const { t } = useTranslations();
+  
   const renderCell = (value: string | boolean | null) => {
     if (value === null) return "—";
     if (typeof value === "boolean")
@@ -22,8 +27,8 @@ export function ComparePlans() {
     <div className="py-20">
       <MaxWidthWrapper>
         <HeaderSection
-          title="Compare Plans"
-          subtitle="Find the perfect plan tailored for your business needs!"
+          title={t.marketing.pricing.comparePlans.title}
+          subtitle={t.marketing.pricing.comparePlans.subtitle}
         />
 
         {/* Desktop Table View */}

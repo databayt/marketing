@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 import { UserSubscriptionPlan } from "@/components/marketing/pricing/types";
-import { pricingData } from "./constants";
+import { getPricingData } from "./constants";
 import { BillingToggle } from "./billing-toggle";
 import { HeaderSection } from "@/components/atom/header-section";
 import MaxWidthWrapper from "@/components/marketing/pricing/shared/max-width-wrapper";
@@ -33,7 +33,7 @@ export function PricingCards({ userId, subscriptionPlan, userRole }: PricingCard
         <BillingToggle isYearly={isYearly} onChange={toggleBilling} />
 
         <div className="grid gap-6 md:gap-8 bg-inherit py-4 md:grid-cols-3 items-stretch w-full">
-          {pricingData.map((offer) => (
+          {getPricingData(t).map((offer) => (
             <PricingCard
               offer={offer}
               key={offer.title}
