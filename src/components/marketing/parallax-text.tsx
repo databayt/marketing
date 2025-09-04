@@ -85,10 +85,11 @@ function ParallaxText({ children, baseVelocity = 100 }: ParallaxProps) {
 }
 
 export default function Parallax() {
-  const { t } = useTranslations();
+  const { t, locale } = useTranslations();
+  const fontStyle = locale === 'ar' ? { fontFamily: 'Rubik, sans-serif' } : {};
   
   return (
-    <section className="parallax-section full-bleed" dir="ltr">
+    <section className="parallax-section full-bleed" dir="ltr" style={fontStyle}>
       <ParallaxText baseVelocity={-0.5}>{t.marketing.parallax.design}</ParallaxText>
       <ParallaxText baseVelocity={0.5}>{t.marketing.parallax.automate}</ParallaxText>
       <ParallaxText baseVelocity={-0.5}>{t.marketing.parallax.analytics}</ParallaxText>

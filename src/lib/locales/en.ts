@@ -82,6 +82,12 @@ export const en = {
       analytics: "Analytics",
       efficient: "Efficient"
     },
+    ready: {
+      title: "Ready to begin a journey of wonder?",
+      description: "Every great brand started with a single step. Take yours today and join hundreds of brands who have wrote their story in our magical world of design.",
+      startJourney: "Let the journey begin",
+      scheduleMeeting: "Schedule a Meeting"
+    },
     projects: {
       mkan: {
         title: "Mkan",
