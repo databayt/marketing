@@ -56,7 +56,7 @@ export const en = {
     hero: {
       title: "Automate the boring,\nelevate the wondrous",
       titleMobile: "Automate the boring,\nelevate the wondrous",
-      subtitle: "Every great brand grows from the right design. We craft elegant, functional, and impactful experiences that connect with people and inspire lasting engagement.",
+      subtitle: "Building codebase for business automation and open sourcing everything. Follow along as we figure this out together.",
       appointment: "Appointment",
       services: "Services",
     },

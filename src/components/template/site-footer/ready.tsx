@@ -2,7 +2,7 @@
 
 import React from "react";
 import ExpandButton from "@/components/atom/expand-button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowLeft } from "lucide-react";
 import { 
   GitHubNewIcon, 
   TwitterIcon, 
@@ -16,7 +16,7 @@ import { useTranslations } from '@/lib/use-translations';
 
 export default function ReadySection() {
   const { resolvedTheme } = useTheme();
-  const { t } = useTranslations();
+  const { t, isRTL } = useTranslations();
   const isCurrentlyDark = resolvedTheme === "dark";
   
   return (
@@ -24,11 +24,15 @@ export default function ReadySection() {
       <p className={`font-medium mb-4 ${
         isCurrentlyDark ? "text-muted-foreground" : "text-muted"
       }`}>{t.marketing.footer.readyToBuild}</p>
-      <ExpandButton variant="white" className="group flex items-center mb-6">
-        <span className="order-1 transition-all duration-300 group-hover:order-2">
+      <ExpandButton variant="white" className={`group flex items-center mb-6 ${isRTL ? 'flex-row-reverse' : ''}`}>
+        <span className={`transition-all duration-300 ${isRTL ? 'order-2 group-hover:order-1' : 'order-1 group-hover:order-2'}`}>
           {t.marketing.footer.getStarted}
         </span>
-        <ArrowRight className="order-2 ml-2 group-hover:ml-0 group-hover:mr-2 h-4 w-4 transition-all duration-300 group-hover:order-1 group-hover:translate-x-1" />
+        {isRTL ? (
+          <ArrowLeft className={`order-1 mr-2 group-hover:mr-0 group-hover:ml-2 h-4 w-4 transition-all duration-300 group-hover:order-2 group-hover:-translate-x-1`} />
+        ) : (
+          <ArrowRight className="order-2 ml-2 group-hover:ml-0 group-hover:mr-2 h-4 w-4 transition-all duration-300 group-hover:order-1 group-hover:translate-x-1" />
+        )}
       </ExpandButton>
       <div className="flex items-center gap-4">
         <GitHubNewIcon className={`h-8 w-8 cursor-pointer transition-colors ${
