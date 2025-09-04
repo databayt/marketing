@@ -120,19 +120,33 @@
     left: 50%;
     transform: translateX(-50%);
     max-width: none;
-    margin-left: calc(50% - 50vw);
-    margin-right: calc(50% - 50vw);
   }
   
   /* RTL-aware full bleed utility */
   .full-bleed-rtl {
     width: 100vw;
     position: relative;
+    left: 0;
+    right: 0;
+    transform: none;
     max-width: none;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+  }
+  
+  /* Full bleed that works properly in RTL contexts */
+  [dir="rtl"] .full-bleed {
+    left: 0;
+    right: 50%;
+    transform: translateX(50%);
+  }
+  
+  /* Enhanced full bleed for RTL - handles container padding better */
+  .full-bleed-enhanced {
+    width: 100vw;
     margin-left: calc(50% - 50vw);
     margin-right: calc(50% - 50vw);
-    left: auto;
-    right: auto;
-    transform: none;
+    position: relative;
+    max-width: none;
   }
 } 

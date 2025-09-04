@@ -8,7 +8,7 @@ import { useTranslations } from '@/lib/use-translations';
 export function Ready() {
   const { isRTL } = useTranslations();
   return (
-    <div className={isRTL ? "full-bleed-rtl" : "full-bleed"}>
+    <div className="full-bleed-enhanced">
     <GradientAnimation height="h-[70vh]">
       <div className="absolute z-50 inset-0">
         <div className="text-center pt-16">

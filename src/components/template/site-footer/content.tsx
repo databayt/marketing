@@ -15,7 +15,7 @@ export default function SiteFooter() {
   
   return (
     <div className="h-[calc(100vh-3rem)] flex flex-col">
-      <section className={`px-4 md:px-20 pt-10 ${isRTL ? 'full-bleed-rtl' : 'full-bleed'} transition-colors flex-1 flex flex-col ${
+      <section className={`px-4 md:px-20 pt-10 full-bleed-enhanced transition-colors flex-1 flex flex-col ${
         isCurrentlyDark 
           ? "bg-card text-card-foreground border-border" 
           : "bg-foreground text-background border-border"
