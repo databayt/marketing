@@ -293,6 +293,34 @@ export const en = {
   footer: {
     copyright: "All rights reserved",
     poweredBy: "Powered by",
+    data: {
+      product: [
+        "Web Design",
+        "Development",
+        "Branding",
+        "E-commerce",
+        "Mobile Apps",
+        "UI/UX Design",
+        "WordPress",
+        "Shopify"
+      ],
+      company: [
+        "About",
+        "Careers",
+        "Blog",
+        "Case Studies"
+      ],
+      services: [
+        "Startups",
+        "Agencies"
+      ],
+      support: [
+        "Help Center",
+        "Contact",
+        "Documentation",
+        "Service Status"
+      ]
+    }
   },
   errors: {
     notFound: "Page Not Found",

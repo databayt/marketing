@@ -48,7 +48,8 @@
       "Read(/D:\\repo\\template\\src\\components\\marketing\\service/**)",
       "Read(/D:\\repo\\template\\src\\components\\marketing\\service/**)",
       "Read(/D:\\repo\\template\\src\\components\\marketing\\pricing/**)",
-      "Read(/D:\\repo\\template\\src\\components\\marketing\\about/**)"
+      "Read(/D:\\repo\\template\\src\\components\\marketing\\about/**)",
+      "Read(/D:\\repo\\template\\src\\components\\marketing\\pricing/**)"
     ],
     "deny": [],
     "ask": []

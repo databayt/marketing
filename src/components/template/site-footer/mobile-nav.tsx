@@ -19,7 +19,7 @@ export default function MobileNav() {
             isCurrentlyDark ? "text-muted-foreground" : "text-muted"
           }`}>{t.marketing.footer.product}</p>
           <div className="flex flex-col gap-3">
-            {footerData.product.map((item, index) => (
+            {t.footer.data.product.map((item, index) => (
               <p key={index} className={`hover:cursor-pointer transition-colors ${
                 isCurrentlyDark 
                   ? "text-muted-foreground hover:text-foreground" 
@@ -35,7 +35,7 @@ export default function MobileNav() {
             isCurrentlyDark ? "text-muted-foreground" : "text-muted"
           }`}>{t.marketing.footer.company}</p>
           <div className="flex flex-col gap-3">
-            {footerData.company.map((item, index) => (
+            {t.footer.data.company.map((item, index) => (
               <p key={index} className={`hover:cursor-pointer transition-colors ${
                 isCurrentlyDark 
                   ? "text-muted-foreground hover:text-foreground" 
@@ -55,7 +55,7 @@ export default function MobileNav() {
             isCurrentlyDark ? "text-muted-foreground" : "text-muted"
           }`}>{t.marketing.footer.support}</p>
           <div className="flex flex-col gap-3">
-            {footerData.support.map((item, index) => (
+            {t.footer.data.support.map((item, index) => (
               <p key={index} className={`hover:cursor-pointer transition-colors ${
                 isCurrentlyDark 
                   ? "text-muted-foreground hover:text-foreground" 
@@ -71,7 +71,7 @@ export default function MobileNav() {
             isCurrentlyDark ? "text-muted-foreground" : "text-muted"
           }`}>{t.marketing.footer.services}</p>
           <div className="flex flex-col gap-3">
-            {footerData.attioFor.map((item, index) => (
+            {t.footer.data.services.map((item, index) => (
               <p key={index} className={`hover:cursor-pointer transition-colors ${
                 isCurrentlyDark 
                   ? "text-muted-foreground hover:text-foreground" 
