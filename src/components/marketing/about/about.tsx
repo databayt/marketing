@@ -317,7 +317,7 @@ const About = () => {
 
   return (
     <div ref={containerRef} className={`full-bleed mx-auto px-4 md:px-14 bg-primary text-white ${isRTL ? 'font-heading' : ''}`}>
-      <Link href="/" className={`absolute top-8 ${isRTL ? 'left-8' : 'right-8'} text-white hover:text-white/70 transition-colors hover:underline`}>{t.marketing.about.backLink}</Link>  
+      <Link href={isRTL ? '/ar' : '/en'} className={`absolute top-8 ${isRTL ? 'left-8' : 'right-8'} text-white hover:text-white/70 transition-colors hover:underline`}>{t.marketing.about.backLink}</Link>  
       <div className="flex flex-col lg:flex-row h-[100vh]">
         {/* First Column - For RTL this will be the scroll column, for LTR this is content column */}
         <div ref={isRTL ? leftColumnRef : rightColumnRef} className={`w-full h-full relative z-50 ${isRTL ? 'relative pt-36 hidden md:block pr-0 md:pr-4' : '-ml-0 md:-ml-40'}`}>
