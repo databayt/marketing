@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { OptimizedImage } from '@/components/ui/optimized-image';
 import { useTranslations } from '@/lib/use-translations';
