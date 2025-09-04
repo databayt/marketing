@@ -10,7 +10,7 @@ export function Ready() {
   return (
     <div className="full-bleed-enhanced">
     <GradientAnimation height="h-[70vh]">
-      <div className="absolute inset-0">
+      <div className="absolute z-50 inset-0">
         <div className="text-center pt-16">
           <h1 className="text-4xl font-bold text-primary-foreground dark:invert">
             {t.marketing.ready.title}

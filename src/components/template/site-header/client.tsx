@@ -29,7 +29,7 @@ export default function SiteHeaderClient({ isAuthenticated }: SiteHeaderProps) {
       {/* Desktop Header - Animated */}
       <header 
         className={`
-          fixed z-40 left-1/2 transform -translate-x-1/2 w-full hidden md:block
+          fixed z-80 left-1/2 transform -translate-x-1/2 w-full hidden md:block
           transition-[top] duration-700 ease-linear
           ${isScrolled ? 'top-0' : 'top-4'}
         `}

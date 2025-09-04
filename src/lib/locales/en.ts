@@ -88,6 +88,24 @@ export const en = {
       startJourney: "Let the journey begin",
       scheduleMeeting: "Schedule a Meeting"
     },
+    openSource: {
+      title: "Proudly Open Source",
+      description: "Databayt is open source and powered by open source software.",
+      descriptionLine2: "The code is available on",
+      github: "GitHub",
+      contributors: "Contributors"
+    },
+    readyToBuild: {
+      quote: "This platform transformed how we manage client relationships. The intuitive design and powerful features helped us scale from a small agency to serving Fortune 500 companies.",
+      author: "Ahmed Elardi",
+      position: "CEO, Pixel Studios"
+    },
+    footer: {
+      product: "Product",
+      company: "Company", 
+      services: "Services",
+      support: "Support"
+    },
     projects: {
       mkan: {
         title: "Mkan",

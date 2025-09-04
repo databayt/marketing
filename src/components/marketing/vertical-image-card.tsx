@@ -73,7 +73,7 @@ const VerticalImageCard = ({
             </div>
 
             {/* Call to Action Buttons */}
-            <div className={`flex flex-col gap-3 pt-6 ${isRTL ? 'sm:flex-row-reverse items-end' : 'sm:flex-row items-start'}`}>
+            <div className={`flex flex-col gap-3 pt-6 ${isRTL ? 'sm:flex-row-reverse justify-start' : 'sm:flex-row justify-start'}`}>
               {locale === 'ar' ? (
                 <>
                   <Button 

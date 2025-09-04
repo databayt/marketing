@@ -88,6 +88,24 @@ export const ar = {
       startJourney: "فلتبدأ الرحلة",
       scheduleMeeting: "حدد موعداً"
     },
+    openSource: {
+      title: "مفتوح المصدر بفخر",
+      description: "داتابيت مفتوح المصدر ويعمل بالبرمجيات مفتوحة المصدر.",
+      descriptionLine2: "الكود متاح على",
+      github: "جيت هب",
+      contributors: "المساهمون"
+    },
+    readyToBuild: {
+      quote: "هذه المنصة غيرت طريقة إدارتنا لعلاقات العملاء. التصميم البديهي والميزات القوية ساعدتنا في التوسع من وكالة صغيرة إلى خدمة شركات من قائمة فورتشن 500.",
+      author: "أحمد العاردي",
+      position: "المدير التنفيذي، استوديو بكسل"
+    },
+    footer: {
+      product: "المنتج",
+      company: "الشركة",
+      services: "الخدمات", 
+      support: "الدعم"
+    },
     projects: {
       mkan: {
         title: "مكان",
