@@ -3,10 +3,13 @@
 import React from "react";
 import { OptimizedImage } from '@/components/ui/optimized-image';
 import { OptimizedVideo } from '@/components/ui/optimized-video';
+import { useTranslations } from '@/lib/use-translations';
 
 export default function Creative() {
+  const { t, isRTL } = useTranslations();
+  
   return (
-    <div className="py-8">
+    <div className={`py-8 ${isRTL ? 'font-heading' : ''}`}>
       {/* Heading with Icon */}
       <div className="flex items-center justify-center gap-3 mb-8">
         <OptimizedImage
@@ -16,15 +19,13 @@ export default function Creative() {
           height={32}
           className="w-8 h-8"
         />
-        <h2 className="text-3xl font-bold text-foreground">Creative</h2>
+        <h2 className="text-3xl font-bold text-foreground">{t.marketing.services.creative.title}</h2>
       </div>
 
       {/* Service Description */}
       <div className="text-center max-w-3xl mx-auto mb-8">
         <p className="text-lg text-muted-foreground leading-relaxed">
-          We offer comprehensive creative services including content creation, 
-          poster design, and professional video editing. Our team specializes in 
-          bringing your vision to life.
+          {t.marketing.services.creative.description}
         </p>
       </div>
 

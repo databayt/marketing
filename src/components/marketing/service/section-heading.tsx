@@ -1,14 +1,17 @@
 import React from "react";
+import { useTranslations } from '@/lib/use-translations';
 
 export default function SectionHeading() {
+  const { t, isRTL } = useTranslations();
+  
   return (
-    <div className="text-center mb-12">
-      <h1 className="font-heading mb-4">Service</h1>
+    <div className={`text-center mb-12 ${isRTL ? 'font-heading' : ''}`}>
+      <h1 className="font-heading mb-4">{t.marketing.services.title}</h1>
       
       {/* Service Description */}
       <div className="max-w-3xl mx-auto mb-8">
         <p className="text-lg text-muted-foreground leading-relaxed">
-          We offer comprehensive web design and branding solutions to help your business stand out in the digital landscape. From stunning websites to memorable brand identities.
+          {t.marketing.services.description}
         </p>
       </div>
 

@@ -3,10 +3,13 @@
 import React from "react";
 import { OptimizedImage } from '@/components/ui/optimized-image';
 import { OptimizedVideo } from '@/components/ui/optimized-video';
+import { useTranslations } from '@/lib/use-translations';
 
 export default function Design() {
+  const { t, isRTL } = useTranslations();
+  
   return (
-    <div className="py-8">
+    <div className={`py-8 ${isRTL ? 'font-heading' : ''}`}>
       {/* Heading with Icon */}
       <div className="flex items-center justify-center gap-3 mb-8">
         <OptimizedImage
@@ -16,14 +19,13 @@ export default function Design() {
           height={32}
           className="w-8 h-8"
         />
-        <h2 className="text-3xl font-bold text-foreground">Design</h2>
+        <h2 className="text-3xl font-bold text-foreground">{t.marketing.services.design.title}</h2>
       </div>
 
       {/* Service Description */}
       <div className="text-center max-w-3xl mx-auto mb-8">
         <p className="text-lg text-muted-foreground leading-relaxed">
-          Creating stunning visual designs with modern UI/UX, graphics, and layouts. 
-          We bring innovative concepts to life with creative excellence.
+          {t.marketing.services.design.description}
         </p>
       </div>
 

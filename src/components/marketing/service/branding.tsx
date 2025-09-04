@@ -1,9 +1,12 @@
 import React from "react";
 import { OptimizedImage } from '@/components/ui/optimized-image';
+import { useTranslations } from '@/lib/use-translations';
 
 export default function Branding() {
+  const { t, isRTL } = useTranslations();
+  
   return (
-    <div className="py-8">
+    <div className={`py-8 ${isRTL ? 'font-heading' : ''}`}>
       {/* Heading with Icon */}
       <div className="flex items-center justify-center gap-3 mb-4">
         <OptimizedImage
@@ -13,13 +16,13 @@ export default function Branding() {
           height={32}
           className="w-8 h-8"
         />
-        <h2 className="text-3xl font-bold text-foreground">Branding</h2>
+        <h2 className="text-3xl font-bold text-foreground">{t.marketing.services.branding.title}</h2>
       </div>
 
       {/* Description */}
       <div className="text-center max-w-3xl mx-auto mb-8">
         <p className="text-lg text-muted-foreground leading-relaxed">
-          Create a memorable brand identity that resonates with your audience  From logos to complete brand guidelines, we craft visual stories that build trust and recognition
+          {t.marketing.services.branding.description}
         </p>
       
       </div>

@@ -8,6 +8,7 @@ import { BillingToggle } from "./billing-toggle";
 import { HeaderSection } from "@/components/atom/header-section";
 import MaxWidthWrapper from "@/components/marketing/pricing/shared/max-width-wrapper";
 import { PricingCard } from "./card";
+import { useTranslations } from '@/lib/use-translations';
 
 interface PricingCardsProps {
   userId?: string;
@@ -16,6 +17,7 @@ interface PricingCardsProps {
 }
 
 export function PricingCards({ userId, subscriptionPlan, userRole }: PricingCardsProps) {
+  const { t } = useTranslations();
   // Default to monthly on initial render
   const [isYearly, setIsYearly] = useState<boolean>(false);
 
@@ -26,7 +28,7 @@ export function PricingCards({ userId, subscriptionPlan, userRole }: PricingCard
   return (
     
       <div className="w-full flex flex-col items-center text-center">
-        <HeaderSection label="Pricing" title="Transform your digital presence" subtitle="Choose the perfect plan for your business needs" />
+        <HeaderSection label={t.marketing.pricing.headerSection.label} title={t.marketing.pricing.headerSection.title} subtitle={t.marketing.pricing.headerSection.subtitle} />
 
         <BillingToggle isYearly={isYearly} onChange={toggleBilling} />
 
