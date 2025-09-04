@@ -28,7 +28,7 @@ const VideoCard = ({
   videoPoster,
   className
 }: VideoCardProps) => {
-  const { isRTL } = useTranslations()
+  const { isRTL, locale } = useTranslations()
   const isVertical = className?.includes('flex-col')
   
   return (
@@ -43,7 +43,11 @@ const VideoCard = ({
               {/* Logo and Title */}
               <div className="space-y-6">
                 <div className={`text-center ${isRTL ? 'lg:text-right' : 'lg:text-left'}`}>
-                  {logo.split(' ').length === 1 ? (
+{locale === 'ar' && logo === 'آلة الأحلام' ? (
+                    <div className="text-3xl lg:text-4xl font-medium" style={{ fontFamily: 'Rubik, sans-serif' }}>
+                      {logo}
+                    </div>
+                  ) : logo.split(' ').length === 1 ? (
                     <div className="text-3xl lg:text-4xl font-bold uppercase tracking-wide">
                       {logo}
                     </div>
@@ -66,41 +70,83 @@ const VideoCard = ({
 
               {/* Call to Action Buttons */}
               <div className={`flex flex-col gap-3 pt-6 ${isRTL ? 'sm:flex-row-reverse items-start' : 'sm:flex-row items-start'}`}>
-                <Button 
-                  size="lg"
-                  className="bg-black hover:bg-gray-800 text-white font-medium px-6 py-3 rounded-lg"
-                  onClick={() => {
-                    if (ctaText.toLowerCase().includes('start writing')) {
-                      window.location.href = '/service'
-                    } else if (ctaText.toLowerCase().includes('databayt')) {
-                      window.open('https://databayt.org', '_blank')
-                    } else if (ctaText.toLowerCase().includes('codebase')) {
-                      window.open('https://cb.databayt.org', '_blank')
-                    } else if (ctaText.toLowerCase().includes('live preview')) {
-                      window.open('https://co.databayt.org', '_blank')
-                    }
-                  }}
-                >
-                  {ctaText}
-                </Button>
-                <Button 
-                  variant="ghost"
-                  size="lg"
-                  className="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 font-medium px-6 py-3"
-                  onClick={() => {
-                    if (secondaryCtaText.toLowerCase().includes('start writing')) {
-                      window.location.href = '/service'
-                    } else if (secondaryCtaText.toLowerCase().includes('databayt')) {
-                      window.open('https://databayt.org', '_blank')
-                    } else if (secondaryCtaText.toLowerCase().includes('codebase')) {
-                      window.open('https://cb.databayt.org', '_blank')
-                    } else if (secondaryCtaText.toLowerCase().includes('live preview')) {
-                      window.open('https://co.databayt.org', '_blank')
-                    }
-                  }}
-                >
-                  {secondaryCtaText}
-                </Button>
+                {locale === 'ar' ? (
+                  <>
+                    <Button 
+                      variant="ghost"
+                      size="lg"
+                      className="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 font-medium px-6 py-3"
+                      onClick={() => {
+                        if (secondaryCtaText.toLowerCase().includes('start writing')) {
+                          window.location.href = '/service'
+                        } else if (secondaryCtaText.toLowerCase().includes('databayt')) {
+                          window.open('https://databayt.org', '_blank')
+                        } else if (secondaryCtaText.toLowerCase().includes('codebase')) {
+                          window.open('https://cb.databayt.org', '_blank')
+                        } else if (secondaryCtaText.toLowerCase().includes('live preview')) {
+                          window.open('https://co.databayt.org', '_blank')
+                        }
+                      }}
+                    >
+                      {secondaryCtaText}
+                    </Button>
+                    <Button 
+                      size="lg"
+                      className="bg-black hover:bg-gray-800 text-white font-medium px-6 py-3 rounded-lg"
+                      onClick={() => {
+                        if (ctaText.toLowerCase().includes('start writing')) {
+                          window.location.href = '/service'
+                        } else if (ctaText.toLowerCase().includes('databayt')) {
+                          window.open('https://databayt.org', '_blank')
+                        } else if (ctaText.toLowerCase().includes('codebase')) {
+                          window.open('https://cb.databayt.org', '_blank')
+                        } else if (ctaText.toLowerCase().includes('live preview')) {
+                          window.open('https://co.databayt.org', '_blank')
+                        }
+                      }}
+                    >
+                      {ctaText}
+                    </Button>
+                  </>
+                ) : (
+                  <>
+                    <Button 
+                      size="lg"
+                      className="bg-black hover:bg-gray-800 text-white font-medium px-6 py-3 rounded-lg"
+                      onClick={() => {
+                        if (ctaText.toLowerCase().includes('start writing')) {
+                          window.location.href = '/service'
+                        } else if (ctaText.toLowerCase().includes('databayt')) {
+                          window.open('https://databayt.org', '_blank')
+                        } else if (ctaText.toLowerCase().includes('codebase')) {
+                          window.open('https://cb.databayt.org', '_blank')
+                        } else if (ctaText.toLowerCase().includes('live preview')) {
+                          window.open('https://co.databayt.org', '_blank')
+                        }
+                      }}
+                    >
+                      {ctaText}
+                    </Button>
+                    <Button 
+                      variant="ghost"
+                      size="lg"
+                      className="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 font-medium px-6 py-3"
+                      onClick={() => {
+                        if (secondaryCtaText.toLowerCase().includes('start writing')) {
+                          window.location.href = '/service'
+                        } else if (secondaryCtaText.toLowerCase().includes('databayt')) {
+                          window.open('https://databayt.org', '_blank')
+                        } else if (secondaryCtaText.toLowerCase().includes('codebase')) {
+                          window.open('https://cb.databayt.org', '_blank')
+                        } else if (secondaryCtaText.toLowerCase().includes('live preview')) {
+                          window.open('https://co.databayt.org', '_blank')
+                        }
+                      }}
+                    >
+                      {secondaryCtaText}
+                    </Button>
+                  </>
+                )}
               </div>
             </div>
           </div>
@@ -141,7 +187,11 @@ const VideoCard = ({
               {/* Logo and Title */}
               <div className="space-y-6">
                 <div className={`text-center ${isRTL ? 'lg:text-right' : 'lg:text-left'}`}>
-                  {logo.split(' ').length === 1 ? (
+{locale === 'ar' && logo === 'آلة الأحلام' ? (
+                    <div className="text-3xl lg:text-4xl font-medium" style={{ fontFamily: 'Rubik, sans-serif' }}>
+                      {logo}
+                    </div>
+                  ) : logo.split(' ').length === 1 ? (
                     <div className="text-3xl lg:text-4xl font-bold uppercase tracking-wide">
                       {logo}
                     </div>
@@ -164,41 +214,83 @@ const VideoCard = ({
 
               {/* Call to Action Buttons */}
               <div className={`flex flex-col gap-3 pt-6 ${isRTL ? 'sm:flex-row-reverse items-start' : 'sm:flex-row items-start'}`}>
-                <Button 
-                  size="lg"
-                  className="bg-black hover:bg-gray-800 text-white font-medium px-6 py-3 rounded-lg"
-                  onClick={() => {
-                    if (ctaText.toLowerCase().includes('start writing')) {
-                      window.location.href = '/service'
-                    } else if (ctaText.toLowerCase().includes('databayt')) {
-                      window.open('https://databayt.org', '_blank')
-                    } else if (ctaText.toLowerCase().includes('codebase')) {
-                      window.open('https://cb.databayt.org', '_blank')
-                    } else if (ctaText.toLowerCase().includes('live preview')) {
-                      window.open('https://co.databayt.org', '_blank')
-                    }
-                  }}
-                >
-                  {ctaText}
-                </Button>
-                <Button 
-                  variant="ghost"
-                  size="lg"
-                  className="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 font-medium px-6 py-3"
-                  onClick={() => {
-                    if (secondaryCtaText.toLowerCase().includes('start writing')) {
-                      window.location.href = '/service'
-                    } else if (secondaryCtaText.toLowerCase().includes('databayt')) {
-                      window.open('https://databayt.org', '_blank')
-                    } else if (secondaryCtaText.toLowerCase().includes('codebase')) {
-                      window.open('https://cb.databayt.org', '_blank')
-                    } else if (secondaryCtaText.toLowerCase().includes('live preview')) {
-                      window.open('https://co.databayt.org', '_blank')
-                    }
-                  }}
-                >
-                  {secondaryCtaText}
-                </Button>
+                {locale === 'ar' ? (
+                  <>
+                    <Button 
+                      variant="ghost"
+                      size="lg"
+                      className="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 font-medium px-6 py-3"
+                      onClick={() => {
+                        if (secondaryCtaText.toLowerCase().includes('start writing')) {
+                          window.location.href = '/service'
+                        } else if (secondaryCtaText.toLowerCase().includes('databayt')) {
+                          window.open('https://databayt.org', '_blank')
+                        } else if (secondaryCtaText.toLowerCase().includes('codebase')) {
+                          window.open('https://cb.databayt.org', '_blank')
+                        } else if (secondaryCtaText.toLowerCase().includes('live preview')) {
+                          window.open('https://co.databayt.org', '_blank')
+                        }
+                      }}
+                    >
+                      {secondaryCtaText}
+                    </Button>
+                    <Button 
+                      size="lg"
+                      className="bg-black hover:bg-gray-800 text-white font-medium px-6 py-3 rounded-lg"
+                      onClick={() => {
+                        if (ctaText.toLowerCase().includes('start writing')) {
+                          window.location.href = '/service'
+                        } else if (ctaText.toLowerCase().includes('databayt')) {
+                          window.open('https://databayt.org', '_blank')
+                        } else if (ctaText.toLowerCase().includes('codebase')) {
+                          window.open('https://cb.databayt.org', '_blank')
+                        } else if (ctaText.toLowerCase().includes('live preview')) {
+                          window.open('https://co.databayt.org', '_blank')
+                        }
+                      }}
+                    >
+                      {ctaText}
+                    </Button>
+                  </>
+                ) : (
+                  <>
+                    <Button 
+                      size="lg"
+                      className="bg-black hover:bg-gray-800 text-white font-medium px-6 py-3 rounded-lg"
+                      onClick={() => {
+                        if (ctaText.toLowerCase().includes('start writing')) {
+                          window.location.href = '/service'
+                        } else if (ctaText.toLowerCase().includes('databayt')) {
+                          window.open('https://databayt.org', '_blank')
+                        } else if (ctaText.toLowerCase().includes('codebase')) {
+                          window.open('https://cb.databayt.org', '_blank')
+                        } else if (ctaText.toLowerCase().includes('live preview')) {
+                          window.open('https://co.databayt.org', '_blank')
+                        }
+                      }}
+                    >
+                      {ctaText}
+                    </Button>
+                    <Button 
+                      variant="ghost"
+                      size="lg"
+                      className="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 font-medium px-6 py-3"
+                      onClick={() => {
+                        if (secondaryCtaText.toLowerCase().includes('start writing')) {
+                          window.location.href = '/service'
+                        } else if (secondaryCtaText.toLowerCase().includes('databayt')) {
+                          window.open('https://databayt.org', '_blank')
+                        } else if (secondaryCtaText.toLowerCase().includes('codebase')) {
+                          window.open('https://cb.databayt.org', '_blank')
+                        } else if (secondaryCtaText.toLowerCase().includes('live preview')) {
+                          window.open('https://co.databayt.org', '_blank')
+                        }
+                      }}
+                    >
+                      {secondaryCtaText}
+                    </Button>
+                  </>
+                )}
               </div>
             </div>
           </div>
