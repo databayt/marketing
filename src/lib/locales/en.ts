@@ -76,6 +76,12 @@ export const en = {
     logoCloud: {
       trustedBy: "Trusted by amazing clients",
     },
+    parallax: {
+      design: "Design",
+      automate: "Automate", 
+      analytics: "Analytics",
+      efficient: "Efficient"
+    },
     projects: {
       mkan: {
         title: "Mkan",

@@ -76,6 +76,12 @@ export const ar = {
     logoCloud: {
       trustedBy: "نحظى بثقة عملاء\nرائعين",
     },
+    parallax: {
+      design: "التصميم",
+      automate: "الأتمتة",
+      analytics: "التحليلات", 
+      efficient: "الفعالية"
+    },
     projects: {
       mkan: {
         title: "مكان",

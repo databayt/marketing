@@ -10,6 +10,7 @@ import {
   useVelocity,
   useAnimationFrame
 } from "framer-motion";
+import { useTranslations } from '@/lib/use-translations';
 
 // Custom wrap function to replace @motionone/utils
 const wrap = (min: number, max: number, v: number) => {
@@ -84,12 +85,14 @@ function ParallaxText({ children, baseVelocity = 100 }: ParallaxProps) {
 }
 
 export default function Parallax() {
+  const { t } = useTranslations();
+  
   return (
     <section className="parallax-section full-bleed" dir="ltr">
-      <ParallaxText baseVelocity={-0.5}>Design</ParallaxText>
-      <ParallaxText baseVelocity={0.5}>Automate</ParallaxText>
-      <ParallaxText baseVelocity={-0.5}>Analytics</ParallaxText>
-      <ParallaxText baseVelocity={0.5}>Efficient</ParallaxText>
+      <ParallaxText baseVelocity={-0.5}>{t.marketing.parallax.design}</ParallaxText>
+      <ParallaxText baseVelocity={0.5}>{t.marketing.parallax.automate}</ParallaxText>
+      <ParallaxText baseVelocity={-0.5}>{t.marketing.parallax.analytics}</ParallaxText>
+      <ParallaxText baseVelocity={0.5}>{t.marketing.parallax.efficient}</ParallaxText>
     </section>
   );
 }
