@@ -23,7 +23,13 @@ interface ParallaxProps {
   baseVelocity: number;
 }
 
-function ParallaxText({ children, baseVelocity = 100 }: ParallaxProps) {
+interface ParallaxTextProps {
+  children: string;
+  baseVelocity: number;
+  locale?: string;
+}
+
+function ParallaxText({ children, baseVelocity = 100, locale }: ParallaxTextProps) {
   const baseX = useMotionValue(0);
   const { scrollY } = useScroll();
   const scrollVelocity = useVelocity(scrollY);
@@ -61,6 +67,8 @@ function ParallaxText({ children, baseVelocity = 100 }: ParallaxProps) {
     baseX.set(baseX.get() + moveBy);
   });
 
+  const fontClass = locale === 'ar' ? 'ar-font' : '';
+
   /**
    * The number of times to repeat the child text should be dynamically calculated
    * based on the size of the text and viewport. Likewise, the x motion value is
@@ -71,14 +79,14 @@ function ParallaxText({ children, baseVelocity = 100 }: ParallaxProps) {
   return (
     <div className="parallax" dir="ltr">
       <motion.div className="scroller" style={{ x }}>
-        <span className="solid">{children} </span>
-        <span className="outline">{children} </span>
-        <span className="solid">{children} </span>
-        <span className="outline">{children} </span>
-        <span className="solid">{children} </span>
-        <span className="outline">{children} </span>
-        <span className="solid">{children} </span>
-        <span className="outline">{children} </span>
+        <span className={`solid ${fontClass}`}>{children} </span>
+        <span className={`outline ${fontClass}`}>{children} </span>
+        <span className={`solid ${fontClass}`}>{children} </span>
+        <span className={`outline ${fontClass}`}>{children} </span>
+        <span className={`solid ${fontClass}`}>{children} </span>
+        <span className={`outline ${fontClass}`}>{children} </span>
+        <span className={`solid ${fontClass}`}>{children} </span>
+        <span className={`outline ${fontClass}`}>{children} </span>
       </motion.div>
     </div>
   );
@@ -86,14 +94,13 @@ function ParallaxText({ children, baseVelocity = 100 }: ParallaxProps) {
 
 export default function Parallax() {
   const { t, locale } = useTranslations();
-  const arabicFontClass = locale === 'ar' ? 'font-heading' : '';
   
   return (
-    <section className={`parallax-section full-bleed ${arabicFontClass}`} dir="ltr">
-      <ParallaxText baseVelocity={-0.5}>{t.marketing.parallax.design}</ParallaxText>
-      <ParallaxText baseVelocity={0.5}>{t.marketing.parallax.automate}</ParallaxText>
-      <ParallaxText baseVelocity={-0.5}>{t.marketing.parallax.analytics}</ParallaxText>
-      <ParallaxText baseVelocity={0.5}>{t.marketing.parallax.efficient}</ParallaxText>
+    <section className="parallax-section full-bleed" dir="ltr">
+      <ParallaxText baseVelocity={-0.5} locale={locale}>{t.marketing.parallax.design}</ParallaxText>
+      <ParallaxText baseVelocity={0.5} locale={locale}>{t.marketing.parallax.automate}</ParallaxText>
+      <ParallaxText baseVelocity={-0.5} locale={locale}>{t.marketing.parallax.analytics}</ParallaxText>
+      <ParallaxText baseVelocity={0.5} locale={locale}>{t.marketing.parallax.efficient}</ParallaxText>
     </section>
   );
 }
