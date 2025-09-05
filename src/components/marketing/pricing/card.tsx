@@ -78,7 +78,7 @@ export function PricingCard({ offer, isYearly, userId, subscriptionPlan, userRol
       )}
       {(!userId || !subscriptionPlan) && isPro && (
         <a href="#more-info" className={`${isRTL ? 'mr-3' : 'ml-3'} text-sm text-muted-foreground`}>
-          {t.marketing.pricing.constants.moreInfo} {isRTL ? '←' : '↗'}
+          {t.marketing.pricing.constants.moreInfo} {isRTL ? '↖' : '↗'}
         </a>
       )}
     </>
@@ -90,23 +90,21 @@ export function PricingCard({ offer, isYearly, userId, subscriptionPlan, userRol
     <Card
       key={offer.title}
       className={cn(
-        "relative overflow-hidden rounded-2xl border-none  shadow-none bg-muted text-card-foreground flex flex-col items-start text-left h-full w-full",
+        "relative overflow-hidden rounded-2xl border-none shadow-none bg-muted text-card-foreground flex flex-col h-full w-full",
+        isRTL ? "items-end text-right" : "items-start text-left"
       )}
     >
-      <CardHeader className="">
+      <CardHeader className={`w-full ${isRTL ? "text-right" : "text-left"}`}>
         <p className="lead text-foreground">{getTranslatedPlanName(offer.title)}</p>
-        <CardTitle className="tracking-tight">
-          {priceDisplay}
-          <span className="muted ml-1">
-            {offer.prices.monthly > 0 ? t.marketing.pricing.constants.perMonth : ""}
-          </span>
+        <CardTitle className="tracking-tight whitespace-nowrap">
+          {priceDisplay}{offer.prices.monthly > 0 ? t.marketing.pricing.constants.perMonth : ""}
         </CardTitle>
       </CardHeader>
       <div className="w-full px-6">
         <Separator />
       </div>
 
-      <CardContent className=" flex-1">
+      <CardContent className={`flex-1 w-full ${isRTL ? "text-right" : "text-left"}`}>
         <p className="muted mb-2">{includesHeading}</p>
         <ul>
           {offer.benefits.map((feature) => (
@@ -119,7 +117,7 @@ export function PricingCard({ offer, isYearly, userId, subscriptionPlan, userRol
         </ul>
       </CardContent>
 
-      <CardFooter className="">{ctaArea}</CardFooter>
+      <CardFooter className={`${isRTL ? 'justify-start' : ''}`}>{ctaArea}</CardFooter>
     </Card>
   );
 }

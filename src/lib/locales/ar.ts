@@ -305,7 +305,7 @@ export const ar = {
         monthly: "شهري",
         yearly: "سنوي (وفر 20%)",
         perMonth: "/شهر",
-        moreInfo: "مزيد من المعلومات"
+        moreInfo: "اعرف اكثر"
       },
       planNames: {
         hobby: "هواية",
