@@ -300,11 +300,28 @@ export const ar = {
         everythingInHobby: "كل شيء في الهواية، بالإضافة إلى",
         everythingInPro: "كل شيء في المحترف، بالإضافة إلى",
         startTrial: "ابدأ التجربة",
-        getPro: "احصل على المحترف",
-        getUltra: "احصل على الفائق"
+        getPro: "ابدأ",
+        getUltra: "ابدأ",
+        monthly: "شهري",
+        yearly: "سنوي (وفر 20%)",
+        perMonth: "/شهر",
+        moreInfo: "مزيد من المعلومات"
+      },
+      planNames: {
+        hobby: "هواية",
+        pro: "محترف",
+        ultra: "فائق",
+        enterprise: "مؤسسة"
+      },
+      enterprise: {
+        badge: "مؤسسة",
+        title: "تحتاج شيئًا أكبر؟",
+        description: "للمؤسسات والمنظمات الكبيرة، نقدم حلولًا مخصصة مع فرق مخصصة، واتفاقيات مستوى الخدمة، ودعم متخصص مصمم خصيصًا لمتطلباتك الفريدة.",
+        talkToSales: "تحدث إلى المبيعات"
       },
       comparePlans: {
         title: "مقارنة الخطط",
+        subtitle: "اعثر على الخطة المثالية المصممة خصيصًا لاحتياجات عملك!",
         features: {
           websitePages: "صفحات الموقع",
           responsiveDesign: "تصميم متجاوب",

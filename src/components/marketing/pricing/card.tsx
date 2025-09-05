@@ -21,10 +21,18 @@ interface PricingCardProps {
 }
 
 export function PricingCard({ offer, isYearly, userId, subscriptionPlan, userRole }: PricingCardProps) {
-  const { t } = useTranslations();
+  const { t, locale, isRTL } = useTranslations();
   const isPro = isProTitle(offer.title);
   const isStarter = isStarterTitle(offer.title);
   const priceDisplay = getPriceDisplay(offer, isYearly, t);
+  
+  const getTranslatedPlanName = (title: string) => {
+    const lowerTitle = title.toLowerCase();
+    if (lowerTitle === 'hobby') return t.marketing.pricing.planNames.hobby;
+    if (lowerTitle === 'pro') return t.marketing.pricing.planNames.pro;
+    if (lowerTitle === 'ultra') return t.marketing.pricing.planNames.ultra;
+    return title;
+  };
 
   const ctaArea = (
     <>
@@ -69,8 +77,8 @@ export function PricingCard({ offer, isYearly, userId, subscriptionPlan, userRol
         </Link>
       )}
       {(!userId || !subscriptionPlan) && isPro && (
-        <a href="#more-info" className="ml-3 text-sm text-muted-foreground">
-          More info ↗
+        <a href="#more-info" className={`${isRTL ? 'mr-3' : 'ml-3'} text-sm text-muted-foreground`}>
+          {t.marketing.pricing.constants.moreInfo} {isRTL ? '←' : '↗'}
         </a>
       )}
     </>
@@ -86,11 +94,11 @@ export function PricingCard({ offer, isYearly, userId, subscriptionPlan, userRol
       )}
     >
       <CardHeader className="">
-        <p className="lead text-foreground">{offer.title}</p>
+        <p className="lead text-foreground">{getTranslatedPlanName(offer.title)}</p>
         <CardTitle className="tracking-tight">
           {priceDisplay}
           <span className="muted ml-1">
-            {offer.prices.monthly > 0 ? "/mo" : ""}
+            {offer.prices.monthly > 0 ? t.marketing.pricing.constants.perMonth : ""}
           </span>
         </CardTitle>
       </CardHeader>

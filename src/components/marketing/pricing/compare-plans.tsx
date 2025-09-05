@@ -14,13 +14,42 @@ import MaxWidthWrapper from "@/components/marketing/pricing/shared/max-width-wra
 import { useTranslations } from '@/lib/use-translations';
 
 export function ComparePlans() {
-  const { t } = useTranslations();
+  const { t, locale } = useTranslations();
   
   const renderCell = (value: string | boolean | null) => {
     if (value === null) return "—";
     if (typeof value === "boolean")
       return value ? <CircleCheck className="mx-auto size-[22px]" /> : "—";
+    
+    // Translate cell values
+    if (typeof value === "string") {
+      const translationKey = `marketing.pricing.comparePlans.values.${value.replace(/\s+/g, '')}`;
+      const translation = translationKey.split('.').reduce((acc: any, key) => acc?.[key], t);
+      return translation || value;
+    }
     return value;
+  };
+  
+  const getTranslatedFeature = (feature: string) => {
+    const featureKey = feature.charAt(0).toLowerCase() + feature.slice(1).replace(/\s+/g, '');
+    const translationKey = `marketing.pricing.comparePlans.features.${featureKey}`;
+    const translation = translationKey.split('.').reduce((acc: any, key) => acc?.[key], t);
+    return translation || feature;
+  };
+  
+  const getTranslatedTooltip = (tooltip: string | undefined) => {
+    if (!tooltip) return undefined;
+    const featureKey = tooltip.split(' ')[0].toLowerCase().replace(/[^a-z]/g, '');
+    const translationKey = `marketing.pricing.comparePlans.tooltips.${featureKey}`;
+    const translation = translationKey.split('.').reduce((acc: any, key) => acc?.[key], t);
+    return translation || tooltip;
+  };
+  
+  const getTranslatedPlanColumn = (col: string) => {
+    const planKey = col.toLowerCase();
+    const translationKey = `marketing.pricing.planNames.${planKey}`;
+    const translation = translationKey.split('.').reduce((acc: any, key) => acc?.[key], t);
+    return translation || col;
   };
 
   return (
@@ -31,8 +60,7 @@ export function ComparePlans() {
           subtitle={t.marketing.pricing.comparePlans.subtitle}
         />
 
-        {/* Desktop Table View */}
-        <div className="my-10 hidden lg:block overflow-x-auto">
+        <div className="my-10 overflow-x-scroll max-lg:mx-[-0.8rem] md:overflow-x-visible">
           <table className="w-full table-fixed">
             <thead>
               <tr className="">
@@ -42,7 +70,7 @@ export function ComparePlans() {
                     key={col}
                     className="sticky z-10 w-40 bg-background py-5 font-heading text-center capitalize tracking-wide md:w-auto lg:top-12"
                   >
-                    {col}
+                    {getTranslatedPlanColumn(col)}
                   </th>
                 ))}
               </tr>
@@ -56,7 +84,7 @@ export function ComparePlans() {
                   >
                     <div className="flex items-center justify-between space-x-2 py-4">
                       <span className="lg:text-base">
-                        {row.feature}
+                        {getTranslatedFeature(row.feature)}
                       </span>
                       {row.tooltip && (
                         <Popover>
@@ -67,7 +95,7 @@ export function ComparePlans() {
                             side="top"
                             className="max-w-80 py-3"
                           >
-                            {row.tooltip}
+                            {getTranslatedTooltip(row.tooltip)}
                           </PopoverContent>
                         </Popover>
                       )}
@@ -85,46 +113,6 @@ export function ComparePlans() {
               ))}
             </tbody>
           </table>
-        </div>
-
-        {/* Mobile Card View */}
-        <div className="my-10 lg:hidden space-y-6">
-          {plansColumns.map((plan) => (
-            <div key={plan} className="border rounded-lg p-6 bg-card">
-              <div className="text-center mb-6">
-                <h3 className="text-xl font-semibold capitalize mb-2">{plan}</h3>
-                <div className="w-16 h-1 bg-primary mx-auto rounded-full"></div>
-              </div>
-              
-              <div className="space-y-4">
-                {comparePlans.map((row, index) => (
-                  <div key={index} className="flex items-center justify-between py-3 border-b border-border last:border-b-0">
-                    <div className="flex items-center space-x-2 flex-1">
-                      <span className="text-sm font-medium text-foreground">
-                        {row.feature}
-                      </span>
-                      {row.tooltip && (
-                        <Popover>
-                          <PopoverTrigger className="rounded p-1 hover:bg-muted">
-                            <Info className="size-4 text-muted-foreground" />
-                          </PopoverTrigger>
-                          <PopoverContent
-                            side="top"
-                            className="max-w-80 py-3"
-                          >
-                            {row.tooltip}
-                          </PopoverContent>
-                        </Popover>
-                      )}
-                    </div>
-                    <div className="text-right text-sm text-muted-foreground min-w-[80px]">
-                      {renderCell(row[plan])}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
         </div>
       </MaxWidthWrapper>
     </div>

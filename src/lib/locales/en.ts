@@ -264,6 +264,163 @@ export const en = {
         label: "Pricing",
         title: "Transform your digital presence",
         subtitle: "Choose the perfect plan for your business needs"
+      },
+      plans: {
+        hobby: {
+          title: "Hobby",
+          description: "Get started for free",
+          benefits: [
+            "Up to 5 pages website",
+            "Basic responsive design",
+            "Contact form integration"
+          ]
+        },
+        pro: {
+          title: "Pro",
+          description: "For growing businesses",
+          benefits: [
+            "Up to 15 pages website",
+            "Advanced animations",
+            "SEO optimization",
+            "Custom branding"
+          ]
+        },
+        ultra: {
+          title: "Ultra",
+          description: "For large organizations",
+          benefits: [
+            "Unlimited pages and features",
+            "Custom integrations"
+          ]
+        }
+      },
+      constants: {
+        free: "Free",
+        includes: "Includes",
+        everythingInHobby: "Everything in Hobby, plus",
+        everythingInPro: "Everything in Pro, plus",
+        startTrial: "Start Trial",
+        getPro: "Get Pro",
+        getUltra: "Get Ultra",
+        monthly: "Monthly",
+        yearly: "Yearly (save 20%)",
+        perMonth: "/mo",
+        moreInfo: "More info"
+      },
+      planNames: {
+        hobby: "Hobby",
+        pro: "Pro",
+        ultra: "Ultra",
+        enterprise: "Enterprise"
+      },
+      enterprise: {
+        badge: "Enterprise",
+        title: "Need Something Bigger?",
+        description: "For enterprises and large organizations, we offer custom solutions with dedicated teams, SLAs, and specialized support tailored to your unique requirements.",
+        talkToSales: "Talk to Sales"
+      },
+      comparePlans: {
+        title: "Compare Plans",
+        subtitle: "Find the perfect plan tailored for your business needs!",
+        features: {
+          websitePages: "Website pages",
+          responsiveDesign: "Responsive design",
+          customBranding: "Custom branding",
+          seoOptimization: "SEO optimization",
+          contactForms: "Contact forms",
+          animationsEffects: "Animations & effects",
+          contentManagement: "Content management",
+          performanceOptimization: "Performance optimization",
+          securityFeatures: "Security features",
+          analyticsReporting: "Analytics & reporting",
+          support: "Support",
+          revisions: "Revisions",
+          hosting: "Hosting",
+          backupMaintenance: "Backup & maintenance",
+          customIntegrations: "Custom integrations",
+          trainingDocumentation: "Training & documentation",
+          launchAssistance: "Launch assistance",
+          performanceMonitoring: "Performance monitoring"
+        },
+        values: {
+          upTo5: "Up to 5",
+          upTo15: "Up to 15",
+          unlimited: "Unlimited",
+          basic: "Basic",
+          advanced: "Advanced",
+          premium: "Premium",
+          custom: "Custom",
+          static: "Static",
+          basicCms: "Basic CMS",
+          advancedCms: "Advanced CMS",
+          customCms: "Custom CMS",
+          basicSsl: "Basic SSL",
+          advancedSsl: "Advanced SSL",
+          premiumSsl: "Premium SSL",
+          customSecurity: "Custom Security",
+          email: "Email",
+          priority: "Priority",
+          support24_7: "24/7",
+          support24_7Manager: "24/7 + Manager",
+          oneRound: "1 round",
+          threeRounds: "3 rounds",
+          shared: "Shared",
+          vps: "VPS",
+          dedicated: "Dedicated",
+          monthly: "Monthly",
+          weekly: "Weekly",
+          daily: "Daily",
+          realTime: "Real-time",
+          selfService: "Self-service",
+          guided: "Guided",
+          fullService: "Full service",
+          whiteGlove: "White-glove",
+          basicGuides: "Basic guides",
+          videoTutorials: "Video tutorials",
+          customTraining: "Custom training"
+        },
+        tooltips: {
+          websitePages: "Number of website pages included in your plan.",
+          responsiveDesign: "Mobile-friendly design optimization level.",
+          customBranding: "Brand colors and logo available from Pro.",
+          seoOptimization: "Search engine optimization and meta tag setup.",
+          contactForms: "Contact form functionality and integration options.",
+          animationsEffects: "Interactive animations and visual effects.",
+          contentManagement: "Content management system capabilities.",
+          performanceOptimization: "Website speed and performance optimization.",
+          securityFeatures: "Security certificates and protection features.",
+          analyticsReporting: "Website analytics and performance reporting.",
+          support: "Customer support level and response time.",
+          revisions: "Number of design revisions included.",
+          hosting: "Website hosting infrastructure type.",
+          backupMaintenance: "Backup frequency and maintenance schedule.",
+          customIntegrations: "Third-party service integrations and APIs.",
+          trainingDocumentation: "User training and documentation provided.",
+          launchAssistance: "Website launch and deployment assistance.",
+          performanceMonitoring: "Ongoing website performance monitoring."
+        }
+      },
+      faqs: {
+        title: "Frequently Asked Questions",
+        subtitle: "Your guide to pricing and plans with Databayt.",
+        questions: [
+          {
+            question: "What's included in the One Project plan?",
+            answer: "The One Project plan includes complete custom development for a single automation solution, including consultation, development, testing, and deployment."
+          },
+          {
+            question: "How does the hourly billing work for Strategic Partner?",
+            answer: "With Strategic Partner, you get access to our development team at $10/hour. Perfect for ongoing projects, maintenance, or when you need flexible development resources."
+          },
+          {
+            question: "Can I switch between plans?",
+            answer: "Yes, you can upgrade or downgrade your plan at any time. Changes will be reflected in your next billing cycle."
+          },
+          {
+            question: "Do you offer enterprise solutions?",
+            answer: "Absolutely! For enterprise needs, we offer custom solutions with dedicated teams, SLAs, and specialized support. Contact us for a tailored quote."
+          }
+        ]
       }
     },
     services: {

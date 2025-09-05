@@ -28,8 +28,6 @@ export function PricingCards({ userId, subscriptionPlan, userRole }: PricingCard
   return (
     
       <div className="w-full flex flex-col items-center text-center">
-        <HeaderSection label={t.marketing.pricing.headerSection.label} title={t.marketing.pricing.headerSection.title} subtitle={t.marketing.pricing.headerSection.subtitle} />
-
         <BillingToggle isYearly={isYearly} onChange={toggleBilling} />
 
         <div className="grid gap-6 md:gap-8 bg-inherit py-4 md:grid-cols-3 items-stretch w-full">

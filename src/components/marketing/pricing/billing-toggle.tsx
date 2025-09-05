@@ -2,6 +2,7 @@
 
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { cn } from "@/lib/utils";
+import { useTranslations } from '@/lib/use-translations';
 
 interface BillingToggleProps {
   isYearly: boolean;
@@ -9,6 +10,7 @@ interface BillingToggleProps {
 }
 
 export function BillingToggle({ isYearly, onChange }: BillingToggleProps) {
+  const { t } = useTranslations();
   return (
     <div className="mb-4 mt-10 flex items-center gap-5 ">
       <ToggleGroup
@@ -32,22 +34,22 @@ export function BillingToggle({ isYearly, onChange }: BillingToggleProps) {
         <ToggleGroupItem
           value="monthly"
           className={cn(
-            "z-10 h-9 w-full min-w-[148px] justify-center rounded-md px-6",
-            isYearly ? "text-muted-foreground hover:text-foreground hover:bg-background" : "text-foreground",
+            "z-20 h-9 w-full min-w-[148px] justify-center rounded-md px-6 data-[state=on]:bg-transparent",
+            isYearly ? "text-muted-foreground hover:text-foreground" : "text-foreground",
           )}
           aria-label="Toggle monthly billing"
         >
-          MONTHLY
+          {t.marketing.pricing.constants.monthly.toUpperCase()}
         </ToggleGroupItem>
         <ToggleGroupItem
           value="yearly"
           className={cn(
-            "z-10 h-9 w-full min-w-[148px] justify-center rounded-md px-6",
-            isYearly ? "text-foreground" : "text-muted-foreground hover:text-foreground hover:bg-background",
+            "z-20 h-9 w-full min-w-[148px] justify-center rounded-md px-6 data-[state=on]:bg-transparent",
+            isYearly ? "text-foreground" : "text-muted-foreground hover:text-foreground",
           )}
           aria-label="Toggle yearly billing"
         >
-          YEARLY (SAVE 20%)
+          {t.marketing.pricing.constants.yearly.toUpperCase()}
         </ToggleGroupItem>
       </ToggleGroup>
     </div>
