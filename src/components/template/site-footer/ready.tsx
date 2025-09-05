@@ -35,36 +35,74 @@ export default function ReadySection() {
         )}
       </ExpandButton>
       <div className="flex items-center gap-4">
-        <GitHubNewIcon className={`h-8 w-8 cursor-pointer transition-colors ${
-          isCurrentlyDark 
-            ? "text-muted-foreground hover:text-foreground" 
-            : "text-muted hover:text-background"
-        }`} />
-        <TwitterIcon className={`h-8 w-8 cursor-pointer transition-colors ${
-          isCurrentlyDark 
-            ? "text-muted-foreground hover:text-foreground" 
-            : "text-muted hover:text-background"
-        }`} />
-        <LinkedInNewIcon className={`h-8 w-8 cursor-pointer transition-colors ${
-          isCurrentlyDark 
-            ? "text-muted-foreground hover:text-foreground" 
-            : "text-muted hover:text-background"
-        }`} />
-        <InstagramIcon className={`h-8 w-8 cursor-pointer transition-colors ${
-          isCurrentlyDark 
-            ? "text-muted-foreground hover:text-foreground" 
-            : "text-muted hover:text-background"
-        }`} />
-        <FacebookIcon className={`h-8 w-8 cursor-pointer transition-colors ${
-          isCurrentlyDark 
-            ? "text-muted-foreground hover:text-foreground" 
-            : "text-muted hover:text-background"
-        }`} />
-        <WhatsAppIcon className={`h-8 w-8 cursor-pointer transition-colors ${
-          isCurrentlyDark 
-            ? "text-muted-foreground hover:text-foreground" 
-            : "text-muted hover:text-background"
-        }`} />
+        <a 
+          href="https://github.com/databayt" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="transition-transform hover:scale-110"
+        >
+          <GitHubNewIcon className={`h-8 w-8 cursor-pointer transition-colors ${
+            isCurrentlyDark 
+              ? "text-muted-foreground hover:text-foreground" 
+              : "text-muted hover:text-background"
+          }`} />
+        </a>
+        <a 
+          href="#" 
+          className="transition-transform hover:scale-110"
+        >
+          <TwitterIcon className={`h-8 w-8 cursor-pointer transition-colors ${
+            isCurrentlyDark 
+              ? "text-muted-foreground hover:text-foreground" 
+              : "text-muted hover:text-background"
+          }`} />
+        </a>
+        <a 
+          href="https://www.linkedin.com/company/databayt-auto" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="transition-transform hover:scale-110"
+        >
+          <LinkedInNewIcon className={`h-8 w-8 cursor-pointer transition-colors ${
+            isCurrentlyDark 
+              ? "text-muted-foreground hover:text-foreground" 
+              : "text-muted hover:text-background"
+          }`} />
+        </a>
+        <a 
+          href="#" 
+          className="transition-transform hover:scale-110"
+        >
+          <InstagramIcon className={`h-8 w-8 cursor-pointer transition-colors ${
+            isCurrentlyDark 
+              ? "text-muted-foreground hover:text-foreground" 
+              : "text-muted hover:text-background"
+          }`} />
+        </a>
+        <a 
+          href="https://www.facebook.com/profile.php?id=61579954895228" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="transition-transform hover:scale-110"
+        >
+          <FacebookIcon className={`h-8 w-8 cursor-pointer transition-colors ${
+            isCurrentlyDark 
+              ? "text-muted-foreground hover:text-foreground" 
+              : "text-muted hover:text-background"
+          }`} />
+        </a>
+        <a 
+          href="https://wa.me/00966557721603" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="transition-transform hover:scale-110"
+        >
+          <WhatsAppIcon className={`h-8 w-8 cursor-pointer transition-colors ${
+            isCurrentlyDark 
+              ? "text-muted-foreground hover:text-foreground" 
+              : "text-muted hover:text-background"
+          }`} />
+        </a>
       </div>
     </div>
   );
