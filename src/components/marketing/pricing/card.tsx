@@ -117,7 +117,9 @@ export function PricingCard({ offer, isYearly, userId, subscriptionPlan, userRol
         </ul>
       </CardContent>
 
-      <CardFooter className={`${isRTL ? 'justify-start' : ''}`}>{ctaArea}</CardFooter>
+      <CardFooter className={`${isRTL ? 'text-right justify-start items-start' : ''} w-full`}>
+        <div className={`${isRTL ? 'text-right w-full' : ''}`}>{ctaArea}</div>
+      </CardFooter>
     </Card>
   );
 }
