@@ -1,35 +1,28 @@
 'use client';
 
 import * as React from 'react';
-import { useRouter, usePathname } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { useTranslations } from '@/lib/use-translations';
+import { useSwitchLocaleHref } from '@/components/internationalization/use-locale';
 import { Button } from '@/components/ui/button';
 import { Languages } from 'lucide-react';
+import type { Locale } from '@/components/internationalization/config';
 
 export function LanguageToggle() {
   const router = useRouter();
-  const pathname = usePathname();
   const { locale } = useTranslations();
+  const switchLocaleHref = useSwitchLocaleHref();
 
   const toggleLanguage = React.useCallback(() => {
     // Switch between 'en' and 'ar'
     const newLocale = locale === 'en' ? 'ar' : 'en';
+    const href = switchLocaleHref(newLocale as Locale);
     
-    // Get the current path without locale prefix
-    const segments = pathname.split('/').filter(Boolean);
-    const currentLocale = segments[0];
+    // Set cookie to persist user preference
+    document.cookie = `NEXT_LOCALE=${newLocale}; path=/; max-age=${365 * 24 * 60 * 60}; samesite=lax`;
     
-    if (currentLocale === locale) {
-      // Replace the current locale with the new one
-      segments[0] = newLocale;
-    } else {
-      // Add locale prefix if it doesn't exist
-      segments.unshift(newLocale);
-    }
-    
-    const newPath = '/' + segments.join('/');
-    router.push(newPath);
-  }, [locale, pathname, router]);
+    router.push(href);
+  }, [locale, router, switchLocaleHref]);
 
   return (
     <Button

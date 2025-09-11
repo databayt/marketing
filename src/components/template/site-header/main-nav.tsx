@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils"
 import { Icons } from "./icons"
 import { MobileNav } from "./mobile-nav"
 import { OptimizedImage } from '@/components/ui/optimized-image'
-import { getTranslations, type Locale } from "@/lib/locales"
+import { useTranslations } from "@/lib/use-translations"
 
 interface MainNavProps {
   items?: MainNavItem[]
@@ -18,9 +18,7 @@ interface MainNavProps {
 
 export function MainNav({ items, children }: MainNavProps) {
   const segment = useSelectedLayoutSegment()
-  const params = useParams()
-  const locale = (params?.locale as Locale) || 'en'
-  const t = getTranslations(locale)
+  const { t, locale } = useTranslations()
   const [showMobileMenu, setShowMobileMenu] = React.useState<boolean>(false)
   const mobileMenuRef = React.useRef<HTMLDivElement>(null)
 
