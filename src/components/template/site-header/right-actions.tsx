@@ -6,17 +6,14 @@ import { LanguageToggle } from '@/components/ui/language-toggle'
 import { Button, buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import Link from 'next/link'
-import { useParams } from 'next/navigation'
-import { getTranslations, type Locale } from '@/lib/locales'
+import { useTranslations } from '@/lib/use-translations'
 
 interface RightActionsProps {
   isAuthenticated: boolean;
 }
 
 export function RightActions({ isAuthenticated }: RightActionsProps) {
-  const params = useParams()
-  const locale = (params?.locale as Locale) || 'en'
-  const t = getTranslations(locale)
+  const { t, locale } = useTranslations()
   
   return (
     <div className="flex items-center">

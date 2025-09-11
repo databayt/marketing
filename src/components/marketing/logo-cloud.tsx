@@ -3,8 +3,9 @@
 import { InfiniteSlider } from '@/components/atom/infinite-slider'
 import { ProgressiveBlur } from '@/components/atom/progressive-blur'
 import { OptimizedImage } from '@/components/ui/optimized-image'
-import { useParams } from 'next/navigation'
-import { getTranslations, type Locale } from '@/lib/locales'
+import type { getDictionary } from '@/components/internationalization/dictionaries';
+import type { Locale } from '@/components/internationalization/config';
+import { localeConfig } from '@/components/internationalization/config';
 
 const sponsors = [
     { 
@@ -58,11 +59,15 @@ const sponsors = [
     },
 ]
 
-export default function LogoCloud() {
-    const params = useParams()
-    const locale = (params?.locale as Locale) || 'en'
-    const t = getTranslations(locale)
-    const isRTL = locale === 'ar'
+interface LogoCloudProps {
+  dictionary: Awaited<ReturnType<typeof getDictionary>>['marketing']['logoCloud'];
+  params: { lang: Locale };
+}
+
+export default function LogoCloud({ dictionary, params }: LogoCloudProps) {
+    const t = dictionary;
+    const locale = params.lang;
+    const isRTL = localeConfig[locale]?.dir === 'rtl';
     
     return (
         <section className="overflow-hidden mt-6 md:mt-0 py-8 md:py-16">
@@ -70,7 +75,7 @@ export default function LogoCloud() {
                 <div className="flex flex-col items-center md:flex-row">
                     <div className={`md:max-w-44 ${isRTL ? 'md:border-l md:pl-6' : 'md:border-r md:pr-6'}`}>
                         <p className="text-end text-sm whitespace-pre-line">
-                            {t.marketing.logoCloud.trustedBy}
+                            {t.trustedBy}
                         </p>
                     </div>
                     <div className="relative py-6 md:w-[calc(100%-11rem)]" style={{direction: 'ltr'}}>

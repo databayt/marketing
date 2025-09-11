@@ -1,8 +1,21 @@
 import { ProjectItem } from "./type";
-import { getTranslations } from '@/lib/locales';
+import type { Locale } from '@/components/internationalization/config';
 
-export const getProjects = (locale: string = 'en'): ProjectItem[] => {
-  const t = getTranslations(locale as 'en' | 'ar');
+// Import dictionaries directly for synchronous access
+import enTranslations from '@/components/internationalization/en.json';
+import arTranslations from '@/components/internationalization/ar.json';
+
+const dictionaries = {
+  en: enTranslations,
+  ar: arTranslations,
+} as const;
+
+function getTranslations(locale: Locale = 'en') {
+  return dictionaries[locale] || dictionaries.en;
+}
+
+export const getProjects = (locale: Locale = 'en'): ProjectItem[] => {
+  const t = getTranslations(locale);
   
   return [
     {
@@ -13,31 +26,67 @@ export const getProjects = (locale: string = 'en'): ProjectItem[] => {
       imageDark: "/marketing/site/mkan.png",
       imageLight: "/marketing/site/mkan.png",
       date: "2024",
-      author: t.marketing.projects.mkan.category
+      author: t.marketing.projects.mkan.category,
+      category: "states"
     },
     {
-      title: t.marketing.projects.hogwarts.title,
-      description: t.marketing.projects.hogwarts.description,
-      link: "https://portsudan.databayt.org",
-      image: "/marketing/site/hogwarts-dark.png",
-      imageDark: "/marketing/site/hogwarts-light.png",
-      imageLight: "/marketing/site/hogwarts-dark.png",
+      title: t.marketing.projects.acme.title,
+      description: t.marketing.projects.acme.description,
+      link: "https://co.databayt.org",
+      image: "/marketing/site/acme.avif",
+      imageDark: "/marketing/site/acme.avif",
+      imageLight: "/marketing/site/acme.avif",
       date: "2024",
-      author: t.marketing.projects.hogwarts.category
+      author: t.marketing.projects.acme.category,
+      category: "company"
     },
     {
       title: t.marketing.projects.nmbd.title,
       description: t.marketing.projects.nmbd.description,
       link: "https://nmbdsd.org",
-      image: "/marketing/site/nmbd-dark.png",
-      imageDark: "/marketing/site/nmbd-light.png",
-      imageLight: "/marketing/site/nmbd-dark.png",
+      image: "/marketing/site/nmbd.jpg",
+      imageDark: "/marketing/site/nmbd.jpg",
+      imageLight: "/marketing/site/nmbd.jpg",
       date: "2024",
-      author: t.marketing.projects.nmbd.category
+      author: t.marketing.projects.nmbd.category,
+      category: "company"
+    },
+    {
+      title: t.marketing.projects.shifa.title,
+      description: t.marketing.projects.shifa.description,
+      link: "https://hc.databayt.org",
+      image: "/marketing/site/shifa.jpg",
+      imageDark: "/marketing/site/shifa.jpg",
+      imageLight: "/marketing/site/shifa.jpg",
+      date: "2024",
+      author: t.marketing.projects.shifa.category,
+      category: "health"
+    },
+    {
+      title: t.marketing.projects.giats.title,
+      description: t.marketing.projects.giats.description,
+      link: "https://gi.databayt.org",
+      image: "/marketing/site/giats.jpg",
+      imageDark: "/marketing/site/giats.jpg",
+      imageLight: "/marketing/site/giats.jpg",
+      date: "2024",
+      author: t.marketing.projects.giats.category,
+      category: "ecommerce"
+    },
+    {
+      title: t.marketing.projects.camille.title,
+      description: t.marketing.projects.camille.description,
+      link: "https://camillemormal.com/",
+      image: "/marketing/site/camille.png",
+      imageDark: "/marketing/site/camille.png",
+      imageLight: "/marketing/site/camille.png",
+      date: "2024",
+      author: t.marketing.projects.camille.category,
+      category: "ecommerce"
     }
   ];
 };
 
-export const featuredProjects = (count: number = 3, locale: string = 'en') => {
+export const featuredProjects = (count: number = 3, locale: Locale = 'en') => {
   return getProjects(locale).slice(0, count);
 };

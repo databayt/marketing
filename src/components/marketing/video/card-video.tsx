@@ -56,7 +56,7 @@ export const HoverEffect = ({ items, className }: HoverEffectProps) => {
                     <AnimatePresence>
                         {hoveredIndex === idx && (
                             <motion.span
-                                className="absolute inset-0 h-full w-full bg-neutral-200 dark:bg-slate-800/[0.8] block rounded-lg"
+                                className="absolute inset-0 h-full w-full bg-neutral-200 dark:bg-slate-800/[0.8] block rounded-md"
                                 layoutId="hoverBackground"
                                 initial={{ opacity: 0 }}
                                 animate={{
@@ -71,14 +71,15 @@ export const HoverEffect = ({ items, className }: HoverEffectProps) => {
                         )}
                     </AnimatePresence>
                     <Card>
-                        <div className="h-48 relative w-full overflow-hidden rounded-lg">
+                        <div className="h-48 relative w-full overflow-hidden rounded-md">
                             
                             <OptimizedImage
                                 src={getImageSrc(item)}
                                 alt={item.title}
                                 fill
-                                className="object-cover"
+                                className="object-cover w-full h-full"
                                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                style={{ objectFit: 'cover', objectPosition: 'center' }}
                             />
                         </div>
                         <CardTitle>{item.title}</CardTitle>

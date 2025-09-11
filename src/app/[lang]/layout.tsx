@@ -7,8 +7,8 @@ import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/atom/theme-provider";
 import { ImageKitProvider } from "@/components/ui/imagekit-provider";
 import { Toaster } from "sonner";
-import { getTranslations, type Locale } from "@/lib/locales";
-import { getDictionary } from "@/lib/dictionaries";
+import { getDictionary } from "@/components/internationalization/dictionaries";
+import { type Locale, localeConfig } from "@/components/internationalization/config";
 // import { SessionProvider } from "next-auth/react";
 // import { auth } from "@/auth";
 
@@ -22,10 +22,10 @@ const rubik = Rubik({
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ locale: Locale }>;
+  params: Promise<{ lang: Locale }>;
 }): Promise<Metadata> {
-  const { locale } = await params;
-  const dict = await getDictionary(locale);
+  const { lang } = await params;
+  const dict = await getDictionary(lang);
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3001';
   
   return {
@@ -34,8 +34,8 @@ export async function generateMetadata({
     openGraph: {
       title: dict.metadata.title,
       description: dict.metadata.description,
-      locale: locale,
-      alternateLocale: locale === 'en' ? 'ar' : 'en',
+      locale: lang,
+      alternateLocale: lang === 'en' ? 'ar' : 'en',
     },
     alternates: {
       languages: {
@@ -52,14 +52,15 @@ export default async function LocaleLayout({
   params,
 }: Readonly<{
   children: React.ReactNode;
-  params: Promise<{ locale: Locale }>;
+  params: Promise<{ lang: Locale }>;
 }>) {
   // const session = await auth();
-  const { locale } = await params;
-  const isRTL = locale === 'ar';
+  const { lang } = await params;
+  const config = localeConfig[lang];
+  const isRTL = config.dir === 'rtl';
   
   return (
-    <html lang={locale} dir={isRTL ? 'rtl' : 'ltr'}>
+    <html lang={lang} dir={config.dir}>
       <body
         className={cn(
           "font-sans antialiased",
@@ -88,8 +89,5 @@ export default async function LocaleLayout({
 
 // Generate static params for all supported locales
 export function generateStaticParams() {
-  return [
-    { locale: 'en' },
-    { locale: 'ar' },
-  ];
+  return Object.keys(localeConfig).map((lang) => ({ lang }));
 }

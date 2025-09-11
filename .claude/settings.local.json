@@ -49,7 +49,11 @@
       "Read(/D:\\repo\\template\\src\\components\\marketing\\service/**)",
       "Read(/D:\\repo\\template\\src\\components\\marketing\\pricing/**)",
       "Read(/D:\\repo\\template\\src\\components\\marketing\\about/**)",
-      "Read(/D:\\repo\\template\\src\\components\\marketing\\pricing/**)"
+      "Read(/D:\\repo\\template\\src\\components\\marketing\\pricing/**)",
+      "Bash(pnpm install:*)",
+      "Bash(curl:*)",
+      "Bash(del .next\\trace)",
+      "Bash(node validate-i18n.js)"
     ],
     "deny": [],
     "ask": []

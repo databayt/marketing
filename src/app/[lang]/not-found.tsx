@@ -1,12 +1,12 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { getServerDictionary } from '@/lib/use-dictionary';
-import type { Locale } from '@/lib/locales';
+import { getDictionary } from '@/components/internationalization/dictionaries';
+import type { Locale } from '@/components/internationalization/config';
 
 export default async function NotFound() {
   // For not-found pages, we can't reliably get locale from params
   // so we'll default to English and handle this gracefully
-  const dict = await getServerDictionary('en');
+  const dict = await getDictionary('en');
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center">

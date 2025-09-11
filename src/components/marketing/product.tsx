@@ -1,0 +1,82 @@
+"use client"
+
+import React from 'react'
+import { useTranslations } from '@/lib/use-translations'
+
+export interface ProductProps {
+  logo: string
+  title: string
+  description: string
+  ctaText: string
+  secondaryCtaText: string
+  imageSrc: string
+  imageAlt?: string
+  className?: string
+  href?: string
+}
+
+const Product = ({
+  logo,
+  title,
+  description,
+  ctaText,
+  secondaryCtaText,
+  imageSrc,
+  imageAlt,
+  className,
+  href
+}: ProductProps) => {
+  const { isRTL, locale } = useTranslations()
+  
+  // Build ImageKit URL for background image
+  const backgroundImageUrl = `${process.env.NEXT_PUBLIC_IMAGEKIT_URL_ENDPOINT || 'https://ik.imagekit.io/databayt'}${imageSrc}?tr=orig-true`
+  
+  // Determine URL based on the product
+  const getProductUrl = () => {
+    if (logo.toLowerCase().includes('codebase')) {
+      return 'https://cb.databayt.org'
+    }
+    return 'https://ed.databayt.org'
+  }
+  
+  const handleClick = () => {
+    window.open(href || getProductUrl(), '_blank')
+  }
+  
+  return (
+    <div 
+      className={`relative min-h-[400px] rounded-lg overflow-hidden cursor-pointer ${className || ''}`}
+      style={{
+        backgroundImage: `url(${backgroundImageUrl})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
+      }}
+      onClick={handleClick}
+    >
+      <div className='absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-6'>
+        <div className={`${isRTL ? 'lg:text-right' : 'lg:text-left'}`}>
+          {logo.split(' ').length === 1 ? (
+            <h2 className="text-2xl lg:text-3xl font-bold capitalize tracking-wide mb-2 text-white">
+              {logo.toLowerCase()}
+            </h2>
+          ) : (
+            <div className='mb-2'>
+              <div className="text-2xl lg:text-3xl font-serif text-white capitalize">
+                {logo.split(' ')[0].toLowerCase()}
+              </div>
+              <h2 className="text-xl lg:text-2xl font-bold capitalize tracking-wide text-white">
+                {logo.split(' ')[1].toLowerCase()}
+              </h2>
+            </div>
+          )}
+        </div>
+        <p className="text-white/90 text-sm lg:text-base leading-relaxed">
+          {description}
+        </p>
+      </div>
+    </div>
+  )
+}
+
+export default Product

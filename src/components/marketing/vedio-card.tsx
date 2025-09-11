@@ -69,9 +69,26 @@ const VideoCard = ({
               </div>
 
               {/* Call to Action Buttons */}
-              <div className={`flex flex-col gap-3 pt-6 ${isRTL ? 'sm:flex-row-reverse justify-start' : 'sm:flex-row justify-start'}`}>
+              <div className={`flex flex-col gap-3 pt-6 sm:flex-row justify-start`}>
                 {locale === 'ar' ? (
                   <>
+                    <Button 
+                      size="lg"
+                      className="bg-black hover:bg-gray-800 text-white font-medium px-6 py-3 rounded-lg"
+                      onClick={() => {
+                        if (ctaText.toLowerCase().includes('start writing')) {
+                          window.location.href = '/service'
+                        } else if (ctaText.toLowerCase().includes('databayt')) {
+                          window.open('https://databayt.org', '_blank')
+                        } else if (ctaText.toLowerCase().includes('codebase')) {
+                          window.open('https://cb.databayt.org', '_blank')
+                        } else if (ctaText.toLowerCase().includes('live preview')) {
+                          window.open('https://co.databayt.org', '_blank')
+                        }
+                      }}
+                    >
+                      {ctaText}
+                    </Button>
                     <Button 
                       variant="ghost"
                       size="lg"
@@ -89,23 +106,6 @@ const VideoCard = ({
                       }}
                     >
                       {secondaryCtaText}
-                    </Button>
-                    <Button 
-                      size="lg"
-                      className="bg-black hover:bg-gray-800 text-white font-medium px-6 py-3 rounded-lg"
-                      onClick={() => {
-                        if (ctaText.toLowerCase().includes('start writing')) {
-                          window.location.href = '/service'
-                        } else if (ctaText.toLowerCase().includes('databayt')) {
-                          window.open('https://databayt.org', '_blank')
-                        } else if (ctaText.toLowerCase().includes('codebase')) {
-                          window.open('https://cb.databayt.org', '_blank')
-                        } else if (ctaText.toLowerCase().includes('live preview')) {
-                          window.open('https://co.databayt.org', '_blank')
-                        }
-                      }}
-                    >
-                      {ctaText}
                     </Button>
                   </>
                 ) : (
@@ -213,9 +213,26 @@ const VideoCard = ({
               </div>
 
               {/* Call to Action Buttons */}
-              <div className={`flex flex-col gap-3 pt-6 ${isRTL ? 'sm:flex-row-reverse justify-start' : 'sm:flex-row justify-start'}`}>
+              <div className={`flex flex-col gap-3 pt-6 sm:flex-row justify-start`}>
                 {locale === 'ar' ? (
                   <>
+                    <Button 
+                      size="lg"
+                      className="bg-black hover:bg-gray-800 text-white font-medium px-6 py-3 rounded-lg"
+                      onClick={() => {
+                        if (ctaText.toLowerCase().includes('start writing')) {
+                          window.location.href = '/service'
+                        } else if (ctaText.toLowerCase().includes('databayt')) {
+                          window.open('https://databayt.org', '_blank')
+                        } else if (ctaText.toLowerCase().includes('codebase')) {
+                          window.open('https://cb.databayt.org', '_blank')
+                        } else if (ctaText.toLowerCase().includes('live preview')) {
+                          window.open('https://co.databayt.org', '_blank')
+                        }
+                      }}
+                    >
+                      {ctaText}
+                    </Button>
                     <Button 
                       variant="ghost"
                       size="lg"
@@ -233,23 +250,6 @@ const VideoCard = ({
                       }}
                     >
                       {secondaryCtaText}
-                    </Button>
-                    <Button 
-                      size="lg"
-                      className="bg-black hover:bg-gray-800 text-white font-medium px-6 py-3 rounded-lg"
-                      onClick={() => {
-                        if (ctaText.toLowerCase().includes('start writing')) {
-                          window.location.href = '/service'
-                        } else if (ctaText.toLowerCase().includes('databayt')) {
-                          window.open('https://databayt.org', '_blank')
-                        } else if (ctaText.toLowerCase().includes('codebase')) {
-                          window.open('https://cb.databayt.org', '_blank')
-                        } else if (ctaText.toLowerCase().includes('live preview')) {
-                          window.open('https://co.databayt.org', '_blank')
-                        }
-                      }}
-                    >
-                      {ctaText}
                     </Button>
                   </>
                 ) : (
