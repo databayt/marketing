@@ -20,9 +20,9 @@ export function ModeSwitcher() {
       onClick={toggleTheme}
     >
       {resolvedTheme === "dark" ? (
-        <SunIcon className="h-10 w-10 md:h-4 md:w-4" />
+        <SunIcon className="h-12 w-12 md:h-4 md:w-4" />
       ) : (
-        <MoonIcon className="h-10 w-10 md:h-4 md:w-4" />
+        <MoonIcon className="h-12 w-12 md:h-4 md:w-4" />
       )}
       <span className="sr-only">Toggle theme</span>
     </Button>

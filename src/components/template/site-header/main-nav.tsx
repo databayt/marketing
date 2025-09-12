@@ -86,8 +86,8 @@ export function MainNav({ items, children }: MainNavProps) {
       {/* Mobile Navigation */}
       <div className="flex items-center gap-2 md:hidden">
         {/* Mobile Logo - Links to homepage */}
-        <Link href={`/${locale}`} className="flex items-center justify-center h-8 w-8">
-          <OptimizedImage src="/marketing/site/logo.png" alt="Logo" width={18} height={18} className="dark:invert" />
+        <Link href={`/${locale}`} className="flex items-center justify-center h-12 w-12">
+          <OptimizedImage src="/marketing/site/logo.png" alt="Logo" width={28} height={28} className="dark:invert" />
         </Link>
         
         {/* Mobile Menu Button with Hamburger Icon */}
