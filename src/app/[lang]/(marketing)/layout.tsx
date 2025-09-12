@@ -30,6 +30,10 @@ export default function SiteLayout({
         data-slot="main-content"
         role="main"
         className="flex-1"
+        style={{
+          WebkitOverflowScrolling: 'touch',
+          overscrollBehavior: 'none'
+        }}
       >
         {children}
       </main>

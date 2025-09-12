@@ -128,21 +128,22 @@
   * {
     @apply border-border outline-ring/50;
   }
-  html, body {
+  html {
+    @apply bg-background text-foreground;
+    height: -webkit-fill-available;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  body {
     @apply bg-background text-foreground;
     overflow-x: hidden;
     width: 100%;
     position: relative;
-  }
-  
-  /* Prevent viewport changes on iOS when keyboard appears */
-  html {
-    height: -webkit-fill-available;
-  }
-  
-  body {
     min-height: 100vh;
     min-height: -webkit-fill-available;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: none;
   }
   
   /* Safe area padding for mobile devices */
@@ -164,6 +165,26 @@
   @supports (height: 100dvh) {
     .h-dvh {
       height: 100dvh;
+    }
+  }
+  
+  /* Mobile scroll improvements */
+  @media (max-width: 768px) {
+    * {
+      -webkit-overflow-scrolling: touch;
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      touch-action: pan-y;
+      overscroll-behavior-y: none;
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+    }
+    
+    main {
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior: none;
     }
   }
   
