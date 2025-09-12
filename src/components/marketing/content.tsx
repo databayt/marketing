@@ -69,7 +69,7 @@ export default function SiteContent({ dictionary, params }: SiteContentProps) {
               description={t.marketing.content.codebase.description}
               ctaText={t.marketing.content.codebase.ctaText}
               secondaryCtaText={t.marketing.content.codebase.secondaryCtaText}
-              imageSrc="/marketing/site/codebase.png"
+              imageSrc="/marketing/site/ecosystem.png"
               imageAlt="Codebase automation platform preview"
             />
             <Product
@@ -116,7 +116,7 @@ export default function SiteContent({ dictionary, params }: SiteContentProps) {
       <section className="py-10">
         <Stack dictionary={dictionary.marketing.stack} params={params} />
       </section>
-      <section className="pt-10">
+      <section className="pt-10 py-8">
         <ReadyToBuildSection dictionary={dictionary.marketing.readyToBuild} params={params} />
       </section>
     </div>

@@ -59,7 +59,7 @@
   "marketing": {
     "hero": {
       "title": "Automate the boring,\nelevate the wondrous",
-      "titleMobile": "Automate the boring,\nelevate the wondrous",
+      "titleMobile": "Automate\nthe boring\nelevate the\nwondrous",
       "subtitle": "Building codebase for business automation and open sourcing everything. Follow along as we figure this out together.",
       "appointment": "Appointment",
       "services": "Services"
@@ -134,7 +134,7 @@
       },
       "authentication": {
         "title": "Authentication",
-        "description": "Authentication using Auth.js and middlewares."
+        "description": "Authentication and authorization using Auth.js with role-based access control and secure middlewares."
       },
       "subscriptions": {
         "title": "Subscriptions",

@@ -14,7 +14,7 @@ const OpenSource = () => {
             {t.marketing.openSource.title}
           </h2>
           <p className="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7">
-            {t.marketing.openSource.description} <br />{" "}
+            {t.marketing.openSource.description} <br className="hidden md:block" />{" "}
             {t.marketing.openSource.descriptionLine2}{" "}
             <Link
               href={siteConfig.links.github}

@@ -52,7 +52,7 @@ export default function SiteHeaderClient({ isAuthenticated }: SiteHeaderProps) {
 
       {/* Mobile Header - Static Second Stage */}
       <header className="fixed top-0 left-0 right-0 z-40 md:hidden bg-background/95 backdrop-blur-sm">
-        <div className="flex h-12 items-center justify-between px-4">
+        <div className="flex h-14 items-center justify-center px-6 gap-4">
           <MainNav items={marketingConfig.mainNav} />
           <RightActions isAuthenticated={isAuthenticated} />
         </div>

@@ -16,11 +16,12 @@ export function RightActions({ isAuthenticated }: RightActionsProps) {
   const { t, locale } = useTranslations()
   
   return (
-    <div className="flex items-center">
+    <div className="flex items-center gap-2 md:gap-1">
       {isAuthenticated ? (
         <Button
           variant="link"
           asChild
+          className="text-base md:text-sm px-3 py-2 md:px-2 md:py-1"
         >
           {/* <LogoutButton>{t.common.logout}</LogoutButton> */}
         </Button>
@@ -29,14 +30,14 @@ export function RightActions({ isAuthenticated }: RightActionsProps) {
           href={`/${locale}/login`}
           className={cn(
             buttonVariants({ variant: "link"}),
-            
+            "text-base md:text-sm px-3 py-2 md:px-2 md:py-1"
           )}
         >
           {t.common.login}
         </Link>
       )}
-      <LanguageToggle />
-      <ModeSwitcher />
+      <div className="p-1"><LanguageToggle /></div>
+      <div className="p-1"><ModeSwitcher /></div>
     </div>
   );
 }

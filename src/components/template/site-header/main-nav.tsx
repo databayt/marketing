@@ -80,11 +80,11 @@ export function MainNav({ items, children }: MainNavProps) {
         ))}
       </nav>
       <button
-        className="flex items-center space-x-2 md:hidden"
+        className="flex items-center space-x-3 md:hidden p-2"
         onClick={() => setShowMobileMenu(!showMobileMenu)}
       >
-        {showMobileMenu ? <Icons.close /> : <OptimizedImage src="/marketing/site/logo.png" alt="Menu" width={16} height={16} className="dark:invert" />}
-        <span className="font-bold text-sm">{t.navigation.menu}</span>
+        {showMobileMenu ? <Icons.close className="w-5 h-5" /> : <OptimizedImage src="/marketing/site/logo.png" alt="Menu" width={20} height={20} className="dark:invert" />}
+        <span className="font-bold text-base">{t.navigation.menu}</span>
       </button>
       {showMobileMenu && (
         <MobileNav items={localizedItems} onClose={() => setShowMobileMenu(false)} ref={mobileMenuRef}>{children}</MobileNav>

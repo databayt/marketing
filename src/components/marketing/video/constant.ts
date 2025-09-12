@@ -22,9 +22,9 @@ export const getProjects = (locale: Locale = 'en'): ProjectItem[] => {
       title: t.marketing.projects.mkan.title,
       description: t.marketing.projects.mkan.description,
       link: "https://mk.databayt.org",
-      image: "/marketing/site/mkan.png",
-      imageDark: "/marketing/site/mkan.png",
-      imageLight: "/marketing/site/mkan.png",
+      image: "/marketing/site/airbnb.png",
+      imageDark: "/marketing/site/airbnb.png",
+      imageLight: "/marketing/site/airbnb.png",
       date: "2024",
       author: t.marketing.projects.mkan.category,
       category: "states"

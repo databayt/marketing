@@ -17,7 +17,7 @@ export function Hero({ dictionary, params }: HeroProps) {
     const isRTL = localeConfig[locale]?.dir === 'rtl';
 
     return (
-        <section className="tt-hero h-screen mt-10 relative flex items-center justify-center">
+        <section className={`tt-hero h-screen relative flex items-center justify-center ${locale === 'ar' ? 'mt-10' : 'mt-6 md:mt-10'}`}>
             {/* Hero Content */}
             <div className="relative z-10">
                 <div className="text-center">
@@ -41,7 +41,7 @@ export function Hero({ dictionary, params }: HeroProps) {
                         <p className="max-w-xs md:max-w-3xl leading-normal text-muted-foreground sm:text-xl sm:leading-8">
                             {t.subtitle}
                         </p>
-                        <div className={`flex flex-col sm:flex-row gap-4 items-center mt-2 ${isRTL ? 'sm:flex-row-reverse' : ''}`}>
+                        <div className={`flex flex-col sm:flex-row gap-4 items-center mt-2 max-w-xs sm:max-w-none mx-auto ${isRTL ? 'sm:flex-row-reverse' : ''}`}>
                             {locale === 'ar' ? (
                                 <>
                                     <ExpandButton variant="outline" href="/service" className="hover:shadow-[4px_4px_0px_black]">
