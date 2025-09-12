@@ -104,6 +104,7 @@ src/
 - Always check TypeScript errors before committing
 - Test authentication flows in development mode
 - ESLint configured with Next.js rules and TypeScript support
+- **Auto-push**: Always automatically push changes to GitHub after completing tasks
 
 # Theme Support
 
