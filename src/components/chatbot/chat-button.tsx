@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
@@ -12,18 +13,57 @@ export function ChatButton({
   position = 'bottom-right',
   dictionary 
 }: ChatButtonProps) {
+  const [shouldInvert, setShouldInvert] = useState(false);
+
+  useEffect(() => {
+    const checkSections = () => {
+      const button = document.querySelector('[data-chat-button]');
+      if (!button) return;
+
+      const buttonRect = button.getBoundingClientRect();
+      const buttonCenterY = buttonRect.top + buttonRect.height / 2;
+
+      // Check if button overlaps with dark sections
+      const darkSections = document.querySelectorAll(
+        '[data-slot="site-footer"], [data-section="sales"], [data-section="ready"]'
+      );
+
+      let isOverDarkSection = false;
+      darkSections.forEach(section => {
+        const rect = section.getBoundingClientRect();
+        if (buttonCenterY >= rect.top && buttonCenterY <= rect.bottom) {
+          isOverDarkSection = true;
+        }
+      });
+
+      setShouldInvert(isOverDarkSection);
+    };
+
+    // Check on mount
+    checkSections();
+
+    // Check on scroll
+    window.addEventListener('scroll', checkSections);
+    window.addEventListener('resize', checkSections);
+
+    return () => {
+      window.removeEventListener('scroll', checkSections);
+      window.removeEventListener('resize', checkSections);
+    };
+  }, []);
   
   return (
     <>
       {!isOpen && (
         <Button
           onClick={onClick}
+          data-chat-button
           className={cn(
             CHATBOT_POSITIONS[position],
-            'z-50 transition-all duration-300 ease-out',
-            'h-16 w-16 p-3 rounded-full',
+            'hidden md:block z-[9999] transition-all duration-700 ease-in-out',
+            'h-12 w-12 md:h-14 md:w-14 p-2 rounded-full',
             'bg-transparent hover:bg-transparent shadow-none border-none',
-            'hover:scale-110 active:scale-95'
+            'hover:scale-105'
           )}
           aria-label={dictionary.openChat}
           size="icon"
@@ -32,9 +72,12 @@ export function ChatButton({
           <Image
             src="/robot.png"
             alt="Chatbot"
-            width={64}
-            height={64}
-            className="h-full w-full object-contain"
+            width={56}
+            height={56}
+            className={cn(
+              "h-full w-full object-contain transition-all duration-500",
+              shouldInvert && "invert"
+            )}
           />
         </Button>
       )}

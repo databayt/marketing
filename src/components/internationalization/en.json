@@ -134,7 +134,7 @@
       },
       "authentication": {
         "title": "Authentication",
-        "description": "Authentication and authorization using Auth.js with role-based access control and secure middlewares."
+        "description": "Authentication and authorization using Auth.js with role-based access control."
       },
       "subscriptions": {
         "title": "Subscriptions",
@@ -155,12 +155,20 @@
         "health": "Health",
         "ecommerce": "E-commerce",
         "states": "States"
+      },
+      "tabsMobile": {
+        "featured": "Featured",
+        "company": "Co",
+        "education": "Edu",
+        "health": "Health",
+        "ecommerce": "E-comm",
+        "states": "States"
       }
     },
     "projects": {
       "mkan": {
         "title": "Mkan",
-        "description": "Airbnb like Real estate, diversity of properties and hotels",
+        "description": "Airbnb like Real estate platform, diversity of properties and hotels",
         "category": "Real Estate Platform"
       },
       "hogwarts": {
@@ -170,12 +178,12 @@
       },
       "nmbd": {
         "title": "NMBD",
-        "description": "National movement for building & development",
+        "description": "Community national movement for building & development",
         "category": "Development Organization"
       },
       "shifa": {
         "title": "Shifa",
-        "description": "Healthcare management system for hospitals and clinics",
+        "description": "Comprehensive healthcare management system for hospitals and clinics",
         "category": "Healthcare"
       },
       "giats": {

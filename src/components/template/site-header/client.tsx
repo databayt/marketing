@@ -9,9 +9,10 @@ import { RightActions } from './right-actions'
 
 interface SiteHeaderProps {
   isAuthenticated: boolean
+  onChatClick?: () => void
 }
 
-export default function SiteHeaderClient({ isAuthenticated }: SiteHeaderProps) {
+export default function SiteHeaderClient({ isAuthenticated, onChatClick }: SiteHeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false)
 
   useEffect(() => {
@@ -44,7 +45,7 @@ export default function SiteHeaderClient({ isAuthenticated }: SiteHeaderProps) {
           <div className="max-w-7xl mx-auto px-6">
             <div className="flex h-12 items-center justify-center gap-4">
               <MainNav items={marketingConfig.mainNav} />
-              <RightActions isAuthenticated={isAuthenticated} />
+              <RightActions isAuthenticated={isAuthenticated} onChatClick={onChatClick} />
             </div>
           </div>
         </div>
@@ -52,9 +53,9 @@ export default function SiteHeaderClient({ isAuthenticated }: SiteHeaderProps) {
 
       {/* Mobile Header - Static Second Stage */}
       <header className="fixed top-0 left-0 right-0 z-40 md:hidden bg-background/95 backdrop-blur-sm">
-        <div className="flex h-14 items-center justify-center px-6 gap-2">
+        <div className="flex h-14 items-center justify-between px-4">
           <MainNav items={marketingConfig.mainNav} />
-          <RightActions isAuthenticated={isAuthenticated} />
+          <RightActions isAuthenticated={isAuthenticated} onChatClick={onChatClick} />
         </div>
       </header>
     </>

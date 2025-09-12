@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image'
 import { ModeSwitcher } from './mode-switcher'
 import { LanguageToggle } from '@/components/ui/language-toggle'
 // import { LogoutButton } from '@/components/auth/logout-button'
@@ -10,13 +11,29 @@ import { useTranslations } from '@/lib/use-translations'
 
 interface RightActionsProps {
   isAuthenticated: boolean;
+  onChatClick?: () => void;
 }
 
-export function RightActions({ isAuthenticated }: RightActionsProps) {
+export function RightActions({ isAuthenticated, onChatClick }: RightActionsProps) {
   const { t, locale } = useTranslations()
   
   return (
     <div className="flex items-center gap-1 md:gap-1">
+      {/* Mobile Chat Button - Only visible on mobile */}
+      <Button
+        onClick={onChatClick}
+        className="md:hidden h-10 w-10 p-1.5 rounded-full bg-transparent hover:bg-transparent"
+        size="icon"
+        variant="ghost"
+      >
+        <Image
+          src="/robot.png"
+          alt="Chat"
+          width={32}
+          height={32}
+          className="h-full w-full object-contain"
+        />
+      </Button>
       {isAuthenticated ? (
         <Button
           variant="link"

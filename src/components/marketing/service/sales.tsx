@@ -8,7 +8,7 @@ export function Sales() {
   const { t, isRTL } = useTranslations();
   
   return (
-    <div className="bg-[#0080FF] full-bleed">
+    <div className="bg-[#0080FF] full-bleed" data-section="sales">
       <div className="container-responsive">
         <div className={`flex flex-col lg:flex-row items-center gap-8 lg:gap-20 ${isRTL ? 'lg:flex-row-reverse font-heading' : ''}`}>
           {/* Content Section - Now on the left */}

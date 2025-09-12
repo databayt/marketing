@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, forwardRef, useImperativeHandle } from 'react';
 import { useChatbot } from './use-chatbot';
 import { ChatButton } from './chat-button';
 import { ChatWindow } from './chat-window';
@@ -9,16 +9,19 @@ import type { ChatbotProps, ChatbotDictionary } from './type';
 import { useLocale } from '@/components/internationalization/use-locale';
 
 interface ChatbotContentProps extends ChatbotProps {
-  dictionary: Partial<ChatbotDictionary>;
+  dictionary?: Partial<ChatbotDictionary>;
 }
 
-export function ChatbotContent({ 
+export const ChatbotContent = forwardRef<
+  { openChat: () => void },
+  ChatbotContentProps
+>(({ 
   config = DEFAULT_CONFIG,
   onMessageSend,
   onChatOpen,
   onChatClose,
   dictionary = {},
-}: ChatbotContentProps) {
+}, ref) => {
   const { locale } = useLocale();
   const chatbotConfig = { ...DEFAULT_CONFIG, ...config, locale: locale as 'en' | 'ar' };
   const fullDictionary = { ...DEFAULT_DICTIONARY, ...dictionary } as ChatbotDictionary;
@@ -26,9 +29,14 @@ export function ChatbotContent({
   const {
     state,
     toggleChat,
+    openChat,
     closeChat,
     sendMessage,
   } = useChatbot();
+
+  useImperativeHandle(ref, () => ({
+    openChat,
+  }), [openChat]);
 
   useEffect(() => {
     if (state.isOpen && onChatOpen) {
@@ -69,4 +77,6 @@ export function ChatbotContent({
       />
     </>
   );
-}
+});
+
+ChatbotContent.displayName = 'ChatbotContent';

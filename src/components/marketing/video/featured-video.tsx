@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { getProjects } from './constant'
 import HoverEffect from '@/components/marketing/video/card-video'
 import { useTranslations } from '@/lib/use-translations'
@@ -15,13 +15,46 @@ interface FeaturedProjectsProps {
 const FeaturedProjects = ({ projectsSection }: FeaturedProjectsProps) => {
   const { locale } = useTranslations()
   const [activeTab, setActiveTab] = useState('featured')
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768)
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
   
   const tabs = [
-    { id: 'featured', label: projectsSection?.tabs?.featured || 'Featured' },
-    { id: 'company', label: projectsSection?.tabs?.company || 'Company' },
-    { id: 'education', label: projectsSection?.tabs?.education || 'Education' },
-    { id: 'health', label: projectsSection?.tabs?.health || 'Health' },
-    { id: 'ecommerce', label: projectsSection?.tabs?.ecommerce || 'E-commerce' },
+    { 
+      id: 'featured', 
+      label: isMobile 
+        ? projectsSection?.tabsMobile?.featured || 'Featured'
+        : projectsSection?.tabs?.featured || 'Featured' 
+    },
+    { 
+      id: 'company', 
+      label: isMobile 
+        ? projectsSection?.tabsMobile?.company || 'Co'
+        : projectsSection?.tabs?.company || 'Company' 
+    },
+    { 
+      id: 'education', 
+      label: isMobile 
+        ? projectsSection?.tabsMobile?.education || 'Edu'
+        : projectsSection?.tabs?.education || 'Education' 
+    },
+    { 
+      id: 'health', 
+      label: isMobile 
+        ? projectsSection?.tabsMobile?.health || 'Health'
+        : projectsSection?.tabs?.health || 'Health' 
+    },
+    { 
+      id: 'ecommerce', 
+      label: isMobile 
+        ? projectsSection?.tabsMobile?.ecommerce || 'E-comm'
+        : projectsSection?.tabs?.ecommerce || 'E-commerce' 
+    },
   ]
   
   const allProjects = getProjects(locale)

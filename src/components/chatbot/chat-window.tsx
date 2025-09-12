@@ -109,7 +109,7 @@ export const ChatWindow = memo(function ChatWindow({
         CHAT_WINDOW_POSITIONS['bottom-right'],
         CHAT_WINDOW_SIZE.width,
         CHAT_WINDOW_SIZE.height,
-        'z-50 bg-background border rounded-lg shadow-2xl flex flex-col',
+        'z-[9999] bg-background border rounded-lg shadow-2xl flex flex-col',
         'transform transition-all duration-700 ease-in-out',
         'origin-bottom-right',
         'max-h-[80vh]',

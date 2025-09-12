@@ -1,10 +1,10 @@
 import type { ChatbotConfig, ChatbotDictionary, ChatbotTheme } from './type';
 
 export const CHATBOT_POSITIONS = {
-  'bottom-right': 'fixed bottom-2 right-2 sm:bottom-3 sm:right-3',
-  'bottom-left': 'fixed bottom-2 left-2 sm:bottom-3 sm:left-3',
-  'top-right': 'fixed top-2 right-2 sm:top-3 sm:right-3',
-  'top-left': 'fixed top-2 left-2 sm:top-3 sm:left-3',
+  'bottom-right': 'fixed bottom-1 right-1 sm:bottom-2 sm:right-2',
+  'bottom-left': 'fixed bottom-1 left-1 sm:bottom-2 sm:left-2',
+  'top-right': 'fixed top-1 right-1 sm:top-2 sm:right-2',
+  'top-left': 'fixed top-1 left-1 sm:top-2 sm:left-2',
 } as const;
 
 export const CHAT_WINDOW_POSITIONS = {

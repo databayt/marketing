@@ -20,7 +20,7 @@ export default function ReadySection() {
   const isCurrentlyDark = resolvedTheme === "dark";
   
   return (
-    <div className="min-w-[300px] w-2/6">
+    <div className="min-w-[300px] w-2/6" data-section="ready-to-build">
       <p className="font-medium mb-4 text-[oklch(1_0_0)]">{t.marketing.footer.readyToBuild}</p>
       <ExpandButton variant="white" className={`group flex items-center mb-6 ${isRTL ? 'flex-row-reverse' : ''}`}>
         <span className={`transition-all duration-300 ${isRTL ? 'order-2 group-hover:order-1' : 'order-1 group-hover:order-2'}`}>
