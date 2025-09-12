@@ -8,6 +8,8 @@ import { Button, buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import Link from 'next/link'
 import { useTranslations } from '@/lib/use-translations'
+import { useTheme } from 'next-themes'
+import { useState, useEffect } from 'react'
 
 interface RightActionsProps {
   isAuthenticated: boolean;
@@ -16,6 +18,9 @@ interface RightActionsProps {
 
 export function RightActions({ isAuthenticated, onChatClick }: RightActionsProps) {
   const { t, locale } = useTranslations()
+  const { resolvedTheme } = useTheme()
+  const [isNearFooter, setIsNearFooter] = useState(false)
+  const [isDesktop, setIsDesktop] = useState(false)
   
   const handleChatClick = () => {
     console.log('Chat button clicked!', { onChatClick: !!onChatClick });
@@ -25,6 +30,35 @@ export function RightActions({ isAuthenticated, onChatClick }: RightActionsProps
       console.warn('onChatClick handler is not provided');
     }
   };
+
+  // Check if user is near footer on desktop
+  useEffect(() => {
+    const handleScroll = () => {
+      if (isDesktop) { // Only for desktop
+        const scrollHeight = document.documentElement.scrollHeight;
+        const scrollTop = window.pageYOffset;
+        const clientHeight = window.innerHeight;
+        const distanceFromBottom = scrollHeight - scrollTop - clientHeight;
+        
+        // Consider "near footer" when within 500px of bottom
+        setIsNearFooter(distanceFromBottom < 500);
+      }
+    };
+
+    const handleResize = () => {
+      setIsDesktop(window.innerWidth >= 768);
+    };
+
+    // Set initial desktop state
+    handleResize();
+    
+    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [isDesktop]);
   
   return (
     <div className="flex items-center justify-evenly gap-2 md:gap-1 flex-1 md:flex-initial">
@@ -41,7 +75,13 @@ export function RightActions({ isAuthenticated, onChatClick }: RightActionsProps
           alt="Chat"
           width={36}
           height={36}
-          className="h-9 w-9 object-contain pointer-events-none"
+          className={cn(
+            "h-9 w-9 object-contain pointer-events-none transition-all duration-300",
+            // Mobile: invert in dark mode
+            resolvedTheme === 'dark' && "md:invert-0 invert",
+            // Desktop: invert when near footer
+            isDesktop && isNearFooter && "invert"
+          )}
         />
       </Button>
       {isAuthenticated ? (
