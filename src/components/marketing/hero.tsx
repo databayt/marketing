@@ -30,7 +30,7 @@ export function Hero({ dictionary, params }: HeroProps) {
                                 </React.Fragment>
                             ))}
                         </h1>
-                        <h1 className="block md:hidden font-heading font-black text-5xl sm:text-7xl md:text-6xl lg:text-[80px]">
+                        <h1 className={`block md:hidden font-heading font-black ${locale === 'ar' ? 'text-5xl sm:text-7xl' : 'text-6xl sm:text-8xl'} md:text-6xl lg:text-[80px]`}>
                             {t.titleMobile.split('\n').map((line, index) => (
                                 <React.Fragment key={index}>
                                     {line}

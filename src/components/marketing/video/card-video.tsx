@@ -71,7 +71,7 @@ export const HoverEffect = ({ items, className }: HoverEffectProps) => {
                         )}
                     </AnimatePresence>
                     <Card>
-                        <div className="h-48 relative w-full overflow-hidden rounded-md">
+                        <div className="h-64 md:h-48 relative w-full overflow-hidden rounded-md">
                             
                             <OptimizedImage
                                 src={getImageSrc(item)}

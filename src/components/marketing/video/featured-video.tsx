@@ -22,7 +22,6 @@ const FeaturedProjects = ({ projectsSection }: FeaturedProjectsProps) => {
     { id: 'education', label: projectsSection?.tabs?.education || 'Education' },
     { id: 'health', label: projectsSection?.tabs?.health || 'Health' },
     { id: 'ecommerce', label: projectsSection?.tabs?.ecommerce || 'E-commerce' },
-    { id: 'states', label: projectsSection?.tabs?.states || 'States' },
   ]
   
   const allProjects = getProjects(locale)

@@ -18,8 +18,8 @@ export function Ready({ dictionary, params }: ReadyProps) {
   return (
     <div className="full-bleed-enhanced">
     <GradientAnimation height="h-[70vh]">
-      <div className="absolute z-50 inset-0">
-        <div className="text-center pt-16">
+      <div className="absolute z-50 inset-0 flex items-center justify-center">
+        <div className="text-center">
           <h1 className="text-4xl font-bold text-primary-foreground dark:invert">
             {t.title}
           </h1>

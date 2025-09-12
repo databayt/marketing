@@ -87,14 +87,11 @@ export default function SiteContent({ dictionary, params }: SiteContentProps) {
       </section>
       <section className="py-10">
         <div className="container mx-auto">
-          <div className="space-y-8">
+          <div className="space-y-4">
             <div className="mx-auto flex max-w-full flex-col items-center text-center">
-              <h2 className={`font-heading text-3xl leading-[1.1] sm:text-3xl mb-4 ${params.lang === 'ar' ? 'md:text-7xl' : 'md:text-6xl'}`}>
+              <h2 className={`font-heading text-3xl leading-[1.1] sm:text-3xl mb-2 ${params.lang === 'ar' ? 'md:text-7xl' : 'md:text-6xl'}`}>
                 {dictionary.marketing?.projectsSection?.title || "Project"}
               </h2>
-              <p className="max-w-[95%] md:max-w-[65%] leading-normal text-muted-foreground sm:text-lg sm:leading-7 pb-7">
-                {dictionary.marketing?.projectsSection?.description || "Portfolio showcases, we've crafted for diverse industries."}
-              </p>
             </div>
             <FeaturedProjects 
               dictionary={dictionary.marketing.projects} 
