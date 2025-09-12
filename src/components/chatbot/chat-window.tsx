@@ -114,13 +114,18 @@ export const ChatWindow = memo(function ChatWindow({
     <div
       ref={chatWindowRef}
       className={cn(
-        CHAT_WINDOW_POSITIONS['bottom-right'],
-        CHAT_WINDOW_SIZE.width,
-        CHAT_WINDOW_SIZE.height,
-        'z-[9999] bg-background border rounded-lg shadow-2xl flex flex-col',
+        // Mobile: Full screen, Desktop: Bottom right position
+        isMobile 
+          ? 'fixed inset-0 z-[9999] bg-background flex flex-col'
+          : cn(
+              CHAT_WINDOW_POSITIONS['bottom-right'],
+              CHAT_WINDOW_SIZE.width,
+              CHAT_WINDOW_SIZE.height,
+              'z-[9999] bg-background border rounded-lg shadow-2xl flex flex-col',
+              'max-h-[80vh]'
+            ),
         'transform transition-all duration-700 ease-in-out',
         'sm:origin-bottom-right',
-        'max-h-[80vh]',
         isOpen 
           ? 'opacity-100 scale-100 visible' 
           : 'opacity-0 scale-0 invisible pointer-events-none'
@@ -131,7 +136,37 @@ export const ChatWindow = memo(function ChatWindow({
       }}
       dir={isRTL ? 'rtl' : 'ltr'}
     >
-      <ScrollArea className="flex-1 px-4 pt-2 pb-1 overflow-y-auto" ref={scrollAreaRef}>
+      {/* Mobile Back Arrow Header */}
+      {isMobile && (
+        <div className="flex items-center justify-between p-4 border-b">
+          <button
+            onClick={onClose}
+            className="flex items-center justify-center h-10 w-10 rounded-full hover:bg-accent transition-colors"
+          >
+            <svg 
+              xmlns="http://www.w3.org/2000/svg" 
+              width="24" 
+              height="24" 
+              viewBox="0 0 24 24" 
+              fill="none" 
+              stroke="currentColor" 
+              strokeWidth="2" 
+              strokeLinecap="round" 
+              strokeLinejoin="round"
+              className={cn(isRTL && "rotate-180")}
+            >
+              <path d="m15 18-6-6 6-6"/>
+            </svg>
+          </button>
+          <h2 className="text-lg font-semibold">Chat Assistant</h2>
+          <div className="w-10" /> {/* Spacer for centering */}
+        </div>
+      )}
+      
+      <ScrollArea className={cn(
+        "flex-1 overflow-y-auto",
+        isMobile ? "px-4 pt-2 pb-1" : "px-4 pt-2 pb-1"
+      )} ref={scrollAreaRef}>
         <div className="h-full flex flex-col">
             {messages.length === 0 ? (
               <div className="flex flex-col h-full">
@@ -220,7 +255,10 @@ export const ChatWindow = memo(function ChatWindow({
         </div>
       )}
 
-      <div className="px-3 pb-2 pt-1">
+      <div className={cn(
+        "pb-2 pt-1",
+        isMobile ? "px-4" : "px-3"
+      )}>
           <form onSubmit={handleSubmit} className="flex items-center gap-1">
             <div className="flex-1 flex items-center border rounded-lg px-3 py-1 bg-background">
               <input
@@ -238,11 +276,14 @@ export const ChatWindow = memo(function ChatWindow({
               type="submit"
               size="icon"
               disabled={!input.trim() || isLoading}
-              className="h-14 w-14 p-0 hover:scale-110 transition-transform"
+              className={cn(
+                "p-0 hover:scale-110 transition-transform",
+                isMobile ? "h-12 w-12" : "h-14 w-14"
+              )}
               variant="link"
               title="Send message"
             >
-              <SendIcon size={48} className={cn(isRTL && "scale-x-[-1]")} />
+              <SendIcon size={isMobile ? 40 : 48} className={cn(isRTL && "scale-x-[-1]")} />
             </Button>
             
             <Button
@@ -251,12 +292,13 @@ export const ChatWindow = memo(function ChatWindow({
               size="icon"
               variant="link"
               className={cn(
-                "h-14 w-14 p-0 -ml-10 hover:scale-110 transition-transform",
+                "p-0 hover:scale-110 transition-transform",
+                isMobile ? "h-12 w-12 -ml-8" : "h-14 w-14 -ml-10",
                 isListening && "text-red-500 animate-pulse"
               )}
               title="Voice input"
             >
-              <VoiceIcon size={48} />
+              <VoiceIcon size={isMobile ? 40 : 48} />
             </Button>
           </form>
       </div>

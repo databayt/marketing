@@ -28,10 +28,10 @@ export function LanguageToggle() {
     <Button
       variant="link"
       size="sm"
-      className="h-10 w-10 md:h-8 md:w-8 px-0"
+      className="h-12 w-12 md:h-8 md:w-8 px-0"
       onClick={toggleLanguage}
     >
-      <Languages className="h-8 w-8 md:h-4 md:w-4" />
+      <Languages className="h-10 w-10 md:h-4 md:w-4" />
       <span className="sr-only">Toggle language</span>
     </Button>
   );
