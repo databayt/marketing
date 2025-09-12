@@ -39,13 +39,13 @@ export default function ReadySection() {
           rel="noopener noreferrer"
           className="transition-transform hover:scale-110"
         >
-          <GitHubNewIcon className="h-8 w-8 cursor-pointer transition-colors text-[oklch(1_0_0)] hover:text-[oklch(0.97_0_0)]" />
+          <GitHubNewIcon className="h-8 w-8 md:h-8 md:w-8 cursor-pointer transition-colors text-[oklch(1_0_0)] hover:text-[oklch(0.97_0_0)]" />
         </a>
         <a 
           href="#" 
           className="transition-transform hover:scale-110"
         >
-          <TwitterIcon className="h-8 w-8 cursor-pointer transition-colors text-[oklch(1_0_0)] hover:text-[oklch(0.97_0_0)]" />
+          <TwitterIcon className="h-10 w-10 md:h-8 md:w-8 cursor-pointer transition-colors text-[oklch(1_0_0)] hover:text-[oklch(0.97_0_0)]" />
         </a>
         <a 
           href="https://www.linkedin.com/company/databayt-auto" 
@@ -53,13 +53,13 @@ export default function ReadySection() {
           rel="noopener noreferrer"
           className="transition-transform hover:scale-110"
         >
-          <LinkedInNewIcon className="h-8 w-8 cursor-pointer transition-colors text-[oklch(1_0_0)] hover:text-[oklch(0.97_0_0)]" />
+          <LinkedInNewIcon className="h-10 w-10 md:h-8 md:w-8 cursor-pointer transition-colors text-[oklch(1_0_0)] hover:text-[oklch(0.97_0_0)]" />
         </a>
         <a 
           href="#" 
           className="transition-transform hover:scale-110"
         >
-          <InstagramIcon className="h-8 w-8 cursor-pointer transition-colors text-[oklch(1_0_0)] hover:text-[oklch(0.97_0_0)]" />
+          <InstagramIcon className="h-10 w-10 md:h-8 md:w-8 cursor-pointer transition-colors text-[oklch(1_0_0)] hover:text-[oklch(0.97_0_0)]" />
         </a>
         <a 
           href="https://www.facebook.com/profile.php?id=61579954895228" 
@@ -67,7 +67,7 @@ export default function ReadySection() {
           rel="noopener noreferrer"
           className="transition-transform hover:scale-110"
         >
-          <FacebookIcon className="h-8 w-8 cursor-pointer transition-colors text-[oklch(1_0_0)] hover:text-[oklch(0.97_0_0)]" />
+          <FacebookIcon className="h-10 w-10 md:h-8 md:w-8 cursor-pointer transition-colors text-[oklch(1_0_0)] hover:text-[oklch(0.97_0_0)]" />
         </a>
         <a 
           href="https://wa.me/00966557721603" 
@@ -75,7 +75,7 @@ export default function ReadySection() {
           rel="noopener noreferrer"
           className="transition-transform hover:scale-110"
         >
-          <WhatsAppIcon className="h-8 w-8 cursor-pointer transition-colors text-[oklch(1_0_0)] hover:text-[oklch(0.97_0_0)]" />
+          <WhatsAppIcon className="h-10 w-10 md:h-8 md:w-8 cursor-pointer transition-colors text-[oklch(1_0_0)] hover:text-[oklch(0.97_0_0)]" />
         </a>
       </div>
     </div>

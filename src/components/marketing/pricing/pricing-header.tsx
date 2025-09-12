@@ -14,7 +14,7 @@ export default function PricingHeader() {
       <h1 className="font-heading hidden md:block">
         {t.marketing.pricing.title}
       </h1>
-      <h1 className="font-heading block md:hidden">
+      <h1 className="font-heading block md:hidden whitespace-pre-line">
         {t.marketing.pricing.title.replace('. ', '.\n')}
       </h1>
       <p className="max-w-[85%] mx-auto leading-normal text-muted-foreground">

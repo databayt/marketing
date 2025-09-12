@@ -30,7 +30,7 @@ export function PricingCards({ userId, subscriptionPlan, userRole }: PricingCard
       <div className="w-full flex flex-col items-center text-center">
         <BillingToggle isYearly={isYearly} onChange={toggleBilling} />
 
-        <div className="grid gap-6 md:gap-8 bg-inherit py-4 md:grid-cols-3 items-stretch w-full">
+        <div className="grid gap-6 md:gap-8 bg-inherit py-4 grid-cols-1 md:grid-cols-3 items-stretch w-full">
           {getPricingData(t).map((offer) => (
             <PricingCard
               offer={offer}

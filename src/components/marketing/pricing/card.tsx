@@ -70,7 +70,7 @@ export function PricingCard({ offer, isYearly, userId, subscriptionPlan, userRol
               variant: "default",
               size: "sm",
             }),
-            "hover:scale-[1.01] transition-transform rounded-full",
+            "hover:scale-[1.01] transition-transform rounded-md",
           )}
         >
 {getCtaLabel(offer.title, t)}
@@ -91,21 +91,14 @@ export function PricingCard({ offer, isYearly, userId, subscriptionPlan, userRol
       key={offer.title}
       className={cn(
         "relative overflow-hidden rounded-2xl border-none shadow-none flex flex-col h-full w-full",
-        // Mobile: transparent background, Desktop: bg-muted
-        "bg-transparent md:bg-muted text-card-foreground",
+        // Mobile: same bg-muted style as desktop
+        "bg-muted text-card-foreground",
         isRTL ? "items-end text-right" : "items-start text-left"
       )}
     >
-      <CardHeader className={`w-full ${isRTL ? "text-right" : "text-left"} pb-2 md:pb-6`}>
-        {/* Mobile: one line layout */}
-        <div className="md:hidden flex items-center justify-between w-full">
-          <p className="text-sm font-medium text-foreground">{getTranslatedPlanName(offer.title)}</p>
-          <p className="text-sm font-bold">
-            {priceDisplay}{offer.prices.monthly > 0 ? t.marketing.pricing.constants.perMonth : ""}
-          </p>
-        </div>
-        {/* Desktop: original layout */}
-        <div className="hidden md:block">
+      <CardHeader className={`w-full ${isRTL ? "text-right" : "text-left"} pb-2 md:pb-3`}>
+        {/* Mobile: use same desktop layout */}
+        <div>
           <p className="lead text-foreground">{getTranslatedPlanName(offer.title)}</p>
           <CardTitle className="tracking-tight whitespace-nowrap">
             {priceDisplay}{offer.prices.monthly > 0 ? t.marketing.pricing.constants.perMonth : ""}
@@ -113,13 +106,13 @@ export function PricingCard({ offer, isYearly, userId, subscriptionPlan, userRol
         </div>
       </CardHeader>
       
-      <div className="w-full px-6 hidden md:block">
+      <div className="w-full px-6">
         <Separator />
       </div>
 
-      <CardContent className={`flex-1 w-full ${isRTL ? "text-right" : "text-left"} pt-2 md:pt-6`}>
-        <p className="muted mb-2 hidden md:block">{includesHeading}</p>
-        <ul className="space-y-1 md:space-y-2">
+      <CardContent className={`flex-1 w-full ${isRTL ? "text-right" : "text-left"} pt-2 md:pt-3`}>
+        <p className="muted mb-2">{includesHeading}</p>
+        <ul className="space-y-1 md:space-y-1">
           {offer.benefits.map((feature) => (
             <li key={feature} className="flex items-start gap-2 md:gap-3">
               <Check className="mt-0.5 md:mt-1 text-primary size-2 md:size-3" />
@@ -129,7 +122,7 @@ export function PricingCard({ offer, isYearly, userId, subscriptionPlan, userRol
         </ul>
       </CardContent>
 
-      <CardFooter className={`${isRTL ? 'text-right justify-start items-start' : ''} w-full pt-2 md:pt-6`}>
+      <CardFooter className={`${isRTL ? 'text-right justify-start items-start' : ''} w-full pt-2 md:pt-3`}>
         <div className={`${isRTL ? 'text-right w-full' : ''}`}>{ctaArea}</div>
       </CardFooter>
     </Card>
