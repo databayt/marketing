@@ -84,7 +84,7 @@ export function MainNav({ items, children }: MainNavProps) {
       </div>
       
       {/* Mobile Navigation */}
-      <div className="flex items-center md:hidden">
+      <div className="flex items-center md:hidden pt-1">
         {/* Mobile Menu Button with Hamburger Icon */}
         <button
           className="flex items-center justify-center h-11 w-11 rounded-full hover:bg-accent/50 transition-colors"

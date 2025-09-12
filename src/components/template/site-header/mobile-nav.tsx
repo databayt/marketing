@@ -40,8 +40,8 @@ export const MobileNav = React.forwardRef<HTMLDivElement, MobileNavProps>(
             <OptimizedImage 
               src="/marketing/site/logo.png" 
               alt="Logo" 
-              width={32} 
-              height={32} 
+              width={28} 
+              height={28} 
               className="dark:invert" 
             />
             <span className="text-xl font-bold">{t.common.brandName || "Databayt"}</span>

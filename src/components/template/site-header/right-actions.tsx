@@ -31,7 +31,7 @@ export function RightActions({ isAuthenticated, onChatClick }: RightActionsProps
       {/* Mobile Chat Button - Only visible on mobile */}
       <Button
         onClick={handleChatClick}
-        className="md:hidden h-11 w-11 p-2 rounded-full hover:bg-accent/50 transition-colors"
+        className="md:hidden h-11 w-11 p-2 rounded-full hover:bg-accent/50 transition-colors -pt-1"
         size="icon"
         variant="ghost"
         type="button"
@@ -59,7 +59,7 @@ export function RightActions({ isAuthenticated, onChatClick }: RightActionsProps
             href={`/${locale}/login`}
             className="md:hidden h-11 w-11 p-2 flex items-center justify-center rounded-full hover:bg-accent/50 transition-colors"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" className="h-7 w-7">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" className="h-6 w-6">
               <path 
                 fill="none" 
                 stroke="currentColor" 

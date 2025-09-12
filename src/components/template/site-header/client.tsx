@@ -6,6 +6,7 @@ import Image from 'next/image'
 import { MainNav } from './main-nav'
 import { marketingConfig } from './constant'
 import { RightActions } from './right-actions'
+import MobileHeader from './mobile-header'
 
 interface SiteHeaderProps {
   isAuthenticated: boolean
@@ -51,15 +52,8 @@ export default function SiteHeaderClient({ isAuthenticated, onChatClick }: SiteH
         </div>
       </header>
 
-      {/* Mobile Header - Static Second Stage */}
-      <header className="fixed top-0 left-0 right-0 z-40 md:hidden bg-background/95 backdrop-blur-sm">
-        <div className="flex h-14 items-center px-8">
-          <div className="flex items-center justify-between w-full">
-            <MainNav items={marketingConfig.mainNav} />
-            <RightActions isAuthenticated={isAuthenticated} onChatClick={onChatClick} />
-          </div>
-        </div>
-      </header>
+      {/* Mobile Header - Completely Separate */}
+      <MobileHeader isAuthenticated={isAuthenticated} onChatClick={onChatClick} />
     </>
   )
 }
