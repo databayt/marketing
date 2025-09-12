@@ -84,34 +84,31 @@ export function MainNav({ items, children }: MainNavProps) {
       </div>
       
       {/* Mobile Navigation */}
-      <div className="flex items-center gap-2 md:hidden">
-        {/* Mobile Logo - Links to homepage */}
-        <Link href={`/${locale}`} className="flex items-center justify-center h-12 w-12">
-          <OptimizedImage src="/marketing/site/logo.png" alt="Logo" width={28} height={28} className="dark:invert" />
-        </Link>
-        
+      <div className="flex items-center md:hidden">
         {/* Mobile Menu Button with Hamburger Icon */}
         <button
-          className="flex items-center justify-center h-10 w-10"
+          className="flex items-center justify-center h-10 w-10 rounded-full hover:bg-accent/50 transition-colors"
           onClick={() => setShowMobileMenu(!showMobileMenu)}
         >
           {showMobileMenu ? (
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" className="h-6 w-6">
               <path 
                 fill="none" 
                 stroke="currentColor" 
-                strokeWidth="2" 
+                strokeWidth="1.5" 
                 strokeLinecap="round" 
+                strokeLinejoin="round" 
                 d="M18 6L6 18M6 6l12 12"
               />
             </svg>
           ) : (
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" className="h-6 w-6">
               <path 
                 fill="none" 
                 stroke="currentColor" 
-                strokeWidth="2" 
+                strokeWidth="1.5" 
                 strokeLinecap="round" 
+                strokeLinejoin="round" 
                 d="M4 6h16M4 12h16M4 18h16"
               />
             </svg>

@@ -1,6 +1,7 @@
 import * as React from "react"
 import Link from "next/link"
 import { OptimizedImage } from '@/components/ui/optimized-image'
+import { useTranslations } from "@/lib/use-translations"
 
 import { MainNavItem } from "./type"
 import { siteConfig } from "./constant"
@@ -16,6 +17,7 @@ interface MobileNavProps {
 export const MobileNav = React.forwardRef<HTMLDivElement, MobileNavProps>(
   ({ items, children, onClose }, ref) => {
     useLockBody()
+    const { t, locale } = useTranslations()
 
     return (
       <div
@@ -29,6 +31,22 @@ export const MobileNav = React.forwardRef<HTMLDivElement, MobileNavProps>(
           className="relative z-20 grid gap-2 bg-popover text-popover-foreground shadow-md w-screen py-4"
           onClick={(e) => e.stopPropagation()}
         >
+          {/* Logo with Databayt text at the top of dropdown */}
+          <Link 
+            href={`/${locale}`} 
+            onClick={onClose}
+            className="flex items-center gap-3 px-6 py-3 border-b border-border/50"
+          >
+            <OptimizedImage 
+              src="/marketing/site/logo.png" 
+              alt="Logo" 
+              width={32} 
+              height={32} 
+              className="dark:invert" 
+            />
+            <span className="text-xl font-bold">{t.common.brandName || "Databayt"}</span>
+          </Link>
+          
           <nav className="grid grid-flow-row auto-rows-max">
             {items.map((item, index) => (
               <Link
