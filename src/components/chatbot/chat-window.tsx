@@ -20,9 +20,17 @@ export const ChatWindow = memo(function ChatWindow({
 }: ChatWindowProps) {
   const [input, setInput] = useState('');
   const [isListening, setIsListening] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
   const chatWindowRef = useRef<HTMLDivElement>(null);
   const isRTL = locale === 'ar';
+  
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 640);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useEffect(() => {
     if (scrollAreaRef.current) {
@@ -111,14 +119,14 @@ export const ChatWindow = memo(function ChatWindow({
         CHAT_WINDOW_SIZE.height,
         'z-[9999] bg-background border rounded-lg shadow-2xl flex flex-col',
         'transform transition-all duration-700 ease-in-out',
-        'origin-bottom-right',
+        'sm:origin-bottom-right',
         'max-h-[80vh]',
         isOpen 
           ? 'opacity-100 scale-100 visible' 
           : 'opacity-0 scale-0 invisible pointer-events-none'
       )}
       style={{
-        transformOrigin: 'bottom right',
+        transformOrigin: isMobile ? 'center' : 'bottom right',
         transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)'
       }}
       dir={isRTL ? 'rtl' : 'ltr'}

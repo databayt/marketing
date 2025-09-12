@@ -56,36 +56,68 @@ export function MainNav({ items, children }: MainNavProps) {
   }, [showMobileMenu])
 
   return (
-    <div className="flex gap-6 md:gap-10">
-      <Link href={`/${locale}`} className="hidden items-center gap-2 md:flex">
-        <OptimizedImage src="/marketing/site/logo.png" alt="Hogwarts Logo" width={16} height={16} className="dark:invert -mt-1" />
-        <span className="hidden font-bold sm:inline-block  ">
-          {t.common.brandName}
-        </span>
-      </Link>
-      <nav className="hidden gap-6 md:flex">
-        {localizedItems?.map((item, index) => (
-          <Link
-            key={index}
-            href={item.href}
-            className={cn(
-              "flex items-center text-lg font-medium transition-colors hover:text-foreground/80 sm:text-sm",
-              item.href.includes(`/${segment}`)
-                ? "text-foreground"
-                : "text-foreground/60"
-            )}
-          >
-            {item.title}
-          </Link>
-        ))}
-      </nav>
-      <button
-        className="flex items-center space-x-3 md:hidden p-2"
-        onClick={() => setShowMobileMenu(!showMobileMenu)}
-      >
-        {showMobileMenu ? <Icons.close className="w-5 h-5" /> : <OptimizedImage src="/marketing/site/logo.png" alt="Menu" width={20} height={20} className="dark:invert" />}
-        <span className="font-bold text-base">{t.navigation.menu}</span>
-      </button>
+    <>
+      {/* Desktop Navigation */}
+      <div className="hidden md:flex gap-6 md:gap-10">
+        <Link href={`/${locale}`} className="flex items-center gap-2">
+          <OptimizedImage src="/marketing/site/logo.png" alt="Hogwarts Logo" width={16} height={16} className="dark:invert -mt-1" />
+          <span className="hidden font-bold sm:inline-block">
+            {t.common.brandName}
+          </span>
+        </Link>
+        <nav className="flex gap-6">
+          {localizedItems?.map((item, index) => (
+            <Link
+              key={index}
+              href={item.href}
+              className={cn(
+                "flex items-center text-lg font-medium transition-colors hover:text-foreground/80 sm:text-sm",
+                item.href.includes(`/${segment}`)
+                  ? "text-foreground"
+                  : "text-foreground/60"
+              )}
+            >
+              {item.title}
+            </Link>
+          ))}
+        </nav>
+      </div>
+      
+      {/* Mobile Navigation */}
+      <div className="flex items-center gap-2 md:hidden">
+        {/* Mobile Logo - Links to homepage */}
+        <Link href={`/${locale}`} className="flex items-center justify-center h-10 w-10">
+          <OptimizedImage src="/marketing/site/logo.png" alt="Logo" width={24} height={24} className="dark:invert" />
+        </Link>
+        
+        {/* Mobile Menu Button with Hamburger Icon */}
+        <button
+          className="flex items-center justify-center h-10 w-10"
+          onClick={() => setShowMobileMenu(!showMobileMenu)}
+        >
+          {showMobileMenu ? (
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+              <path 
+                fill="none" 
+                stroke="currentColor" 
+                strokeWidth="2" 
+                strokeLinecap="round" 
+                d="M18 6L6 18M6 6l12 12"
+              />
+            </svg>
+          ) : (
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+              <path 
+                fill="none" 
+                stroke="currentColor" 
+                strokeWidth="2" 
+                strokeLinecap="round" 
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+          )}
+        </button>
+      </div>
       {showMobileMenu && (
         <MobileNav items={localizedItems} onClose={() => setShowMobileMenu(false)} ref={mobileMenuRef}>{children}</MobileNav>
       )}

@@ -26,21 +26,17 @@ export const MobileNav = React.forwardRef<HTMLDivElement, MobileNavProps>(
       >
         <div 
           ref={ref}
-          className="relative z-20 grid gap-6 bg-popover text-popover-foreground shadow-md w-screen py-6 px-6"
+          className="relative z-20 grid gap-2 bg-popover text-popover-foreground shadow-md w-screen py-4"
           onClick={(e) => e.stopPropagation()}
         >
-          <Link href="/" className="flex items-center space-x-3">
-            <OptimizedImage src="/marketing/site/logo.png" alt="Logo" width={20} height={20} className="dark:invert" />
-            <span className="font-bold text-base">{siteConfig.name}</span>
-          </Link>
-          <nav className="grid grid-flow-row auto-rows-max text-lg">
+          <nav className="grid grid-flow-row auto-rows-max">
             {items.map((item, index) => (
               <Link
                 key={index}
                 href={item.disabled ? "#" : item.href}
                 onClick={onClose}
                 className={cn(
-                  "flex w-full items-center rounded-md p-4 text-lg font-medium hover:underline",
+                  "flex w-full items-center py-3 px-6 text-xl font-medium text-black dark:text-white hover:bg-muted transition-colors",
                   item.disabled && "cursor-not-allowed opacity-60"
                 )}
               >

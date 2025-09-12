@@ -8,16 +8,16 @@ export const CHATBOT_POSITIONS = {
 } as const;
 
 export const CHAT_WINDOW_POSITIONS = {
-  'bottom-right': 'fixed bottom-2 right-1 sm:bottom-4 sm:right-2',
-  'bottom-left': 'fixed bottom-2 left-1 sm:bottom-4 sm:left-2',
-  'top-right': 'fixed top-20 right-1 sm:top-20 sm:right-2',
-  'top-left': 'fixed top-20 left-1 sm:top-20 sm:left-2',
+  'bottom-right': 'fixed inset-x-4 top-1/2 -translate-y-1/2 sm:inset-x-auto sm:translate-y-0 sm:bottom-4 sm:right-2 sm:top-auto',
+  'bottom-left': 'fixed inset-x-4 top-1/2 -translate-y-1/2 sm:inset-x-auto sm:translate-y-0 sm:bottom-4 sm:left-2 sm:top-auto',
+  'top-right': 'fixed inset-x-4 top-1/2 -translate-y-1/2 sm:inset-x-auto sm:translate-y-0 sm:top-20 sm:right-2',
+  'top-left': 'fixed inset-x-4 top-1/2 -translate-y-1/2 sm:inset-x-auto sm:translate-y-0 sm:top-20 sm:left-2',
 } as const;
 
 export const CHAT_WINDOW_SIZE = {
-  width: 'w-full sm:w-80',
+  width: 'w-auto sm:w-80',
   height: 'h-[400px] sm:h-[450px]',
-  maxHeight: 'max-h-[80vh]',
+  maxHeight: 'max-h-[80vh] sm:max-h-[80vh]',
 } as const;
 
 export const DEFAULT_DICTIONARY: ChatbotDictionary = {
