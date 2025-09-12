@@ -39,7 +39,7 @@ export default function ReadySection() {
           rel="noopener noreferrer"
           className="transition-transform hover:scale-110"
         >
-          <GitHubNewIcon className="h-8 w-8 md:h-8 md:w-8 cursor-pointer transition-colors text-[oklch(1_0_0)] hover:text-[oklch(0.97_0_0)]" />
+          <GitHubNewIcon className="h-10 w-10 md:h-8 md:w-8 cursor-pointer transition-colors text-[oklch(1_0_0)] hover:text-[oklch(0.97_0_0)]" />
         </a>
         <a 
           href="#" 

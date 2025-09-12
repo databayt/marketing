@@ -23,14 +23,16 @@ export default async function PricingContent() {
   }
 
   return (
-    <div className="flex w-full flex-col py-14 mt-18 items-center">
-      <PricingLoaderOverlay />
-      <PricingHeader />
-      <PricingCards userId={user?.id} subscriptionPlan={subscriptionPlan} userRole={user?.role} />
-      <ComparePlans />
-      {/* <PricingFaq /> */}
-      <PricingFAQs />
+    <>
+      <div className="flex w-full flex-col py-14 mt-18 items-center">
+        <PricingLoaderOverlay />
+        <PricingHeader />
+        <PricingCards userId={user?.id} subscriptionPlan={subscriptionPlan} userRole={user?.role} />
+        <ComparePlans />
+        {/* <PricingFaq /> */}
+        <PricingFAQs />
+      </div>
       <EnterpriseSection />
-    </div>
+    </>
   );
 }
