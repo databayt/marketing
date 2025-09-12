@@ -12,6 +12,7 @@ import {
 import { HeaderSection } from "@/components/atom/header-section";
 import MaxWidthWrapper from "@/components/marketing/pricing/shared/max-width-wrapper";
 import { useTranslations } from '@/lib/use-translations';
+import { MobileComparePlans } from './mobile-compare-plans';
 
 export function ComparePlans() {
   const { t, locale } = useTranslations();
@@ -148,68 +149,74 @@ export function ComparePlans() {
   };
 
   return (
-    <div className="py-20">
-      <MaxWidthWrapper>
-        <HeaderSection
-          title={t.marketing.pricing.comparePlans.title}
-          subtitle={t.marketing.pricing.comparePlans.subtitle}
-        />
+    <>
+      {/* Mobile version */}
+      <MobileComparePlans />
+      
+      {/* Desktop version */}
+      <div className="py-20 hidden md:block">
+        <MaxWidthWrapper>
+          <HeaderSection
+            title={t.marketing.pricing.comparePlans.title}
+            subtitle={t.marketing.pricing.comparePlans.subtitle}
+          />
 
-        <div className="my-10 overflow-x-scroll max-lg:mx-[-0.8rem] md:overflow-x-visible">
-          <table className="w-full table-fixed">
-            <thead>
-              <tr className="">
-                <th className="sticky left-0 z-20 w-40 bg-background py-5 md:w-1/4 lg:top-12"></th>
-                {plansColumns.map((col) => (
-                  <th
-                    key={col}
-                    className="sticky z-10 w-40 bg-background py-5 font-heading text-center capitalize tracking-wide md:w-auto lg:top-12"
-                  >
-                    {getTranslatedPlanColumn(col)}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody className="">
-              {comparePlans.map((row: PlansRow, index: number) => (
-                <tr key={index} className="">
-                  <td
-                    data-tip={row.tooltip ? row.tooltip : ""}
-                    className="sticky left-0 bg-background md:bg-transparent"
-                  >
-                    <div className="flex items-center justify-between space-x-2 py-4">
-                      <span className="lg:text-base">
-                        {getTranslatedFeature(row.feature)}
-                      </span>
-                      {row.tooltip && (
-                        <Popover>
-                          <PopoverTrigger className="rounded p-1 hover:bg-muted">
-                            <Info className="size-[18px] text-muted-foreground" />
-                          </PopoverTrigger>
-                          <PopoverContent
-                            side="top"
-                            className="max-w-80 py-3"
-                          >
-                            {getTranslatedTooltip(row.tooltip)}
-                          </PopoverContent>
-                        </Popover>
-                      )}
-                    </div>
-                  </td>
+          <div className="my-10 overflow-x-scroll max-lg:mx-[-0.8rem] md:overflow-x-visible">
+            <table className="w-full table-fixed">
+              <thead>
+                <tr className="">
+                  <th className="sticky left-0 z-20 w-40 bg-background py-5 md:w-1/4 lg:top-12"></th>
                   {plansColumns.map((col) => (
-                    <td
+                    <th
                       key={col}
-                      className="py-4 text-center text-muted-foreground lg:text-base"
+                      className="sticky z-10 w-40 bg-background py-5 font-heading text-center capitalize tracking-wide md:w-auto lg:top-12"
                     >
-                      {renderCell(row[col])}
-                    </td>
+                      {getTranslatedPlanColumn(col)}
+                    </th>
                   ))}
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </MaxWidthWrapper>
-    </div>
+              </thead>
+              <tbody className="">
+                {comparePlans.map((row: PlansRow, index: number) => (
+                  <tr key={index} className="">
+                    <td
+                      data-tip={row.tooltip ? row.tooltip : ""}
+                      className="sticky left-0 bg-background md:bg-transparent"
+                    >
+                      <div className="flex items-center justify-between space-x-2 py-4">
+                        <span className="lg:text-base">
+                          {getTranslatedFeature(row.feature)}
+                        </span>
+                        {row.tooltip && (
+                          <Popover>
+                            <PopoverTrigger className="rounded p-1 hover:bg-muted">
+                              <Info className="size-[18px] text-muted-foreground" />
+                            </PopoverTrigger>
+                            <PopoverContent
+                              side="top"
+                              className="max-w-80 py-3"
+                            >
+                              {getTranslatedTooltip(row.tooltip)}
+                            </PopoverContent>
+                          </Popover>
+                        )}
+                      </div>
+                    </td>
+                    {plansColumns.map((col) => (
+                      <td
+                        key={col}
+                        className="py-4 text-center text-muted-foreground lg:text-base"
+                      >
+                        {renderCell(row[col])}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </MaxWidthWrapper>
+      </div>
+    </>
   );
 }

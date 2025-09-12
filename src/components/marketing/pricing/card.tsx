@@ -90,34 +90,46 @@ export function PricingCard({ offer, isYearly, userId, subscriptionPlan, userRol
     <Card
       key={offer.title}
       className={cn(
-        "relative overflow-hidden rounded-2xl border-none shadow-none bg-muted text-card-foreground flex flex-col h-full w-full",
+        "relative overflow-hidden rounded-2xl border-none shadow-none flex flex-col h-full w-full",
+        // Mobile: transparent background, Desktop: bg-muted
+        "bg-transparent md:bg-muted text-card-foreground",
         isRTL ? "items-end text-right" : "items-start text-left"
       )}
     >
-      <CardHeader className={`w-full ${isRTL ? "text-right" : "text-left"}`}>
-        <p className="lead text-foreground">{getTranslatedPlanName(offer.title)}</p>
-        <CardTitle className="tracking-tight whitespace-nowrap">
-          {priceDisplay}{offer.prices.monthly > 0 ? t.marketing.pricing.constants.perMonth : ""}
-        </CardTitle>
+      <CardHeader className={`w-full ${isRTL ? "text-right" : "text-left"} pb-2 md:pb-6`}>
+        {/* Mobile: one line layout */}
+        <div className="md:hidden flex items-center justify-between w-full">
+          <p className="text-sm font-medium text-foreground">{getTranslatedPlanName(offer.title)}</p>
+          <p className="text-sm font-bold">
+            {priceDisplay}{offer.prices.monthly > 0 ? t.marketing.pricing.constants.perMonth : ""}
+          </p>
+        </div>
+        {/* Desktop: original layout */}
+        <div className="hidden md:block">
+          <p className="lead text-foreground">{getTranslatedPlanName(offer.title)}</p>
+          <CardTitle className="tracking-tight whitespace-nowrap">
+            {priceDisplay}{offer.prices.monthly > 0 ? t.marketing.pricing.constants.perMonth : ""}
+          </CardTitle>
+        </div>
       </CardHeader>
-      <div className="w-full px-6">
+      
+      <div className="w-full px-6 hidden md:block">
         <Separator />
       </div>
 
-      <CardContent className={`flex-1 w-full ${isRTL ? "text-right" : "text-left"}`}>
-        <p className="muted mb-2">{includesHeading}</p>
-        <ul>
+      <CardContent className={`flex-1 w-full ${isRTL ? "text-right" : "text-left"} pt-2 md:pt-6`}>
+        <p className="muted mb-2 hidden md:block">{includesHeading}</p>
+        <ul className="space-y-1 md:space-y-2">
           {offer.benefits.map((feature) => (
-            <li key={feature} className="flex items-start gap-3">
-              <Check className="mt-1 text-primary size-3" />
-              <span className="muted leading-6">{feature}</span>
+            <li key={feature} className="flex items-start gap-2 md:gap-3">
+              <Check className="mt-0.5 md:mt-1 text-primary size-2 md:size-3" />
+              <span className="muted leading-5 md:leading-6 text-xs md:text-sm">{feature}</span>
             </li>
           ))}
-          {/* limitations intentionally not rendered */}
         </ul>
       </CardContent>
 
-      <CardFooter className={`${isRTL ? 'text-right justify-start items-start' : ''} w-full`}>
+      <CardFooter className={`${isRTL ? 'text-right justify-start items-start' : ''} w-full pt-2 md:pt-6`}>
         <div className={`${isRTL ? 'text-right w-full' : ''}`}>{ctaArea}</div>
       </CardFooter>
     </Card>

@@ -54,7 +54,7 @@ export default function Creative() {
       {/* Images Row */}
       <div className="flex gap-0 justify-center items-center w-full">
         <div className="flex flex-col md:flex-row w-full">
-          <div className="w-full md:w-1/4 h-[300px] overflow-hidden animation-box">
+          <div className="w-full md:w-1/4 h-[400px] md:h-[300px] overflow-hidden animation-box">
             <div>
               <OptimizedImage
                 src="/marketing/site/5.jpg"
@@ -66,7 +66,7 @@ export default function Creative() {
               />
             </div>
           </div>
-          <div className="w-full md:w-1/4 h-[300px] overflow-hidden animation-box">
+          <div className="w-full md:w-1/4 h-[400px] md:h-[300px] overflow-hidden animation-box">
             <div>
               <OptimizedImage
                 src="/marketing/site/6.jpg"
@@ -78,7 +78,7 @@ export default function Creative() {
               />
             </div>
           </div>
-          <div className="w-full md:w-1/4 h-[300px] overflow-hidden animation-box">
+          <div className="w-full md:w-1/4 h-[400px] md:h-[300px] overflow-hidden animation-box">
             <div>
               <OptimizedImage
                 src="/marketing/site/9.jpg"
@@ -90,7 +90,7 @@ export default function Creative() {
               />
             </div>
           </div>
-          <div className="w-full md:w-1/4 h-[300px] overflow-hidden animation-box">
+          <div className="w-full md:w-1/4 h-[400px] md:h-[300px] overflow-hidden animation-box">
             <div>
               <OptimizedImage
                 src="/marketing/site/8.jpg"
