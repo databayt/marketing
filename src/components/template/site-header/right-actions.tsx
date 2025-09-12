@@ -16,7 +16,7 @@ export function RightActions({ isAuthenticated }: RightActionsProps) {
   const { t, locale } = useTranslations()
   
   return (
-    <div className="flex items-center gap-2 md:gap-1">
+    <div className="flex items-center gap-1 md:gap-1">
       {isAuthenticated ? (
         <Button
           variant="link"

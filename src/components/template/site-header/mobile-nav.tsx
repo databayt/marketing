@@ -33,14 +33,14 @@ export const MobileNav = React.forwardRef<HTMLDivElement, MobileNavProps>(
             <OptimizedImage src="/marketing/site/logo.png" alt="Logo" width={20} height={20} className="dark:invert" />
             <span className="font-bold text-base">{siteConfig.name}</span>
           </Link>
-          <nav className="grid grid-flow-row auto-rows-max text-base">
+          <nav className="grid grid-flow-row auto-rows-max text-lg">
             {items.map((item, index) => (
               <Link
                 key={index}
                 href={item.disabled ? "#" : item.href}
                 onClick={onClose}
                 className={cn(
-                  "flex w-full items-center rounded-md p-3 text-base font-medium hover:underline",
+                  "flex w-full items-center rounded-md p-4 text-lg font-medium hover:underline",
                   item.disabled && "cursor-not-allowed opacity-60"
                 )}
               >
