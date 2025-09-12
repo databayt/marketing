@@ -1,9 +1,7 @@
 'use client'
 import { cn } from "@/lib/utils";
-import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { OptimizedImage } from '@/components/ui/optimized-image';
-import { useState } from "react";
 import { VideoIcon } from "lucide-react";
 import { useTheme } from "next-themes";
 
@@ -24,7 +22,6 @@ interface HoverEffectProps {
 }
 
 export const HoverEffect = ({ items, className }: HoverEffectProps) => {
-    const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
     const { resolvedTheme } = useTheme();
 
     const getImageSrc = (item: ProjectItem) => {
@@ -49,27 +46,8 @@ export const HoverEffect = ({ items, className }: HoverEffectProps) => {
                     target={item?.link.startsWith('http') ? '_blank' : undefined}
                     rel={item?.link.startsWith('http') ? 'noopener noreferrer' : undefined}
                     key={item?.link}
-                    className="relative group block p-2 h-full w-full"
-                    onMouseEnter={() => setHoveredIndex(idx)}
-                    onMouseLeave={() => setHoveredIndex(null)}
+                    className="relative block p-2 h-full w-full"
                 >
-                    <AnimatePresence>
-                        {hoveredIndex === idx && (
-                            <motion.span
-                                className="absolute inset-0 h-full w-full bg-neutral-200 dark:bg-slate-800/[0.8] block rounded-md"
-                                layoutId="hoverBackground"
-                                initial={{ opacity: 0 }}
-                                animate={{
-                                    opacity: 1,
-                                    transition: { duration: 0.15 },
-                                }}
-                                exit={{
-                                    opacity: 0,
-                                    transition: { duration: 0.15, delay: 0.2 },
-                                }}
-                            />
-                        )}
-                    </AnimatePresence>
                     <Card>
                         <div className="h-64 md:h-48 relative w-full overflow-hidden rounded-md">
                             
@@ -101,7 +79,7 @@ export const Card = ({
     return (
         <div
             className={cn(
-                "h-full w-full overflow-hidden  dark:border-white/[0.2] group-hover:border-slate-700 relative z-20",
+                "h-full w-full overflow-hidden relative z-20",
                 className
             )}
         >

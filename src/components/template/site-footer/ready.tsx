@@ -21,9 +21,7 @@ export default function ReadySection() {
   
   return (
     <div className="min-w-[300px] w-2/6">
-      <p className={`font-medium mb-4 ${
-        isCurrentlyDark ? "text-muted-foreground" : "text-muted"
-      }`}>{t.marketing.footer.readyToBuild}</p>
+      <p className="font-medium mb-4 text-[oklch(1_0_0)]">{t.marketing.footer.readyToBuild}</p>
       <ExpandButton variant="white" className={`group flex items-center mb-6 ${isRTL ? 'flex-row-reverse' : ''}`}>
         <span className={`transition-all duration-300 ${isRTL ? 'order-2 group-hover:order-1' : 'order-1 group-hover:order-2'}`}>
           {t.marketing.footer.getStarted}
@@ -41,21 +39,13 @@ export default function ReadySection() {
           rel="noopener noreferrer"
           className="transition-transform hover:scale-110"
         >
-          <GitHubNewIcon className={`h-8 w-8 cursor-pointer transition-colors ${
-            isCurrentlyDark 
-              ? "text-muted-foreground hover:text-foreground" 
-              : "text-muted hover:text-background"
-          }`} />
+          <GitHubNewIcon className="h-8 w-8 cursor-pointer transition-colors text-[oklch(1_0_0)] hover:text-[oklch(0.97_0_0)]" />
         </a>
         <a 
           href="#" 
           className="transition-transform hover:scale-110"
         >
-          <TwitterIcon className={`h-8 w-8 cursor-pointer transition-colors ${
-            isCurrentlyDark 
-              ? "text-muted-foreground hover:text-foreground" 
-              : "text-muted hover:text-background"
-          }`} />
+          <TwitterIcon className="h-8 w-8 cursor-pointer transition-colors text-[oklch(1_0_0)] hover:text-[oklch(0.97_0_0)]" />
         </a>
         <a 
           href="https://www.linkedin.com/company/databayt-auto" 
@@ -63,21 +53,13 @@ export default function ReadySection() {
           rel="noopener noreferrer"
           className="transition-transform hover:scale-110"
         >
-          <LinkedInNewIcon className={`h-8 w-8 cursor-pointer transition-colors ${
-            isCurrentlyDark 
-              ? "text-muted-foreground hover:text-foreground" 
-              : "text-muted hover:text-background"
-          }`} />
+          <LinkedInNewIcon className="h-8 w-8 cursor-pointer transition-colors text-[oklch(1_0_0)] hover:text-[oklch(0.97_0_0)]" />
         </a>
         <a 
           href="#" 
           className="transition-transform hover:scale-110"
         >
-          <InstagramIcon className={`h-8 w-8 cursor-pointer transition-colors ${
-            isCurrentlyDark 
-              ? "text-muted-foreground hover:text-foreground" 
-              : "text-muted hover:text-background"
-          }`} />
+          <InstagramIcon className="h-8 w-8 cursor-pointer transition-colors text-[oklch(1_0_0)] hover:text-[oklch(0.97_0_0)]" />
         </a>
         <a 
           href="https://www.facebook.com/profile.php?id=61579954895228" 
@@ -85,11 +67,7 @@ export default function ReadySection() {
           rel="noopener noreferrer"
           className="transition-transform hover:scale-110"
         >
-          <FacebookIcon className={`h-8 w-8 cursor-pointer transition-colors ${
-            isCurrentlyDark 
-              ? "text-muted-foreground hover:text-foreground" 
-              : "text-muted hover:text-background"
-          }`} />
+          <FacebookIcon className="h-8 w-8 cursor-pointer transition-colors text-[oklch(1_0_0)] hover:text-[oklch(0.97_0_0)]" />
         </a>
         <a 
           href="https://wa.me/00966557721603" 
@@ -97,11 +75,7 @@ export default function ReadySection() {
           rel="noopener noreferrer"
           className="transition-transform hover:scale-110"
         >
-          <WhatsAppIcon className={`h-8 w-8 cursor-pointer transition-colors ${
-            isCurrentlyDark 
-              ? "text-muted-foreground hover:text-foreground" 
-              : "text-muted hover:text-background"
-          }`} />
+          <WhatsAppIcon className="h-8 w-8 cursor-pointer transition-colors text-[oklch(1_0_0)] hover:text-[oklch(0.97_0_0)]" />
         </a>
       </div>
     </div>

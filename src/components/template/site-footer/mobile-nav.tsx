@@ -15,32 +15,20 @@ export default function MobileNav() {
       {/* Mobile: Product and Company in one row */}
       <div className="flex flex-row gap-8 w-full mb-8">
         <div className="w-1/2">
-          <p className={`mb-[12px] font-medium ${
-            isCurrentlyDark ? "text-muted-foreground" : "text-muted"
-          }`}>{t.marketing.footer.product}</p>
+          <p className="mb-[12px] font-medium text-[oklch(1_0_0)]">{t.marketing.footer.product}</p>
           <div className="flex flex-col gap-3">
             {t.footer.data.product.map((item, index) => (
-              <p key={index} className={`hover:cursor-pointer transition-colors ${
-                isCurrentlyDark 
-                  ? "text-muted-foreground hover:text-foreground" 
-                  : "text-muted/80 hover:text-background"
-              }`}>
+              <p key={index} className="hover:cursor-pointer transition-colors text-[oklch(1_0_0/0.8)] hover:text-[oklch(0.97_0_0)]">
                 {item}
               </p>
             ))}
           </div>
         </div>
         <div className="w-1/2">
-          <p className={`mb-[12px] font-medium ${
-            isCurrentlyDark ? "text-muted-foreground" : "text-muted"
-          }`}>{t.marketing.footer.company}</p>
+          <p className="mb-[12px] font-medium text-[oklch(1_0_0)]">{t.marketing.footer.company}</p>
           <div className="flex flex-col gap-3">
             {t.footer.data.company.map((item, index) => (
-              <p key={index} className={`hover:cursor-pointer transition-colors ${
-                isCurrentlyDark 
-                  ? "text-muted-foreground hover:text-foreground" 
-                  : "text-muted/80 hover:text-background"
-              }`}>
+              <p key={index} className="hover:cursor-pointer transition-colors text-[oklch(1_0_0/0.8)] hover:text-[oklch(0.97_0_0)]">
                 {item}
               </p>
             ))}
@@ -51,32 +39,20 @@ export default function MobileNav() {
       {/* Mobile: Services and Support in one row */}
       <div className="flex flex-row gap-8 w-full">
       <div className="w-1/2">
-          <p className={`mb-[12px] font-medium ${
-            isCurrentlyDark ? "text-muted-foreground" : "text-muted"
-          }`}>{t.marketing.footer.support}</p>
+          <p className="mb-[12px] font-medium text-[oklch(1_0_0)]">{t.marketing.footer.support}</p>
           <div className="flex flex-col gap-3">
             {t.footer.data.support.map((item, index) => (
-              <p key={index} className={`hover:cursor-pointer transition-colors ${
-                isCurrentlyDark 
-                  ? "text-muted-foreground hover:text-foreground" 
-                  : "text-muted/80 hover:text-background"
-              }`}>
+              <p key={index} className="hover:cursor-pointer transition-colors text-[oklch(1_0_0/0.8)] hover:text-[oklch(0.97_0_0)]">
                 {item}
               </p>
             ))}
           </div>
         </div>
         <div className="w-1/2">
-          <p className={`mb-[12px] font-medium ${
-            isCurrentlyDark ? "text-muted-foreground" : "text-muted"
-          }`}>{t.marketing.footer.services}</p>
+          <p className="mb-[12px] font-medium text-[oklch(1_0_0)]">{t.marketing.footer.services}</p>
           <div className="flex flex-col gap-3">
             {t.footer.data.services.map((item, index) => (
-              <p key={index} className={`hover:cursor-pointer transition-colors ${
-                isCurrentlyDark 
-                  ? "text-muted-foreground hover:text-foreground" 
-                  : "text-muted/80 hover:text-background"
-              }`}>
+              <p key={index} className="hover:cursor-pointer transition-colors text-[oklch(1_0_0/0.8)] hover:text-[oklch(0.97_0_0)]">
                 {item}
               </p>
             ))}

@@ -116,7 +116,7 @@ export default function SiteContent({ dictionary, params }: SiteContentProps) {
       <section className="py-10">
         <Stack dictionary={dictionary.marketing.stack} params={params} />
       </section>
-      <section className="pt-10 py-8">
+      <section className="pt-10">
         <ReadyToBuildSection dictionary={dictionary.marketing.readyToBuild} params={params} />
       </section>
     </div>
