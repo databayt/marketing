@@ -53,8 +53,8 @@ export default function SiteHeaderClient({ isAuthenticated, onChatClick }: SiteH
 
       {/* Mobile Header - Static Second Stage */}
       <header className="fixed top-0 left-0 right-0 z-40 md:hidden bg-background/95 backdrop-blur-sm">
-        <div className="flex h-14 items-center justify-center px-3">
-          <div className="flex items-center justify-center gap-1 w-full max-w-sm">
+        <div className="flex h-14 items-center px-8">
+          <div className="flex items-center justify-between w-full">
             <MainNav items={marketingConfig.mainNav} />
             <RightActions isAuthenticated={isAuthenticated} onChatClick={onChatClick} />
           </div>

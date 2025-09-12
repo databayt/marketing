@@ -27,11 +27,11 @@ export function RightActions({ isAuthenticated, onChatClick }: RightActionsProps
   };
   
   return (
-    <div className="flex items-center gap-1 md:gap-1">
+    <div className="flex items-center justify-evenly gap-2 md:gap-1 flex-1 md:flex-initial">
       {/* Mobile Chat Button - Only visible on mobile */}
       <Button
         onClick={handleChatClick}
-        className="md:hidden h-10 w-10 p-2 rounded-full hover:bg-accent/50 transition-colors"
+        className="md:hidden h-11 w-11 p-2 rounded-full hover:bg-accent/50 transition-colors"
         size="icon"
         variant="ghost"
         type="button"
@@ -39,9 +39,9 @@ export function RightActions({ isAuthenticated, onChatClick }: RightActionsProps
         <Image
           src="/robot.png"
           alt="Chat"
-          width={32}
-          height={32}
-          className="h-8 w-8 object-contain pointer-events-none"
+          width={36}
+          height={36}
+          className="h-9 w-9 object-contain pointer-events-none"
         />
       </Button>
       {isAuthenticated ? (
@@ -57,9 +57,9 @@ export function RightActions({ isAuthenticated, onChatClick }: RightActionsProps
           {/* Mobile Login Icon */}
           <Link
             href={`/${locale}/login`}
-            className="md:hidden h-10 w-10 p-2 flex items-center justify-center rounded-full hover:bg-accent/50 transition-colors"
+            className="md:hidden h-11 w-11 p-2 flex items-center justify-center rounded-full hover:bg-accent/50 transition-colors"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" className="h-6 w-6">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" className="h-7 w-7">
               <path 
                 fill="none" 
                 stroke="currentColor" 

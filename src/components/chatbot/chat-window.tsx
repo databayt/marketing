@@ -116,7 +116,7 @@ export const ChatWindow = memo(function ChatWindow({
       className={cn(
         // Mobile: Full screen, Desktop: Bottom right position
         isMobile 
-          ? 'fixed inset-0 z-[9999] bg-background flex flex-col'
+          ? 'fixed inset-0 z-[9999] bg-background flex flex-col overflow-hidden'
           : cn(
               CHAT_WINDOW_POSITIONS['bottom-right'],
               CHAT_WINDOW_SIZE.width,
@@ -132,7 +132,12 @@ export const ChatWindow = memo(function ChatWindow({
       )}
       style={{
         transformOrigin: isMobile ? 'center' : 'bottom right',
-        transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)'
+        transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
+        ...(isMobile && isOpen ? {
+          height: '100vh',
+          height: '100dvh',
+          maxHeight: '-webkit-fill-available'
+        } : {})
       }}
       dir={isRTL ? 'rtl' : 'ltr'}
     >
@@ -164,7 +169,7 @@ export const ChatWindow = memo(function ChatWindow({
       )}
       
       <ScrollArea className={cn(
-        "flex-1 overflow-y-auto",
+        "flex-1 overflow-y-auto overflow-x-hidden",
         isMobile ? "px-4 pt-2 pb-1" : "px-4 pt-2 pb-1"
       )} ref={scrollAreaRef}>
         <div className="h-full flex flex-col">
@@ -256,19 +261,26 @@ export const ChatWindow = memo(function ChatWindow({
       )}
 
       <div className={cn(
-        "pb-2 pt-1",
-        isMobile ? "px-4" : "px-3"
+        "pb-safe pt-1",
+        isMobile ? "px-4 pb-4" : "px-3 pb-2"
       )}>
           <form onSubmit={handleSubmit} className="flex items-center gap-1">
-            <div className="flex-1 flex items-center border rounded-lg px-3 py-1 bg-background">
+            <div className="flex-1 flex items-center border rounded-lg px-3 bg-background">
               <input
                 type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 disabled={isLoading}
-                className="flex-1 bg-transparent border-none outline-none text-sm"
+                className={cn(
+                  "flex-1 bg-transparent border-none outline-none",
+                  isMobile ? "text-[16px] h-12 py-3" : "text-sm py-1"
+                )}
                 dir={isRTL ? 'rtl' : 'ltr'}
-                autoFocus
+                autoFocus={!isMobile}
+                autoComplete="off"
+                autoCorrect="off"
+                autoCapitalize="off"
+                inputMode="text"
               />
             </div>
             

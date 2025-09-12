@@ -31,6 +31,12 @@ export async function generateMetadata({
   return {
     title: dict.metadata.title,
     description: dict.metadata.description,
+    viewport: {
+      width: 'device-width',
+      initialScale: 1,
+      maximumScale: 1,
+      userScalable: false,
+    },
     openGraph: {
       title: dict.metadata.title,
       description: dict.metadata.description,

@@ -87,11 +87,11 @@ export function MainNav({ items, children }: MainNavProps) {
       <div className="flex items-center md:hidden">
         {/* Mobile Menu Button with Hamburger Icon */}
         <button
-          className="flex items-center justify-center h-10 w-10 rounded-full hover:bg-accent/50 transition-colors"
+          className="flex items-center justify-center h-11 w-11 rounded-full hover:bg-accent/50 transition-colors"
           onClick={() => setShowMobileMenu(!showMobileMenu)}
         >
           {showMobileMenu ? (
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" className="h-6 w-6">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" className="h-7 w-7">
               <path 
                 fill="none" 
                 stroke="currentColor" 
@@ -102,7 +102,7 @@ export function MainNav({ items, children }: MainNavProps) {
               />
             </svg>
           ) : (
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" className="h-6 w-6">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" className="h-7 w-7">
               <path 
                 fill="none" 
                 stroke="currentColor" 
