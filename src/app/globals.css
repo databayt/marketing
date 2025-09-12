@@ -168,6 +168,12 @@
     }
   }
   
+  /* Blinking cursor animation for mobile chat input */
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+  
   /* Mobile scroll improvements */
   @media (max-width: 768px) {
     * {

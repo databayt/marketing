@@ -21,8 +21,10 @@ export const ChatWindow = memo(function ChatWindow({
   const [input, setInput] = useState('');
   const [isListening, setIsListening] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [keyboardOpen, setKeyboardOpen] = useState(false);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
   const chatWindowRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
   const isRTL = locale === 'ar';
   
   useEffect(() => {
@@ -31,6 +33,49 @@ export const ChatWindow = memo(function ChatWindow({
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
+
+  // Handle keyboard visibility on mobile
+  useEffect(() => {
+    if (!isMobile) return;
+
+    let initialViewportHeight = window.visualViewport?.height || window.innerHeight;
+    
+    const handleViewportChange = () => {
+      const currentHeight = window.visualViewport?.height || window.innerHeight;
+      const heightDifference = initialViewportHeight - currentHeight;
+      setKeyboardOpen(heightDifference > 150);
+    };
+
+    const handleFocus = () => {
+      setTimeout(() => {
+        if (inputRef.current) {
+          inputRef.current.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      }, 300);
+    };
+
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener('resize', handleViewportChange);
+    } else {
+      window.addEventListener('resize', handleViewportChange);
+    }
+
+    const inputElement = inputRef.current;
+    if (inputElement) {
+      inputElement.addEventListener('focus', handleFocus);
+    }
+
+    return () => {
+      if (window.visualViewport) {
+        window.visualViewport.removeEventListener('resize', handleViewportChange);
+      } else {
+        window.removeEventListener('resize', handleViewportChange);
+      }
+      if (inputElement) {
+        inputElement.removeEventListener('focus', handleFocus);
+      }
+    };
+  }, [isMobile]);
 
   useEffect(() => {
     if (scrollAreaRef.current) {
@@ -114,9 +159,9 @@ export const ChatWindow = memo(function ChatWindow({
     <div
       ref={chatWindowRef}
       className={cn(
-        // Mobile: Full screen, Desktop: Bottom right position
+        // Mobile: Full screen overlay, Desktop: Bottom right position
         isMobile 
-          ? 'fixed inset-0 z-[9999] bg-background flex flex-col overflow-hidden'
+          ? 'fixed inset-0 z-[10000] bg-background flex flex-col'
           : cn(
               CHAT_WINDOW_POSITIONS['bottom-right'],
               CHAT_WINDOW_SIZE.width,
@@ -134,16 +179,15 @@ export const ChatWindow = memo(function ChatWindow({
         transformOrigin: isMobile ? 'center' : 'bottom right',
         transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
         ...(isMobile && isOpen ? {
-          height: '100vh',
-          height: '100dvh',
-          maxHeight: '-webkit-fill-available'
+          height: keyboardOpen ? '100vh' : '100dvh',
+          minHeight: '100vh'
         } : {})
       }}
       dir={isRTL ? 'rtl' : 'ltr'}
     >
       {/* Mobile Back Arrow Header */}
       {isMobile && (
-        <div className="flex items-center justify-between p-4 border-b">
+        <div className="flex items-center justify-start p-4">
           <button
             onClick={onClose}
             className="flex items-center justify-center h-10 w-10 rounded-full hover:bg-accent transition-colors"
@@ -163,8 +207,6 @@ export const ChatWindow = memo(function ChatWindow({
               <path d="m15 18-6-6 6-6"/>
             </svg>
           </button>
-          <h2 className="text-lg font-semibold">Chat Assistant</h2>
-          <div className="w-10" /> {/* Spacer for centering */}
         </div>
       )}
       
@@ -177,8 +219,14 @@ export const ChatWindow = memo(function ChatWindow({
               <div className="flex flex-col h-full">
                 <div className="flex-1 flex flex-col items-center justify-center">
                   <p className="mb-6 text-center text-muted-foreground text-sm font-medium">
-                    <span className="block">Choose a question</span>
-                    <span className="block">or type your message</span>
+                    {isMobile ? (
+                      <span>Choose a question or type your message</span>
+                    ) : (
+                      <>
+                        <span className="block">Choose a question</span>
+                        <span className="block">or type your message</span>
+                      </>
+                    )}
                   </p>
                   <div className="grid grid-cols-2 gap-2 w-full px-2 max-w-sm">
                     <Button
@@ -260,58 +308,83 @@ export const ChatWindow = memo(function ChatWindow({
         </div>
       )}
 
-      <div className={cn(
-        "pb-safe pt-1",
-        isMobile ? "px-4 pb-4" : "px-3 pb-2"
-      )}>
-          <form onSubmit={handleSubmit} className="flex items-center gap-1">
-            <div className="flex-1 flex items-center border rounded-lg px-3 bg-background">
+      <div 
+        className={cn(
+          "border-t bg-background",
+          isMobile ? "px-3 py-3" : "px-3 pb-2 pt-1",
+          isMobile && keyboardOpen && "pb-1"
+        )}
+        style={{
+          ...(isMobile && keyboardOpen ? {
+            position: 'fixed',
+            bottom: '0',
+            left: '0',
+            right: '0',
+            zIndex: 10001
+          } : {})
+        }}
+      >
+          <form onSubmit={handleSubmit} className="flex items-center gap-2">
+            <div className={cn(
+              "flex items-center border rounded-lg px-3 bg-background relative",
+              isMobile ? "flex-[0.8]" : "flex-1"
+            )}>
               <input
+                ref={inputRef}
                 type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 disabled={isLoading}
+                placeholder={isMobile ? "" : "Type your message..."}
                 className={cn(
-                  "flex-1 bg-transparent border-none outline-none",
-                  isMobile ? "text-[16px] h-12 py-3" : "text-sm py-1"
+                  "w-full bg-transparent border-none outline-none",
+                  isMobile ? "text-[16px] h-10 py-2" : "text-sm py-1"
                 )}
                 dir={isRTL ? 'rtl' : 'ltr'}
-                autoFocus={!isMobile}
                 autoComplete="off"
                 autoCorrect="off"
                 autoCapitalize="off"
                 inputMode="text"
               />
+              {/* Mobile typing indicator */}
+              {isMobile && !input && (
+                <div className="absolute left-3 pointer-events-none">
+                  <div className="w-0.5 h-5 bg-foreground/60 animate-pulse" 
+                       style={{ animation: 'blink 1s infinite' }} />
+                </div>
+              )}
             </div>
             
-            <Button
-              type="submit"
-              size="icon"
-              disabled={!input.trim() || isLoading}
-              className={cn(
-                "p-0 hover:scale-110 transition-transform",
-                isMobile ? "h-12 w-12" : "h-14 w-14"
-              )}
-              variant="link"
-              title="Send message"
-            >
-              <SendIcon size={isMobile ? 40 : 48} className={cn(isRTL && "scale-x-[-1]")} />
-            </Button>
-            
-            <Button
-              type="button"
-              onClick={handleVoiceInput}
-              size="icon"
-              variant="link"
-              className={cn(
-                "p-0 hover:scale-110 transition-transform",
-                isMobile ? "h-12 w-12 -ml-8" : "h-14 w-14 -ml-10",
-                isListening && "text-red-500 animate-pulse"
-              )}
-              title="Voice input"
-            >
-              <VoiceIcon size={isMobile ? 40 : 48} />
-            </Button>
+            <div className="flex items-center gap-1">
+              <Button
+                type="submit"
+                size="icon"
+                disabled={!input.trim() || isLoading}
+                className={cn(
+                  "p-0 hover:scale-110 transition-transform shrink-0",
+                  isMobile ? "h-12 w-12" : "h-14 w-14"
+                )}
+                variant="link"
+                title="Send message"
+              >
+                <SendIcon size={isMobile ? 32 : 48} className={cn(isRTL && "scale-x-[-1]")} />
+              </Button>
+              
+              <Button
+                type="button"
+                onClick={handleVoiceInput}
+                size="icon"
+                variant="link"
+                className={cn(
+                  "p-0 hover:scale-110 transition-transform shrink-0",
+                  isMobile ? "h-12 w-12" : "h-14 w-14",
+                  isListening && "text-red-500 animate-pulse"
+                )}
+                title="Voice input"
+              >
+                <VoiceIcon size={isMobile ? 32 : 48} />
+              </Button>
+            </div>
           </form>
       </div>
     </div>
