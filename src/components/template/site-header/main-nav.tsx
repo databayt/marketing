@@ -86,8 +86,8 @@ export function MainNav({ items, children }: MainNavProps) {
       {/* Mobile Navigation */}
       <div className="flex items-center gap-2 md:hidden">
         {/* Mobile Logo - Links to homepage */}
-        <Link href={`/${locale}`} className="flex items-center justify-center h-10 w-10">
-          <OptimizedImage src="/marketing/site/logo.png" alt="Logo" width={24} height={24} className="dark:invert" />
+        <Link href={`/${locale}`} className="flex items-center justify-center h-8 w-8">
+          <OptimizedImage src="/marketing/site/logo.png" alt="Logo" width={18} height={18} className="dark:invert" />
         </Link>
         
         {/* Mobile Menu Button with Hamburger Icon */}
@@ -121,6 +121,6 @@ export function MainNav({ items, children }: MainNavProps) {
       {showMobileMenu && (
         <MobileNav items={localizedItems} onClose={() => setShowMobileMenu(false)} ref={mobileMenuRef}>{children}</MobileNav>
       )}
-    </div>
+    </>
   )
 }
