@@ -27,7 +27,9 @@ export function RightActions({ isAuthenticated, onChatClick }: RightActionsProps
   const handleChatClick = () => {
     // On mobile, navigate to chatbot page instead of opening modal
     if (window.innerWidth < 768) {
-      router.push(`/${locale}/chatbot`);
+      const chatbotPath = locale ? `/${locale}/chatbot` : '/en/chatbot';
+      console.log('Mobile chat click - locale:', locale, 'navigating to:', chatbotPath);
+      router.push(chatbotPath);
     } else if (onChatClick) {
       onChatClick();
     } else {
