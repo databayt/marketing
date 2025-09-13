@@ -24,93 +24,95 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **Payments**: Stripe integration for service packages
 - **Animations**: Framer Motion
 - **Carousel**: Embla Carousel React
+- **AI Chat**: Groq API with Llama 3.1 for chatbot functionality
+
+# Core Architecture Patterns
+
+## Route Organization
+The app uses Next.js 15 App Router with specific route groupings:
+- `src/app/[lang]/(marketing)/*` - Public marketing pages with SiteHeader/Footer layout
+- `src/app/[lang]/(auth)/*` - Authentication pages (login, register, reset)
+- `src/app/[lang]/chatbot` - Standalone chat page without marketing layout
+- `src/app/[lang]/about` - Standalone about page
+- Protected routes require authentication via middleware
+
+## Internationalization Strategy
+- Dictionaries at `src/components/internationalization/{en,ar}.json`
+- `useTranslations()` hook provides `t`, `locale`, `isRTL` throughout the app
+- All routes prefixed with `[lang]` parameter (en/ar)
+- RTL support built into components with conditional styling
+
+## Authentication Flow
+- NextAuth v5 with Prisma adapter
+- Providers: Google, Facebook, Credentials
+- Role-based access (ADMIN, USER)
+- Two-factor authentication with email tokens
+- Middleware protects routes based on `publicRoutes` and `authRoutes` arrays in `src/routes.ts`
+
+## Chat System Architecture
+Two chat implementations:
+1. **Desktop Modal**: `src/components/chatbot/*` - Floating widget with AI integration
+2. **Mobile Page**: `src/app/[lang]/chatbot/page.tsx` - Full-screen dedicated page
+
+Both use the same backend: `src/components/chatbot/actions.ts` with Groq API
+
+## Component Patterns
+- **Marketing Components**: `src/components/marketing/*` - Landing page sections
+- **Template Components**: `src/components/template/*` - Layout components (header, footer)
+- **UI Components**: `src/components/ui/*` - Reusable primitives
+- **Auth Components**: `src/components/auth/*` - Authentication forms and flows
+
+## State Management
+- Client components use React hooks (useState, useEffect)
+- Server components fetch data directly in component
+- Theme state via next-themes ThemeProvider
+- No global state management library - components are self-contained
+
+## Styling Approach
+- Tailwind CSS with custom OKLCH color system
+- Theme variables in `src/app/globals.css`
+- Component-specific animations in `src/styles/*`
+- `cn()` utility for conditional class names
+- Mobile-first responsive design
 
 # Business Domain Architecture
 
 This is a **web design service business application** with the following core entities:
 
-## Authentication & Users
-- Multi-provider authentication (Google, Facebook, Email/Password)
-- Role-based access (ADMIN, USER)
-- Two-factor authentication support
-- Email verification workflow
-
 ## Service Business Models
-- **ServicePackage**: Defines service tiers (basic, premium, enterprise) with pricing
-- **Project**: Client projects linked to service packages with status tracking
-- **Milestone**: Project breakdown with due dates and completion tracking
+- **ServicePackage**: Service tiers with pricing (basic, premium, enterprise)
+- **Project**: Client projects linked to service packages
+- **Milestone**: Project breakdown with due dates
 - **Payment**: Stripe-integrated payment processing
-- **Inquiry**: Lead management for potential clients
-- **Testimonial**: Client feedback and rating system
+- **Inquiry**: Lead management system
+- **Testimonial**: Client feedback and ratings
 
-## Key Integrations
-- **Stripe**: Payment processing with subscription plans
-- **ImageKit**: Image optimization and delivery
-- **Prisma**: Type-safe database operations
-- **NextAuth**: Session management with multiple providers
-
-# Code Style Guidelines
-
-- Use TypeScript with strict typing
-- Components should be "use client" when using React hooks (useTheme, useState, etc.)
-- Use ES modules (import/export) syntax, not CommonJS
-- Destructure imports when possible: `import { foo } from 'bar'`
-- Use Tailwind CSS for styling with conditional classes for theme support
-- Follow component patterns established in `src/components/`
-- Authentication components are in `src/components/auth/`
-- Marketing components are in `src/components/marketing/`
-- Template/layout components are in `src/components/template/`
-
-# File Structure
-
-```
-src/
-├── app/           # Next.js App Router pages
-├── components/    # React components organized by feature
-│   ├── auth/      # Authentication components with validation
-│   ├── marketing/ # Marketing/landing page components (about, pricing, service)
-│   ├── template/  # Layout and template components
-│   ├── ui/        # Reusable UI components
-│   └── atom/      # Atomic design components
-├── lib/           # Utility functions and configurations
-│   ├── dictionaries/ # Internationalization files (en.json, ar.json)
-│   ├── db.ts      # Prisma client setup
-│   └── utils.ts   # Common utility functions
-├── styles/        # Global CSS files for animations and effects
-├── env.mjs        # Environment variable validation with Zod
-└── next-auth.d.ts # NextAuth type definitions
-```
-
-# Database & Environment
-
-- **Database**: PostgreSQL via Neon with Prisma ORM
-- **Environment**: Variables validated with `@t3-oss/env-nextjs` and Zod schemas
-- **Schema**: Comprehensive business models for web design services
-- Run `prisma generate` after schema changes (automatically runs on build and postinstall)
-
-# Authentication Flow
-
-- NextAuth v5 with Prisma adapter
-- Multiple providers: Google, Facebook, Credentials
-- Role-based access with User/Admin roles
-- Two-factor authentication with email tokens
-- Password reset functionality
-- Email verification required for new accounts
+## Environment Variables Required
+- `DATABASE_URL`: PostgreSQL connection string
+- `NEXTAUTH_URL`: Application URL
+- `NEXTAUTH_SECRET`: Auth secret key
+- `GOOGLE_CLIENT_ID` & `GOOGLE_CLIENT_SECRET`: Google OAuth
+- `FACEBOOK_CLIENT_ID` & `FACEBOOK_CLIENT_SECRET`: Facebook OAuth
+- `GROQ_API_KEY`: AI chatbot responses
+- `STRIPE_SECRET_KEY` & `STRIPE_WEBHOOK_SECRET`: Payment processing
+- `RESEND_API_KEY`: Email service
+- `IMAGEKIT_PUBLIC_KEY`, `IMAGEKIT_PRIVATE_KEY`, `IMAGEKIT_URL_ENDPOINT`: Image CDN
 
 # Development Workflow
 
-- Use `pnpm dev` for development with hot reloading
+- **Auto-push**: Always automatically push changes to GitHub after completing tasks
 - Components support both light and dark themes
+- Use `useTheme()` hook for theme-aware styling
 - Always check TypeScript errors before committing
 - Test authentication flows in development mode
-- ESLint configured with Next.js rules and TypeScript support
-- **Auto-push**: Always automatically push changes to GitHub after completing tasks
 
-# Theme Support
+# Mobile-Specific Considerations
 
-- Components should use `useTheme()` hook for theme-aware styling
-- Use conditional Tailwind classes based on `resolvedTheme === "dark"`
-- Follow the pattern: `className={isCurrentlyDark ? "dark-classes" : "light-classes"}`
+- Chat icon in mobile header navigates to `/[lang]/chatbot` page
+- Mobile layouts use Visual Viewport API for keyboard detection
+- Input fields set to `font-size: 16px` to prevent iOS zoom
+- Safe area padding for devices with notches/gestures
+- Touch-optimized with larger tap targets (min 44px)
 
 # Important Configuration Notes
 
