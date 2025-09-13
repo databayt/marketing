@@ -10,6 +10,7 @@ import Link from 'next/link'
 import { useTranslations } from '@/lib/use-translations'
 import { useTheme } from 'next-themes'
 import { useState, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 
 interface RightActionsProps {
   isAuthenticated: boolean;
@@ -21,10 +22,13 @@ export function RightActions({ isAuthenticated, onChatClick }: RightActionsProps
   const { resolvedTheme } = useTheme()
   const [isNearFooter, setIsNearFooter] = useState(false)
   const [isDesktop, setIsDesktop] = useState(false)
+  const router = useRouter()
   
   const handleChatClick = () => {
-    console.log('Chat button clicked!', { onChatClick: !!onChatClick });
-    if (onChatClick) {
+    // On mobile, navigate to chatbot page instead of opening modal
+    if (window.innerWidth < 768) {
+      router.push(`/${locale}/chatbot`);
+    } else if (onChatClick) {
       onChatClick();
     } else {
       console.warn('onChatClick handler is not provided');
