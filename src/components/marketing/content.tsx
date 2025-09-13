@@ -9,7 +9,7 @@ import VideoCard from "./vedio-card";
 import Product from "./product";
 import OpenSource from "./open-source";
 import Stack from "./stack";
-import FeaturedProjects from "./project/featured";
+import FeaturedProjects from "./video/featured-video";
 import LogoCloud from "./logo-cloud";
 import type { getDictionary } from '@/components/internationalization/dictionaries';
 import type { Locale } from '@/components/internationalization/config';
