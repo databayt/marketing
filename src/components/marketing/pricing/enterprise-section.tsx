@@ -10,7 +10,7 @@ export default function EnterpriseSection() {
   const { t } = useTranslations();
   
   return (
-    <div className="bg-[#266DF0] full-bleed">
+    <div className="bg-[#266DF0] full-bleed" data-section="enterprise">
       <div className="flex w-full max-w-3xl mx-auto flex-col gap-6 text-center py-16 px-4">
         <div className="flex justify-center">
           <Badge className="bg-white/20 text-white border-white/30">{t.marketing.pricing.enterprise.badge}</Badge>

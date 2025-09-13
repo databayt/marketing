@@ -10,7 +10,7 @@ import { useTranslations } from '@/lib/use-translations';
 function ReadyToBuildSection() {
   const { t } = useTranslations();
   return (
-    <section className="flex flex-col md:flex-row justify-between gap-2 items-center !bg-[#266DF0] py-8 md:p-12 full-bleed">
+    <section className="flex flex-col md:flex-row justify-between gap-2 items-center !bg-[#266DF0] py-8 md:p-12 full-bleed" data-section="ready-to-build">
       <div className="container-responsive">
        
         

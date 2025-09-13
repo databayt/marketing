@@ -155,10 +155,18 @@
       "description": "معرض أعمالنا، صممناها لصناعات متنوعة.",
       "tabs": {
         "featured": "مميز",
-        "company": "شركات",
+        "company": "شركة",
         "education": "تعليم",
         "health": "صحة",
-        "ecommerce": "تجارة إلكترونية",
+        "ecommerce": "تجارة",
+        "states": "حكومي"
+      },
+      "tabsMobile": {
+        "featured": "مميز",
+        "company": "شركة",
+        "education": "تعليم",
+        "health": "صحة",
+        "ecommerce": "تجارة",
         "states": "حكومي"
       }
     },
