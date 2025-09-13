@@ -7,6 +7,8 @@ import { cn } from "@/lib/utils";
 import { useTranslations } from '@/lib/use-translations';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import { sendMessage as sendMessageAction } from '@/components/chatbot/actions';
+import type { CoreMessage } from 'ai';
 
 export default function ChatbotPage() {
   const { t, isRTL } = useTranslations();
@@ -31,18 +33,47 @@ export default function ChatbotPage() {
     scrollToBottom();
   }, [messages]);
 
-  const handleSend = (text?: string) => {
+  const handleSend = async (text?: string) => {
     const messageText = text || inputValue.trim();
     if (messageText && !isLoading) {
-      setMessages([...messages, { text: messageText, isUser: true }]);
+      // Add user message
+      const newUserMessage = { text: messageText, isUser: true };
+      const updatedMessages = [...messages, newUserMessage];
+      setMessages(updatedMessages);
       setInputValue("");
       setIsLoading(true);
       
-      // Simulate response
-      setTimeout(() => {
-        setMessages(prev => [...prev, { text: t?.chatbot?.thinking || "I'm thinking...", isUser: false }]);
+      try {
+        // Convert messages to CoreMessage format for the server action
+        const coreMessages: CoreMessage[] = updatedMessages.map(msg => ({
+          role: msg.isUser ? 'user' : 'assistant',
+          content: msg.text
+        }));
+
+        // Call the server action (same as laptop version)
+        const result = await sendMessageAction(coreMessages);
+        
+        if (!result.success) {
+          throw new Error(result.error || 'Failed to send message');
+        }
+
+        // Add assistant message with actual response
+        setMessages(prev => [...prev, { 
+          text: result.content || "I couldn't process that request. Please try again.", 
+          isUser: false 
+        }]);
+      } catch (error) {
+        console.error('Chat error:', error);
+        const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+        
+        // Add error message
+        setMessages(prev => [...prev, { 
+          text: `Sorry, there was an error: ${errorMessage}`, 
+          isUser: false 
+        }]);
+      } finally {
         setIsLoading(false);
-      }, 1000);
+      }
     }
   };
 
