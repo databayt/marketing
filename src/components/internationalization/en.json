@@ -3,6 +3,11 @@
     "title": "Databayt - Web Design & Development",
     "description": "Professional web design and development services"
   },
+  "chatbot": {
+    "title": "Chat Assistant",
+    "startMessage": "Start a conversation...",
+    "thinking": "I'm thinking..."
+  },
   "common": {
     "loading": "Loading...",
     "error": "Something went wrong",

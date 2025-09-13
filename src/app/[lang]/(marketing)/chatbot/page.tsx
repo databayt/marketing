@@ -49,7 +49,7 @@ export default function ChatbotPage() {
       setInputValue("");
       // Simulate response
       setTimeout(() => {
-        setMessages(prev => [...prev, { text: t.chatbot.thinking || "I'm thinking...", isUser: false }]);
+        setMessages(prev => [...prev, { text: t?.chatbot?.thinking || "I'm thinking...", isUser: false }]);
       }, 1000);
     }
   };
@@ -68,7 +68,7 @@ export default function ChatbotPage() {
         >
           <ArrowLeft className={cn("h-5 w-5", isRTL && "rotate-180")} />
         </button>
-        <h1 className="text-lg font-semibold">{t.chatbot.title || "Chat Assistant"}</h1>
+        <h1 className="text-lg font-semibold">{t?.chatbot?.title || "Chat Assistant"}</h1>
         <div className="w-9" /> {/* Spacer for centering */}
       </div>
 
@@ -76,7 +76,7 @@ export default function ChatbotPage() {
       <div className="flex-1 overflow-y-auto p-4 pb-safe">
         {messages.length === 0 ? (
           <div className="flex items-center justify-center h-full text-muted-foreground">
-            <p>{t.chatbot.startMessage || "Start a conversation..."}</p>
+            <p>{t?.chatbot?.startMessage || "Start a conversation..."}</p>
           </div>
         ) : (
           <div className="space-y-4">
