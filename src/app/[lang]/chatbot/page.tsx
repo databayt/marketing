@@ -185,7 +185,7 @@ export default function ChatbotPage() {
       </div>
 
       {/* Input Area - Always visible at bottom */}
-      <div className="border-t border-border bg-background p-3">
+      <div className="border-t border-border bg-background p-3 pb-20">
         <form onSubmit={(e) => { e.preventDefault(); handleSend(); }} className="flex items-center gap-2">
           <div className="flex items-center border rounded-lg px-3 bg-background relative flex-1">
             <input
