@@ -53,7 +53,8 @@
       "Bash(pnpm install:*)",
       "Bash(curl:*)",
       "Bash(del .next\\trace)",
-      "Bash(node validate-i18n.js)"
+      "Bash(node validate-i18n.js)",
+      "Bash(pnpm list:*)"
     ],
     "deny": [],
     "ask": []
