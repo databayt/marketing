@@ -307,8 +307,8 @@ export const ChatWindow = memo(function ChatWindow({
 
       <div 
         className={cn(
-          "border-t bg-background",
-          isMobile ? "px-3 py-3" : "px-3 pb-2 pt-1",
+          "bg-background",
+          isMobile ? "px-3 py-3" : "px-3 pb-2 pt-2",
           isMobile && keyboardOpen && "pb-1"
         )}
         style={{
@@ -323,7 +323,7 @@ export const ChatWindow = memo(function ChatWindow({
       >
           {/* Desktop preconfigured questions */}
           {!isMobile && messages.length === 0 && (
-            <div className="mb-2">
+            <div className="mb-3">
               <div className="grid grid-cols-2 gap-2 w-full">
                 <Button
                   variant="secondary"
@@ -402,11 +402,11 @@ export const ChatWindow = memo(function ChatWindow({
                 disabled={!input.trim() || isLoading}
                 className={cn(
                   "hover:scale-110 transition-transform shrink-0 disabled:opacity-50 disabled:hover:scale-100",
-                  isMobile ? "h-12 w-12" : "h-12 w-12"
+                  isMobile ? "h-12 w-12" : "h-10 w-10"
                 )}
                 title="Send message"
               >
-                <SendIcon size={isMobile ? 32 : 36} className={cn(isRTL && "scale-x-[-1]")} />
+                <SendIcon size={isMobile ? 32 : 28} className={cn(isRTL && "scale-x-[-1]")} />
               </button>
               
               <button
@@ -414,12 +414,12 @@ export const ChatWindow = memo(function ChatWindow({
                 onClick={handleVoiceInput}
                 className={cn(
                   "hover:scale-110 transition-transform shrink-0",
-                  isMobile ? "h-12 w-12" : "h-12 w-12",
+                  isMobile ? "h-12 w-12" : "h-10 w-10",
                   isListening && "text-red-500 animate-pulse"
                 )}
                 title="Voice input"
               >
-                <VoiceIcon size={isMobile ? 32 : 36} />
+                <VoiceIcon size={isMobile ? 32 : 28} />
               </button>
             </div>
           </form>

@@ -54,7 +54,10 @@ const Product = ({
       }}
       onClick={handleClick}
     >
-      <div className='absolute bottom-0 left-0 right-0 p-6'>
+      {/* Dark overlay */}
+      <div className="absolute inset-0 bg-black/40" />
+      
+      <div className='absolute bottom-0 left-0 right-0 p-6 z-10'>
         <div className={`${isRTL ? 'lg:text-right' : 'lg:text-left'}`}>
           {logo.split(' ').length === 1 ? (
             <h2 className="text-2xl lg:text-3xl font-extrabold capitalize tracking-wide mb-2 text-white">
