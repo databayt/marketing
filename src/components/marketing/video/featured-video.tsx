@@ -87,7 +87,7 @@ const FeaturedProjects = ({ projectsSection }: FeaturedProjectsProps) => {
       </div>
       
       {/* Projects Grid */}
-      <div className="-mt-10">
+      <div className="-mt-10 overflow-visible">
         <HoverEffect items={filteredProjects} />
       </div>
     </div>

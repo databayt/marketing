@@ -85,9 +85,9 @@ export default function SiteContent({ dictionary, params }: SiteContentProps) {
           </div>
         </div>
       </section>
-      <section className="py-10">
-        <div className="container mx-auto">
-          <div className="space-y-4">
+      <section className="py-10 overflow-visible">
+        <div className="container mx-auto overflow-visible">
+          <div className="space-y-4 overflow-visible">
             <div className="mx-auto flex max-w-full flex-col items-center text-center">
               <h2 className={`font-heading text-3xl leading-[1.1] sm:text-3xl mb-2 ${params.lang === 'ar' ? 'md:text-7xl' : 'md:text-6xl'}`}>
                 {dictionary.marketing?.projectsSection?.title || "Project"}
