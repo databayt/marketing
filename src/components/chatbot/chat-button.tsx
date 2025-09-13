@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
@@ -14,6 +14,8 @@ export function ChatButton({
   dictionary 
 }: ChatButtonProps) {
   const [shouldInvert, setShouldInvert] = useState(false);
+  const checkTimeoutRef = useRef<NodeJS.Timeout>();
+  const rafRef = useRef<number>();
 
   useEffect(() => {
     const checkSections = () => {
@@ -39,16 +41,39 @@ export function ChatButton({
       setShouldInvert(isOverDarkSection);
     };
 
+    const debouncedCheck = () => {
+      // Cancel any pending timeout
+      if (checkTimeoutRef.current) {
+        clearTimeout(checkTimeoutRef.current);
+      }
+      
+      // Cancel any pending animation frame
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current);
+      }
+
+      // Debounce with requestAnimationFrame for smoother updates
+      checkTimeoutRef.current = setTimeout(() => {
+        rafRef.current = requestAnimationFrame(checkSections);
+      }, 100);
+    };
+
     // Check on mount
     checkSections();
 
-    // Check on scroll
-    window.addEventListener('scroll', checkSections);
-    window.addEventListener('resize', checkSections);
+    // Check on scroll with debouncing
+    window.addEventListener('scroll', debouncedCheck, { passive: true });
+    window.addEventListener('resize', debouncedCheck);
 
     return () => {
-      window.removeEventListener('scroll', checkSections);
-      window.removeEventListener('resize', checkSections);
+      window.removeEventListener('scroll', debouncedCheck);
+      window.removeEventListener('resize', debouncedCheck);
+      if (checkTimeoutRef.current) {
+        clearTimeout(checkTimeoutRef.current);
+      }
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current);
+      }
     };
   }, []);
   

@@ -139,7 +139,7 @@
       },
       "authentication": {
         "title": "Authentication",
-        "description": "Authentication and authorization using Auth.js with role-based access control."
+        "description": "Secure auth using Auth.js with role-based access."
       },
       "subscriptions": {
         "title": "Subscriptions",

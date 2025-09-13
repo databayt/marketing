@@ -217,56 +217,53 @@ export const ChatWindow = memo(function ChatWindow({
         <div className="h-full flex flex-col">
             {messages.length === 0 ? (
               <div className="flex flex-col h-full">
-                <div className="flex-1 flex flex-col items-center justify-center">
-                  <p className="mb-6 text-center text-muted-foreground text-sm font-medium">
-                    {isMobile ? (
+                {isMobile ? (
+                  <div className="flex-1 flex flex-col items-center justify-center">
+                    <p className="mb-6 text-center text-muted-foreground text-sm font-medium">
                       <span>Choose a question or type your message</span>
-                    ) : (
-                      <>
-                        <span className="block">Choose a question</span>
-                        <span className="block">or type your message</span>
-                      </>
-                    )}
-                  </p>
-                  <div className="grid grid-cols-2 gap-2 w-full px-2 max-w-sm">
-                    <Button
-                      variant="secondary"
-                      size="sm"
-                      onClick={() => onSendMessage("What are your pricing options?")}
-                      className="text-xs h-auto py-2.5 px-3 flex items-center gap-2 bg-muted hover:bg-muted/80 border-0"
-                    >
-                      <PriceIcon size={16} />
-                      <span>Pricing</span>
-                    </Button>
-                    <Button
-                      variant="secondary"
-                      size="sm"
-                      onClick={() => onSendMessage("What services do you offer?")}
-                      className="text-xs h-auto py-2.5 px-3 flex items-center gap-2 bg-muted hover:bg-muted/80 border-0"
-                    >
-                      <ServicesIcon size={16} />
-                      <span>Services</span>
-                    </Button>
-                    <Button
-                      variant="secondary"
-                      size="sm"
-                      onClick={() => onSendMessage("How long does a project take?")}
-                      className="text-xs h-auto py-2.5 px-3 flex items-center gap-2 bg-muted hover:bg-muted/80 border-0"
-                    >
-                      <TimeIcon size={16} />
-                      <span>Timeline</span>
-                    </Button>
-                    <Button
-                      variant="secondary"
-                      size="sm"
-                      onClick={() => onSendMessage("Tell me more about your company")}
-                      className="text-xs h-auto py-2.5 px-3 flex items-center gap-2 bg-muted hover:bg-muted/80 border-0"
-                    >
-                      <InfoIcon size={16} />
-                      <span>About Us</span>
-                    </Button>
+                    </p>
+                    <div className="grid grid-cols-2 gap-2 w-full px-2 max-w-sm">
+                      <Button
+                        variant="secondary"
+                        size="sm"
+                        onClick={() => onSendMessage("What are your pricing options?")}
+                        className="text-xs h-auto py-2.5 px-3 flex items-center gap-2 bg-muted hover:bg-muted/80 border-0"
+                      >
+                        <PriceIcon size={16} />
+                        <span>Pricing</span>
+                      </Button>
+                      <Button
+                        variant="secondary"
+                        size="sm"
+                        onClick={() => onSendMessage("What services do you offer?")}
+                        className="text-xs h-auto py-2.5 px-3 flex items-center gap-2 bg-muted hover:bg-muted/80 border-0"
+                      >
+                        <ServicesIcon size={16} />
+                        <span>Services</span>
+                      </Button>
+                      <Button
+                        variant="secondary"
+                        size="sm"
+                        onClick={() => onSendMessage("How long does a project take?")}
+                        className="text-xs h-auto py-2.5 px-3 flex items-center gap-2 bg-muted hover:bg-muted/80 border-0"
+                      >
+                        <TimeIcon size={16} />
+                        <span>Timeline</span>
+                      </Button>
+                      <Button
+                        variant="secondary"
+                        size="sm"
+                        onClick={() => onSendMessage("Tell me more about your company")}
+                        className="text-xs h-auto py-2.5 px-3 flex items-center gap-2 bg-muted hover:bg-muted/80 border-0"
+                      >
+                        <InfoIcon size={16} />
+                        <span>About Us</span>
+                      </Button>
+                    </div>
                   </div>
-                </div>
+                ) : (
+                  <div className="flex-1" />
+                )}
               </div>
             ) : (
               <div className="space-y-4 pb-2">
@@ -324,10 +321,54 @@ export const ChatWindow = memo(function ChatWindow({
           } : {})
         }}
       >
+          {/* Desktop preconfigured questions */}
+          {!isMobile && messages.length === 0 && (
+            <div className="mb-2">
+              <div className="grid grid-cols-2 gap-2 w-full">
+                <Button
+                  variant="secondary"
+                  size="sm"
+                  onClick={() => onSendMessage("What are your pricing options?")}
+                  className="text-xs h-auto py-2 px-3 flex items-center gap-2 bg-muted hover:bg-muted/80 border-0"
+                >
+                  <PriceIcon size={14} />
+                  <span>Pricing</span>
+                </Button>
+                <Button
+                  variant="secondary"
+                  size="sm"
+                  onClick={() => onSendMessage("What services do you offer?")}
+                  className="text-xs h-auto py-2 px-3 flex items-center gap-2 bg-muted hover:bg-muted/80 border-0"
+                >
+                  <ServicesIcon size={14} />
+                  <span>Services</span>
+                </Button>
+                <Button
+                  variant="secondary"
+                  size="sm"
+                  onClick={() => onSendMessage("How long does a project take?")}
+                  className="text-xs h-auto py-2 px-3 flex items-center gap-2 bg-muted hover:bg-muted/80 border-0"
+                >
+                  <TimeIcon size={14} />
+                  <span>Timeline</span>
+                </Button>
+                <Button
+                  variant="secondary"
+                  size="sm"
+                  onClick={() => onSendMessage("Tell me more about your company")}
+                  className="text-xs h-auto py-2 px-3 flex items-center gap-2 bg-muted hover:bg-muted/80 border-0"
+                >
+                  <InfoIcon size={14} />
+                  <span>About Us</span>
+                </Button>
+              </div>
+            </div>
+          )}
+          
           <form onSubmit={handleSubmit} className="flex items-center gap-2">
             <div className={cn(
               "flex items-center border rounded-lg px-3 bg-background relative",
-              isMobile ? "flex-[0.8]" : "flex-1"
+              isMobile ? "flex-[0.8]" : "w-[70%]"
             )}>
               <input
                 ref={inputRef}
@@ -335,10 +376,10 @@ export const ChatWindow = memo(function ChatWindow({
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 disabled={isLoading}
-                placeholder={isMobile ? "" : "Type your message..."}
+                placeholder={isMobile ? "" : ""}
                 className={cn(
                   "w-full bg-transparent border-none outline-none",
-                  isMobile ? "text-[16px] h-10 py-2" : "text-sm py-1"
+                  isMobile ? "text-[16px] h-10 py-2" : "text-sm py-2.5"
                 )}
                 dir={isRTL ? 'rtl' : 'ltr'}
                 autoComplete="off"
@@ -346,8 +387,8 @@ export const ChatWindow = memo(function ChatWindow({
                 autoCapitalize="off"
                 inputMode="text"
               />
-              {/* Mobile typing indicator */}
-              {isMobile && !input && (
+              {/* Typing indicator for both mobile and desktop */}
+              {!input && (
                 <div className="absolute left-3 pointer-events-none">
                   <div className="w-0.5 h-5 bg-foreground/60 animate-pulse" 
                        style={{ animation: 'blink 1s infinite' }} />
@@ -355,35 +396,31 @@ export const ChatWindow = memo(function ChatWindow({
               )}
             </div>
             
-            <div className="flex items-center gap-1">
-              <Button
+            <div className="flex items-center gap-1 w-[30%] justify-center">
+              <button
                 type="submit"
-                size="icon"
                 disabled={!input.trim() || isLoading}
                 className={cn(
-                  "p-0 hover:scale-110 transition-transform shrink-0",
-                  isMobile ? "h-12 w-12" : "h-14 w-14"
+                  "hover:scale-110 transition-transform shrink-0 disabled:opacity-50 disabled:hover:scale-100",
+                  isMobile ? "h-12 w-12" : "h-12 w-12"
                 )}
-                variant="link"
                 title="Send message"
               >
-                <SendIcon size={isMobile ? 32 : 48} className={cn(isRTL && "scale-x-[-1]")} />
-              </Button>
+                <SendIcon size={isMobile ? 32 : 36} className={cn(isRTL && "scale-x-[-1]")} />
+              </button>
               
-              <Button
+              <button
                 type="button"
                 onClick={handleVoiceInput}
-                size="icon"
-                variant="link"
                 className={cn(
-                  "p-0 hover:scale-110 transition-transform shrink-0",
-                  isMobile ? "h-12 w-12" : "h-14 w-14",
+                  "hover:scale-110 transition-transform shrink-0",
+                  isMobile ? "h-12 w-12" : "h-12 w-12",
                   isListening && "text-red-500 animate-pulse"
                 )}
                 title="Voice input"
               >
-                <VoiceIcon size={isMobile ? 32 : 48} />
-              </Button>
+                <VoiceIcon size={isMobile ? 32 : 36} />
+              </button>
             </div>
           </form>
       </div>

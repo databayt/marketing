@@ -57,7 +57,7 @@ const Product = ({
       <div className='absolute bottom-0 left-0 right-0 p-6'>
         <div className={`${isRTL ? 'lg:text-right' : 'lg:text-left'}`}>
           {logo.split(' ').length === 1 ? (
-            <h2 className="text-2xl lg:text-3xl font-bold capitalize tracking-wide mb-2 text-white">
+            <h2 className="text-2xl lg:text-3xl font-extrabold capitalize tracking-wide mb-2 text-white">
               {logo.toLowerCase()}
             </h2>
           ) : (
@@ -65,13 +65,13 @@ const Product = ({
               <div className="text-2xl lg:text-3xl font-serif text-white capitalize">
                 {logo.split(' ')[0].toLowerCase()}
               </div>
-              <h2 className="text-xl lg:text-2xl font-bold capitalize tracking-wide text-white">
+              <h2 className="text-xl lg:text-2xl font-extrabold capitalize tracking-wide text-white">
                 {logo.split(' ')[1].toLowerCase()}
               </h2>
             </div>
           )}
         </div>
-        <p className="text-white/90 text-sm lg:text-base leading-relaxed">
+        <p className="text-white/90 text-sm lg:text-base leading-relaxed font-semibold">
           {description}
         </p>
       </div>
