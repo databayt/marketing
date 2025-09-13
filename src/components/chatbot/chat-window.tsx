@@ -406,7 +406,7 @@ export const ChatWindow = memo(function ChatWindow({
                 )}
                 title="Send message"
               >
-                <SendIcon size={isMobile ? 32 : 28} className={cn(isRTL && "scale-x-[-1]")} />
+                <SendIcon size={isMobile ? 32 : 24} className={cn(isRTL && "scale-x-[-1]")} />
               </button>
               
               <button
@@ -419,7 +419,7 @@ export const ChatWindow = memo(function ChatWindow({
                 )}
                 title="Voice input"
               >
-                <VoiceIcon size={isMobile ? 32 : 28} />
+                <VoiceIcon size={isMobile ? 32 : 24} />
               </button>
             </div>
           </form>
