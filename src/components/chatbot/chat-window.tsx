@@ -27,6 +27,16 @@ export const ChatWindow = memo(function ChatWindow({
   const inputRef = useRef<HTMLInputElement>(null);
   const isRTL = locale === 'ar';
   
+  // Auto focus input when chat opens on desktop
+  useEffect(() => {
+    if (isOpen && !isMobile && inputRef.current) {
+      // Small delay to ensure the window is fully rendered
+      setTimeout(() => {
+        inputRef.current?.focus();
+      }, 100);
+    }
+  }, [isOpen, isMobile]);
+  
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 640);
     checkMobile();
@@ -379,7 +389,7 @@ export const ChatWindow = memo(function ChatWindow({
                 placeholder={isMobile ? "" : ""}
                 className={cn(
                   "w-full bg-transparent border-none outline-none",
-                  isMobile ? "text-[16px] h-10 py-2" : "text-sm py-2.5"
+                  isMobile ? "text-[16px] h-10 py-2" : "text-sm py-2 h-8"
                 )}
                 dir={isRTL ? 'rtl' : 'ltr'}
                 autoComplete="off"
@@ -406,7 +416,7 @@ export const ChatWindow = memo(function ChatWindow({
                 )}
                 title="Send message"
               >
-                <SendIcon size={isMobile ? 32 : 24} className={cn(isRTL && "scale-x-[-1]")} />
+                <SendIcon size={isMobile ? 32 : 20} className={cn(isRTL && "scale-x-[-1]")} />
               </button>
               
               <button
@@ -419,7 +429,7 @@ export const ChatWindow = memo(function ChatWindow({
                 )}
                 title="Voice input"
               >
-                <VoiceIcon size={isMobile ? 32 : 24} />
+                <VoiceIcon size={isMobile ? 32 : 20} />
               </button>
             </div>
           </form>
