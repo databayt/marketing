@@ -101,6 +101,7 @@ This is a **web design service business application** with the following core en
 # Development Workflow
 
 - **Auto-push**: Always automatically push changes to GitHub after completing tasks
+- **Git Commands**: Use `git add .`, `git commit`, and `git push` after each task completion
 - Components support both light and dark themes
 - Use `useTheme()` hook for theme-aware styling
 - Always check TypeScript errors before committing
