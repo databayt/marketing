@@ -44,11 +44,11 @@ export function Hero({ dictionary, params }: HeroProps) {
                         <div className={`flex flex-col sm:flex-row gap-4 items-center mt-2 max-w-[280px] sm:max-w-none mx-auto ${isRTL ? 'sm:flex-row-reverse' : ''}`}>
                             {locale === 'ar' ? (
                                 <>
-                                    <ExpandButton variant="outline" href="/service" className="hover:shadow-[4px_4px_0px_black]">
-                                        {t.services}
-                                    </ExpandButton>
                                     <ExpandButton variant="default" href="/#" className="hover:shadow-[4px_4px_0px_black]">
                                         {t.appointment}
+                                    </ExpandButton>
+                                    <ExpandButton variant="outline" href="/service" className="hover:shadow-[4px_4px_0px_black]">
+                                        {t.services}
                                     </ExpandButton>
                                 </>
                             ) : (
