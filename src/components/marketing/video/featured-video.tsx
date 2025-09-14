@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, memo, useMemo } from 'react'
 import { getProjects } from './constant'
 import HoverEffect from '@/components/marketing/video/card-video'
 import { useTranslations } from '@/lib/use-translations'
 import { cn } from '@/lib/utils'
+import { ProjectGallerySkeleton } from '@/components/ui/loading-skeleton'
 
 interface FeaturedProjectsProps {
   dictionary?: any;
@@ -12,10 +13,11 @@ interface FeaturedProjectsProps {
   params?: { lang: string };
 }
 
-const FeaturedProjects = ({ projectsSection }: FeaturedProjectsProps) => {
+const FeaturedProjects = memo(({ projectsSection }: FeaturedProjectsProps) => {
   const { locale } = useTranslations()
   const [activeTab, setActiveTab] = useState('featured')
   const [isMobile, setIsMobile] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768)
@@ -23,8 +25,17 @@ const FeaturedProjects = ({ projectsSection }: FeaturedProjectsProps) => {
     window.addEventListener('resize', checkMobile)
     return () => window.removeEventListener('resize', checkMobile)
   }, [])
+
+  // Simulate loading time for projects
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false)
+    }, 1000)
+    return () => clearTimeout(timer)
+  }, [locale])
   
-  const tabs = [
+  // Memoize tabs to prevent recreation on every render
+  const tabs = useMemo(() => [
     { 
       id: 'featured', 
       label: isMobile 
@@ -55,14 +66,17 @@ const FeaturedProjects = ({ projectsSection }: FeaturedProjectsProps) => {
         ? projectsSection?.tabsMobile?.ecommerce || 'E-comm'
         : projectsSection?.tabs?.ecommerce || 'E-commerce' 
     },
-  ]
+  ], [isMobile, projectsSection])
   
-  const allProjects = getProjects(locale)
+  // Memoize projects to prevent recreation on every render
+  const allProjects = useMemo(() => getProjects(locale), [locale])
   
-  // Filter projects based on active tab
-  const filteredProjects = activeTab === 'featured' 
-    ? allProjects // Show all 6 projects when Featured is selected
-    : allProjects.filter(project => project.category === activeTab)
+  // Memoize filtered projects
+  const filteredProjects = useMemo(() => {
+    return activeTab === 'featured' 
+      ? allProjects // Show all 6 projects when Featured is selected
+      : allProjects.filter(project => project.category === activeTab)
+  }, [activeTab, allProjects])
   
   return (
     <div>
@@ -88,10 +102,16 @@ const FeaturedProjects = ({ projectsSection }: FeaturedProjectsProps) => {
       
       {/* Projects Grid */}
       <div className="-mt-10 overflow-visible">
-        <HoverEffect items={filteredProjects} />
+        {isLoading ? (
+          <ProjectGallerySkeleton />
+        ) : (
+          <HoverEffect items={filteredProjects} />
+        )}
       </div>
     </div>
   )
-}
+})
+
+FeaturedProjects.displayName = 'FeaturedProjects';
 
 export default FeaturedProjects

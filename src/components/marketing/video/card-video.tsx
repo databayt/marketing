@@ -5,7 +5,7 @@ import { OptimizedImage } from '@/components/ui/optimized-image';
 import { VideoIcon } from "lucide-react";
 import { useTheme } from "next-themes";
 import { AnimatePresence, motion } from "framer-motion";
-import { useState } from "react";
+import { useState, memo, useMemo } from "react";
 
 interface ProjectItem {
     title: string;
@@ -23,18 +23,18 @@ interface HoverEffectProps {
     className?: string;
 }
 
-export const HoverEffect = ({ items, className }: HoverEffectProps) => {
+export const HoverEffect = memo(({ items, className }: HoverEffectProps) => {
     const { resolvedTheme } = useTheme();
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
-    const getImageSrc = (item: ProjectItem) => {
+    const getImageSrc = useMemo(() => (item: ProjectItem) => {
         if (resolvedTheme === 'dark' && item.imageDark) {
             return item.imageDark;
         } else if (resolvedTheme === 'light' && item.imageLight) {
             return item.imageLight;
         }
         return item.image;
-    };
+    }, [resolvedTheme]);
 
     return (
         <div
@@ -79,6 +79,8 @@ export const HoverEffect = ({ items, className }: HoverEffectProps) => {
                                 fill
                                 className="object-cover w-full h-full"
                                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                placeholder="blur"
+                                priority={idx < 3}
                                 style={{ objectFit: 'cover', objectPosition: 'center' }}
                             />
                         </div>
@@ -89,9 +91,11 @@ export const HoverEffect = ({ items, className }: HoverEffectProps) => {
             ))}
         </div>
     );
-};
+});
 
-export const Card = ({
+HoverEffect.displayName = 'HoverEffect';
+
+export const Card = memo(({
     className,
     children,
 }: {
@@ -110,9 +114,11 @@ export const Card = ({
             </div>
         </div>
     );
-};
+});
 
-export const CardTitle = ({
+Card.displayName = 'Card';
+
+export const CardTitle = memo(({
     className,
     children,
 }: {
@@ -124,9 +130,11 @@ export const CardTitle = ({
             {children}
         </h4>
     );
-};
+});
 
-export const CardDescription = ({
+CardTitle.displayName = 'CardTitle';
+
+export const CardDescription = memo(({
     className,
     children,
 }: {
@@ -138,6 +146,8 @@ export const CardDescription = ({
             {children}
         </p>
     );
-};
+});
+
+CardDescription.displayName = 'CardDescription';
 
 export default HoverEffect;
