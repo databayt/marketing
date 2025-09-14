@@ -1,11 +1,14 @@
 "use client";
 
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { OptimizedImage } from '@/components/ui/optimized-image';
 import { useTranslations } from '@/lib/use-translations';
+import { GiftModal } from '@/components/marketing/gift-modal';
 
 export function Sales() {
   const { t, isRTL } = useTranslations();
+  const [giftModalOpen, setGiftModalOpen] = useState(false);
   
   return (
     <div className="bg-[#0080FF] full-bleed" data-section="sales">
@@ -18,7 +21,10 @@ export function Sales() {
               {t.marketing.services.sales.readyToTakeNext}
             </p>
            
-            <Button className="bg-white hover:bg-white/90 text-[#0080FF] flex items-center gap-2 mx-auto lg:mx-0">
+            <Button
+              onClick={() => setGiftModalOpen(true)}
+              className="bg-white hover:bg-white/90 text-[#0080FF] flex items-center gap-2 mx-auto lg:mx-0 cursor-pointer"
+            >
               <OptimizedImage
                 src="/marketing/site/b.jpg"
                 alt="Gift box icon"
@@ -45,6 +51,11 @@ export function Sales() {
           </div>
         </div>
       </div>
+
+      <GiftModal
+        isOpen={giftModalOpen}
+        onClose={() => setGiftModalOpen(false)}
+      />
     </div>
   );
 }

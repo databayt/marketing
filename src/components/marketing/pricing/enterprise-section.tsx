@@ -1,13 +1,16 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link"
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { useTranslations } from '@/lib/use-translations';
+import { ContactSalesModal } from '@/components/marketing/contact-sales-modal';
 
 export default function EnterpriseSection() {
   const { t } = useTranslations();
+  const [salesModalOpen, setSalesModalOpen] = useState(false);
   
   return (
     <div className="bg-[#266DF0] full-bleed" data-section="enterprise">
@@ -22,11 +25,20 @@ export default function EnterpriseSection() {
           {t.marketing.pricing.enterprise.description}
         </p>
         <div className="flex justify-center">
-          <Link href="/docs/community/support" className={cn(buttonVariants({ size: "lg", variant: "outline" }), "bg-white text-[#266DF0] border-white hover:bg-white/90")}>
+          <button
+            onClick={() => setSalesModalOpen(true)}
+            className={cn(buttonVariants({ size: "lg", variant: "outline" }), "bg-white text-[#266DF0] border-white hover:bg-white/90 cursor-pointer")}
+          >
             {t.marketing.pricing.enterprise.talkToSales}
-          </Link>
+          </button>
         </div>
       </div>
+
+      <ContactSalesModal
+        isOpen={salesModalOpen}
+        onClose={() => setSalesModalOpen(false)}
+        defaultPlan="enterprise"
+      />
     </div>
   )
 }

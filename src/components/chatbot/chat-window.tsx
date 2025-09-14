@@ -377,7 +377,7 @@ export const ChatWindow = memo(function ChatWindow({
           
           <form onSubmit={handleSubmit} className="flex items-center gap-2">
             <div className={cn(
-              "flex items-center border rounded-lg px-3 bg-background relative",
+              "flex items-center border border-muted-foreground rounded-lg px-3 bg-background relative",
               isMobile ? "flex-[0.8]" : "w-[70%]"
             )}>
               <input
@@ -397,13 +397,6 @@ export const ChatWindow = memo(function ChatWindow({
                 autoCapitalize="off"
                 inputMode="text"
               />
-              {/* Typing indicator for both mobile and desktop */}
-              {!input && (
-                <div className="absolute left-3 pointer-events-none">
-                  <div className="w-0.5 h-5 bg-foreground/60 animate-pulse" 
-                       style={{ animation: 'blink 1s infinite' }} />
-                </div>
-              )}
             </div>
             
             <div className="flex items-center gap-1 w-[30%] justify-center">
