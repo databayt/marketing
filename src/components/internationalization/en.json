@@ -207,13 +207,13 @@
         "category": "Company"
       },
       "accessories": {
-        "title": "Accessories",
-        "description": "Premium tech accessories marketplace with curated collection of keyboards, mice, and gadgets",
+        "title": "Gocart",
+        "description": "Premium tech accessories marketplace with curated collection",
         "category": "E-commerce"
       },
       "nike": {
         "title": "Nike",
-        "description": "Athletic footwear and apparel e-commerce platform with personalized shopping experience",
+        "description": "Athletic footwear and apparel with personalized shopping experience",
         "category": "E-commerce"
       }
     },
