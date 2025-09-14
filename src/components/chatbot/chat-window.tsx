@@ -377,7 +377,7 @@ export const ChatWindow = memo(function ChatWindow({
           
           <form onSubmit={handleSubmit} className="flex items-center gap-2">
             <div className={cn(
-              "flex items-center border rounded-lg px-3 bg-background relative",
+              "flex items-center border border-muted-foreground rounded-lg px-3 bg-background relative",
               isMobile ? "flex-[0.8]" : "w-[70%]"
             )}>
               <input
