@@ -397,13 +397,6 @@ export const ChatWindow = memo(function ChatWindow({
                 autoCapitalize="off"
                 inputMode="text"
               />
-              {/* Typing indicator for both mobile and desktop */}
-              {!input && (
-                <div className="absolute left-3 pointer-events-none">
-                  <div className="w-0.5 h-5 bg-foreground/60 animate-pulse" 
-                       style={{ animation: 'blink 1s infinite' }} />
-                </div>
-              )}
             </div>
             
             <div className="flex items-center gap-1 w-[30%] justify-center">
