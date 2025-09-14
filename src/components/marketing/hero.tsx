@@ -1,10 +1,11 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import ExpandButton from '@/components/atom/expand-button';
 import type { getDictionary } from '@/components/internationalization/dictionaries';
 import type { Locale } from '@/components/internationalization/config';
 import { localeConfig } from '@/components/internationalization/config';
+import { AppointmentModal } from './appointment-modal';
 
 interface HeroProps {
   dictionary: Awaited<ReturnType<typeof getDictionary>>['marketing']['hero'];
@@ -15,6 +16,7 @@ export function Hero({ dictionary, params }: HeroProps) {
     const t = dictionary;
     const locale = params.lang;
     const isRTL = localeConfig[locale]?.dir === 'rtl';
+    const [appointmentModalOpen, setAppointmentModalOpen] = useState(false);
 
     return (
         <section className={`tt-hero h-screen relative flex items-center justify-center ${locale === 'ar' ? 'mt-10' : 'mt-6 md:mt-10'}`}>
@@ -41,30 +43,26 @@ export function Hero({ dictionary, params }: HeroProps) {
                         <p className="max-w-xs md:max-w-3xl leading-normal text-muted-foreground sm:text-xl sm:leading-8">
                             {t.subtitle}
                         </p>
-                        <div className={`flex flex-col sm:flex-row gap-4 items-center mt-2 max-w-[280px] sm:max-w-none mx-auto ${isRTL ? 'sm:flex-row-reverse' : ''}`}>
-                            {locale === 'ar' ? (
-                                <>
-                                    <ExpandButton variant="default" href="/#" className="hover:shadow-[4px_4px_0px_black]">
-                                        {t.appointment}
-                                    </ExpandButton>
-                                    <ExpandButton variant="outline" href="/service" className="hover:shadow-[4px_4px_0px_black]">
-                                        {t.services}
-                                    </ExpandButton>
-                                </>
-                            ) : (
-                                <>
-                                    <ExpandButton variant="default" href="/#" className="hover:shadow-[4px_4px_0px_black]">
-                                        {t.appointment}
-                                    </ExpandButton>
-                                    <ExpandButton variant="outline" href="/service" className="hover:shadow-[4px_4px_0px_black]">
-                                        {t.services}
-                                    </ExpandButton>
-                                </>
-                            )}
+                        <div className={`flex flex-col sm:flex-row gap-4 items-center mt-2 max-w-[280px] sm:max-w-none mx-auto`}>
+                            <ExpandButton
+                                variant="default"
+                                onClick={() => setAppointmentModalOpen(true)}
+                                className="hover:shadow-[4px_4px_0px_black] cursor-pointer"
+                            >
+                                {t.appointment}
+                            </ExpandButton>
+                            <ExpandButton variant="outline" href="/service" className="hover:shadow-[4px_4px_0px_black]">
+                                {t.services}
+                            </ExpandButton>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <AppointmentModal
+                isOpen={appointmentModalOpen}
+                onClose={() => setAppointmentModalOpen(false)}
+            />
         </section>
     );
 }

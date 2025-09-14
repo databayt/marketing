@@ -536,5 +536,106 @@
     "notFound": "الصفحة غير موجودة",
     "serverError": "حدث خطأ ما",
     "unauthorized": "غير مسموح لك بالوصول إلى هذه الصفحة"
+  },
+  "appointment": {
+    "title": "تواصل سريع",
+    "description": "املأ النموذج أدناه وسنتواصل معك قريباً.",
+    "successTitle": "تم إرسال الرسالة!",
+    "successMessage": "سنتواصل معك قريباً.",
+    "contactPlaceholder": "بريد أو هاتف",
+    "serviceLabel": "الخدمة المطلوبة",
+    "serviceSelect": "اختر خدمة",
+    "services": {
+      "webDesign": "تصميم المواقع",
+      "webDevelopment": "تطوير المواقع",
+      "ecommerce": "حلول التجارة الإلكترونية",
+      "seo": "تحسين محركات البحث",
+      "maintenance": "صيانة المواقع",
+      "consultation": "استشارة"
+    },
+    "dateLabel": "التاريخ المفضل",
+    "messageLabel": "الرسالة",
+    "messagePlaceholder": "رسالتك...",
+    "send": "إرسال"
+  },
+  "sales": {
+    "title": "تواصل مع فريق المبيعات",
+    "description": "أخبرنا عن احتياجات مؤسستك وسنقوم بإنشاء حل مخصص.",
+    "successTitle": "شكراً لك!",
+    "successMessage": "سيتواصل معك فريق المبيعات خلال 24 ساعة.",
+    "nameLabel": "الاسم الكامل",
+    "nameError": "الاسم مطلوب",
+    "emailLabel": "البريد الإلكتروني للعمل",
+    "emailError": "البريد الإلكتروني مطلوب",
+    "companyLabel": "اسم الشركة",
+    "companyError": "اسم الشركة مطلوب",
+    "companySizeLabel": "حجم الشركة",
+    "selectSize": "اختر الحجم",
+    "budgetLabel": "نطاق الميزانية",
+    "selectBudget": "اختر الميزانية",
+    "timelineLabel": "الجدول الزمني للمشروع",
+    "selectTimeline": "اختر الجدول الزمني",
+    "immediate": "فوري (أقل من شهر)",
+    "oneToThree": "1-3 أشهر",
+    "threeToSix": "3-6 أشهر",
+    "sixPlus": "6+ أشهر",
+    "requirementsLabel": "متطلبات المشروع",
+    "requirementsPlaceholder": "أخبرنا عن احتياجات مشروعك...",
+    "requirementsError": "يرجى وصف متطلباتك",
+    "submitting": "جاري الإرسال...",
+    "submit": "تواصل مع المبيعات"
+  },
+  "gift": {
+    "title": "احصل على هديتك!",
+    "description": "احصل على خصم حصري على مشروعك الأول معنا",
+    "congratulations": "تهانينا!",
+    "giftReceived": "رمز الخصم الحصري الخاص بك هو:",
+    "discountCode": "رمز الخصم",
+    "offerDetails": "عرض خاص:",
+    "discount": "خصم 20% على مشروعك الأول",
+    "freeConsultation": "استشارة مجانية مضمنة",
+    "validFor": "صالح لمدة 30 يوماً",
+    "awesome": "رائع، شكراً!",
+    "limitedOffer": "عرض لفترة محدودة",
+    "percentOff": "خصم 20%",
+    "firstProject": "على مشروعك الأول",
+    "emailLabel": "عنوان البريد الإلكتروني",
+    "emailPlaceholder": "أدخل بريدك الإلكتروني",
+    "emailError": "يرجى إدخال بريد إلكتروني صحيح",
+    "privacy": "نحترم خصوصيتك. لا بريد عشوائي، أبداً.",
+    "claiming": "جاري الحصول على الهدية...",
+    "claimGift": "احصل على هديتي",
+    "maybeLater": "ربما لاحقاً"
+  },
+  "getStarted": {
+    "title": "ابدأ مع دايتابايت",
+    "description": "اختر خدمة لبدء رحلتك",
+    "services": {
+      "web-design": {
+        "title": "تصميم المواقع",
+        "description": "مواقع جميلة ومتجاوبة"
+      },
+      "web-development": {
+        "title": "تطوير المواقع",
+        "description": "تطبيقات ويب مخصصة"
+      },
+      "ecommerce": {
+        "title": "التجارة الإلكترونية",
+        "description": "متاجر وأسواق إلكترونية"
+      },
+      "seo": {
+        "title": "تحسين محركات البحث",
+        "description": "تحسين محركات البحث"
+      }
+    },
+    "nextSteps": "الخطوات التالية",
+    "whatHappensNext": "ماذا يحدث بعد ذلك؟",
+    "step1Title": "استشارة مجانية",
+    "step1Desc": "مناقشة متطلبات وأهداف مشروعك",
+    "step2Title": "عرض مخصص",
+    "step2Desc": "تلقي حل مخصص وجدول زمني",
+    "step3Title": "البدء في البناء",
+    "step3Desc": "بدء التطوير مع تحديثات منتظمة",
+    "continue": "متابعة"
   }
 }

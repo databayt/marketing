@@ -1,28 +1,33 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import ExpandButton from "@/components/atom/expand-button";
 import { ArrowRight, ArrowLeft } from "lucide-react";
-import { 
-  GitHubNewIcon, 
-  TwitterIcon, 
-  LinkedInNewIcon, 
-  InstagramIcon, 
+import {
+  GitHubNewIcon,
+  TwitterIcon,
+  LinkedInNewIcon,
+  InstagramIcon,
   FacebookIcon,
   WhatsAppIcon
 } from "@/components/atom/icons";
 import { useTheme } from "next-themes";
 import { useTranslations } from '@/lib/use-translations';
+import { GetStartedModal } from '@/components/marketing/get-started-modal';
 
 export default function ReadySection() {
   const { resolvedTheme } = useTheme();
   const { t, isRTL } = useTranslations();
   const isCurrentlyDark = resolvedTheme === "dark";
+  const [getStartedModalOpen, setGetStartedModalOpen] = useState(false);
   
   return (
     <div className="min-w-[300px] w-2/6" data-section="ready-to-build">
       <p className="font-medium mb-4 text-[oklch(1_0_0)]">{t.marketing.footer.readyToBuild}</p>
-      <ExpandButton variant="white" className={`group flex items-center mb-6 ${isRTL ? 'flex-row-reverse justify-center md:justify-start' : ''}`}>
+      <ExpandButton
+        variant="white"
+        onClick={() => setGetStartedModalOpen(true)}
+        className={`group flex items-center mb-6 cursor-pointer ${isRTL ? 'flex-row-reverse justify-center md:justify-start' : ''}`}>
         <span className={`transition-all duration-300 ${isRTL ? 'order-2 group-hover:order-1' : 'order-1 group-hover:order-2'}`}>
           {t.marketing.footer.getStarted}
         </span>
@@ -78,6 +83,11 @@ export default function ReadySection() {
           <WhatsAppIcon className="h-10 w-10 md:h-8 md:w-8 cursor-pointer transition-colors text-[oklch(1_0_0)] hover:text-[oklch(0.97_0_0)]" />
         </a>
       </div>
+
+      <GetStartedModal
+        isOpen={getStartedModalOpen}
+        onClose={() => setGetStartedModalOpen(false)}
+      />
     </div>
   );
 }

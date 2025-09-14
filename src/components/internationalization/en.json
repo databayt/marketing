@@ -536,5 +536,106 @@
     "notFound": "Page Not Found",
     "serverError": "Something went wrong",
     "unauthorized": "You are not authorized to access this page"
+  },
+  "appointment": {
+    "title": "Quick Contact",
+    "description": "Fill out the form below and we'll get back to you soon.",
+    "successTitle": "Message Sent!",
+    "successMessage": "We will contact you shortly.",
+    "contactPlaceholder": "Email or Phone",
+    "serviceLabel": "Service Required",
+    "serviceSelect": "Select a service",
+    "services": {
+      "webDesign": "Web Design",
+      "webDevelopment": "Web Development",
+      "ecommerce": "E-commerce Solutions",
+      "seo": "SEO Optimization",
+      "maintenance": "Website Maintenance",
+      "consultation": "Consultation"
+    },
+    "dateLabel": "Preferred Date",
+    "messageLabel": "Message",
+    "messagePlaceholder": "Your message...",
+    "send": "Send"
+  },
+  "sales": {
+    "title": "Contact Sales Team",
+    "description": "Tell us about your enterprise needs and we'll create a custom solution.",
+    "successTitle": "Thank You!",
+    "successMessage": "Our sales team will contact you within 24 hours.",
+    "nameLabel": "Full Name",
+    "nameError": "Name is required",
+    "emailLabel": "Work Email",
+    "emailError": "Valid email required",
+    "companyLabel": "Company Name",
+    "companyError": "Company name is required",
+    "companySizeLabel": "Company Size",
+    "selectSize": "Select size",
+    "budgetLabel": "Budget Range",
+    "selectBudget": "Select budget",
+    "timelineLabel": "Project Timeline",
+    "selectTimeline": "Select timeline",
+    "immediate": "Immediate (< 1 month)",
+    "oneToThree": "1-3 months",
+    "threeToSix": "3-6 months",
+    "sixPlus": "6+ months",
+    "requirementsLabel": "Project Requirements",
+    "requirementsPlaceholder": "Tell us about your project needs...",
+    "requirementsError": "Please describe your requirements",
+    "submitting": "Sending...",
+    "submit": "Contact Sales"
+  },
+  "gift": {
+    "title": "Claim Your Gift!",
+    "description": "Get an exclusive discount on your first project with us",
+    "congratulations": "Congratulations!",
+    "giftReceived": "Your exclusive discount code is:",
+    "discountCode": "Discount Code",
+    "offerDetails": "Special Offer:",
+    "discount": "20% off your first project",
+    "freeConsultation": "Free consultation included",
+    "validFor": "Valid for 30 days",
+    "awesome": "Awesome, Thanks!",
+    "limitedOffer": "Limited Time Offer",
+    "percentOff": "20% OFF",
+    "firstProject": "On Your First Project",
+    "emailLabel": "Email Address",
+    "emailPlaceholder": "Enter your email",
+    "emailError": "Please enter a valid email",
+    "privacy": "We respect your privacy. No spam, ever.",
+    "claiming": "Claiming...",
+    "claimGift": "Claim My Gift",
+    "maybeLater": "Maybe Later"
+  },
+  "getStarted": {
+    "title": "Get Started with Databayt",
+    "description": "Choose a service to begin your journey",
+    "services": {
+      "web-design": {
+        "title": "Web Design",
+        "description": "Beautiful, responsive websites"
+      },
+      "web-development": {
+        "title": "Web Development",
+        "description": "Custom web applications"
+      },
+      "ecommerce": {
+        "title": "E-commerce",
+        "description": "Online stores & marketplaces"
+      },
+      "seo": {
+        "title": "SEO",
+        "description": "Search engine optimization"
+      }
+    },
+    "nextSteps": "Next Steps",
+    "whatHappensNext": "What happens next?",
+    "step1Title": "Free Consultation",
+    "step1Desc": "Discuss your project requirements and goals",
+    "step2Title": "Custom Proposal",
+    "step2Desc": "Receive a tailored solution and timeline",
+    "step3Title": "Start Building",
+    "step3Desc": "Begin development with regular updates",
+    "continue": "Continue"
   }
 }
