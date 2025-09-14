@@ -83,6 +83,28 @@ export const getProjects = (locale: Locale = 'en'): ProjectItem[] => {
       date: "2024",
       author: t.marketing.projects.camille.category,
       category: "ecommerce"
+    },
+    {
+      title: t.marketing.projects.accessories.title,
+      description: t.marketing.projects.accessories.description,
+      link: "https://ec.databayt.org",
+      image: "https://ik.imagekit.io/databayt/marketing/site/keyboard.jpg?updatedAt=1757876817814",
+      imageDark: "https://ik.imagekit.io/databayt/marketing/site/keyboard.jpg?updatedAt=1757876817814",
+      imageLight: "https://ik.imagekit.io/databayt/marketing/site/keyboard.jpg?updatedAt=1757876817814",
+      date: "2024",
+      author: t.marketing.projects.accessories.category,
+      category: "ecommerce"
+    },
+    {
+      title: t.marketing.projects.nike.title,
+      description: t.marketing.projects.nike.description,
+      link: "https://ni.databayt.org",
+      image: "https://ik.imagekit.io/databayt/marketing/site/nike.jpg?updatedAt=1757877411581",
+      imageDark: "https://ik.imagekit.io/databayt/marketing/site/nike.jpg?updatedAt=1757877411581",
+      imageLight: "https://ik.imagekit.io/databayt/marketing/site/nike.jpg?updatedAt=1757877411581",
+      date: "2024",
+      author: t.marketing.projects.nike.category,
+      category: "ecommerce"
     }
   ];
 };
