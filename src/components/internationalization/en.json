@@ -205,6 +205,16 @@
         "title": "Acme",
         "description": "Company automation. Managing projects, reports, calculations, and docs",
         "category": "Company"
+      },
+      "accessories": {
+        "title": "Accessories",
+        "description": "Premium tech accessories marketplace with curated collection of keyboards, mice, and gadgets",
+        "category": "E-commerce"
+      },
+      "nike": {
+        "title": "Nike",
+        "description": "Athletic footwear and apparel e-commerce platform with personalized shopping experience",
+        "category": "E-commerce"
       }
     },
     "featureCards": {
