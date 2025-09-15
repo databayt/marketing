@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import * as DialogPrimitive from "@radix-ui/react-dialog";
+import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
 import { useTranslations } from '@/lib/use-translations';
 import { Palette, Smartphone, Zap, MessageCircle } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -69,14 +70,21 @@ export function GetStartedModal({ isOpen, onClose }: GetStartedModalProps) {
         />
         <DialogPrimitive.Content
           className={cn(
-            "fixed left-[50%] top-[50%] w-[calc(100%-2rem)] max-w-[400px] translate-x-[-50%] translate-y-[-50%] border bg-background p-6 shadow-lg rounded-lg",
+            "fixed left-[50%] top-[50%] z-[151] translate-x-[-50%] translate-y-[-50%]",
+            "w-[calc(100vw-2rem)] max-w-[400px]",
+            "max-h-[calc(100vh-2rem)] max-h-[calc(100dvh-2rem)] overflow-y-auto",
+            "border bg-background p-6 shadow-lg rounded-lg",
             "data-[state=open]:animate-in data-[state=closed]:animate-out",
             "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
             "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
             isRTL && "rtl"
           )}
-          style={{ zIndex: 151 }}
         >
+          <VisuallyHidden.Root>
+            <DialogPrimitive.Title>
+              Choose a Service
+            </DialogPrimitive.Title>
+          </VisuallyHidden.Root>
           <div className="grid grid-cols-2 gap-4">
             {services.map((service) => {
               const Icon = service.icon;

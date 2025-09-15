@@ -54,10 +54,8 @@ const Product = ({
       }}
       onClick={handleClick}
     >
-      {/* Dark overlay */}
-      <div className="absolute inset-0 bg-black/40" />
-      
-      <div className='absolute bottom-0 left-0 right-0 p-6 z-10'>
+      {/* Gradient blurred text area */}
+      <div className='absolute bottom-0 left-0 right-0 p-6 backdrop-blur-md bg-gradient-to-t from-black/50 via-black/30 to-transparent'>
         <div className={`${isRTL ? 'lg:text-right' : 'lg:text-left'}`}>
           {logo.split(' ').length === 1 ? (
             <h2 className="text-2xl lg:text-3xl font-extrabold capitalize tracking-wide mb-2 text-white">

@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import * as DialogPrimitive from "@radix-ui/react-dialog";
+import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -85,16 +86,21 @@ export function AppointmentModal({ isOpen, onClose }: AppointmentModalProps) {
         />
         <DialogPrimitive.Content
           className={cn(
-            "fixed left-[50%] top-[50%] w-[calc(100%-2rem)] max-w-[480px] translate-x-[-50%] translate-y-[-50%] border bg-background p-4 sm:p-6 shadow-lg rounded-lg",
+            "fixed left-[50%] top-[50%] z-[151] translate-x-[-50%] translate-y-[-50%]",
+            "w-[calc(100vw-2rem)] max-w-[480px]",
+            "max-h-[calc(100vh-2rem)] max-h-[calc(100dvh-2rem)] overflow-y-auto",
+            "border bg-background p-4 sm:p-6 shadow-lg rounded-lg",
             "data-[state=open]:animate-in data-[state=closed]:animate-out",
             "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
             "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
-            "data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%]",
-            "data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]",
             isRTL && "rtl"
           )}
-          style={{ zIndex: 151 }}
         >
+          <VisuallyHidden.Root>
+            <DialogPrimitive.Title>
+              {t.appointment?.title || 'Book an Appointment'}
+            </DialogPrimitive.Title>
+          </VisuallyHidden.Root>
           {isSuccess ? (
           <div className="flex flex-col items-center justify-center py-6 space-y-4">
             <CheckCircle2 className="w-14 h-14 text-green-500" />

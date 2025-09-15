@@ -4,16 +4,16 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogHeader } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import { useTranslations } from '@/lib/use-translations';
-import { Gift, Copy, CheckCircle2, Mail } from 'lucide-react';
+import { Copy, CheckCircle2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { OptimizedImage } from '@/components/ui/optimized-image';
 
 const giftSchema = z.object({
-  email: z.string().email(),
+  contact: z.string().min(5, 'Please enter your email or WhatsApp'),
 });
 
 type GiftFormData = z.infer<typeof giftSchema>;
@@ -46,7 +46,7 @@ export function GiftModal({ isOpen, onClose }: GiftModalProps) {
       const response = await fetch('/api/gift-claim', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
+        body: JSON.stringify({ email: data.contact }),
       });
 
       if (response.ok) {
@@ -85,7 +85,13 @@ export function GiftModal({ isOpen, onClose }: GiftModalProps) {
         {isSuccess ? (
           <div className="flex flex-col items-center justify-center py-6 space-y-6">
             <div className="relative">
-              <Gift className="w-20 h-20 text-primary animate-bounce" />
+              <OptimizedImage
+                src="/marketing/site/b.jpg"
+                alt="Gift box icon"
+                width={80}
+                height={80}
+                className="rounded-sm animate-bounce"
+              />
               <CheckCircle2 className="w-8 h-8 text-green-500 absolute -bottom-1 -right-1" />
             </div>
 
@@ -133,61 +139,43 @@ export function GiftModal({ isOpen, onClose }: GiftModalProps) {
           <>
             <DialogHeader className="text-center">
               <div className="mx-auto mb-4">
-                <Gift className="w-12 h-12 text-primary" />
+                <OptimizedImage
+                  src="/marketing/site/b.jpg"
+                  alt="Gift box icon"
+                  width={48}
+                  height={48}
+                  className="rounded-sm"
+                />
               </div>
-              <DialogTitle className="text-2xl">
-                {t.gift?.title || 'Claim Your Gift!'}
-              </DialogTitle>
-              <DialogDescription className="text-center">
-                {t.gift?.description || 'Get an exclusive discount on your first project with us'}
-              </DialogDescription>
             </DialogHeader>
 
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
               <div className="bg-gradient-to-r from-primary/10 to-primary/5 rounded-lg p-4 text-center">
-                <p className="text-lg font-semibold mb-1">{t.gift?.limitedOffer || 'Limited Time Offer'}</p>
                 <p className="text-3xl font-bold text-primary">{t.gift?.percentOff || '20% OFF'}</p>
                 <p className="text-sm text-muted-foreground mt-1">{t.gift?.firstProject || 'On Your First Project'}</p>
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="email" className="flex items-center gap-2">
-                  <Mail className="w-4 h-4" />
-                  {t.gift?.emailLabel || 'Email Address'}
-                </Label>
                 <Input
-                  id="email"
-                  type="email"
-                  {...register('email')}
-                  placeholder={t.gift?.emailPlaceholder || 'Enter your email'}
-                  className={errors.email ? 'border-red-500' : ''}
+                  id="contact"
+                  type="text"
+                  {...register('contact')}
+                  placeholder={t.gift?.emailPlaceholder || 'Email or WhatsApp'}
+                  className={errors.contact ? 'border-red-500' : ''}
+                  style={{ fontSize: '16px' }}
                 />
-                {errors.email && (
-                  <p className="text-sm text-red-500">{t.gift?.emailError || 'Please enter a valid email'}</p>
+                {errors.contact && (
+                  <p className="text-sm text-red-500">{errors.contact.message}</p>
                 )}
               </div>
 
-              <p className="text-xs text-muted-foreground text-center">
-                {t.gift?.privacy || 'We respect your privacy. No spam, ever.'}
-              </p>
-
-              <div className="flex gap-3">
-                <Button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="flex-1"
-                >
-                  {isSubmitting ? (t.gift?.claiming || 'Claiming...') : (t.gift?.claimGift || 'Claim My Gift')}
-                </Button>
-                <Button
-                  type="button"
-                  variant="outline"
-                  onClick={handleClose}
-                  disabled={isSubmitting}
-                >
-                  {t.gift?.maybeLater || 'Maybe Later'}
-                </Button>
-              </div>
+              <Button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full"
+              >
+                {isSubmitting ? (t.gift?.claiming || 'Claiming...') : (t.gift?.claimGift || 'Claim My Gift')}
+              </Button>
             </form>
           </>
         )}

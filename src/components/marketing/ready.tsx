@@ -1,11 +1,12 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { GradientAnimation } from "@/components/atom/gradient-animation";
 import { Button } from "../ui/button";
 import type { getDictionary } from '@/components/internationalization/dictionaries';
 import type { Locale } from '@/components/internationalization/config';
 import { localeConfig } from '@/components/internationalization/config';
+import { AppointmentModal } from './appointment-modal';
 
 interface ReadyProps {
   dictionary: Awaited<ReturnType<typeof getDictionary>>['marketing']['ready'];
@@ -15,6 +16,7 @@ interface ReadyProps {
 export function Ready({ dictionary, params }: ReadyProps) {
   const t = dictionary;
   const isRTL = localeConfig[params.lang]?.dir === 'rtl';
+  const [appointmentModalOpen, setAppointmentModalOpen] = useState(false);
   return (
     <div className="full-bleed-enhanced" data-section="ready">
     <GradientAnimation height="h-[70vh]">
@@ -27,10 +29,19 @@ export function Ready({ dictionary, params }: ReadyProps) {
             {t.description}
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4 pt-4 max-w-xs md:max-w-2xl mx-auto">
-            <Button  size="lg" className="bg-background text-primary dark:invert hover:bg-background/80">
+            <Button
+              size="lg"
+              className="bg-background text-primary dark:invert hover:bg-background/80"
+              onClick={() => setAppointmentModalOpen(true)}
+            >
               {t.startJourney}
             </Button>
-            <Button  variant="outline" size="lg" className="bg-transparent text-background hover:text-background/80 border-background dark:invert">
+            <Button
+              variant="outline"
+              size="lg"
+              className="bg-transparent text-background border-background dark:invert hover:bg-transparent hover:border-background/70 hover:text-background/70 transition-all"
+              onClick={() => setAppointmentModalOpen(true)}
+            >
               {t.scheduleMeeting}
             </Button>
           </div>
@@ -41,6 +52,11 @@ export function Ready({ dictionary, params }: ReadyProps) {
         </div>
       </div>
     </GradientAnimation>
+
+    <AppointmentModal
+      isOpen={appointmentModalOpen}
+      onClose={() => setAppointmentModalOpen(false)}
+    />
     </div>
   );
 }
