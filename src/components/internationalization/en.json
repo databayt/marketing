@@ -647,5 +647,85 @@
     "step3Title": "Start Building",
     "step3Desc": "Begin development with regular updates",
     "continue": "Continue"
+  },
+  "wizard": {
+    "title": "Project Wizard",
+    "subtitle": "Build your perfect solution",
+    "steps": {
+      "business": "Select Business",
+      "features": "Choose Features",
+      "template": "Pick Template",
+      "theme": "Customize Theme",
+      "branding": "Brand Identity"
+    },
+    "buttons": {
+      "back": "Back",
+      "next": "Next",
+      "finish": "Finish",
+      "startProject": "Start Project"
+    },
+    "business": {
+      "title": "What type of business do you have?",
+      "subtitle": "Select your industry to see tailored features"
+    },
+    "features": {
+      "title": "Select features for your",
+      "subtitle": "Choose the features you need for your business",
+      "popularLabel": "Popular",
+      "priceLabel": "Price",
+      "timeLabel": "Days"
+    },
+    "template": {
+      "title": "Choose your design template",
+      "subtitle": "Select a template that matches your brand style"
+    },
+    "theme": {
+      "title": "Customize your theme",
+      "subtitle": "Choose colors and style for your application",
+      "colorLabel": "Theme Color",
+      "radiusLabel": "Border Radius",
+      "previewLabel": "Preview"
+    },
+    "branding": {
+      "title": "Brand Identity",
+      "subtitle": "Define your brand details",
+      "brandName": "Brand Name",
+      "brandNamePlaceholder": "Enter your brand name",
+      "tagline": "Tagline",
+      "taglinePlaceholder": "Your brand tagline",
+      "logoUrl": "Logo URL",
+      "logoUrlPlaceholder": "https://example.com/logo.png",
+      "primaryColor": "Primary Color",
+      "secondaryColor": "Secondary Color",
+      "updateBranding": "Update Branding",
+      "updating": "Updating..."
+    },
+    "estimates": {
+      "title": "Project Estimates",
+      "totalCost": "Total Cost",
+      "timeframe": "Timeframe",
+      "days": "days",
+      "features": "features selected"
+    },
+    "validation": {
+      "selectBusiness": "Please select a business type",
+      "selectFeatures": "Please select at least one feature",
+      "selectTemplate": "Please select a template"
+    }
+  },
+  "expert": {
+    "title": "Get Expert Consultation",
+    "subtitle": "Tell us about your project and get personalized guidance",
+    "successTitle": "Expert Consultation Requested!",
+    "successMessage": "Our expert team will contact you within 24 hours.",
+    "contactPlaceholder": "Email or WhatsApp",
+    "projectTypePlaceholder": "Select project type",
+    "budgetPlaceholder": "Budget",
+    "timelinePlaceholder": "Timeline",
+    "messagePlaceholder": "Tell us about your project goals and requirements...",
+    "benefit1": "Get expert recommendations within 24 hours",
+    "benefit2": "Personalized project roadmap and timeline",
+    "benefit3": "Direct access to our senior consultants",
+    "submit": "Get Expert Help"
   }
 }

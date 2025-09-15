@@ -647,5 +647,85 @@
     "step3Title": "البدء في البناء",
     "step3Desc": "بدء التطوير مع تحديثات منتظمة",
     "continue": "متابعة"
+  },
+  "wizard": {
+    "title": "معالج المشروع",
+    "subtitle": "ابني حلك المثالي",
+    "steps": {
+      "business": "اختر النشاط",
+      "features": "اختر المميزات",
+      "template": "اختر القالب",
+      "theme": "تخصيص المظهر",
+      "branding": "الهوية البصرية"
+    },
+    "buttons": {
+      "back": "رجوع",
+      "next": "التالي",
+      "finish": "إنهاء",
+      "startProject": "ابدأ المشروع"
+    },
+    "business": {
+      "title": "ما نوع عملك التجاري؟",
+      "subtitle": "اختر مجالك لرؤية المميزات المناسبة"
+    },
+    "features": {
+      "title": "اختر المميزات لـ",
+      "subtitle": "اختر المميزات التي تحتاجها لعملك",
+      "popularLabel": "شائع",
+      "priceLabel": "السعر",
+      "timeLabel": "أيام"
+    },
+    "template": {
+      "title": "اختر قالب التصميم",
+      "subtitle": "اختر قالباً يناسب هوية علامتك التجارية"
+    },
+    "theme": {
+      "title": "تخصيص المظهر",
+      "subtitle": "اختر الألوان والأسلوب لتطبيقك",
+      "colorLabel": "لون المظهر",
+      "radiusLabel": "استدارة الحواف",
+      "previewLabel": "معاينة"
+    },
+    "branding": {
+      "title": "الهوية البصرية",
+      "subtitle": "حدد تفاصيل علامتك التجارية",
+      "brandName": "اسم العلامة التجارية",
+      "brandNamePlaceholder": "أدخل اسم علامتك التجارية",
+      "tagline": "الشعار",
+      "taglinePlaceholder": "شعار علامتك التجارية",
+      "logoUrl": "رابط الشعار",
+      "logoUrlPlaceholder": "https://example.com/logo.png",
+      "primaryColor": "اللون الأساسي",
+      "secondaryColor": "اللون الثانوي",
+      "updateBranding": "تحديث الهوية",
+      "updating": "جاري التحديث..."
+    },
+    "estimates": {
+      "title": "تقديرات المشروع",
+      "totalCost": "التكلفة الإجمالية",
+      "timeframe": "المدة الزمنية",
+      "days": "أيام",
+      "features": "مميزات مختارة"
+    },
+    "validation": {
+      "selectBusiness": "الرجاء اختيار نوع النشاط",
+      "selectFeatures": "الرجاء اختيار ميزة واحدة على الأقل",
+      "selectTemplate": "الرجاء اختيار قالب"
+    }
+  },
+  "expert": {
+    "title": "احصل على استشارة الخبراء",
+    "subtitle": "أخبرنا عن مشروعك واحصل على إرشادات شخصية",
+    "successTitle": "تم طلب استشارة الخبراء!",
+    "successMessage": "سيتواصل معك فريق الخبراء لدينا خلال 24 ساعة.",
+    "contactPlaceholder": "البريد الإلكتروني أو واتساب",
+    "projectTypePlaceholder": "اختر نوع المشروع",
+    "budgetPlaceholder": "الميزانية",
+    "timelinePlaceholder": "الجدول الزمني",
+    "messagePlaceholder": "أخبرنا عن أهداف ومتطلبات مشروعك...",
+    "benefit1": "احصل على توصيات الخبراء خلال 24 ساعة",
+    "benefit2": "خارطة طريق مخصصة للمشروع والجدول الزمني",
+    "benefit3": "الوصول المباشر إلى استشاريينا الكبار",
+    "submit": "احصل على مساعدة الخبراء"
   }
 }

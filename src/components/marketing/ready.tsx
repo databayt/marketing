@@ -7,6 +7,7 @@ import type { getDictionary } from '@/components/internationalization/dictionari
 import type { Locale } from '@/components/internationalization/config';
 import { localeConfig } from '@/components/internationalization/config';
 import { AppointmentModal } from './appointment-modal';
+import { useRouter } from 'next/navigation';
 
 interface ReadyProps {
   dictionary: Awaited<ReturnType<typeof getDictionary>>['marketing']['ready'];
@@ -17,6 +18,7 @@ export function Ready({ dictionary, params }: ReadyProps) {
   const t = dictionary;
   const isRTL = localeConfig[params.lang]?.dir === 'rtl';
   const [appointmentModalOpen, setAppointmentModalOpen] = useState(false);
+  const router = useRouter();
   return (
     <div className="full-bleed-enhanced" data-section="ready">
     <GradientAnimation height="h-[70vh]">
@@ -32,7 +34,7 @@ export function Ready({ dictionary, params }: ReadyProps) {
             <Button
               size="lg"
               className="bg-background text-primary dark:invert hover:bg-background/80"
-              onClick={() => setAppointmentModalOpen(true)}
+              onClick={() => router.push(`/${params.lang}/wizard`)}
             >
               {t.startJourney}
             </Button>
