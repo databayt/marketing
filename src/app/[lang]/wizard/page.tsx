@@ -145,7 +145,7 @@ export default function SelectionWizard() {
 
   const getStepSubtitle = () => {
     switch(step) {
-      case 1: return t.wizard.business.subtitle;
+      case 1: return ''; // Remove business subtitle
       case 2: return t.wizard.features.subtitle;
       case 3: return t.wizard.template.subtitle;
       case 4: return t.wizard.theme.subtitle;
@@ -170,26 +170,31 @@ export default function SelectionWizard() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-4">
-      <Link
-        href={`/${locale}`}
-        className={cn(
-          buttonVariants({ variant: 'ghost' }),
-          'absolute left-4 top-4 md:left-8 md:top-8'
-        )}
-      >
-        {isRTL ? <ArrowRight className="mr-2 h-4 w-4" /> : <ArrowLeft className="mr-2 h-4 w-4" />}
-        {t.common.back}
-      </Link>
+    <div className="h-screen flex flex-col bg-background">
+      {/* Fixed Header */}
+      <div className="flex-shrink-0 p-4 md:p-6">
+        <Link
+          href={`/${locale}`}
+          className={cn(
+            buttonVariants({ variant: 'ghost' }),
+            'inline-flex'
+          )}
+        >
+          {isRTL ? <ArrowRight className="mr-2 h-4 w-4" /> : <ArrowLeft className="mr-2 h-4 w-4" />}
+          {t.common.back}
+        </Link>
+      </div>
 
-      <div className="w-full max-w-4xl space-y-6">
-        {/* Main Content Card */}
-        <Card className="shadow-xl">
-          <CardHeader>
-            <CardTitle>{getStepTitle()}</CardTitle>
-            <CardDescription>{getStepSubtitle()}</CardDescription>
-          </CardHeader>
-          <CardContent className="min-h-[400px]">
+      {/* Main Content - Scrollable */}
+      <div className="flex-1 overflow-y-auto px-4 md:px-6 pb-4">
+        <div className="w-full max-w-4xl mx-auto">
+          {/* Main Content Card */}
+          <Card className="bg-background/50 border-muted">
+            <CardHeader className="pb-4">
+              <CardTitle>{getStepTitle()}</CardTitle>
+              {getStepSubtitle() && <CardDescription>{getStepSubtitle()}</CardDescription>}
+            </CardHeader>
+            <CardContent className="h-[calc(100vh-20rem)] overflow-y-auto">
             {step === 1 && (
               <BusinessSelector
                 businesses={businesses}
@@ -249,23 +254,26 @@ export default function SelectionWizard() {
                 onSelect={(iconStyle) => setSelections({ ...selections, iconStyle })}
               />
             )}
-          </CardContent>
-        </Card>
-
-        {/* Estimates Display - show from step 2 onwards */}
-        {step >= 2 && (
-          <Card>
-            <CardContent className="pt-6">
-              <EstimatesDisplay {...estimates} />
             </CardContent>
           </Card>
-        )}
+        </div>
+      </div>
 
-        {/* Navigation */}
-        <div className="flex flex-col items-center space-y-4">
+      {/* Fixed Footer - Navigation & Estimates */}
+      <div className="flex-shrink-0 bg-background/80 backdrop-blur-sm border-t">
+        <div className="w-full max-w-4xl mx-auto px-4 md:px-6 py-4 space-y-3">
+          {/* Estimates Display - show from step 2 onwards */}
+          {step >= 2 && (
+            <div className="bg-muted/30 rounded-lg px-4 py-2">
+              <EstimatesDisplay {...estimates} />
+            </div>
+          )}
+
+          {/* Step Indicator */}
           <StepIndicator currentStep={step} totalSteps={totalSteps} />
 
-          <div className="flex gap-4">
+          {/* Navigation Buttons */}
+          <div className="flex justify-center gap-4">
             <Button
               variant="outline"
               size="lg"
