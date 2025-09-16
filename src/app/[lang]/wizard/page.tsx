@@ -156,12 +156,12 @@ export default function SelectionWizard() {
   return (
     <div className="h-screen flex flex-col bg-background">
       {/* Fixed Header */}
-      <div className="flex-shrink-0 p-4 md:p-6">
+      <div className="flex-shrink-0 relative h-16">
         <Link
           href={`/${locale}`}
           className={cn(
             buttonVariants({ variant: 'ghost' }),
-            'inline-flex'
+            'absolute left-4 top-4 md:left-6 md:top-4 z-10'
           )}
         >
           {isRTL ? <ArrowRight className="mr-2 h-4 w-4" /> : <ArrowLeft className="mr-2 h-4 w-4" />}
@@ -180,7 +180,7 @@ export default function SelectionWizard() {
                 {getStepSubtitle() && <CardDescription>{getStepSubtitle()}</CardDescription>}
               </CardHeader>
             )}
-            <CardContent className="h-[calc(100vh-20rem)] overflow-y-auto">
+            <CardContent className="h-[calc(100vh-16rem)] overflow-hidden relative">
             {step === 1 && (
               <BusinessSelector
                 businesses={businesses}
@@ -246,11 +246,11 @@ export default function SelectionWizard() {
       </div>
 
       {/* Fixed Footer - Navigation & Estimates */}
-      <div className="flex-shrink-0 bg-background/80 backdrop-blur-sm">
-        <div className="w-full max-w-6xl mx-auto px-4 md:px-6 py-4 space-y-3">
+      <div className="flex-shrink-0">
+        <div className="w-full max-w-6xl mx-auto px-4 md:px-6 py-3 space-y-2">
           {/* Estimates Display - show from step 2 onwards */}
           {step >= 2 && (
-            <div className="bg-muted/30 rounded-lg px-4 py-2">
+            <div className="px-4 py-1">
               <EstimatesDisplay {...estimates} />
             </div>
           )}
@@ -259,7 +259,7 @@ export default function SelectionWizard() {
           <StepIndicator currentStep={step} totalSteps={totalSteps} />
 
           {/* Navigation Buttons */}
-          <div className="flex justify-center gap-4">
+          <div className="flex justify-center gap-4 pb-2">
             <Button
               variant="outline"
               size="sm"

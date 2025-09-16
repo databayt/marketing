@@ -39,11 +39,11 @@ export const IconSelector = ({
   ];
 
   return (
-    <div className="w-full">
-      <h2 className="font-heading text-3xl leading-[1.1] sm:text-2xl md:text-5xl flex items-center justify-center pb-7">
+    <div className="h-full flex flex-col">
+      <h2 className="font-heading text-3xl leading-[1.1] sm:text-2xl md:text-5xl absolute left-1/2 -translate-x-1/2 top-0">
         What icons!
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-16 overflow-auto">
         {iconStyles.map((style) => (
           <div
             key={style.id}

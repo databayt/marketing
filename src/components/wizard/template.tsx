@@ -48,11 +48,11 @@ export const TemplateSelector = ({
   };
 
   return (
-    <div className="w-full">
-      <h2 className="font-heading text-3xl leading-[1.1] sm:text-2xl md:text-5xl flex items-center justify-center pb-7">
+    <div className="h-full flex flex-col">
+      <h2 className="font-heading text-3xl leading-[1.1] sm:text-2xl md:text-5xl absolute left-1/2 -translate-x-1/2 top-0">
         What template!
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-4 gap-4 pt-16 px-4">
         {templates.map((template) => (
           <div
             key={template.id}
@@ -72,20 +72,20 @@ export const TemplateSelector = ({
             )}
 
             {/* Template image */}
-            <div className="relative aspect-[16/10] overflow-hidden bg-muted">
+            <div className="relative aspect-[4/3] overflow-hidden bg-muted">
               <Image
                 src={getImageUrl(template.imagePath)}
                 alt={`${template.name} template`}
                 fill
                 className="object-cover transition-transform duration-300 group-hover:scale-105"
-                sizes="(max-width: 768px) 100vw, 50vw"
+                sizes="25vw"
               />
             </div>
 
             {/* Template info */}
-            <div className="p-4 bg-background">
-              <h3 className="font-semibold text-lg mb-1">{template.name}</h3>
-              <p className="text-sm text-muted-foreground">{template.description}</p>
+            <div className="p-2">
+              <h3 className="font-medium text-sm">{template.name}</h3>
+              <p className="text-xs text-muted-foreground">{template.description}</p>
             </div>
           </div>
         ))}
