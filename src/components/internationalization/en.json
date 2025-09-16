@@ -665,7 +665,7 @@
       "startProject": "Start Project"
     },
     "business": {
-      "title": "What type of business do you have?",
+      "title": "Select Business Type",
       "subtitle": "Select your industry to see tailored features"
     },
     "features": {

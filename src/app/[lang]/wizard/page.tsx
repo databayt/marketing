@@ -187,9 +187,9 @@ export default function SelectionWizard() {
 
       {/* Main Content - Scrollable */}
       <div className="flex-1 overflow-y-auto px-4 md:px-6 pb-4">
-        <div className="w-full max-w-4xl mx-auto">
+        <div className="w-full max-w-6xl mx-auto">
           {/* Main Content Card */}
-          <Card className="bg-background/50 border-muted">
+          <Card className="bg-background/50 border-muted shadow-none">
             <CardHeader className="pb-4">
               <CardTitle>{getStepTitle()}</CardTitle>
               {getStepSubtitle() && <CardDescription>{getStepSubtitle()}</CardDescription>}
@@ -261,7 +261,7 @@ export default function SelectionWizard() {
 
       {/* Fixed Footer - Navigation & Estimates */}
       <div className="flex-shrink-0 bg-background/80 backdrop-blur-sm border-t">
-        <div className="w-full max-w-4xl mx-auto px-4 md:px-6 py-4 space-y-3">
+        <div className="w-full max-w-6xl mx-auto px-4 md:px-6 py-4 space-y-3">
           {/* Estimates Display - show from step 2 onwards */}
           {step >= 2 && (
             <div className="bg-muted/30 rounded-lg px-4 py-2">
