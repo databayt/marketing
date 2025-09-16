@@ -6,6 +6,8 @@ import { TemplateSelector } from '@/components/wizard/template';
 import { EstimatesDisplay } from '@/components/wizard/estimate';
 import { StepIndicator } from '@/components/wizard/indicator';
 import { BrandingForm } from '@/components/wizard/branding/form';
+import { TypographySelector } from '@/components/wizard/typography';
+import { IconSelector } from '@/components/wizard/icons';
 import { businesses } from '@/components/wizard/constant';
 import { Button, buttonVariants } from '@/components/ui/button';
 import { WizardSelections } from '@/components/wizard/constant';
@@ -27,6 +29,8 @@ interface ExtendedWizardSelections extends WizardSelections {
     primaryColor?: string;
     secondaryColor?: string;
   };
+  typography?: string;
+  iconStyle?: string;
 }
 
 export default function SelectionWizard() {
@@ -47,8 +51,8 @@ export default function SelectionWizard() {
     }
   });
 
-  // Total steps including branding
-  const totalSteps = 5;
+  // Total steps: Business, Features, Template, Theme, Branding, Typography, Icons
+  const totalSteps = 7;
 
   const calculateEstimates = () => {
     let totalPrice = 0;
@@ -93,16 +97,19 @@ export default function SelectionWizard() {
 
     setSelections({ ...selections, features: updatedFeatures });
 
-    const feature = selectedBusiness?.features.find((f) => f.id === featureId);
-    const estimates = calculateEstimates();
+    // Only show toast from step 2 onwards
+    if (step >= 2) {
+      const feature = selectedBusiness?.features.find((f) => f.id === featureId);
+      const estimates = calculateEstimates();
 
-    toast(
-      `${feature?.name} ${isSelected ? t.common.delete : t.common.save}`,
-      {
-        description: `${t.wizard.estimates.totalCost}: $${estimates.price} • ${t.wizard.estimates.timeframe}: ${estimates.time} ${t.wizard.estimates.days}`,
-        duration: 3000,
-      }
-    );
+      toast(
+        `${feature?.name} ${isSelected ? t.common.delete : t.common.save}`,
+        {
+          description: `${t.wizard.estimates.totalCost}: $${estimates.price} • ${t.wizard.estimates.timeframe}: ${estimates.time} ${t.wizard.estimates.days}`,
+          duration: 3000,
+        }
+      );
+    }
   };
 
   const handleTemplateSelect = (templateId: string) => {
@@ -130,6 +137,8 @@ export default function SelectionWizard() {
       case 3: return t.wizard.template.title;
       case 4: return t.wizard.theme.title;
       case 5: return t.wizard.branding.title;
+      case 6: return t.wizard.typography?.title || 'Typography';
+      case 7: return t.wizard.icons?.title || 'Icons';
       default: return '';
     }
   };
@@ -141,6 +150,8 @@ export default function SelectionWizard() {
       case 3: return t.wizard.template.subtitle;
       case 4: return t.wizard.theme.subtitle;
       case 5: return t.wizard.branding.subtitle;
+      case 6: return t.wizard.typography?.subtitle || 'Choose your font style';
+      case 7: return t.wizard.icons?.subtitle || 'Select icon style';
       default: return '';
     }
   };
@@ -152,12 +163,14 @@ export default function SelectionWizard() {
       case 3: return !!selections.template;
       case 4: return true; // Theme is optional
       case 5: return true; // Branding is optional
+      case 6: return true; // Typography is optional
+      case 7: return true; // Icons is optional
       default: return false;
     }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted/20 flex flex-col items-center justify-center p-4">
+    <div className="min-h-screen flex flex-col items-center justify-center p-4">
       <Link
         href={`/${locale}`}
         className={cn(
@@ -170,12 +183,6 @@ export default function SelectionWizard() {
       </Link>
 
       <div className="w-full max-w-4xl space-y-6">
-        {/* Header */}
-        <div className="text-center space-y-2">
-          <h1 className="text-3xl md:text-4xl font-bold">{t.wizard.title}</h1>
-          <p className="text-muted-foreground">{t.wizard.subtitle}</p>
-        </div>
-
         {/* Main Content Card */}
         <Card className="shadow-xl">
           <CardHeader>
@@ -218,7 +225,6 @@ export default function SelectionWizard() {
             {step === 5 && (
               <div className="space-y-4">
                 <BrandingForm
-                  schoolId={selections.business} // Using business as ID for demo
                   initialData={selections.branding}
                   onSuccess={() => {
                     toast.success(t.wizard.branding.title, {
@@ -228,11 +234,26 @@ export default function SelectionWizard() {
                 />
               </div>
             )}
+
+            {step === 6 && (
+              <TypographySelector
+                selectedTypography={selections.typography}
+                onSelect={(typography) => setSelections({ ...selections, typography })}
+                locale={locale}
+              />
+            )}
+
+            {step === 7 && (
+              <IconSelector
+                selectedStyle={selections.iconStyle}
+                onSelect={(iconStyle) => setSelections({ ...selections, iconStyle })}
+              />
+            )}
           </CardContent>
         </Card>
 
-        {/* Estimates Display */}
-        {step > 1 && (
+        {/* Estimates Display - show from step 2 onwards */}
+        {step >= 2 && (
           <Card>
             <CardContent className="pt-6">
               <EstimatesDisplay {...estimates} />

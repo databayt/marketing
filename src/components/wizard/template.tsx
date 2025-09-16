@@ -1,4 +1,8 @@
+'use client';
+
 import Image from 'next/image';
+import { cn } from '@/lib/utils';
+import { Check } from 'lucide-react';
 
 type TemplateSelectorProps = {
   selectedTemplate: string;
@@ -9,38 +13,77 @@ export const TemplateSelector = ({
   selectedTemplate,
   onSelect
 }: TemplateSelectorProps) => {
+
+  // Using placeholder images from projects for now
   const templates = [
-    { id: 'template-a', imagePath: '/templates/a.png' },
-    { id: 'template-sudan', imagePath: '/templates/sudan.jpg' },
-    { id: 'template-default', imagePath: '/templates/fallback.png' }
+    {
+      id: 'minimal',
+      name: 'Minimal',
+      imagePath: '/project/codebase.jpg',
+      description: 'Clean and simple design'
+    },
+    {
+      id: 'modern',
+      name: 'Modern',
+      imagePath: '/project/education.jpg',
+      description: 'Contemporary and sleek'
+    },
+    {
+      id: 'classic',
+      name: 'Classic',
+      imagePath: '/project/codebase.jpg',
+      description: 'Timeless and elegant'
+    },
+    {
+      id: 'creative',
+      name: 'Creative',
+      imagePath: '/project/education.jpg',
+      description: 'Bold and innovative'
+    }
   ];
 
+  const getImageUrl = (imagePath: string) => {
+    const baseUrl = process.env.NEXT_PUBLIC_IMAGEKIT_URL_ENDPOINT || 'https://ik.imagekit.io/databayt';
+    return `${baseUrl}${imagePath}?tr=w-400,h-250,q-80`;
+  };
+
   return (
-    <div className="w-full ">
-      <h2 className="font-heading text-3xl leading-[1.1] sm:text-2xl md:text-5xl flex items-center justify-center pb-7">
-        Which Template!
-      </h2>
-      <div className="flex justify-center gap-x-5 -mx-20">
-      
+    <div className="w-full">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {templates.map((template) => (
           <div
             key={template.id}
             onClick={() => onSelect(template.id)}
-            className={`cursor-pointer transition-all hover:scale-105 p-2 rounded-lg ${
+            className={cn(
+              "relative cursor-pointer group overflow-hidden rounded-lg border-2 transition-all duration-200",
               selectedTemplate === template.id
-                ? 'ring-2 ring-blue-500'
-                : ''
-            }`}
+                ? "border-primary shadow-lg scale-[1.02]"
+                : "border-muted hover:border-muted-foreground/50 hover:shadow-md"
+            )}
           >
-            
+            {/* Selection indicator */}
+            {selectedTemplate === template.id && (
+              <div className="absolute top-3 right-3 z-10 bg-primary text-primary-foreground rounded-full p-1">
+                <Check className="w-4 h-4" />
+              </div>
+            )}
+
+            {/* Template image */}
+            <div className="relative aspect-[16/10] overflow-hidden bg-muted">
               <Image
-                src={template.imagePath}
-                alt="Template preview"
-                width={750}
-                height={400}
-                className="object-cover object-center w-96 h-40"
+                src={getImageUrl(template.imagePath)}
+                alt={`${template.name} template`}
+                fill
+                className="object-cover transition-transform duration-300 group-hover:scale-105"
+                sizes="(max-width: 768px) 100vw, 50vw"
               />
-           
+            </div>
+
+            {/* Template info */}
+            <div className="p-4 bg-background">
+              <h3 className="font-semibold text-lg mb-1">{template.name}</h3>
+              <p className="text-sm text-muted-foreground">{template.description}</p>
+            </div>
           </div>
         ))}
       </div>
