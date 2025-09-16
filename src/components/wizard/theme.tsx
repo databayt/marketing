@@ -59,11 +59,8 @@ const ThemeSelector: React.FC<ThemeSelectorProps> = () => {
   );
 
   return (
-    <div className="h-full flex flex-col">
-      <h2 className="font-heading text-3xl leading-[1.1] sm:text-2xl md:text-5xl absolute left-1/2 -translate-x-1/2 top-0">
-        What theme!
-      </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-16">
+    <div className="h-full flex items-center justify-center">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="flex items-center gap-2">
           {/* Sheet Trigger (Mobile) */}
           <Sheet>

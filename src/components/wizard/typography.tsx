@@ -79,11 +79,8 @@ export const TypographySelector = ({
   };
 
   return (
-    <div className="h-full flex flex-col">
-      <h2 className="font-heading text-3xl leading-[1.1] sm:text-2xl md:text-5xl absolute left-1/2 -translate-x-1/2 top-0">
-        What typography!
-      </h2>
-      <div className="space-y-4 pt-16 overflow-auto">
+    <div className="h-full overflow-auto">
+      <div className="space-y-4">
         {/* English Fonts */}
         <div>
           <h3 className="text-lg font-semibold mb-4">English Fonts</h3>

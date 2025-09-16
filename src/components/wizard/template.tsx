@@ -48,11 +48,8 @@ export const TemplateSelector = ({
   };
 
   return (
-    <div className="h-full flex flex-col">
-      <h2 className="font-heading text-3xl leading-[1.1] sm:text-2xl md:text-5xl absolute left-1/2 -translate-x-1/2 top-0">
-        What template!
-      </h2>
-      <div className="grid grid-cols-4 gap-4 pt-16 px-4">
+    <div className="h-full flex items-center justify-center">
+      <div className="grid grid-cols-4 gap-4 px-4">
         {templates.map((template) => (
           <div
             key={template.id}

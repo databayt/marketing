@@ -13,11 +13,8 @@ export const FeatureSelector = ({
   onToggle,
 }: FeatureSelectorProps) => {
   return (
-    <div className="h-full flex flex-col">
-      <h2 className="font-heading text-3xl leading-[1.1] sm:text-2xl md:text-5xl absolute left-1/2 -translate-x-1/2 top-0">
-        What Features!
-      </h2>
-      <div className="flex flex-wrap justify-center items-center gap-4 flex-1 pt-16">
+    <div className="h-full flex items-center justify-center">
+      <div className="flex flex-wrap justify-center items-center gap-4">
         {features.map(({ id, name, popularity }) => (
           <span
             key={id}

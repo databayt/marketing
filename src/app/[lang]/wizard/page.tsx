@@ -4,20 +4,16 @@ import { BusinessSelector } from '@/components/wizard/business';
 import { FeatureSelector } from '@/components/wizard/feature';
 import { TemplateSelector } from '@/components/wizard/template';
 import { EstimatesDisplay } from '@/components/wizard/estimate';
-import { StepIndicator } from '@/components/wizard/indicator';
 import { BrandingForm } from '@/components/wizard/branding/form';
 import { TypographySelector } from '@/components/wizard/typography';
 import { IconSelector } from '@/components/wizard/icons';
+import { WizardHeader } from '@/components/template/wizard-header';
+import { WizardFooter } from '@/components/template/wizard-footer';
 import { businesses } from '@/components/wizard/constant';
-import { Button, buttonVariants } from '@/components/ui/button';
 import { WizardSelections } from '@/components/wizard/constant';
 import ThemeSelector from '@/components/wizard/theme';
-import Link from 'next/link';
-import { cn } from '@/lib/utils';
 import { toast } from 'sonner';
 import { useTranslations } from '@/lib/use-translations';
-import { ArrowLeft, ArrowRight, Check } from 'lucide-react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
 interface ExtendedWizardSelections extends WizardSelections {
   themeColor?: string;
@@ -131,13 +127,16 @@ export default function SelectionWizard() {
   const selectedBusiness = businesses.find((b) => b.id === selections.business);
 
   const getStepTitle = () => {
-    // Remove all titles from card header - they will be in components
-    return '';
-  };
-
-  const getStepSubtitle = () => {
-    // Remove all subtitles from card header
-    return '';
+    switch(step) {
+      case 1: return 'What business!';
+      case 2: return 'What features!';
+      case 3: return 'What template!';
+      case 4: return 'What theme!';
+      case 5: return 'What branding!';
+      case 6: return 'What typography!';
+      case 7: return 'What icons!';
+      default: return '';
+    }
   };
 
   const isStepValid = () => {
@@ -155,32 +154,17 @@ export default function SelectionWizard() {
 
   return (
     <div className="h-screen flex flex-col bg-background">
-      {/* Fixed Header */}
-      <div className="flex-shrink-0 relative h-16">
-        <Link
-          href={`/${locale}`}
-          className={cn(
-            buttonVariants({ variant: 'ghost' }),
-            'absolute left-4 top-4 md:left-6 md:top-4 z-10'
-          )}
-        >
-          {isRTL ? <ArrowRight className="mr-2 h-4 w-4" /> : <ArrowLeft className="mr-2 h-4 w-4" />}
-          {t.common.back}
-        </Link>
-      </div>
+      {/* Header */}
+      <WizardHeader
+        locale={locale}
+        isRTL={isRTL}
+        title={getStepTitle()}
+        backText={t.common.back}
+      />
 
-      {/* Main Content - Scrollable */}
-      <div className="flex-1 overflow-y-auto px-4 md:px-6 pb-4">
-        <div className="w-full max-w-6xl mx-auto">
-          {/* Main Content Card */}
-          <Card className="bg-background/50 border-0 shadow-none">
-            {(getStepTitle() || getStepSubtitle()) && (
-              <CardHeader className="pb-4">
-                {getStepTitle() && <CardTitle>{getStepTitle()}</CardTitle>}
-                {getStepSubtitle() && <CardDescription>{getStepSubtitle()}</CardDescription>}
-              </CardHeader>
-            )}
-            <CardContent className="h-[calc(100vh-16rem)] overflow-hidden relative">
+      {/* Main Content */}
+      <div className="flex-1 overflow-hidden px-4 md:px-6">
+        <div className="w-full max-w-6xl mx-auto h-full">
             {step === 1 && (
               <BusinessSelector
                 businesses={businesses}
@@ -240,61 +224,26 @@ export default function SelectionWizard() {
                 onSelect={(iconStyle) => setSelections({ ...selections, iconStyle })}
               />
             )}
-            </CardContent>
-          </Card>
         </div>
       </div>
 
-      {/* Fixed Footer - Navigation & Estimates */}
-      <div className="flex-shrink-0">
-        <div className="w-full max-w-6xl mx-auto px-4 md:px-6 py-3 space-y-2">
-          {/* Estimates Display - show from step 2 onwards */}
-          {step >= 2 && (
-            <div className="px-4 py-1">
-              <EstimatesDisplay {...estimates} />
-            </div>
-          )}
-
-          {/* Step Indicator */}
-          <StepIndicator currentStep={step} totalSteps={totalSteps} />
-
-          {/* Navigation Buttons */}
-          <div className="flex justify-center gap-4 pb-2">
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => step > 1 && setStep(step - 1)}
-              disabled={step === 1}
-            >
-              {isRTL ? <ArrowRight className="mr-2 h-4 w-4" /> : <ArrowLeft className="mr-2 h-4 w-4" />}
-              {t.wizard.buttons.back}
-            </Button>
-
-            {step < totalSteps ? (
-              <Button
-                size="sm"
-                onClick={() => setStep(step + 1)}
-                disabled={!isStepValid()}
-              >
-                {t.wizard.buttons.next}
-                {isRTL ? <ArrowLeft className="ml-2 h-4 w-4" /> : <ArrowRight className="ml-2 h-4 w-4" />}
-              </Button>
-            ) : (
-              <Button
-                size="sm"
-                onClick={() => {
-                  toast.success(t.wizard.buttons.finish, {
-                    description: `${t.wizard.estimates.totalCost}: $${estimates.price} • ${t.wizard.estimates.timeframe}: ${estimates.time} ${t.wizard.estimates.days}`,
-                  });
-                }}
-              >
-                <Check className="mr-2 h-4 w-4" />
-                {t.wizard.buttons.startProject}
-              </Button>
-            )}
-          </div>
-        </div>
-      </div>
+      {/* Footer */}
+      <WizardFooter
+        currentStep={step}
+        totalSteps={totalSteps}
+        isRTL={isRTL}
+        isStepValid={isStepValid()}
+        onBack={() => step > 1 && setStep(step - 1)}
+        onNext={() => setStep(step + 1)}
+        onFinish={() => {
+          toast.success(t.wizard.buttons.finish, {
+            description: `${t.wizard.estimates.totalCost}: $${estimates.price} • ${t.wizard.estimates.timeframe}: ${estimates.time} ${t.wizard.estimates.days}`,
+          });
+        }}
+        backText={t.wizard.buttons.back}
+        nextText={t.wizard.buttons.next}
+        finishText={t.wizard.buttons.startProject}
+      />
     </div>
   );
 }
