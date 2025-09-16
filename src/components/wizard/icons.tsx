@@ -40,6 +40,9 @@ export const IconSelector = ({
 
   return (
     <div className="w-full">
+      <h2 className="font-heading text-3xl leading-[1.1] sm:text-2xl md:text-5xl flex items-center justify-center pb-7">
+        What icons!
+      </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {iconStyles.map((style) => (
           <div

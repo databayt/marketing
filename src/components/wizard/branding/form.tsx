@@ -51,8 +51,12 @@ export function BrandingForm({ initialData, onSuccess }: BrandingFormProps) {
   };
 
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6">
+    <div>
+      <h2 className="font-heading text-3xl leading-[1.1] sm:text-2xl md:text-5xl flex items-center justify-center pb-7">
+        What branding!
+      </h2>
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6">
         {error && (
           <div className="text-sm text-destructive bg-destructive/10 p-3 rounded-md">
             {error}
@@ -182,5 +186,6 @@ export function BrandingForm({ initialData, onSuccess }: BrandingFormProps) {
         </Button>
       </form>
     </Form>
+    </div>
   );
 }

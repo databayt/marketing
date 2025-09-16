@@ -7,12 +7,12 @@ type StepIndicatorProps = {
   
   export const StepIndicator = ({ currentStep, totalSteps }: StepIndicatorProps) => {
     return (
-      <div className="flex gap-2">
+      <div className="flex justify-center gap-1">
         {Array.from({ length: totalSteps }, (_, i) => (
           <div
             key={i}
-            className={`w-4 h-4 rounded-full ${
-              currentStep >= i + 1 ? 'bg-black' : 'bg-gray-200'
+            className={`w-2 h-2 rounded-full transition-colors ${
+              currentStep >= i + 1 ? 'bg-primary' : 'bg-muted'
             }`}
           />
         ))}

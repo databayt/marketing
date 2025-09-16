@@ -131,29 +131,13 @@ export default function SelectionWizard() {
   const selectedBusiness = businesses.find((b) => b.id === selections.business);
 
   const getStepTitle = () => {
-    switch(step) {
-      case 1: return ''; // Remove title for business step
-      case 2: return `${t.wizard.features.title} ${selectedBusiness?.name || ''}`;
-      case 3: return t.wizard.template.title;
-      case 4: return t.wizard.theme.title;
-      case 5: return t.wizard.branding.title;
-      case 6: return t.wizard.typography?.title || 'Typography';
-      case 7: return t.wizard.icons?.title || 'Icons';
-      default: return '';
-    }
+    // Remove all titles from card header - they will be in components
+    return '';
   };
 
   const getStepSubtitle = () => {
-    switch(step) {
-      case 1: return ''; // Remove business subtitle
-      case 2: return t.wizard.features.subtitle;
-      case 3: return t.wizard.template.subtitle;
-      case 4: return t.wizard.theme.subtitle;
-      case 5: return t.wizard.branding.subtitle;
-      case 6: return t.wizard.typography?.subtitle || 'Choose your font style';
-      case 7: return t.wizard.icons?.subtitle || 'Select icon style';
-      default: return '';
-    }
+    // Remove all subtitles from card header
+    return '';
   };
 
   const isStepValid = () => {
@@ -189,7 +173,7 @@ export default function SelectionWizard() {
       <div className="flex-1 overflow-y-auto px-4 md:px-6 pb-4">
         <div className="w-full max-w-6xl mx-auto">
           {/* Main Content Card */}
-          <Card className="bg-background/50 border-muted shadow-none">
+          <Card className="bg-background/50 border-0 shadow-none">
             {(getStepTitle() || getStepSubtitle()) && (
               <CardHeader className="pb-4">
                 {getStepTitle() && <CardTitle>{getStepTitle()}</CardTitle>}
@@ -262,7 +246,7 @@ export default function SelectionWizard() {
       </div>
 
       {/* Fixed Footer - Navigation & Estimates */}
-      <div className="flex-shrink-0 bg-background/80 backdrop-blur-sm border-t">
+      <div className="flex-shrink-0 bg-background/80 backdrop-blur-sm">
         <div className="w-full max-w-6xl mx-auto px-4 md:px-6 py-4 space-y-3">
           {/* Estimates Display - show from step 2 onwards */}
           {step >= 2 && (
@@ -278,7 +262,7 @@ export default function SelectionWizard() {
           <div className="flex justify-center gap-4">
             <Button
               variant="outline"
-              size="lg"
+              size="sm"
               onClick={() => step > 1 && setStep(step - 1)}
               disabled={step === 1}
             >
@@ -288,7 +272,7 @@ export default function SelectionWizard() {
 
             {step < totalSteps ? (
               <Button
-                size="lg"
+                size="sm"
                 onClick={() => setStep(step + 1)}
                 disabled={!isStepValid()}
               >
@@ -297,7 +281,7 @@ export default function SelectionWizard() {
               </Button>
             ) : (
               <Button
-                size="lg"
+                size="sm"
                 onClick={() => {
                   toast.success(t.wizard.buttons.finish, {
                     description: `${t.wizard.estimates.totalCost}: $${estimates.price} • ${t.wizard.estimates.timeframe}: ${estimates.time} ${t.wizard.estimates.days}`,
