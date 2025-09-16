@@ -132,7 +132,7 @@ export default function SelectionWizard() {
 
   const getStepTitle = () => {
     switch(step) {
-      case 1: return t.wizard.business.title;
+      case 1: return ''; // Remove title for business step
       case 2: return `${t.wizard.features.title} ${selectedBusiness?.name || ''}`;
       case 3: return t.wizard.template.title;
       case 4: return t.wizard.theme.title;
@@ -190,10 +190,12 @@ export default function SelectionWizard() {
         <div className="w-full max-w-6xl mx-auto">
           {/* Main Content Card */}
           <Card className="bg-background/50 border-muted shadow-none">
-            <CardHeader className="pb-4">
-              <CardTitle>{getStepTitle()}</CardTitle>
-              {getStepSubtitle() && <CardDescription>{getStepSubtitle()}</CardDescription>}
-            </CardHeader>
+            {(getStepTitle() || getStepSubtitle()) && (
+              <CardHeader className="pb-4">
+                {getStepTitle() && <CardTitle>{getStepTitle()}</CardTitle>}
+                {getStepSubtitle() && <CardDescription>{getStepSubtitle()}</CardDescription>}
+              </CardHeader>
+            )}
             <CardContent className="h-[calc(100vh-20rem)] overflow-y-auto">
             {step === 1 && (
               <BusinessSelector
