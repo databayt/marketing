@@ -105,6 +105,17 @@ export const getProjects = (locale: Locale = 'en'): ProjectItem[] => {
       date: "2024",
       author: t.marketing.projects.nike.category,
       category: "ecommerce"
+    },
+    {
+      title: t.marketing.projects.ziara.title,
+      description: t.marketing.projects.ziara.description,
+      link: "https://zi.databayt.org",
+      image: "/marketing/site/hat.png",
+      imageDark: "/marketing/site/hat.png",
+      imageLight: "/marketing/site/hat.png",
+      date: "2024",
+      author: t.marketing.projects.ziara.category,
+      category: "ecommerce"
     }
   ];
 };

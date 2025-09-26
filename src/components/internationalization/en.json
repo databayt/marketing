@@ -215,6 +215,11 @@
         "title": "Nike",
         "description": "Athletic footwear and apparel with personalized shopping experience",
         "category": "E-commerce"
+      },
+      "ziara": {
+        "title": "Ziara",
+        "description": "Fashion-forward clothing store featuring the latest trends in apparel and luxury watches",
+        "category": "E-commerce"
       }
     },
     "featureCards": {
