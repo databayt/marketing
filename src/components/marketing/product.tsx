@@ -29,7 +29,8 @@ const Product = ({
   const { isRTL, locale } = useTranslations()
   
   // Build ImageKit URL for background image
-  const backgroundImageUrl = `${process.env.NEXT_PUBLIC_IMAGEKIT_URL_ENDPOINT || 'https://ik.imagekit.io/databayt'}${imageSrc}?tr=orig-true`
+  const imagekitEndpoint = 'https://ik.imagekit.io/databayt'
+  const backgroundImageUrl = `${imagekitEndpoint}${imageSrc}?tr=orig-true`
   
   // Determine URL based on the product
   const getProductUrl = () => {
