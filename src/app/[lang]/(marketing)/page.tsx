@@ -7,10 +7,11 @@ export const metadata = {
 }
 
 export default async function Site({
-  params: { lang },
+  params,
 }: {
-  params: { lang: Locale };
+  params: Promise<{ lang: Locale }>;
 }) {
+  const { lang } = await params;
   const dictionary = await getDictionary(lang);
   
   return <SiteContent dictionary={dictionary} params={{ lang }} />;

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import { Rubik } from "next/font/google";
@@ -19,6 +19,13 @@ const rubik = Rubik({
   variable: '--font-rubik',
 });
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+};
+
 export async function generateMetadata({
   params,
 }: {
@@ -27,16 +34,10 @@ export async function generateMetadata({
   const { lang } = await params;
   const dict = await getDictionary(lang);
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3001';
-  
+
   return {
     title: dict.metadata.title,
     description: dict.metadata.description,
-    viewport: {
-      width: 'device-width',
-      initialScale: 1,
-      maximumScale: 1,
-      userScalable: false,
-    },
     openGraph: {
       title: dict.metadata.title,
       description: dict.metadata.description,
