@@ -220,6 +220,16 @@
         "title": "Ziara",
         "description": "Fashion-forward clothing store featuring the latest trends in apparel and luxury watches",
         "category": "E-commerce"
+      },
+      "abdout": {
+        "title": "Abdout",
+        "description": "Corporate group website showcasing industrial and commercial business ventures",
+        "category": "Company"
+      },
+      "domestic": {
+        "title": "Domestic",
+        "description": "Home services platform connecting households with professional cleaning and maid services",
+        "category": "Company"
       }
     },
     "featureCards": {

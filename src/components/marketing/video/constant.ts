@@ -116,6 +116,28 @@ export const getProjects = (locale: Locale = 'en'): ProjectItem[] => {
       date: "2024",
       author: t.marketing.projects.ziara.category,
       category: "ecommerce"
+    },
+    {
+      title: t.marketing.projects.abdout.title,
+      description: t.marketing.projects.abdout.description,
+      link: "https://abdoutgroup.com",
+      image: "/marketing/site/abdout_II8z_ANxr.png",
+      imageDark: "/marketing/site/abdout_II8z_ANxr.png",
+      imageLight: "/marketing/site/abdout_II8z_ANxr.png",
+      date: "2024",
+      author: t.marketing.projects.abdout.category,
+      category: "company"
+    },
+    {
+      title: t.marketing.projects.domestic.title,
+      description: t.marketing.projects.domestic.description,
+      link: "https://maid-xi.vercel.app",
+      image: "/marketing/site/domestic_ov3Ws-gImm.jpg",
+      imageDark: "/marketing/site/domestic_ov3Ws-gImm.jpg",
+      imageLight: "/marketing/site/domestic_ov3Ws-gImm.jpg",
+      date: "2024",
+      author: t.marketing.projects.domestic.category,
+      category: "company"
     }
   ];
 };
