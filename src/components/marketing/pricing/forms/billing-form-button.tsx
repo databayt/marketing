@@ -5,7 +5,7 @@ import { generateUserStripe } from "@/components/marketing/pricing/actions/gener
 import { SubscriptionPlan, UserSubscriptionPlan } from "@/components/marketing/pricing/types";
 
 import { Button } from "@/components/ui/button";
-import { UserRole } from "@prisma/client";
+import { UserRole } from "@/generated/prisma/browser";
 import { Icons } from "@/components/marketing/pricing/shared/icons";
 
 interface BillingFormButtonProps {

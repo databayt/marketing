@@ -1,6 +1,6 @@
 "use client";
 
-import { UserRole } from "@prisma/client";
+import { UserRole } from "@/generated/prisma/browser";
 import { useCurrentRole } from "./use-current-role";
 import { FormError } from "./error/form-error";
 

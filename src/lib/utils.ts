@@ -26,7 +26,7 @@ export const currencyOption: Record<string, string> = {
 }
 
 // --- Tenant helpers ---
-import type { UserRole } from "@prisma/client"
+import type { UserRole } from "@/generated/prisma/browser"
 
 export type TenantContext = {
   schoolId: string | null

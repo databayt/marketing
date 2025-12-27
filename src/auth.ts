@@ -1,5 +1,5 @@
 import NextAuth from "next-auth"
-import { UserRole } from "@prisma/client"
+import { UserRole } from "@/generated/prisma/browser"
 import { PrismaAdapter } from "@auth/prisma-adapter"
 import type { DefaultSession } from "next-auth"
 import { db } from "@/lib/db"

@@ -1,7 +1,7 @@
 "use server";
 
 import { currentRole } from "@/components/auth/auth";
-import { UserRole } from "@prisma/client";
+import { UserRole } from "@/generated/prisma/browser";
 
 export const admin = async () => {
   const role = await currentRole();
