@@ -27,7 +27,7 @@ function getLocale(request: NextRequest) {
   return match(languages, i18n.locales, i18n.defaultLocale);
 }
 
-export default function proxy(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // Check if pathname already has a locale
