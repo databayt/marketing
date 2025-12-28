@@ -1,10 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import Link from 'next/link'
-import Image from 'next/image'
 import { MainNav } from './main-nav'
-import { marketingConfig } from './constant'
 import { RightActions } from './right-actions'
 import MobileHeader from './mobile-header'
 
@@ -45,7 +42,7 @@ export default function SiteHeaderClient({ isAuthenticated, onChatClick }: SiteH
         `}>
           <div className="max-w-7xl mx-auto px-6">
             <div className="flex h-12 items-center justify-center gap-4">
-              <MainNav items={marketingConfig.mainNav} />
+              <MainNav />
               <RightActions isAuthenticated={isAuthenticated} onChatClick={onChatClick} />
             </div>
           </div>
@@ -53,7 +50,7 @@ export default function SiteHeaderClient({ isAuthenticated, onChatClick }: SiteH
       </header>
 
       {/* Mobile Header - Completely Separate */}
-      <MobileHeader isAuthenticated={isAuthenticated} onChatClick={onChatClick} />
+      <MobileHeader />
     </>
   )
 }

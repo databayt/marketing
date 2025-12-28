@@ -226,3 +226,25 @@
     margin-left: 0;
   }
 }
+
+/* Touch target extension for mobile */
+@utility extend-touch-target {
+  @media (pointer: coarse) {
+    position: relative;
+    touch-action: manipulation;
+    &::after {
+      content: "";
+      position: absolute;
+      inset: -0.5rem;
+    }
+  }
+}
+
+/* Hide scrollbar utility */
+@utility no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
