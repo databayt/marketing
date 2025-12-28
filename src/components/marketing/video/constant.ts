@@ -131,7 +131,7 @@ export const getProjects = (locale: Locale = 'en'): ProjectItem[] => {
     {
       title: t.marketing.projects.domestic.title,
       description: t.marketing.projects.domestic.description,
-      link: "https://maid-xi.vercel.app",
+      link: "https://dw.futuretech-innovations.com",
       image: "/marketing/site/domestic_ov3Ws-gImm.jpg",
       imageDark: "/marketing/site/domestic_ov3Ws-gImm.jpg",
       imageLight: "/marketing/site/domestic_ov3Ws-gImm.jpg",
