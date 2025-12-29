@@ -8,4 +8,5 @@ export interface ProjectItem {
     date: string;
     author: string;
     category?: string;
+    featured?: boolean;
   }

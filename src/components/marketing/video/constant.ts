@@ -104,7 +104,8 @@ export const getProjects = (locale: Locale = 'en'): ProjectItem[] => {
       imageLight: "/marketing/site/nike.jpg",
       date: "2024",
       author: t.marketing.projects.nike.category,
-      category: "ecommerce"
+      category: "ecommerce",
+      featured: false
     },
     {
       title: t.marketing.projects.ziara.title,
@@ -115,7 +116,8 @@ export const getProjects = (locale: Locale = 'en'): ProjectItem[] => {
       imageLight: "/marketing/site/hat.png",
       date: "2024",
       author: t.marketing.projects.ziara.category,
-      category: "ecommerce"
+      category: "ecommerce",
+      featured: false
     },
     {
       title: t.marketing.projects.abdout.title,

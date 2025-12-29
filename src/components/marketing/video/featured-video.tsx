@@ -73,8 +73,8 @@ const FeaturedProjects = memo(({ projectsSection }: FeaturedProjectsProps) => {
   
   // Memoize filtered projects
   const filteredProjects = useMemo(() => {
-    return activeTab === 'featured' 
-      ? allProjects // Show all 6 projects when Featured is selected
+    return activeTab === 'featured'
+      ? allProjects.filter(project => project.featured !== false)
       : allProjects.filter(project => project.category === activeTab)
   }, [activeTab, allProjects])
   
