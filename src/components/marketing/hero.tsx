@@ -21,9 +21,9 @@ export function Hero({ dictionary, params }: HeroProps) {
     return (
         <section className={`tt-hero h-screen relative flex items-center justify-center ${locale === 'ar' ? 'mt-10' : 'mt-6 md:mt-10'}`}>
             {/* Hero Content */}
-            <div className="relative z-10">
-                <div className="text-center">
-                    <div className={`flex flex-col items-center gap-4 text-center ${isRTL ? 'rtl' : ''}`}>
+            <div className="relative z-10 px-6 md:px-0">
+                <div className="text-start md:text-center">
+                    <div className={`flex flex-col items-start md:items-center gap-4 text-start md:text-center ${isRTL ? 'rtl' : ''}`}>
                         <h1 className={`hidden md:block font-heading font-black text-3xl sm:text-5xl md:text-6xl ${locale === 'ar' ? 'lg:text-8xl' : 'lg:text-[90px] '}`}>
                             {t.title.split('\n').map((line, index) => (
                                 <React.Fragment key={index}>
@@ -43,7 +43,7 @@ export function Hero({ dictionary, params }: HeroProps) {
                         <p className="max-w-xs md:max-w-3xl leading-normal text-muted-foreground sm:text-xl sm:leading-8">
                             {t.subtitle}
                         </p>
-                        <div className={`flex flex-col sm:flex-row gap-4 items-center mt-2 max-w-[280px] sm:max-w-none mx-auto`}>
+                        <div className={`flex flex-col sm:flex-row gap-4 items-start md:items-center mt-2 max-w-[280px] sm:max-w-none md:mx-auto`}>
                             <ExpandButton
                                 variant="default"
                                 onClick={() => setAppointmentModalOpen(true)}
