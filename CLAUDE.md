@@ -2,122 +2,104 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-# Project Commands
+## Project Commands
 
 - `pnpm dev`: Start development server with Next.js Turbopack
 - `pnpm build`: Build the project (runs Prisma generate first)
 - `pnpm start`: Start production server
 - `pnpm lint`: Run ESLint for code quality checks
 
-# Tech Stack & Architecture
+## Tech Stack
 
-- **Framework**: Next.js 15 with App Router
+- **Framework**: Next.js 16.1.1 with App Router
 - **Package Manager**: pnpm
-- **Database**: Prisma ORM with Neon serverless PostgreSQL
+- **Runtime**: React 19.2.3, TypeScript 5.9.3
+- **Database**: Prisma 7.2.0 with Neon serverless PostgreSQL
 - **Authentication**: NextAuth v5 (beta) with Google, Facebook, and Credentials providers
-- **UI Components**: Radix UI primitives with custom styling
-- **Styling**: Tailwind CSS v4
-- **Icons**: Lucide React + React Icons
+- **UI**: Radix UI primitives, Tailwind CSS v4, Framer Motion
 - **Forms**: React Hook Form with Zod validation
-- **Theme**: next-themes for dark/light mode support
-- **Email**: Resend for transactional emails
-- **Payments**: Stripe integration for service packages
-- **Animations**: Framer Motion
-- **Carousel**: Embla Carousel React
-- **AI Chat**: Groq API with Llama 3.1 for chatbot functionality
+- **Payments**: Stripe integration
+- **Email**: Resend
+- **AI Chat**: Groq API with Llama 3.1
 
-# Core Architecture Patterns
+## Core Architecture
 
-## Route Organization
-The app uses Next.js 15 App Router with specific route groupings:
+### Route Organization
 - `src/app/[lang]/(marketing)/*` - Public marketing pages with SiteHeader/Footer layout
 - `src/app/[lang]/(auth)/*` - Authentication pages (login, register, reset)
-- `src/app/[lang]/chatbot` - Standalone chat page without marketing layout
-- `src/app/[lang]/about` - Standalone about page
-- Protected routes require authentication via middleware
-
-## Internationalization Strategy
-- Dictionaries at `src/components/internationalization/{en,ar}.json`
-- `useTranslations()` hook provides `t`, `locale`, `isRTL` throughout the app
+- `src/app/[lang]/chatbot` - Standalone chat page
 - All routes prefixed with `[lang]` parameter (en/ar)
-- RTL support built into components with conditional styling
 
-## Authentication Flow
+### Internationalization
+- Dictionaries at `src/components/internationalization/{en,ar}.json`
+- `useTranslations()` hook provides `t`, `locale`, `isRTL`
+- RTL support built into components
+
+### Authentication
 - NextAuth v5 with Prisma adapter
-- Providers: Google, Facebook, Credentials
 - Role-based access (ADMIN, USER)
 - Two-factor authentication with email tokens
-- Middleware protects routes based on `publicRoutes` and `authRoutes` arrays in `src/routes.ts`
+- Route protection via `proxy.ts` (Next.js 16 replaces middleware.ts)
+- Routes config in `src/routes.ts`
 
-## Chat System Architecture
-Two chat implementations:
-1. **Desktop Modal**: `src/components/chatbot/*` - Floating widget with AI integration
-2. **Mobile Page**: `src/app/[lang]/chatbot/page.tsx` - Full-screen dedicated page
+### Prisma 7 Configuration
+Prisma 7 uses a new architecture with explicit adapters:
 
-Both use the same backend: `src/components/chatbot/actions.ts` with Groq API
+```typescript
+// Server-side imports (PrismaClient)
+import { PrismaClient } from "@/generated/prisma/client";
+import { PrismaPg } from "@prisma/adapter-pg";
 
-## Component Patterns
-- **Marketing Components**: `src/components/marketing/*` - Landing page sections
-- **Template Components**: `src/components/template/*` - Layout components (header, footer)
-- **UI Components**: `src/components/ui/*` - Reusable primitives
-- **Auth Components**: `src/components/auth/*` - Authentication forms and flows
+const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL });
+const prisma = new PrismaClient({ adapter });
 
-## State Management
-- Client components use React hooks (useState, useEffect)
-- Server components fetch data directly in component
-- Theme state via next-themes ThemeProvider
-- No global state management library - components are self-contained
+// Client-side imports (types/enums only)
+import { UserRole, User } from "@/generated/prisma/browser";
+```
 
-## Styling Approach
+- Schema: `prisma/schema.prisma`
+- Config: `prisma.config.ts`
+- Generated client: `src/generated/prisma/` (gitignored)
+
+### Component Structure
+- `src/components/marketing/*` - Landing page sections
+- `src/components/template/*` - Layout components (header, footer)
+- `src/components/ui/*` - Reusable primitives
+- `src/components/auth/*` - Authentication forms and flows
+- `src/components/chatbot/*` - AI chat widget
+
+### Styling
 - Tailwind CSS with custom OKLCH color system
 - Theme variables in `src/app/globals.css`
-- Component-specific animations in `src/styles/*`
 - `cn()` utility for conditional class names
 - Mobile-first responsive design
+- Dark/light mode via next-themes
 
-# Business Domain Architecture
+## Business Domain
 
-This is a **web design service business application** with the following core entities:
+Web design service business with:
+- **ServicePackage**: Service tiers with Stripe pricing
+- **Project**: Client projects with milestones
+- **Payment**: Stripe-integrated payments
+- **Inquiry**: Lead management
+- **Testimonial**: Client feedback
 
-## Service Business Models
-- **ServicePackage**: Service tiers with pricing (basic, premium, enterprise)
-- **Project**: Client projects linked to service packages
-- **Milestone**: Project breakdown with due dates
-- **Payment**: Stripe-integrated payment processing
-- **Inquiry**: Lead management system
-- **Testimonial**: Client feedback and ratings
+## Environment Variables
 
-## Environment Variables Required
+Required:
 - `DATABASE_URL`: PostgreSQL connection string
-- `NEXTAUTH_URL`: Application URL
-- `NEXTAUTH_SECRET`: Auth secret key
-- `GOOGLE_CLIENT_ID` & `GOOGLE_CLIENT_SECRET`: Google OAuth
-- `FACEBOOK_CLIENT_ID` & `FACEBOOK_CLIENT_SECRET`: Facebook OAuth
-- `GROQ_API_KEY`: AI chatbot responses
-- `STRIPE_SECRET_KEY` & `STRIPE_WEBHOOK_SECRET`: Payment processing
+- `NEXTAUTH_URL`, `NEXTAUTH_SECRET`: Auth configuration
+- `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`: Google OAuth
+- `FACEBOOK_CLIENT_ID`, `FACEBOOK_CLIENT_SECRET`: Facebook OAuth
+- `GROQ_API_KEY`: AI chatbot
+- `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`: Payments
 - `RESEND_API_KEY`: Email service
 - `IMAGEKIT_PUBLIC_KEY`, `IMAGEKIT_PRIVATE_KEY`, `IMAGEKIT_URL_ENDPOINT`: Image CDN
 
-# Development Workflow
+## Development Notes
 
-- **Auto-push**: Always automatically push changes to GitHub after completing tasks
-- **Git Commands**: Use `git add .`, `git commit`, and `git push` after each task completion
-- Components support both light and dark themes
-- Use `useTheme()` hook for theme-aware styling
-- Always check TypeScript errors before committing
-- Test authentication flows in development mode
-
-# Mobile-Specific Considerations
-
-- Chat icon in mobile header navigates to `/[lang]/chatbot` page
-- Mobile layouts use Visual Viewport API for keyboard detection
-- Input fields set to `font-size: 16px` to prevent iOS zoom
-- Safe area padding for devices with notches/gestures
-- Touch-optimized with larger tap targets (min 44px)
-
-# Important Configuration Notes
-
-- Next.js config ignores ESLint and TypeScript errors during builds
-- Image optimization configured for external domains (Unsplash, Pravatar, etc.)
-- Turbopack enabled for faster development builds
-- Strict TypeScript configuration with path aliases (`@/*` → `./src/*`)
+- Auto-push changes to GitHub after completing tasks
+- Next.js 16 uses `proxy.ts` instead of `middleware.ts` (named export required)
+- Build ignores ESLint and TypeScript errors
+- Path alias: `@/*` maps to `./src/*`
+- Turbopack enabled for development

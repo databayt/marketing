@@ -5,11 +5,9 @@ import Link from "next/link"
 import { useRouter } from "next/navigation"
 import Image from "next/image"
 import { useTheme } from "next-themes"
-import { MoonIcon, SunIcon, Languages } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { useTranslations } from "@/lib/use-translations"
-import { useSwitchLocaleHref } from "@/components/internationalization/use-locale"
 import { Button } from "@/components/ui/button"
 import {
   Popover,
@@ -17,14 +15,12 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 import { OptimizedImage } from "@/components/ui/optimized-image"
-import type { Locale } from "@/components/internationalization/config"
 
 export function MobileNav({ className }: { className?: string }) {
   const [open, setOpen] = React.useState(false)
   const router = useRouter()
   const { t, locale, isRTL } = useTranslations()
-  const { setTheme, resolvedTheme } = useTheme()
-  const switchLocaleHref = useSwitchLocaleHref()
+  const { resolvedTheme } = useTheme()
 
   // Navigation items
   const navItems = React.useMemo(() => [
@@ -34,20 +30,6 @@ export function MobileNav({ className }: { className?: string }) {
     { href: `/${locale}/pricing`, label: t.common?.pricing || "Pricing" },
     { href: `/${locale}/#`, label: t.common?.platform || "Platform" },
   ], [t, locale])
-
-  // Toggle theme
-  const toggleTheme = React.useCallback(() => {
-    setTheme(resolvedTheme === "dark" ? "light" : "dark")
-  }, [resolvedTheme, setTheme])
-
-  // Toggle language
-  const toggleLanguage = React.useCallback(() => {
-    const newLocale = locale === 'en' ? 'ar' : 'en'
-    const href = switchLocaleHref(newLocale as Locale)
-    document.cookie = `NEXT_LOCALE=${newLocale}; path=/; max-age=${365 * 24 * 60 * 60}; samesite=lax`
-    router.push(href)
-    setOpen(false)
-  }, [locale, router, switchLocaleHref])
 
   // Navigate to chatbot
   const handleChatClick = React.useCallback(() => {
@@ -129,7 +111,7 @@ export function MobileNav({ className }: { className?: string }) {
             </div>
           </div>
 
-          {/* Action Icons Row */}
+          {/* Action Icons Row - Only Chat and Login */}
           <div className="flex flex-col gap-4 pt-4 border-t border-border/50">
             <div className="text-muted-foreground text-sm font-medium">
               {t.common?.actions || "Actions"}
@@ -170,28 +152,6 @@ export function MobileNav({ className }: { className?: string }) {
                 </svg>
                 <span className="sr-only">{t.common?.login || "Login"}</span>
               </Link>
-
-              {/* Language Toggle */}
-              <button
-                onClick={toggleLanguage}
-                className="h-12 w-12 rounded-full bg-muted/50 hover:bg-accent/50 transition-colors flex items-center justify-center"
-              >
-                <Languages className="h-6 w-6" strokeWidth={1.5} />
-                <span className="sr-only">{t.common?.toggleLanguage || "Toggle language"}</span>
-              </button>
-
-              {/* Theme Toggle */}
-              <button
-                onClick={toggleTheme}
-                className="h-12 w-12 rounded-full bg-muted/50 hover:bg-accent/50 transition-colors flex items-center justify-center"
-              >
-                {resolvedTheme === "dark" ? (
-                  <SunIcon className="h-6 w-6" strokeWidth={1.5} />
-                ) : (
-                  <MoonIcon className="h-6 w-6" strokeWidth={1.5} />
-                )}
-                <span className="sr-only">{t.common?.toggleTheme || "Toggle theme"}</span>
-              </button>
             </div>
           </div>
         </div>
