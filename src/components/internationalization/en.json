@@ -122,7 +122,7 @@
       "descriptionMobile": "Databayt leverages state-of-the-art technology to craft innovative applications.",
       "description": "Databayt leverages state-of-the-art technology to craft innovative and modern applications, delivering seamless performance.",
       "nextjs": {
-        "title": "Next.js 15",
+        "title": "Next.js 16",
         "description": "App dir, Routing, Layouts, Loading UI and API routes."
       },
       "react": {
