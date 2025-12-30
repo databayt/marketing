@@ -1,35 +1,31 @@
-'use client';
+"use client"
 
-import * as React from 'react';
-import { useRouter } from 'next/navigation';
-import { useTranslations } from '@/lib/use-translations';
-import { useSwitchLocaleHref } from '@/components/internationalization/use-locale';
-import { Languages } from 'lucide-react';
-import type { Locale } from '@/components/internationalization/config';
+import { usePathname, useRouter } from "next/navigation"
+import { Languages } from "lucide-react"
 
 export function LanguageToggle() {
-  const router = useRouter();
-  const { locale } = useTranslations();
-  const switchLocaleHref = useSwitchLocaleHref();
+  const router = useRouter()
+  const pathname = usePathname()
 
-  const toggleLanguage = React.useCallback(() => {
-    // Switch between 'en' and 'ar'
-    const newLocale = locale === 'en' ? 'ar' : 'en';
-    const href = switchLocaleHref(newLocale as Locale);
-    
-    // Set cookie to persist user preference
-    document.cookie = `NEXT_LOCALE=${newLocale}; path=/; max-age=${365 * 24 * 60 * 60}; samesite=lax`;
-    
-    router.push(href);
-  }, [locale, router, switchLocaleHref]);
+  const currentLang = pathname.split("/")[1] || "en"
+  const nextLang = currentLang === "ar" ? "en" : "ar"
+
+  const switchLanguage = () => {
+    const segments = pathname.split("/")
+    segments[1] = nextLang
+    document.cookie = `NEXT_LOCALE=${nextLang}; path=/; max-age=31536000; samesite=lax`
+    router.push(segments.join("/"))
+  }
 
   return (
     <button
-      className="h-10 w-10 md:h-8 md:w-8 rounded-full hover:bg-accent/50 transition-colors flex items-center justify-center"
-      onClick={toggleLanguage}
+      onClick={switchLanguage}
+      className="hover:text-foreground transition-colors cursor-pointer"
     >
-      <Languages className="h-6 w-6 md:h-4 md:w-4" strokeWidth={1.5} />
-      <span className="sr-only">Toggle language</span>
+      <Languages className="size-5" />
+      <span className="sr-only">
+        Switch to {nextLang === "ar" ? "Arabic" : "English"}
+      </span>
     </button>
-  );
+  )
 }

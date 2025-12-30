@@ -13,7 +13,7 @@ export default function MobileHeader() {
         <MobileNav />
 
         {/* Right: Language & Theme toggles (always visible, outside menu) */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-4">
           <LanguageToggle />
           <ModeSwitcher />
         </div>

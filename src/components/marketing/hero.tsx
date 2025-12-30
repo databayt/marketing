@@ -21,7 +21,7 @@ export function Hero({ dictionary, params }: HeroProps) {
     return (
         <section className={`tt-hero h-screen relative flex items-center justify-center ${locale === 'ar' ? 'mt-10' : 'mt-6 md:mt-10'}`}>
             {/* Hero Content */}
-            <div className="relative z-10 px-6 md:px-0">
+            <div className="relative z-10 px-4 md:px-0">
                 <div className="text-start md:text-center">
                     <div className={`flex flex-col items-start md:items-center gap-4 text-start md:text-center ${isRTL ? 'rtl' : ''}`}>
                         <h1 className={`hidden md:block font-heading font-black text-3xl sm:text-5xl md:text-6xl ${locale === 'ar' ? 'lg:text-8xl' : 'lg:text-[90px] '}`}>
