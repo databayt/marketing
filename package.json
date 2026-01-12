@@ -36,6 +36,7 @@
     "@radix-ui/react-toggle": "^1.1.10",
     "@radix-ui/react-toggle-group": "^1.1.11",
     "@radix-ui/react-visually-hidden": "^1.2.3",
+    "@rive-app/react-canvas": "^4.25.3",
     "@t3-oss/env-nextjs": "^0.13.8",
     "ai": "^5.0.41",
     "bcryptjs": "^3.0.2",

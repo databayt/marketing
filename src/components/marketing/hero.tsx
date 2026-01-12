@@ -6,6 +6,7 @@ import type { getDictionary } from '@/components/internationalization/dictionari
 import type { Locale } from '@/components/internationalization/config';
 import { localeConfig } from '@/components/internationalization/config';
 import { AppointmentModal } from './appointment-modal';
+import { RiveBackground } from './rive-background';
 
 interface HeroProps {
   dictionary: Awaited<ReturnType<typeof getDictionary>>['marketing']['hero'];
@@ -20,6 +21,7 @@ export function Hero({ dictionary, params }: HeroProps) {
 
     return (
         <section className={`tt-hero h-screen relative flex items-center justify-center ${locale === 'ar' ? 'mt-10' : 'mt-6 md:mt-10'}`}>
+            <RiveBackground />
             {/* Hero Content */}
             <div className="relative z-10 px-4 md:px-0">
                 <div className="text-start md:text-center">
