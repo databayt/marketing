@@ -9,7 +9,7 @@ export function RiveBackground() {
   });
 
   return (
-    <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
+    <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
       <RiveComponent className="w-full h-full" />
     </div>
   );
