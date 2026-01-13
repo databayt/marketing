@@ -16,22 +16,22 @@ export function RiveBackground() {
 
   return (
     <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-      {/* Gradient fade overlay - blends to background at top */}
+      {/* Gradient fade overlay - white/background at top like Tiptap */}
       <div
         className="absolute inset-0 z-10"
         style={{
-          background: 'linear-gradient(to bottom, hsl(var(--background)) 0%, transparent 25%)',
+          background: 'linear-gradient(to bottom, hsl(var(--background)) 0%, hsl(var(--background)) 15%, transparent 45%)',
         }}
       />
-      {/* Rive animation - large and centered to fill hero */}
+      {/* Rive animation - smaller, positioned lower like Tiptap */}
       <div
         className="absolute"
         style={{
-          width: '150vw',
-          height: '150vh',
-          top: '-25vh',
+          width: '1000px',
+          height: '1000px',
+          top: '15%',
           left: '50%',
-          transform: 'translateX(-50%)',
+          transform: 'translateX(-40%)',
         }}
       >
         <RiveComponent className="w-full h-full" />
