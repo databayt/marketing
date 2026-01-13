@@ -31,7 +31,7 @@ export function MobileNav({ className }: { className?: string }) {
         <Button
           variant="ghost"
           className={cn(
-            "extend-touch-target h-8 touch-manipulation items-center justify-start gap-2.5 !p-0 hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 active:bg-transparent dark:hover:bg-transparent",
+            "extend-touch-target h-8 touch-manipulation items-center justify-start gap-2.5 !p-0 hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 active:bg-transparent dark:hover:bg-transparent z-50",
             className
           )}
         >
@@ -58,11 +58,10 @@ export function MobileNav({ className }: { className?: string }) {
         </Button>
       </PopoverTrigger>
       <PopoverContent
-        className="bg-background no-scrollbar h-[--radix-popper-available-height] w-[--radix-popper-available-width] overflow-y-auto rounded-none border-none p-0 shadow-none duration-100"
+        className="fixed! inset-0! top-14! z-50 h-[calc(100vh-3.5rem)]! w-screen! max-w-none! bg-background overflow-y-auto rounded-none border-none p-0 shadow-none duration-100"
         align="start"
         side="bottom"
-        alignOffset={-16}
-        sideOffset={14}
+        sideOffset={0}
       >
         <div className="flex flex-col gap-12 overflow-auto px-4 py-8">
           <div className="flex flex-col gap-4">
