@@ -20,7 +20,7 @@ export function Hero({ dictionary, params }: HeroProps) {
     const [appointmentModalOpen, setAppointmentModalOpen] = useState(false);
 
     return (
-        <section className={`tt-hero h-screen relative flex items-center justify-center ${locale === 'ar' ? 'mt-10' : 'mt-6 md:mt-10'}`}>
+        <section className={`tt-hero h-screen relative flex items-center justify-start md:justify-center ${locale === 'ar' ? 'mt-10' : 'mt-6 md:mt-10'}`}>
             <RiveBackground />
             {/* Hero Content */}
             <div className="relative z-10 px-4 md:px-0">
@@ -42,10 +42,10 @@ export function Hero({ dictionary, params }: HeroProps) {
                                 </React.Fragment>
                             ))}
                         </h1>
-                        <p className="max-w-xs md:max-w-3xl leading-normal text-muted-foreground sm:text-xl sm:leading-8">
+                        <p className="md:max-w-3xl leading-normal text-muted-foreground sm:text-xl sm:leading-8">
                             {t.subtitle}
                         </p>
-                        <div className={`flex flex-col sm:flex-row gap-4 items-start md:items-center mt-2 max-w-[280px] sm:max-w-none md:mx-auto`}>
+                        <div className={`flex flex-col sm:flex-row gap-4 items-start md:items-center mt-2 sm:max-w-none md:mx-auto`}>
                             <ExpandButton
                                 variant="default"
                                 onClick={() => setAppointmentModalOpen(true)}
