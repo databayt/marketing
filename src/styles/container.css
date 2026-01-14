@@ -100,6 +100,11 @@
     @apply px-2 sm:px-3 md:px-4 lg:px-5;
   }
 
+  /* Mobile-only padding - removes at md breakpoint */
+  .padding-mobile-only {
+    @apply px-4 md:px-0;
+  }
+
   /* Margin utilities */
   .margin-responsive-y {
     @apply my-8 sm:my-12 lg:my-16;
