@@ -35,7 +35,7 @@ export function MainNav() {
   return (
     <div className="hidden md:flex gap-6 md:gap-10">
       <Link href={`/${locale}`} className="flex items-center gap-2">
-        <OptimizedImage src="/marketing/site/logo.png" alt="Logo" width={16} height={16} className="dark:invert -mt-1" />
+        <OptimizedImage src="/marketing/site/logo.png" alt="Logo" width={16} height={16} className="dark:invert pt-0.5" />
         <span className="hidden font-bold sm:inline-block">
           {t.common.brandName}
         </span>

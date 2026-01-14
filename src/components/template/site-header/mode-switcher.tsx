@@ -19,7 +19,7 @@ export function ModeSwitcher({ className }: ModeSwitcherProps) {
     <button
       onClick={toggleTheme}
       className={cn(
-        "hover:text-foreground transition-colors cursor-pointer",
+        "flex items-center justify-center size-8 rounded-md hover:bg-accent hover:text-foreground transition-colors cursor-pointer",
         className
       )}
       title="Toggle theme"
@@ -34,7 +34,7 @@ export function ModeSwitcher({ className }: ModeSwitcherProps) {
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
-        className="size-5"
+        className="size-4"
       >
         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
         <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />

@@ -18,15 +18,15 @@ export function RightActions({ isAuthenticated, onChatClick }: RightActionsProps
   return (
     <div className="hidden md:flex items-center gap-1">
       {isAuthenticated ? (
-        <span className="text-sm px-2 py-1">
+        <span className="text-sm px-3 py-1.5">
           {/* Authenticated user actions */}
         </span>
       ) : (
         <Link
           href={`/${locale}/login`}
           className={cn(
-            buttonVariants({ variant: "link"}),
-            "text-sm px-2 py-1"
+            buttonVariants({ variant: "ghost", size: "sm" }),
+            "h-8 px-3 text-sm font-medium"
           )}
         >
           {t.common.login}
