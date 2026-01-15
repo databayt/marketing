@@ -7,13 +7,10 @@ import { LanguageToggle } from '@/components/ui/language-toggle'
 
 export default function MobileHeader() {
   return (
-    <header className="fixed top-0 left-0 right-0 z-[100] md:hidden bg-background">
+    <header className="bg-background sticky top-0 z-50 w-full md:hidden">
       <div className="flex h-14 items-center justify-between px-4">
-        {/* Left: Menu trigger */}
         <MobileNav />
-
-        {/* Right: Language & Theme toggles (always visible, outside menu) */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2">
           <LanguageToggle />
           <ModeSwitcher />
         </div>
