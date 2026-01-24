@@ -45,7 +45,7 @@ export function Hero({ dictionary, params }: HeroProps) {
                         <p className="md:max-w-3xl leading-normal text-muted-foreground sm:text-xl sm:leading-8">
                             {t.subtitle}
                         </p>
-                        <div className={`flex flex-col sm:flex-row gap-4 items-start md:items-center mt-2 sm:max-w-none md:mx-auto`}>
+                        <div className={`flex flex-row gap-4 items-center mt-2 md:mx-auto`}>
                             <ExpandButton
                                 variant="default"
                                 onClick={() => setAppointmentModalOpen(true)}
