@@ -12,6 +12,8 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 import { useTranslations } from "@/lib/use-translations"
+import { ModeSwitcher } from "./mode-switcher"
+import { LanguageToggle } from "@/components/ui/language-toggle"
 
 export function MobileNav({ className }: { className?: string }) {
   const [open, setOpen] = React.useState(false)
@@ -75,6 +77,15 @@ export function MobileNav({ className }: { className?: string }) {
                   {item.label}
                 </MobileLink>
               ))}
+            </div>
+          </div>
+          <div className="flex flex-col gap-4">
+            <div className="text-muted-foreground text-sm font-medium">
+              {t.common?.settings || "Settings"}
+            </div>
+            <div className="flex items-center gap-2">
+              <LanguageToggle />
+              <ModeSwitcher />
             </div>
           </div>
         </div>

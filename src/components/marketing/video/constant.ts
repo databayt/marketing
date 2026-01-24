@@ -63,14 +63,14 @@ export const getProjects = (locale: Locale = 'en'): ProjectItem[] => {
       category: "health"
     },
     {
-      title: t.marketing.projects.giats.title,
-      description: t.marketing.projects.giats.description,
-      link: "https://gi.databayt.org",
+      title: t.marketing.projects.almersal.title,
+      description: t.marketing.projects.almersal.description,
+      link: "https://mr.databayt.org",
       image: "/marketing/site/giats.jpg",
       imageDark: "/marketing/site/giats.jpg",
       imageLight: "/marketing/site/giats.jpg",
       date: "2024",
-      author: t.marketing.projects.giats.category,
+      author: t.marketing.projects.almersal.category,
       category: "ecommerce"
     },
     {

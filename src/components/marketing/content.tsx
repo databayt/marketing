@@ -111,7 +111,7 @@ export default function SiteContent({ dictionary, params }: SiteContentProps) {
         <Ready dictionary={dictionary.marketing.ready} params={params} />
       </section>
       <section className="py-10">
-        <OpenSource dictionary={dictionary.marketing.openSource} params={params} />
+        <OpenSource />
       </section>
       <section className="py-10">
         <Stack dictionary={dictionary.marketing.stack} params={params} />

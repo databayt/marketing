@@ -2,18 +2,12 @@
 
 import React from 'react'
 import { MobileNav } from './mobile-nav'
-import { ModeSwitcher } from './mode-switcher'
-import { LanguageToggle } from '@/components/ui/language-toggle'
 
 export default function MobileHeader() {
   return (
-    <header className="bg-background sticky top-0 z-50 w-full md:hidden">
-      <div className="flex h-14 items-center justify-between px-4">
+    <header className="bg-background sticky top-0 z-50 w-screen md:hidden -mx-3 sm:-mx-10 px-3 sm:px-10">
+      <div className="flex h-14 items-center">
         <MobileNav />
-        <div className="flex items-center gap-2">
-          <LanguageToggle />
-          <ModeSwitcher />
-        </div>
       </div>
     </header>
   )
