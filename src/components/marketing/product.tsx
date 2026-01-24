@@ -56,8 +56,8 @@ const Product = ({
       onClick={handleClick}
     >
       {/* Text content area with blur */}
-      <div className='absolute bottom-0 left-0 right-0 p-6'>
-        <div className="backdrop-blur-md bg-black/30 rounded-lg p-1">
+      <div className='absolute bottom-0 left-0 right-0'>
+        <div className="backdrop-blur-md bg-black/30 px-4 py-3">
           <div className={`${isRTL ? 'lg:text-right' : 'lg:text-left'}`}>
             {logo.split(' ').length === 1 ? (
               <h2 className="text-2xl lg:text-3xl font-extrabold capitalize tracking-wide mb-2 text-white">
