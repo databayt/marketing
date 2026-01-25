@@ -34,7 +34,7 @@ const Product = ({
 
   // Determine highlight color based on product
   const isCodebase = logo.toLowerCase().includes('codebase') || logo.toLowerCase().includes('مكتبة')
-  const highlightColor = isCodebase ? 'bg-yellow-700/70' : 'bg-black/60'
+  const highlightColor = isCodebase ? 'bg-yellow-400/80' : 'bg-black/60'
 
   // Determine URL based on the product
   const getProductUrl = () => {
@@ -63,22 +63,22 @@ const Product = ({
       <div className='absolute bottom-0 left-0 right-0 p-4'>
         <div className={`${isRTL ? 'lg:text-right' : 'lg:text-left'}`}>
           {logo.split(' ').length === 1 ? (
-            <h2 className="text-2xl lg:text-3xl font-extrabold capitalize tracking-wide mb-0">
-              <span className={`${highlightColor} text-white box-decoration-clone pb-1`}>{logo.toLowerCase()}</span>
+            <h2 className="text-2xl lg:text-3xl font-extrabold capitalize tracking-wide leading-none">
+              <span className={`${highlightColor} ${isCodebase ? 'text-black' : 'text-white'} box-decoration-clone px-1`}>{logo.toLowerCase()}</span>
             </h2>
           ) : (
-            <div className='mb-0'>
-              <div className="text-2xl lg:text-3xl font-serif capitalize">
-                <span className={`${highlightColor} text-white box-decoration-clone`}>{logo.split(' ')[0].toLowerCase()}</span>
+            <div>
+              <div className="text-2xl lg:text-3xl font-serif capitalize leading-none">
+                <span className={`${highlightColor} ${isCodebase ? 'text-black' : 'text-white'} box-decoration-clone px-1`}>{logo.split(' ')[0].toLowerCase()}</span>
               </div>
-              <h2 className="text-xl lg:text-2xl font-extrabold capitalize tracking-wide">
-                <span className={`${highlightColor} text-white box-decoration-clone pb-1`}>{logo.split(' ')[1].toLowerCase()}</span>
+              <h2 className="text-xl lg:text-2xl font-extrabold capitalize tracking-wide leading-none">
+                <span className={`${highlightColor} ${isCodebase ? 'text-black' : 'text-white'} box-decoration-clone px-1`}>{logo.split(' ')[1].toLowerCase()}</span>
               </h2>
             </div>
           )}
         </div>
-        <p className="text-sm lg:text-base leading-tight font-semibold">
-          <span className={`${highlightColor} text-white box-decoration-clone`}>{description}</span>
+        <p className="text-sm lg:text-base leading-none font-semibold">
+          <span className={`${highlightColor} ${isCodebase ? 'text-black' : 'text-white'} box-decoration-clone px-1`}>{description}</span>
         </p>
       </div>
     </div>
