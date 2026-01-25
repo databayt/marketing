@@ -32,9 +32,11 @@ const Product = ({
   const imagekitEndpoint = 'https://ik.imagekit.io/databayt'
   const backgroundImageUrl = `${imagekitEndpoint}${imageSrc}?tr=orig-true`
 
-  // Determine highlight color based on product
+  // Determine highlight color based on product - Apple Liquid Glass inspired style
   const isCodebase = logo.toLowerCase().includes('codebase') || logo.toLowerCase().includes('مكتبة')
-  const highlightColor = isCodebase ? 'bg-yellow-400/80' : 'bg-black/60'
+  const highlightColor = isCodebase
+    ? 'bg-amber-400/70 backdrop-blur-md shadow-sm'
+    : 'bg-white/20 backdrop-blur-md shadow-sm'
 
   // Determine URL based on the product
   const getProductUrl = () => {
@@ -63,22 +65,22 @@ const Product = ({
       <div className='absolute bottom-0 left-0 right-0 p-4'>
         <div className={`${isRTL ? 'lg:text-right' : 'lg:text-left'}`}>
           {logo.split(' ').length === 1 ? (
-            <h2 className="text-2xl lg:text-3xl font-extrabold capitalize tracking-wide leading-none">
-              <span className={`${highlightColor} ${isCodebase ? 'text-black' : 'text-white'} box-decoration-clone px-1`}>{logo.toLowerCase()}</span>
+            <h2 className="text-2xl lg:text-3xl font-semibold capitalize tracking-wide leading-relaxed">
+              <span className={`${highlightColor} ${isCodebase ? 'text-black/80' : 'text-white/90'} box-decoration-clone px-3 py-1 rounded-lg`}>{logo.toLowerCase()}</span>
             </h2>
           ) : (
             <div>
-              <div className="text-2xl lg:text-3xl font-serif capitalize leading-none">
-                <span className={`${highlightColor} ${isCodebase ? 'text-black' : 'text-white'} box-decoration-clone px-1`}>{logo.split(' ')[0].toLowerCase()}</span>
+              <div className="text-2xl lg:text-3xl font-serif capitalize leading-relaxed">
+                <span className={`${highlightColor} ${isCodebase ? 'text-black/80' : 'text-white/90'} box-decoration-clone px-3 py-1 rounded-lg`}>{logo.split(' ')[0].toLowerCase()}</span>
               </div>
-              <h2 className="text-xl lg:text-2xl font-extrabold capitalize tracking-wide leading-none">
-                <span className={`${highlightColor} ${isCodebase ? 'text-black' : 'text-white'} box-decoration-clone px-1`}>{logo.split(' ')[1].toLowerCase()}</span>
+              <h2 className="text-xl lg:text-2xl font-semibold capitalize tracking-wide leading-relaxed">
+                <span className={`${highlightColor} ${isCodebase ? 'text-black/80' : 'text-white/90'} box-decoration-clone px-3 py-1 rounded-lg`}>{logo.split(' ')[1].toLowerCase()}</span>
               </h2>
             </div>
           )}
         </div>
-        <p className="text-sm lg:text-base leading-none font-semibold">
-          <span className={`${highlightColor} ${isCodebase ? 'text-black' : 'text-white'} box-decoration-clone px-1`}>{description}</span>
+        <p className="text-sm lg:text-base leading-relaxed font-normal">
+          <span className={`${highlightColor} ${isCodebase ? 'text-black/80' : 'text-white/90'} box-decoration-clone px-3 py-1 rounded-lg`}>{description}</span>
         </p>
       </div>
     </div>
