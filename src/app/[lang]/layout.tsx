@@ -33,7 +33,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { lang } = await params;
   const dict = await getDictionary(lang);
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3001';
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://databayt.org';
 
   return {
     title: dict.metadata.title,
@@ -48,6 +48,20 @@ export async function generateMetadata({
       description: dict.metadata.description,
       locale: lang,
       alternateLocale: lang === 'en' ? 'ar' : 'en',
+      images: [
+        {
+          url: `${baseUrl}/logo.png`,
+          width: 512,
+          height: 512,
+          alt: 'Databayt',
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary',
+      title: dict.metadata.title,
+      description: dict.metadata.description,
+      images: [`${baseUrl}/logo.png`],
     },
     alternates: {
       languages: {
