@@ -38,6 +38,11 @@ export async function generateMetadata({
   return {
     title: dict.metadata.title,
     description: dict.metadata.description,
+    icons: {
+      icon: 'https://ik.imagekit.io/databayt/marketing/site/logo.png',
+      shortcut: 'https://ik.imagekit.io/databayt/marketing/site/logo.png',
+      apple: 'https://ik.imagekit.io/databayt/marketing/site/logo.png',
+    },
     openGraph: {
       title: dict.metadata.title,
       description: dict.metadata.description,
