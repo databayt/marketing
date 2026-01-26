@@ -69,7 +69,7 @@ export default function SiteContent({ dictionary, params }: SiteContentProps) {
               description={t.marketing.content.codebase.description}
               ctaText={t.marketing.content.codebase.ctaText}
               secondaryCtaText={t.marketing.content.codebase.secondaryCtaText}
-              imageSrc="/marketing/site/ecosystem.png"
+              imageSrc="/marketing/site/codebase.jpg"
               imageAlt="Codebase automation platform preview"
             />
             <Product
