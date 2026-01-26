@@ -75,15 +75,15 @@ const Product = ({
           {/* Glass effect layer */}
           <div className="liquid-glass-effect" />
           {/* Tint layer */}
-          <div className={isCodebase ? 'liquid-glass-tint-amber' : 'liquid-glass-tint'} />
+          <div className="liquid-glass-tint" />
           {/* Shine layer */}
           <div className="liquid-glass-shine" />
           {/* Content */}
           <div className={`liquid-glass-content ${isRTL ? 'lg:text-right' : 'lg:text-left'}`}>
-            <h2 className={`liquid-glass-title ${isCodebase ? 'liquid-glass-title-amber' : ''}`}>
+            <h2 className="liquid-glass-title">
               {logo.toLowerCase()}
             </h2>
-            <p className={`liquid-glass-description ${isCodebase ? 'liquid-glass-description-amber' : ''}`}>
+            <p className="liquid-glass-description">
               {description}
             </p>
           </div>
