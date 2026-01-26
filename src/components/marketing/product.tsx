@@ -59,6 +59,10 @@ const Product = ({
       }}
       onClick={handleClick}
     >
+      {/* Dark overlay for codebase product */}
+      {isCodebase && (
+        <div className="absolute inset-0 bg-black/30" />
+      )}
       {/* Liquid Glass text overlay - reduced padding from edges */}
       <div className="absolute bottom-2 left-2 right-2">
         <div className="liquid-glass-wrapper">
