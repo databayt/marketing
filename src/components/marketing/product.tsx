@@ -69,8 +69,8 @@ const Product = ({
         </defs>
       </svg>
 
-      {/* Liquid Glass text overlay - full width */}
-      <div className="absolute bottom-0 left-0 right-0">
+      {/* Liquid Glass text overlay - with padding from edges */}
+      <div className="absolute bottom-4 left-4 right-4">
         <div className="liquid-glass-wrapper">
           {/* Glass effect layer */}
           <div className="liquid-glass-effect" />
