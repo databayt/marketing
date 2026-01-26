@@ -59,26 +59,9 @@ const Product = ({
       }}
       onClick={handleClick}
     >
-      {/* SVG Filter for glass distortion */}
-      <svg style={{ position: 'absolute', width: 0, height: 0 }}>
-        <defs>
-          <filter id="glass-distortion">
-            <feTurbulence type="fractalNoise" baseFrequency="0.01" numOctaves="3" result="noise" />
-            <feDisplacementMap in="SourceGraphic" in2="noise" scale="2" xChannelSelector="R" yChannelSelector="G" />
-          </filter>
-        </defs>
-      </svg>
-
-      {/* Liquid Glass text overlay - with padding from edges */}
-      <div className="absolute bottom-4 left-4 right-4">
+      {/* Liquid Glass text overlay - reduced padding from edges */}
+      <div className="absolute bottom-2 left-2 right-2">
         <div className="liquid-glass-wrapper">
-          {/* Glass effect layer */}
-          <div className="liquid-glass-effect" />
-          {/* Tint layer */}
-          <div className="liquid-glass-tint" />
-          {/* Shine layer */}
-          <div className="liquid-glass-shine" />
-          {/* Content */}
           <div className={`liquid-glass-content ${isRTL ? 'lg:text-right' : 'lg:text-left'}`}>
             <h2 className="liquid-glass-title">
               {logo.toLowerCase()}
