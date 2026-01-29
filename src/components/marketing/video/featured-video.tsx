@@ -16,6 +16,7 @@ interface FeaturedProjectsProps {
 const FeaturedProjects = memo(({ projectsSection }: FeaturedProjectsProps) => {
   const { locale } = useTranslations()
   const [activeTab, setActiveTab] = useState('featured')
+  const [showAll, setShowAll] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
 
@@ -77,6 +78,15 @@ const FeaturedProjects = memo(({ projectsSection }: FeaturedProjectsProps) => {
       ? allProjects.filter(project => project.featured !== false)
       : allProjects.filter(project => project.category === activeTab)
   }, [activeTab, allProjects])
+
+  // Displayed projects: show all when showAll is true, otherwise filtered
+  const displayedProjects = showAll ? allProjects : filteredProjects
+
+  // Handle tab click: reset showAll and switch tab
+  const handleTabClick = (tabId: string) => {
+    setShowAll(false)
+    setActiveTab(tabId)
+  }
   
   return (
     <div>
@@ -86,11 +96,11 @@ const FeaturedProjects = memo(({ projectsSection }: FeaturedProjectsProps) => {
           {tabs.map((tab) => (
             <button
               key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
+              onClick={() => handleTabClick(tab.id)}
               className={cn(
                 "text-sm font-medium transition-colors duration-200 pb-2 border-b-2",
-                activeTab === tab.id 
-                  ? "text-foreground border-foreground" 
+                activeTab === tab.id && !showAll
+                  ? "text-foreground border-foreground"
                   : "text-muted-foreground border-transparent hover:text-foreground"
               )}
             >
@@ -105,9 +115,28 @@ const FeaturedProjects = memo(({ projectsSection }: FeaturedProjectsProps) => {
         {isLoading ? (
           <ProjectGallerySkeleton />
         ) : (
-          <HoverEffect items={filteredProjects} />
+          <HoverEffect
+            items={displayedProjects}
+            websiteLabel={projectsSection?.websiteButton}
+            mobileLabel={projectsSection?.mobileButton}
+          />
         )}
       </div>
+
+      {/* More Button */}
+      {!isLoading && !showAll && (
+        <div className="flex justify-center mt-8">
+          <button
+            onClick={() => setShowAll(true)}
+            className={cn(
+              "text-sm font-medium transition-colors duration-200 pb-2 border-b-2",
+              "text-muted-foreground border-transparent hover:text-foreground hover:border-foreground"
+            )}
+          >
+            {projectsSection?.more || 'More'}
+          </button>
+        </div>
+      )}
     </div>
   )
 })

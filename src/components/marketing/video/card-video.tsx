@@ -2,15 +2,16 @@
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { OptimizedImage } from '@/components/ui/optimized-image';
-import { VideoIcon } from "lucide-react";
 import { useTheme } from "next-themes";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState, memo, useMemo } from "react";
+import '@/styles/liquid-glass.css';
 
 interface ProjectItem {
     title: string;
     description: string;
     link: string;
+    mobileLink?: string;
     image: string;
     imageDark?: string;
     imageLight?: string;
@@ -21,9 +22,11 @@ interface ProjectItem {
 interface HoverEffectProps {
     items: ProjectItem[];
     className?: string;
+    websiteLabel?: string;
+    mobileLabel?: string;
 }
 
-export const HoverEffect = memo(({ items, className }: HoverEffectProps) => {
+export const HoverEffect = memo(({ items, className, websiteLabel = "Website", mobileLabel = "Mobile" }: HoverEffectProps) => {
     const { resolvedTheme } = useTheme();
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
@@ -43,52 +46,96 @@ export const HoverEffect = memo(({ items, className }: HoverEffectProps) => {
                 className
             )}
         >
-            {items.map((item, idx) => (
-                <Link
-                    href={item?.link.startsWith('http') ? item.link : `/project/${item?.link}`}
-                    target={item?.link.startsWith('http') ? '_blank' : undefined}
-                    rel={item?.link.startsWith('http') ? 'noopener noreferrer' : undefined}
-                    key={item?.link}
-                    className="relative group block p-2 h-full w-full"
-                    onMouseEnter={() => setHoveredIndex(idx)}
-                    onMouseLeave={() => setHoveredIndex(null)}
-                >
-                    <AnimatePresence>
-                        {hoveredIndex === idx && (
-                            <motion.span
-                                className="absolute inset-0 h-full w-full bg-neutral-200 dark:bg-slate-800/[0.8] block rounded-md"
-                                layoutId="hoverBackground"
-                                initial={{ opacity: 0 }}
-                                animate={{
-                                    opacity: 1,
-                                    transition: { duration: 0.15 },
-                                }}
-                                exit={{
-                                    opacity: 0,
-                                    transition: { duration: 0.15, delay: 0.2 },
-                                }}
-                            />
-                        )}
-                    </AnimatePresence>
-                    <Card>
-                        <div className="h-64 md:h-48 relative w-full overflow-hidden rounded-md">
-                            
-                            <OptimizedImage
-                                src={getImageSrc(item)}
-                                alt={item.title}
-                                fill
-                                className="object-cover w-full h-full"
-                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                placeholder="blur"
-                                priority={idx < 3}
-                                style={{ objectFit: 'cover', objectPosition: 'center' }}
-                            />
+            {items.map((item, idx) => {
+                const hasDualLinks = Boolean(item.mobileLink);
+
+                const cardContent = (
+                    <>
+                        <AnimatePresence>
+                            {hoveredIndex === idx && (
+                                <motion.span
+                                    className="absolute inset-0 h-full w-full bg-neutral-200 dark:bg-slate-800/[0.8] block rounded-md"
+                                    layoutId="hoverBackground"
+                                    initial={{ opacity: 0 }}
+                                    animate={{
+                                        opacity: 1,
+                                        transition: { duration: 0.15 },
+                                    }}
+                                    exit={{
+                                        opacity: 0,
+                                        transition: { duration: 0.15, delay: 0.2 },
+                                    }}
+                                />
+                            )}
+                        </AnimatePresence>
+                        <Card>
+                            <div className="relative w-full overflow-hidden rounded-md h-64 md:h-48">
+                                <OptimizedImage
+                                    src={getImageSrc(item)}
+                                    alt={item.title}
+                                    fill
+                                    className="object-cover w-full h-full"
+                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                    placeholder="blur"
+                                    priority={idx < 3}
+                                    style={{ objectFit: 'cover', objectPosition: 'center' }}
+                                />
+                                {hasDualLinks && (
+                                    <div className="absolute bottom-3 left-3 right-3 flex gap-3 z-10">
+                                        <a
+                                            href={item.link}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="liquid-glass-button flex-1 text-center"
+                                            onClick={(e) => e.stopPropagation()}
+                                        >
+                                            {websiteLabel}
+                                        </a>
+                                        <a
+                                            href={item.mobileLink}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="liquid-glass-button flex-1 text-center"
+                                            onClick={(e) => e.stopPropagation()}
+                                        >
+                                            {mobileLabel}
+                                        </a>
+                                    </div>
+                                )}
+                            </div>
+                            <CardTitle>{item.title}</CardTitle>
+                            <CardDescription>{item.description}</CardDescription>
+                        </Card>
+                    </>
+                );
+
+                if (hasDualLinks) {
+                    return (
+                        <div
+                            key={item.link}
+                            className="relative group block p-2 h-full w-full"
+                            onMouseEnter={() => setHoveredIndex(idx)}
+                            onMouseLeave={() => setHoveredIndex(null)}
+                        >
+                            {cardContent}
                         </div>
-                        <CardTitle>{item.title}</CardTitle>
-                        <CardDescription>{item.description}</CardDescription>
-                    </Card>
-                </Link>
-            ))}
+                    );
+                }
+
+                return (
+                    <Link
+                        href={item?.link.startsWith('http') ? item.link : `/project/${item?.link}`}
+                        target={item?.link.startsWith('http') ? '_blank' : undefined}
+                        rel={item?.link.startsWith('http') ? 'noopener noreferrer' : undefined}
+                        key={item?.link}
+                        className="relative group block p-2 h-full w-full"
+                        onMouseEnter={() => setHoveredIndex(idx)}
+                        onMouseLeave={() => setHoveredIndex(null)}
+                    >
+                        {cardContent}
+                    </Link>
+                );
+            })}
         </div>
     );
 });

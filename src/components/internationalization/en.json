@@ -168,7 +168,10 @@
         "health": "Health",
         "ecommerce": "E-comm",
         "states": "States"
-      }
+      },
+      "more": "More",
+      "websiteButton": "Website",
+      "mobileButton": "Mobile"
     },
     "projects": {
       "mkan": {
@@ -227,7 +230,7 @@
         "category": "Company"
       },
       "domestic": {
-        "title": "Domestic",
+        "title": "Tadbeer",
         "description": "Domestic worker services, hiring, contracts, and management",
         "category": "Company"
       }

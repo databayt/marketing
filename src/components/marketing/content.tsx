@@ -93,10 +93,10 @@ export default function SiteContent({ dictionary, params }: SiteContentProps) {
                 {dictionary.marketing?.projectsSection?.title || "Project"}
               </h2>
             </div>
-            <FeaturedProjects 
-              dictionary={dictionary.marketing.projects} 
+            <FeaturedProjects
+              dictionary={dictionary.marketing.projects}
               projectsSection={dictionary.marketing.projectsSection}
-              params={params} 
+              params={params}
             />
           </div>
         </div>

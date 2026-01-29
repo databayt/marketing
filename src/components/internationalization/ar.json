@@ -168,7 +168,10 @@
         "health": "صحة",
         "ecommerce": "تجارة",
         "states": "حكومي"
-      }
+      },
+      "more": "المزيد",
+      "websiteButton": "الموقع",
+      "mobileButton": "التطبيق"
     },
     "projects": {
       "mkan": {
@@ -227,7 +230,7 @@
         "category": "شركة"
       },
       "domestic": {
-        "title": "دومستك",
+        "title": "تدبير",
         "description": "خدمات العمالة المنزلية، التوظيف، العقود، والإدارة",
         "category": "شركة"
       }

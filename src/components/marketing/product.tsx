@@ -70,7 +70,7 @@ const Product = ({
             <h2 className="liquid-glass-title">
               {logo.toLowerCase()}
             </h2>
-            <p className="liquid-glass-description">
+            <p className={`liquid-glass-description ${isRTL ? 'pl-4' : 'pr-4'}`}>
               {description}
             </p>
           </div>
