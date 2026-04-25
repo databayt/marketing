@@ -10,7 +10,7 @@ export default function PricingFAQs() {
     <section className="scroll-py-16 py-16 md:scroll-py-32 md:py-32">
       <div className="flex w-full max-w-6xl">
         <div className="grid gap-y-12 gap-x-32 px-2 lg:[grid-template-columns:1fr_auto]">
-          <div className="text-center lg:text-left">
+          <div className="text-center lg:text-start">
             <h2 className="mb-4">
               {t.marketing.pricing.faqs.title.split(' ').map((word, index) => (
                 <span key={index}>

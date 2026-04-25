@@ -12,10 +12,10 @@ function MainLayoutCard({ title, description, rightSideImageUrl }: IProps) {
   return (
     <section className="flex justify-between gap-large md:gap-4 items-center mt-[5rem] flex-col md:flex-row">
       <div>
-        <div className="leading-[4rem] md:leading-large text-white text-medium md:text-large font-[600] text-center md:text-left">
+        <div className="leading-[4rem] md:leading-large text-white text-medium md:text-large font-[600] text-center md:text-start">
           {title()}
         </div>
-        <p className="text-normal text-grey mt-4 mb-[4.5rem] text-center md:text-left">
+        <p className="text-normal text-grey mt-4 mb-[4.5rem] text-center md:text-start">
           {description}
         </p>
         <div className="flex justify-center md:justify-start">

@@ -129,8 +129,8 @@ export function MobileComparePlans() {
                   {comparePlans.map((row: PlansRow, index: number) => (
                     <AccordionItem key={index} value={`item-${index}`} className="border-b border-border/10">
                       <AccordionTrigger className="py-3 text-sm hover:no-underline">
-                        <div className="flex items-center justify-between w-full pr-2">
-                          <span className="text-left">{getTranslatedFeature(row.feature)}</span>
+                        <div className="flex items-center justify-between w-full pe-2">
+                          <span className="text-start">{getTranslatedFeature(row.feature)}</span>
                           <div className="flex items-center gap-2">
                             {renderCell(row[planName])}
                           </div>
