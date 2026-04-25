@@ -13,6 +13,7 @@ import { cn } from "@/lib/utils";
 import { Icons } from "@/components/icons";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useConfig } from "@/hooks/use-config";
+import { useTranslations } from "@/lib/use-translations";
 // Make sure Customizer doesn't cause unnecessary re-renders
 import CustomizerUI from "./cutomizer";
 const MemoizedCustomizer = React.memo(CustomizerUI);
@@ -48,6 +49,7 @@ interface ThemeSelectorProps {
 
 const ThemeSelector: React.FC<ThemeSelectorProps> = () => {
   const [config] = useConfig();
+  const { t } = useTranslations();
 
   const getPrimaryButtonStyle = React.useMemo<StyleProps>(
     () => ({
@@ -129,7 +131,7 @@ const ThemeSelector: React.FC<ThemeSelectorProps> = () => {
               </div>
               <div className="relative flex justify-center text-xs uppercase">
                 <span className="bg-card px-2 text-muted-foreground">
-                  Or continue with
+                  {t.auth.orContinueWith}
                 </span>
               </div>
             </div>
@@ -137,7 +139,7 @@ const ThemeSelector: React.FC<ThemeSelectorProps> = () => {
               <Input
                 id="email"
                 type="email"
-                placeholder="Email"
+                placeholder={t.auth.email}
                 className={cn(
                   "appearance-none", // Remove browser default styling
                   "border border-gray-300", // Default border

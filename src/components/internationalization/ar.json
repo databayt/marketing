@@ -59,7 +59,18 @@
     "enterEmail": "أدخل بريدك الإلكتروني",
     "enterPassword": "أدخل كلمة المرور",
     "welcomeBack": "مرحباً بعودتك",
-    "createNewAccount": "إنشاء حساب جديد"
+    "createNewAccount": "إنشاء حساب جديد",
+    "name": "الاسم",
+    "newPassword": "كلمة مرور جديدة",
+    "enterNewPassword": "أدخل كلمة مرور جديدة",
+    "twoFactorCode": "رمز التحقق الثنائي",
+    "orContinueWith": "أو تابع باستخدام",
+    "backToLogin": "العودة لتسجيل الدخول",
+    "join": "انضم",
+    "errors": {
+      "oauthAccountNotLinked": "البريد الإلكتروني مستخدم بالفعل مع مزود مختلف!",
+      "somethingWentWrong": "حدث خطأ ما"
+    }
   },
   "marketing": {
     "hero": {
