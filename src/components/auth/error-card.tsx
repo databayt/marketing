@@ -1,5 +1,5 @@
 'use client';
-import { ExclamationTriangleIcon } from "@radix-ui/react-icons";
+import { AlertTriangle } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 
 import { CardWrapper } from "@/components/auth/card-wrapper";
@@ -34,7 +34,7 @@ export const ErrorCard = () => {
     >
       <div className="w-full flex flex-col items-center gap-4">
         <div className="bg-destructive/15 p-3 rounded-md flex items-center gap-x-2 text-sm text-destructive">
-          <ExclamationTriangleIcon className="h-4 w-4" />
+          <AlertTriangle className="h-4 w-4" />
           <p>{errorMessage}</p>
         </div>
         {error && (
