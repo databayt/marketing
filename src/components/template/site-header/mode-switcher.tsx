@@ -3,6 +3,7 @@
 import * as React from "react"
 import { useTheme } from "next-themes"
 import { cn } from "@/lib/utils"
+import { useTranslations } from "@/lib/use-translations"
 
 interface ModeSwitcherProps {
   className?: string
@@ -10,6 +11,7 @@ interface ModeSwitcherProps {
 
 export function ModeSwitcher({ className }: ModeSwitcherProps) {
   const { setTheme, resolvedTheme } = useTheme()
+  const { t } = useTranslations()
 
   const toggleTheme = React.useCallback(() => {
     setTheme(resolvedTheme === "dark" ? "light" : "dark")
@@ -22,7 +24,7 @@ export function ModeSwitcher({ className }: ModeSwitcherProps) {
         "flex items-center justify-center size-8 rounded-md hover:bg-accent hover:text-foreground transition-colors cursor-pointer",
         className
       )}
-      title="Toggle theme"
+      title={t.common.toggleTheme}
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -43,7 +45,7 @@ export function ModeSwitcher({ className }: ModeSwitcherProps) {
         <path d="M12 14.3l7.37 -7.37" />
         <path d="M12 19.6l8.85 -8.85" />
       </svg>
-      <span className="sr-only">Toggle theme</span>
+      <span className="sr-only">{t.common.toggleTheme}</span>
     </button>
   )
 }

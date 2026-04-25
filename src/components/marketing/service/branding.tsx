@@ -13,7 +13,7 @@ export default function Branding() {
       <div className="flex items-center justify-center gap-3 mb-4">
         <OptimizedImage
           src="/marketing/site/branding.png"
-          alt="Branding Icon"
+          alt={t.marketing.services.branding.title}
           width={32}
           height={32}
           className="w-8 h-8"
@@ -37,7 +37,7 @@ export default function Branding() {
             <div>
               <OptimizedImage
                 src="/marketing/site/2.jpg"
-                alt="Branding Example 2"
+                alt=""
                 width={600}
                 height={600}
                 className="w-full h-full object-cover"
@@ -48,7 +48,7 @@ export default function Branding() {
             <div>
               <OptimizedImage
                 src="/marketing/site/1.jpg"
-                alt="Branding Example 1"
+                alt=""
                 width={600}
                 height={600}
                 className="w-full h-full object-cover"    
@@ -59,7 +59,7 @@ export default function Branding() {
             <div>
               <OptimizedImage
                 src="/marketing/site/3.jpg"
-                alt="Branding Example 3"
+                alt=""
                 width={600}
                 height={600}
                 className="w-full h-full object-cover"
@@ -70,7 +70,7 @@ export default function Branding() {
             <div>
               <OptimizedImage
                 src="/marketing/site/4.jpg"
-                alt="Branding Example 4"
+                alt=""
                 width={600}
                 height={600}
                 className="w-full h-full object-cover"

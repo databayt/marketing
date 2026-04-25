@@ -6,7 +6,9 @@
   "chatbot": {
     "title": "مساعد المحادثة",
     "startMessage": "ابدأ محادثة...",
-    "thinking": "أفكر..."
+    "thinking": "أفكر...",
+    "sendMessage": "إرسال الرسالة",
+    "voiceInput": "إدخال صوتي"
   },
   "common": {
     "loading": "جاري التحميل...",
@@ -37,7 +39,8 @@
     "dark": "داكن",
     "system": "النظام",
     "platform": "منصة",
-    "brandName": "داتابيت"
+    "brandName": "داتابيت",
+    "toggleTheme": "تبديل المظهر"
   },
   "navigation": {
     "menu": "القائمة",

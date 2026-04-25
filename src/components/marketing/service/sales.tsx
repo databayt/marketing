@@ -27,7 +27,7 @@ export function Sales() {
             >
               <OptimizedImage
                 src="/marketing/site/b.jpg"
-                alt="Gift box icon"
+                alt=""
                 width={20}
                 height={20}
                 className="rounded-sm"
@@ -41,7 +41,7 @@ export function Sales() {
             <div className="relative w-full lg:pl-24">
               <OptimizedImage
                 src="/marketing/site/a.png"
-                alt="Sales representative"
+                alt={t.marketing.services.sales.title}
                 width={200}
                 height={200}
                 className="rounded-lg"

@@ -14,7 +14,7 @@ export default function Design() {
       <div className="flex items-center justify-center gap-3 mb-8">
         <OptimizedImage
           src="/marketing/site/design.png"
-          alt="Design Icon"
+          alt={t.marketing.services.design.title}
           width={32}
           height={32}
           className="w-8 h-8"
@@ -61,7 +61,7 @@ export default function Design() {
             <div>
               <OptimizedImage
                 src="/marketing/site/d.jpg"
-                alt="Design Image 2"
+                alt=""
                 width={800}
                 height={600}
                 className="w-full h-full object-cover"
@@ -72,7 +72,7 @@ export default function Design() {
             <div>
               <OptimizedImage
                 src="/marketing/site/e.jpg"
-                alt="Design Image 3"
+                alt=""
                 width={800}
                 height={600}
                 className="w-full h-full object-cover"
@@ -83,7 +83,7 @@ export default function Design() {
             <div>
               <OptimizedImage
                 src="/marketing/site/f.jpg"
-                alt="Design Image 4"
+                alt=""
                 width={800}
                 height={600}
                 className="w-full h-full object-cover"
