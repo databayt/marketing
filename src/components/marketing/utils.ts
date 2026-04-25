@@ -5,13 +5,18 @@ export function getCurrentDomain(): string {
   return '';
 }
 
-export function formatDate(date: Date | string): string {
+export function formatDate(date: Date | string, locale: string = 'en'): string {
   const d = new Date(date);
-  return d.toLocaleDateString('en-US', {
+  return d.toLocaleDateString(locale, {
     year: 'numeric',
     month: 'long',
     day: 'numeric'
   });
+}
+
+export function formatCurrency(amount: number, locale: string = 'en'): string {
+  const currency = locale === 'ar' ? 'SAR' : 'USD';
+  return new Intl.NumberFormat(locale, { style: 'currency', currency }).format(amount);
 }
 
 export function truncateText(text: string, maxLength: number): string {
