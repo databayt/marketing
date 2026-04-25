@@ -26,7 +26,7 @@ const CustomizerUI = () => {
       className="flex flex-col space-y-4 md:space-y-6 -mt-14"
     >
       <div className="flex items-start pt-4 md:pt-0">
-        <div className="space-y-1 pr-2">
+        <div className="space-y-1 pe-2">
           <div className="md:hidden font-semibold leading-none tracking-tight">
             Theme Customizer
           </div>
@@ -37,7 +37,7 @@ const CustomizerUI = () => {
         <Button
           variant="ghost"
           size="icon"
-          className="ml-auto rounded-[0.5rem] md:hidden"
+          className="ms-auto rounded-[0.5rem] md:hidden"
           onClick={() => {
             setConfig({
               ...config,
@@ -88,7 +88,7 @@ const CustomizerUI = () => {
                   >
                     <span
                       className={cn(
-                        "mr-1 flex h-5 w-5 shrink-0 -translate-x-1 items-center justify-center rounded-full"
+                        "me-1 flex h-5 w-5 shrink-0 -translate-x-1 items-center justify-center rounded-full"
                       )}
                       style={{
                         backgroundColor: `hsl(${
@@ -145,7 +145,7 @@ const CustomizerUI = () => {
                   onClick={() => setMode("light")}
                   className={cn(mode === "light" && "border-2 border-primary")}
                 >
-                  <Sun className="mr-1 -translate-x-1" />
+                  <Sun className="me-1 -translate-x-1" />
                   Light
                 </Button>
                 <Button
@@ -154,7 +154,7 @@ const CustomizerUI = () => {
                   onClick={() => setMode("dark")}
                   className={cn(mode === "dark" && "border-2 border-primary")}
                 >
-                  <Moon className="mr-1 -translate-x-1" />
+                  <Moon className="me-1 -translate-x-1" />
                   Dark
                 </Button>
               </>

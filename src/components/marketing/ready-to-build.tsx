@@ -30,7 +30,7 @@ function ReadyToBuildSection() {
     
       </div>
       <div>
-        <OptimizedImage src="/marketing/site/build.png" alt="security" width={500} height={500} className="pr-5" />
+        <OptimizedImage src="/marketing/site/build.png" alt="security" width={500} height={500} className="pe-5" />
       </div>
     </section>
   );
