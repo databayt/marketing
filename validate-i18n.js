@@ -14,11 +14,6 @@ const checks = [
     required: true
   },
   {
-    name: 'V2.0 Middleware',
-    path: 'src/components/internationalization/middleware.ts',
-    required: true
-  },
-  {
     name: 'V2.0 Dictionaries',
     path: 'src/components/internationalization/dictionaries.ts',
     required: true
@@ -44,8 +39,8 @@ const checks = [
     required: true
   },
   {
-    name: 'Root Middleware',
-    path: 'middleware.ts',
+    name: 'Root Proxy (Next 16)',
+    path: 'proxy.ts',
     required: true
   },
   {
@@ -87,16 +82,18 @@ try {
   allPassed = false;
 }
 
-// Check middleware content
+// Check proxy content (Next 16 replaces middleware.ts)
 try {
-  const middlewarePath = path.join(process.cwd(), 'middleware.ts');
-  const middlewareContent = fs.readFileSync(middlewarePath, 'utf8');
-  
-  const usesNewStructure = middlewareContent.includes('./src/components/internationalization/middleware');
-  console.log(`${usesNewStructure ? '✅' : '❌'} Root middleware uses new structure`);
-  
+  const proxyPath = path.join(process.cwd(), 'proxy.ts');
+  const proxyContent = fs.readFileSync(proxyPath, 'utf8');
+
+  const importsConfig = proxyContent.includes("./src/components/internationalization/config");
+  const exportsProxy = /export\s+function\s+proxy\b/.test(proxyContent);
+  console.log(`${importsConfig ? '✅' : '❌'} proxy.ts imports from internationalization/config`);
+  console.log(`${exportsProxy ? '✅' : '❌'} proxy.ts exports a named proxy() function`);
+
 } catch (error) {
-  console.log('❌ Could not validate middleware content');
+  console.log('❌ Could not validate proxy content');
   allPassed = false;
 }
 
