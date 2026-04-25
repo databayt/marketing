@@ -49,7 +49,7 @@ function DeleteAccountModal({
       <div className="flex flex-col items-center justify-center space-y-3 border-b p-4 pt-8 sm:px-16">
         <UserAvatar
           user={{
-            username: (session?.user as any)?.username ?? session?.user?.name ?? null,
+            name: session?.user?.name ?? null,
             image: session?.user?.image || null,
           }}
         />
