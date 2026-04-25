@@ -2,12 +2,7 @@ import React from 'react'
 // import { auth } from "@/auth"
 import SiteHeaderClient from './client'
 
-interface SiteHeaderProps {
-  onChatClick?: () => void;
-}
-
-export default function SiteHeader({ onChatClick }: SiteHeaderProps) {
+export default function SiteHeader() {
   // const session = await auth();
-  return <SiteHeaderClient isAuthenticated={false} onChatClick={onChatClick} />
+  return <SiteHeaderClient isAuthenticated={false} />
 }
-  
