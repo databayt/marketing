@@ -28,14 +28,14 @@ export function LanguageSwitcher() {
     router.push(href);
   };
 
-  const currentLanguage = localeConfig[locale as Locale];
+  const currentLanguage = localeConfig[locale];
 
   return (
     <Select value={locale} onValueChange={handleLanguageChange}>
       <SelectTrigger className="w-auto min-w-[120px] gap-2">
         <Languages className="h-4 w-4" />
         <SelectValue>
-          {currentLanguage?.nativeName || currentLanguage?.name}
+          {currentLanguage?.nativeName}
         </SelectValue>
       </SelectTrigger>
       <SelectContent>
