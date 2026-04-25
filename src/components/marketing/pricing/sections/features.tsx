@@ -20,7 +20,8 @@ export default function Features() {
 
           <div className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {features.map((feature) => {
-              const Icon = Icons[feature.icon || "nextjs"];
+              const iconKey = (feature.icon || "nextjs") as keyof typeof Icons;
+              const Icon = Icons[iconKey];
               return (
                 <div
                   className="group relative overflow-hidden rounded-2xl border bg-background p-5 md:p-8"

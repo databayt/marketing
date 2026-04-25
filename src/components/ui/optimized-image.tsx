@@ -15,6 +15,7 @@ interface OptimizedImageProps extends ComponentProps<'img'> {
   priority?: boolean;
   placeholder?: 'blur' | 'empty';
   blurDataURL?: string;
+  quality?: number;
 }
 
 export function OptimizedImage({
