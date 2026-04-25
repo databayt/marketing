@@ -7,10 +7,9 @@ import MobileHeader from './mobile-header'
 
 interface SiteHeaderProps {
   isAuthenticated: boolean
-  onChatClick?: () => void
 }
 
-export default function SiteHeaderClient({ isAuthenticated, onChatClick }: SiteHeaderProps) {
+export default function SiteHeaderClient({ isAuthenticated }: SiteHeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false)
 
   useEffect(() => {
@@ -43,7 +42,7 @@ export default function SiteHeaderClient({ isAuthenticated, onChatClick }: SiteH
           <div className="max-w-7xl mx-auto px-6">
             <div className="flex h-12 items-center justify-center gap-4">
               <MainNav />
-              <RightActions isAuthenticated={isAuthenticated} onChatClick={onChatClick} />
+              <RightActions isAuthenticated={isAuthenticated} />
             </div>
           </div>
         </div>
