@@ -25,11 +25,13 @@ import { ResetSchema } from "../validation";
 import { reset } from "./action";
 import { FormError } from "../error/form-error";
 import { FormSuccess } from "../form-success";
+import { useTranslations } from "@/lib/use-translations";
 
 export const ResetForm = ({
   className,
   ...props
 }: React.ComponentPropsWithoutRef<"div">) => {
+  const { t } = useTranslations();
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
   const [isPending, startTransition] = useTransition();
@@ -71,9 +73,8 @@ export const ResetForm = ({
                         <Input
                           {...field}
                           disabled={isPending}
-                          placeholder="Email"
+                          placeholder={t.auth.email}
                           type="email"
-                          
                         />
                       </FormControl>
                       <FormMessage />
@@ -84,18 +85,18 @@ export const ResetForm = ({
                 <FormError message={error} />
                 <FormSuccess message={success} />
 
-                <Button 
-                  disabled={isPending} 
-                  type="submit" 
+                <Button
+                  disabled={isPending}
+                  type="submit"
                   className="w-full h-11 text-base"
                 >
-                  Reset password
+                  {t.auth.resetPassword}
                 </Button>
               </div>
 
               <div className="text-center text-sm">
                 <Link href="/login" className="hover:underline underline-offset-4">
-                  Back to login
+                  {t.auth.backToLogin}
                 </Link>
               </div>
             </form>

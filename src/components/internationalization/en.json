@@ -59,7 +59,18 @@
     "enterEmail": "Enter your email",
     "enterPassword": "Enter your password",
     "welcomeBack": "Welcome back",
-    "createNewAccount": "Create a new account"
+    "createNewAccount": "Create a new account",
+    "name": "Name",
+    "newPassword": "New Password",
+    "enterNewPassword": "Enter a new password",
+    "twoFactorCode": "Two Factor Code",
+    "orContinueWith": "Or continue with",
+    "backToLogin": "Back to login",
+    "join": "Join",
+    "errors": {
+      "oauthAccountNotLinked": "Email already in use with different provider!",
+      "somethingWentWrong": "Something went wrong"
+    }
   },
   "marketing": {
     "hero": {

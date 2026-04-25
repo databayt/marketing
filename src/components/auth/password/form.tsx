@@ -26,11 +26,13 @@ import { NewPasswordSchema } from "../validation";
 import { newPassword } from "./action";
 import { FormError } from "../error/form-error";
 import { FormSuccess } from "../form-success";
+import { useTranslations } from "@/lib/use-translations";
 
 export const NewPasswordForm = ({
   className,
   ...props
 }: React.ComponentPropsWithoutRef<"div">) => {
+  const { t } = useTranslations();
   const searchParams = useSearchParams();
   const token = searchParams.get("token");
 
@@ -62,7 +64,7 @@ export const NewPasswordForm = ({
     <div className={cn("flex flex-col gap-6 min-w-[200px] md:min-w-[350px]", className)} {...props}>
       <Card className="border-none shadow-none bg-background">
         <CardHeader className="text-center">
-          <h1 className="text-xl font-semibold">Enter a new password</h1>
+          <h1 className="text-xl font-semibold">{t.auth.enterNewPassword}</h1>
         </CardHeader>
         <CardContent>
           <Form {...form}>
@@ -77,7 +79,7 @@ export const NewPasswordForm = ({
                         <Input
                           {...field}
                           disabled={isPending}
-                          placeholder="New Password"
+                          placeholder={t.auth.newPassword}
                           type="password"
                         />
                       </FormControl>
@@ -89,18 +91,18 @@ export const NewPasswordForm = ({
                 <FormError message={error} />
                 <FormSuccess message={success} />
 
-                <Button 
-                  disabled={isPending} 
-                  type="submit" 
+                <Button
+                  disabled={isPending}
+                  type="submit"
                   className="w-full h-11 text-base"
                 >
-                  Reset password
+                  {t.auth.resetPassword}
                 </Button>
               </div>
 
               <div className="text-center text-sm">
                 <Link href="/login" className="hover:underline underline-offset-4">
-                  Back to login
+                  {t.auth.backToLogin}
                 </Link>
               </div>
             </form>
