@@ -9,8 +9,8 @@ import { ImageKitProvider } from "@/components/ui/imagekit-provider";
 import { Toaster } from "sonner";
 import { getDictionary } from "@/components/internationalization/dictionaries";
 import { type Locale, localeConfig } from "@/components/internationalization/config";
-// import { SessionProvider } from "next-auth/react";
-// import { auth } from "@/auth";
+import { SessionProvider } from "next-auth/react";
+import { auth } from "@/auth";
 
 // Configure Rubik font for Arabic
 const rubik = Rubik({
@@ -80,11 +80,10 @@ export default async function LocaleLayout({
   children: React.ReactNode;
   params: Promise<{ lang: Locale }>;
 }>) {
-  // const session = await auth();
-  const { lang } = await params;
+  const [{ lang }, session] = await Promise.all([params, auth()]);
   const config = localeConfig[lang];
   const isRTL = config.dir === 'rtl';
-  
+
   return (
     <html lang={lang} dir={config.dir}>
       <body
@@ -95,19 +94,16 @@ export default async function LocaleLayout({
           rubik.variable
         )}
       >
-        {/* <SessionProvider session={session}> */}
-         
-            <ThemeProvider>
-              <ImageKitProvider>
-                <div className="layout-container">
-                  <Toaster position={isRTL ? "bottom-left" : "bottom-right"} />
-                  
-                  {children}
-                </div>
-              </ImageKitProvider>
-            </ThemeProvider>
-          
-        {/* </SessionProvider> */}
+        <SessionProvider session={session}>
+          <ThemeProvider>
+            <ImageKitProvider>
+              <div className="layout-container">
+                <Toaster position={isRTL ? "bottom-left" : "bottom-right"} />
+                {children}
+              </div>
+            </ImageKitProvider>
+          </ThemeProvider>
+        </SessionProvider>
       </body>
     </html>
   );
