@@ -1,37 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Databayt Marketing
 
-## Getting Started
+Next.js marketing site for Databayt — landing page, services, pricing, AI chatbot, and Stripe-powered subscriptions. Bilingual (English / Arabic) with RTL support.
 
-First, run the development server:
+## Stack
+
+- **Framework**: Next.js 16 (App Router, Turbopack)
+- **Runtime**: React 19, TypeScript 5
+- **Database**: Prisma 7 + Neon serverless PostgreSQL
+- **Auth**: NextAuth v5 (Google, Facebook, Credentials, 2FA)
+- **UI**: shadcn/ui (new-york), Radix UI primitives, Tailwind CSS 4, lucide-react, framer-motion
+- **Forms**: React Hook Form + Zod
+- **Payments**: Stripe
+- **Email**: Resend
+- **CDN**: ImageKit
+- **AI**: Groq + ai SDK
+
+## Develop
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm install
+pnpm dev          # http://localhost:3000
+pnpm build        # production build (runs prisma generate first)
+pnpm start
+pnpm lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Routing
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+All public routes are locale-prefixed under `[lang]` (`/en`, `/ar`):
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `(marketing)/` — landing, pricing, service
+- `(auth)/` — login, join, reset, new-password, error
+- `chatbot/` — full-page AI chat
+- `wizard/` — onboarding wizard
+- `about/` — about page
 
-## Learn More
+Locale routing is handled by `proxy.ts` (Next 16's renamed middleware). See [INTERNATIONALIZATION.md](./INTERNATIONALIZATION.md).
 
-To learn more about Next.js, take a look at the following resources:
+## Environment
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Required variables:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+DATABASE_URL                   # Postgres / Neon
+NEXTAUTH_URL, NEXTAUTH_SECRET
+GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET
+FACEBOOK_CLIENT_ID, FACEBOOK_CLIENT_SECRET
+GROQ_API_KEY                   # AI chatbot
+STRIPE_SECRET_KEY, STRIPE_WEBHOOK_SECRET
+RESEND_API_KEY                 # transactional email
+IMAGEKIT_PUBLIC_KEY, IMAGEKIT_PRIVATE_KEY, IMAGEKIT_URL_ENDPOINT
+NEXT_PUBLIC_BASE_URL           # used in metadata + sitemap
+```
 
-## Deploy on Vercel
+## Project Docs
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# Trigger rebuild
+- [INTERNATIONALIZATION.md](./INTERNATIONALIZATION.md) — i18n + RTL setup
+- [PERFORMANCE.md](./PERFORMANCE.md) — performance baseline & optimizations
+- [TROUBLESHOOTING.md](./TROUBLESHOOTING.md) — common dev-server issues (Windows EPERM, Turbopack)
+- [imagekit.md](./imagekit.md) — ImageKit migration notes
+- [CLAUDE.md](./CLAUDE.md) — Claude Code project guide
