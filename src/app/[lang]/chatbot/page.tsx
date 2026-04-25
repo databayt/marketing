@@ -248,11 +248,11 @@ export default function ChatbotPage() {
               disabled={!inputValue.trim() || isLoading}
               className="h-12 w-12 p-0 hover:scale-110 transition-transform shrink-0"
               variant="link"
-              title="Send message"
+              title={t.chatbot.sendMessage}
             >
               <Send className={cn("h-6 w-6", isRTL && "scale-x-[-1]")} />
             </Button>
-            
+
             <Button
               type="button"
               onClick={handleVoiceInput}
@@ -262,7 +262,7 @@ export default function ChatbotPage() {
                 "h-12 w-12 p-0 hover:scale-110 transition-transform shrink-0",
                 isListening && "text-red-500 animate-pulse"
               )}
-              title="Voice input"
+              title={t.chatbot.voiceInput}
             >
               <Mic className="h-6 w-6" />
             </Button>

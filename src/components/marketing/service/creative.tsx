@@ -14,7 +14,7 @@ export default function Creative() {
       <div className="flex items-center justify-center gap-3 mb-8">
         <OptimizedImage
           src="/marketing/site/creative.png"
-          alt="Creative Icon"
+          alt={t.marketing.services.creative.title}
           width={32}
           height={32}
           className="w-8 h-8"
@@ -44,7 +44,7 @@ export default function Creative() {
         
         <OptimizedImage
           src="/marketing/site/wallet.gif"
-          alt="Wallet Animation"
+          alt=""
           width={500}
           height={350}
           className="rounded-lg w-full md:w-[500px] h-[300px] md:h-[350px] object-cover"
@@ -58,7 +58,7 @@ export default function Creative() {
             <div>
               <OptimizedImage
                 src="/marketing/site/5.jpg"
-                alt="Creative Work 1"
+                alt=""
                 width={400}
                 height={400}
                 className="w-full h-full object-cover"
@@ -70,7 +70,7 @@ export default function Creative() {
             <div>
               <OptimizedImage
                 src="/marketing/site/6.jpg"
-                alt="Creative Work 2"
+                alt=""
                 width={400}
                 height={400}
                 className="w-full h-full object-cover"
@@ -82,7 +82,7 @@ export default function Creative() {
             <div>
               <OptimizedImage
                 src="/marketing/site/9.jpg"
-                alt="Creative Work 3"
+                alt=""
                 width={400}
                 height={400}
                 className="w-full h-full object-cover"
@@ -94,7 +94,7 @@ export default function Creative() {
             <div>
               <OptimizedImage
                 src="/marketing/site/8.jpg"
-                alt="Creative Work 4"
+                alt=""
                 width={400}
                 height={400}
                 className="w-full h-full object-cover"

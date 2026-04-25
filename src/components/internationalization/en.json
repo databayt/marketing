@@ -6,7 +6,9 @@
   "chatbot": {
     "title": "Chat Assistant",
     "startMessage": "Start a conversation...",
-    "thinking": "I'm thinking..."
+    "thinking": "I'm thinking...",
+    "sendMessage": "Send message",
+    "voiceInput": "Voice input"
   },
   "common": {
     "loading": "Loading...",
@@ -37,7 +39,8 @@
     "dark": "Dark",
     "system": "System",
     "platform": "Platform",
-    "brandName": "Databayt"
+    "brandName": "Databayt",
+    "toggleTheme": "Toggle theme"
   },
   "navigation": {
     "menu": "Menu",

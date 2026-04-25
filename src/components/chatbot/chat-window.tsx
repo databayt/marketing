@@ -8,6 +8,7 @@ import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { CHAT_WINDOW_POSITIONS, CHAT_WINDOW_SIZE } from './constant';
 import type { ChatWindowProps } from './type';
 import { SendIcon, PriceIcon, TimeIcon, ServicesIcon, InfoIcon, VoiceIcon } from './icons';
+import { useTranslations } from '@/lib/use-translations';
 
 export const ChatWindow = memo(function ChatWindow({
   isOpen,
@@ -18,6 +19,7 @@ export const ChatWindow = memo(function ChatWindow({
   error,
   locale,
 }: ChatWindowProps) {
+  const { t } = useTranslations();
   const [input, setInput] = useState('');
   const [isListening, setIsListening] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -407,11 +409,11 @@ export const ChatWindow = memo(function ChatWindow({
                   "hover:scale-110 transition-transform shrink-0 disabled:opacity-50 disabled:hover:scale-100",
                   isMobile ? "h-12 w-12" : "h-10 w-10"
                 )}
-                title="Send message"
+                title={t.chatbot.sendMessage}
               >
                 <SendIcon size={isMobile ? 32 : 20} className={cn(isRTL && "scale-x-[-1]")} />
               </button>
-              
+
               <button
                 type="button"
                 onClick={handleVoiceInput}
@@ -420,7 +422,7 @@ export const ChatWindow = memo(function ChatWindow({
                   isMobile ? "h-12 w-12" : "h-10 w-10",
                   isListening && "text-red-500 animate-pulse"
                 )}
-                title="Voice input"
+                title={t.chatbot.voiceInput}
               >
                 <VoiceIcon size={isMobile ? 32 : 20} />
               </button>

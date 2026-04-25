@@ -33,7 +33,7 @@ function MainLayoutCard({ title, description, rightSideImageUrl }: IProps) {
           width={500}
           height={400}
           className="rounded-xl md:max-w-[31.25rem]"
-          alt="overview"
+          alt=""
         />
       </div>
     </section>
