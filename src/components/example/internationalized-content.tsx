@@ -15,10 +15,10 @@ export function InternationalizedContent() {
       </p>
       <div className={`flex gap-2 ${isRTL ? 'flex-row-reverse' : 'flex-row'}`}>
         <button className="bg-primary text-primary-foreground px-4 py-2 rounded">
-          {t.marketing.hero.cta}
+          {t.marketing.hero.appointment}
         </button>
         <button className="border border-border px-4 py-2 rounded">
-          {t.marketing.hero.learnMore}
+          {t.marketing.hero.services}
         </button>
       </div>
       

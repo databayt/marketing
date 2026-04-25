@@ -102,10 +102,10 @@ export default function SiteContent({ dictionary, params }: SiteContentProps) {
         </div>
       </section>
       <section className="py-10">
-        <FeatureCards dictionary={dictionary.marketing.featureCards} params={params} />
+        <FeatureCards />
       </section>
       <section className="py-10">
-        <Parallax dictionary={dictionary.marketing.parallax} params={params} />
+        <Parallax />
       </section>
       <section className="py-10">
         <Ready dictionary={dictionary.marketing.ready} params={params} />
@@ -114,10 +114,10 @@ export default function SiteContent({ dictionary, params }: SiteContentProps) {
         <OpenSource />
       </section>
       <section className="py-10">
-        <Stack dictionary={dictionary.marketing.stack} params={params} />
+        <Stack />
       </section>
       <section className="pt-10">
-        <ReadyToBuildSection dictionary={dictionary.marketing.readyToBuild} params={params} />
+        <ReadyToBuildSection />
       </section>
     </div>
   );
