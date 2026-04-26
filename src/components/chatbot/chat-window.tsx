@@ -8,6 +8,7 @@ import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { CHAT_WINDOW_POSITIONS, CHAT_WINDOW_SIZE } from './constant';
 import type { ChatWindowProps } from './type';
 import { SendIcon, PriceIcon, TimeIcon, ServicesIcon, InfoIcon, VoiceIcon } from './icons';
+import { useTranslations } from '@/lib/use-translations';
 
 export const ChatWindow = memo(function ChatWindow({
   isOpen,
@@ -26,6 +27,9 @@ export const ChatWindow = memo(function ChatWindow({
   const chatWindowRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const isRTL = locale === 'ar';
+  const { t } = useTranslations();
+  const preset = t.chatbot.preconfigured;
+  const controls = t.chatbot.controls;
   
   // Auto focus input when chat opens on desktop
   useEffect(() => {
@@ -230,44 +234,44 @@ export const ChatWindow = memo(function ChatWindow({
                 {isMobile ? (
                   <div className="flex-1 flex flex-col items-center justify-center">
                     <p className="mb-6 text-center text-muted-foreground text-sm font-medium">
-                      <span>Choose a question or type your message</span>
+                      <span>{preset.intro}</span>
                     </p>
                     <div className="grid grid-cols-2 gap-2 w-full px-2 max-w-sm">
                       <Button
                         variant="secondary"
                         size="sm"
-                        onClick={() => onSendMessage("What are your pricing options?")}
+                        onClick={() => onSendMessage(preset.pricing.prompt)}
                         className="text-xs h-auto py-2.5 px-3 flex items-center gap-2 bg-muted hover:bg-muted/80 border-0"
                       >
                         <PriceIcon size={16} />
-                        <span>Pricing</span>
+                        <span>{preset.pricing.label}</span>
                       </Button>
                       <Button
                         variant="secondary"
                         size="sm"
-                        onClick={() => onSendMessage("What services do you offer?")}
+                        onClick={() => onSendMessage(preset.services.prompt)}
                         className="text-xs h-auto py-2.5 px-3 flex items-center gap-2 bg-muted hover:bg-muted/80 border-0"
                       >
                         <ServicesIcon size={16} />
-                        <span>Services</span>
+                        <span>{preset.services.label}</span>
                       </Button>
                       <Button
                         variant="secondary"
                         size="sm"
-                        onClick={() => onSendMessage("How long does a project take?")}
+                        onClick={() => onSendMessage(preset.timeline.prompt)}
                         className="text-xs h-auto py-2.5 px-3 flex items-center gap-2 bg-muted hover:bg-muted/80 border-0"
                       >
                         <TimeIcon size={16} />
-                        <span>Timeline</span>
+                        <span>{preset.timeline.label}</span>
                       </Button>
                       <Button
                         variant="secondary"
                         size="sm"
-                        onClick={() => onSendMessage("Tell me more about your company")}
+                        onClick={() => onSendMessage(preset.about.prompt)}
                         className="text-xs h-auto py-2.5 px-3 flex items-center gap-2 bg-muted hover:bg-muted/80 border-0"
                       >
                         <InfoIcon size={16} />
-                        <span>About Us</span>
+                        <span>{preset.about.label}</span>
                       </Button>
                     </div>
                   </div>
@@ -338,38 +342,38 @@ export const ChatWindow = memo(function ChatWindow({
                 <Button
                   variant="secondary"
                   size="sm"
-                  onClick={() => onSendMessage("What are your pricing options?")}
+                  onClick={() => onSendMessage(preset.pricing.prompt)}
                   className="text-xs h-auto py-2 px-3 flex items-center gap-2 bg-muted hover:bg-muted/80 border-0"
                 >
                   <PriceIcon size={14} />
-                  <span>Pricing</span>
+                  <span>{preset.pricing.label}</span>
                 </Button>
                 <Button
                   variant="secondary"
                   size="sm"
-                  onClick={() => onSendMessage("What services do you offer?")}
+                  onClick={() => onSendMessage(preset.services.prompt)}
                   className="text-xs h-auto py-2 px-3 flex items-center gap-2 bg-muted hover:bg-muted/80 border-0"
                 >
                   <ServicesIcon size={14} />
-                  <span>Services</span>
+                  <span>{preset.services.label}</span>
                 </Button>
                 <Button
                   variant="secondary"
                   size="sm"
-                  onClick={() => onSendMessage("How long does a project take?")}
+                  onClick={() => onSendMessage(preset.timeline.prompt)}
                   className="text-xs h-auto py-2 px-3 flex items-center gap-2 bg-muted hover:bg-muted/80 border-0"
                 >
                   <TimeIcon size={14} />
-                  <span>Timeline</span>
+                  <span>{preset.timeline.label}</span>
                 </Button>
                 <Button
                   variant="secondary"
                   size="sm"
-                  onClick={() => onSendMessage("Tell me more about your company")}
+                  onClick={() => onSendMessage(preset.about.prompt)}
                   className="text-xs h-auto py-2 px-3 flex items-center gap-2 bg-muted hover:bg-muted/80 border-0"
                 >
                   <InfoIcon size={14} />
-                  <span>About Us</span>
+                  <span>{preset.about.label}</span>
                 </Button>
               </div>
             </div>
@@ -407,11 +411,12 @@ export const ChatWindow = memo(function ChatWindow({
                   "hover:scale-110 transition-transform shrink-0 disabled:opacity-50 disabled:hover:scale-100",
                   isMobile ? "h-12 w-12" : "h-10 w-10"
                 )}
-                title="Send message"
+                title={controls.send}
+                aria-label={controls.send}
               >
                 <SendIcon size={isMobile ? 32 : 20} className={cn(isRTL && "scale-x-[-1]")} />
               </button>
-              
+
               <button
                 type="button"
                 onClick={handleVoiceInput}
@@ -420,7 +425,8 @@ export const ChatWindow = memo(function ChatWindow({
                   isMobile ? "h-12 w-12" : "h-10 w-10",
                   isListening && "text-red-500 animate-pulse"
                 )}
-                title="Voice input"
+                title={controls.voice}
+                aria-label={controls.voice}
               >
                 <VoiceIcon size={isMobile ? 32 : 20} />
               </button>

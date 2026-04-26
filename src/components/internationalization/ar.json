@@ -1,12 +1,35 @@
 {
   "metadata": {
-    "title": "Databayt",
-    "description": "Automate the boring"
+    "title": "داتابيت",
+    "description": "أتمتة المهام المملة"
   },
   "chatbot": {
     "title": "مساعد المحادثة",
     "startMessage": "ابدأ محادثة...",
-    "thinking": "أفكر..."
+    "thinking": "أفكر...",
+    "preconfigured": {
+      "intro": "اختر سؤالاً أو اكتب رسالتك",
+      "pricing": {
+        "label": "الأسعار",
+        "prompt": "ما هي خيارات الأسعار لديكم؟"
+      },
+      "services": {
+        "label": "الخدمات",
+        "prompt": "ما هي الخدمات التي تقدمونها؟"
+      },
+      "timeline": {
+        "label": "الجدول الزمني",
+        "prompt": "كم يستغرق المشروع عادةً؟"
+      },
+      "about": {
+        "label": "من نحن",
+        "prompt": "أخبرني المزيد عن شركتكم"
+      }
+    },
+    "controls": {
+      "send": "إرسال الرسالة",
+      "voice": "إدخال صوتي"
+    }
   },
   "common": {
     "loading": "جاري التحميل...",
@@ -57,6 +80,18 @@
     "signIn": "تسجيل الدخول",
     "signUp": "إنشاء حساب",
     "signOut": "تسجيل الخروج",
+    "continueWith": "أو تابع باستخدام",
+    "confirm": "تأكيد",
+    "login": "دخول",
+    "join": "انضم",
+    "name": "الاسم",
+    "twoFactorCode": "رمز المصادقة الثنائية",
+    "newPasswordPlaceholder": "كلمة المرور الجديدة",
+    "enterNewPassword": "أدخل كلمة مرور جديدة",
+    "confirmingVerification": "جارٍ تأكيد التحقق",
+    "backToLogin": "العودة لتسجيل الدخول",
+    "missingToken": "الرمز مفقود!",
+    "somethingWrong": "حدث خطأ ما",
     "email": "البريد الإلكتروني",
     "password": "كلمة المرور",
     "confirmPassword": "تأكيد كلمة المرور",
@@ -645,7 +680,7 @@
     "maybeLater": "ربما لاحقاً"
   },
   "getStarted": {
-    "title": "ابدأ مع دايتابايت",
+    "title": "ابدأ مع داتابيت",
     "description": "اختر خدمة لبدء رحلتك",
     "services": {
       "web-design": {

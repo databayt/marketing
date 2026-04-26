@@ -60,7 +60,8 @@ export const authRoutes = [
 export const apiAuthPrefix = "/api/auth";
 
 /**
- * The default redirect path after logging in
+ * The default redirect path after logging in.
+ * Redirects to the locale root; the proxy then routes to /{lang}.
  * @type {string}
  */
-export const DEFAULT_LOGIN_REDIRECT = "/dashboard";
+export const DEFAULT_LOGIN_REDIRECT = "/";

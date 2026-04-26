@@ -6,7 +6,30 @@
   "chatbot": {
     "title": "Chat Assistant",
     "startMessage": "Start a conversation...",
-    "thinking": "I'm thinking..."
+    "thinking": "I'm thinking...",
+    "preconfigured": {
+      "intro": "Choose a question or type your message",
+      "pricing": {
+        "label": "Pricing",
+        "prompt": "What are your pricing options?"
+      },
+      "services": {
+        "label": "Services",
+        "prompt": "What services do you offer?"
+      },
+      "timeline": {
+        "label": "Timeline",
+        "prompt": "How long does a project take?"
+      },
+      "about": {
+        "label": "About Us",
+        "prompt": "Tell me more about your company"
+      }
+    },
+    "controls": {
+      "send": "Send message",
+      "voice": "Voice input"
+    }
   },
   "common": {
     "loading": "Loading...",
@@ -60,15 +83,27 @@
     "email": "Email",
     "password": "Password",
     "confirmPassword": "Confirm Password",
-    "forgotPassword": "Forgot Password?",
-    "resetPassword": "Reset Password",
+    "forgotPassword": "Forgot password?",
+    "resetPassword": "Reset password",
     "createAccount": "Create Account",
     "alreadyHaveAccount": "Already have an account?",
     "dontHaveAccount": "Don't have an account?",
     "enterEmail": "Enter your email",
     "enterPassword": "Enter your password",
     "welcomeBack": "Welcome back",
-    "createNewAccount": "Create a new account"
+    "createNewAccount": "Create a new account",
+    "continueWith": "Or continue with",
+    "confirm": "Confirm",
+    "login": "Login",
+    "join": "Join",
+    "name": "Name",
+    "twoFactorCode": "Two Factor Code",
+    "newPasswordPlaceholder": "New Password",
+    "enterNewPassword": "Enter a new password",
+    "confirmingVerification": "Confirming your verification",
+    "backToLogin": "Back to login",
+    "missingToken": "Missing token!",
+    "somethingWrong": "Something went wrong"
   },
   "marketing": {
     "hero": {
