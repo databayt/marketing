@@ -7,6 +7,7 @@ import { useTranslations } from '@/lib/use-translations';
 import MobileNav from "./mobile-nav";
 import MainNav from "./main-nav";
 import ReadySection from "./ready";
+import { ReportIssue } from "@/components/report-issue";
 
 export default function SiteFooter() {
   const { resolvedTheme } = useTheme();
@@ -32,6 +33,10 @@ export default function SiteFooter() {
         <div className="py-10 flex flex-1">
           <MainNav />
           <ReadySection />
+        </div>
+
+        <div className="border-t border-[oklch(1_0_0/0.1)] py-4 text-sm text-[oklch(1_0_0/0.7)]">
+          <ReportIssue className="cursor-pointer font-medium underline underline-offset-4 text-[oklch(1_0_0)]" />
         </div>
       </section>
     </div>

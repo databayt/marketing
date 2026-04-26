@@ -37,7 +37,16 @@
     "dark": "داكن",
     "system": "النظام",
     "platform": "منصة",
-    "brandName": "داتابيت"
+    "brandName": "داتابيت",
+    "reportIssue": {
+      "link": "الإبلاغ عن مشكلة",
+      "title": "الإبلاغ عن مشكلة",
+      "placeholder": "صف المشكلة...",
+      "submit": "إرسال",
+      "submitting": "جاري الإرسال...",
+      "success": "تم الإرسال. شكراً لك!",
+      "error": "حدث خطأ. حاول مرة أخرى."
+    }
   },
   "navigation": {
     "menu": "القائمة",

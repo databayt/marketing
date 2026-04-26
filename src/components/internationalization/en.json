@@ -37,7 +37,16 @@
     "dark": "Dark",
     "system": "System",
     "platform": "Platform",
-    "brandName": "Databayt"
+    "brandName": "Databayt",
+    "reportIssue": {
+      "link": "Report an issue",
+      "title": "Report an issue",
+      "placeholder": "Describe the issue...",
+      "submit": "Submit",
+      "submitting": "Submitting...",
+      "success": "Submitted. Thank you!",
+      "error": "Something went wrong. Try again."
+    }
   },
   "navigation": {
     "menu": "Menu",

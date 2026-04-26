@@ -11,6 +11,7 @@ import { getDictionary } from "@/components/internationalization/dictionaries";
 import { i18n, type Locale, localeConfig } from "@/components/internationalization/config";
 import { SessionProvider } from "next-auth/react";
 import { auth } from "@/auth";
+import { ReportIssue } from "@/components/report-issue";
 
 function resolveLocale(rawLang: string): Locale {
   return (i18n.locales as readonly string[]).includes(rawLang)
@@ -108,6 +109,9 @@ export default async function LocaleLayout({
               <div className="layout-container">
                 <Toaster position={isRTL ? "bottom-left" : "bottom-right"} />
                 {children}
+                <div className="fixed bottom-4 start-4 z-40 print:hidden">
+                  <ReportIssue variant="icon" />
+                </div>
               </div>
             </ImageKitProvider>
           </ThemeProvider>
