@@ -13,14 +13,7 @@ export default function SiteLayout({
   const chatbotRef = useRef<{ openChat: () => void }>(null);
 
   const handleChatClick = () => {
-    // This will be called from the mobile header button
-    console.log('handleChatClick called', { chatbotRef: chatbotRef.current });
-    if (chatbotRef.current?.openChat) {
-      console.log('Opening chat...');
-      chatbotRef.current.openChat();
-    } else {
-      console.warn('Chat ref or openChat method not available');
-    }
+    chatbotRef.current?.openChat?.();
   };
 
   return (
