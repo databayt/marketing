@@ -14,7 +14,7 @@ import { Icons } from "@/components/icons";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useConfig } from "@/hooks/use-config";
 // Make sure Customizer doesn't cause unnecessary re-renders
-import CustomizerUI from "./cutomizer";
+import CustomizerUI from "./customizer";
 const MemoizedCustomizer = React.memo(CustomizerUI);
 
 interface ThemeColors {

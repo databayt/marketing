@@ -159,11 +159,11 @@ export function ExpertModal({ isOpen, onClose }: ExpertModalProps) {
                       <SelectValue placeholder={t.expert?.projectTypePlaceholder || 'Select project type'} />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="website">Website Development</SelectItem>
-                      <SelectItem value="ecommerce">E-commerce Platform</SelectItem>
-                      <SelectItem value="mobile">Mobile Application</SelectItem>
-                      <SelectItem value="custom">Custom Software</SelectItem>
-                      <SelectItem value="consulting">Technical Consulting</SelectItem>
+                      <SelectItem value="website">{t.expert.projectTypes.website}</SelectItem>
+                      <SelectItem value="ecommerce">{t.expert.projectTypes.ecommerce}</SelectItem>
+                      <SelectItem value="mobile">{t.expert.projectTypes.mobile}</SelectItem>
+                      <SelectItem value="custom">{t.expert.projectTypes.custom}</SelectItem>
+                      <SelectItem value="consulting">{t.expert.projectTypes.consulting}</SelectItem>
                     </SelectContent>
                   </Select>
                   {errors.projectType && (
@@ -179,10 +179,10 @@ export function ExpertModal({ isOpen, onClose }: ExpertModalProps) {
                         <SelectValue placeholder={t.expert?.budgetPlaceholder || 'Budget'} />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="<1000">Less than $1,000</SelectItem>
-                        <SelectItem value="1000-5000">$1,000 - $5,000</SelectItem>
-                        <SelectItem value="5000-10000">$5,000 - $10,000</SelectItem>
-                        <SelectItem value="10000+">$10,000+</SelectItem>
+                        <SelectItem value="<1000">{t.expert.budgets.lt1000}</SelectItem>
+                        <SelectItem value="1000-5000">{t.expert.budgets["1000-5000"]}</SelectItem>
+                        <SelectItem value="5000-10000">{t.expert.budgets["5000-10000"]}</SelectItem>
+                        <SelectItem value="10000+">{t.expert.budgets["10000plus"]}</SelectItem>
                       </SelectContent>
                     </Select>
 
@@ -194,10 +194,10 @@ export function ExpertModal({ isOpen, onClose }: ExpertModalProps) {
                         <SelectValue placeholder={t.expert?.timelinePlaceholder || 'Timeline'} />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="asap">ASAP</SelectItem>
-                        <SelectItem value="1month">Within 1 month</SelectItem>
-                        <SelectItem value="3months">1-3 months</SelectItem>
-                        <SelectItem value="6months">3-6 months</SelectItem>
+                        <SelectItem value="asap">{t.expert.timelines.asap}</SelectItem>
+                        <SelectItem value="1month">{t.expert.timelines["1month"]}</SelectItem>
+                        <SelectItem value="3months">{t.expert.timelines["3months"]}</SelectItem>
+                        <SelectItem value="6months">{t.expert.timelines["6months"]}</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
