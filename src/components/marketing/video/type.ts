@@ -10,4 +10,5 @@ export interface ProjectItem {
     author: string;
     category?: string;
     featured?: boolean;
+    owner?: 'abdout' | 'mutaz' | 'ibrahim';
   }
