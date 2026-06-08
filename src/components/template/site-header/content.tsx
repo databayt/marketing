@@ -1,13 +1,19 @@
+"use client"
+
 import React from 'react'
-// import { auth } from "@/auth"
+import { useSession } from 'next-auth/react'
 import SiteHeaderClient from './client'
 
 interface SiteHeaderProps {
-  onChatClick?: () => void;
+  onChatClick?: () => void
 }
 
 export default function SiteHeader({ onChatClick }: SiteHeaderProps) {
-  // const session = await auth();
-  return <SiteHeaderClient isAuthenticated={false} onChatClick={onChatClick} />
+  const { status } = useSession()
+  return (
+    <SiteHeaderClient
+      isAuthenticated={status === 'authenticated'}
+      onChatClick={onChatClick}
+    />
+  )
 }
-  

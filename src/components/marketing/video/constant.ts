@@ -141,7 +141,33 @@ export const getProjects = (locale: Locale = 'en'): ProjectItem[] => {
       date: "2024",
       author: t.marketing.projects.domestic.category,
       category: "company"
-    }
+    },
+    // TODO(mutaz): replace placeholder fields below with Mutaz's project metadata.
+    // Add matching i18n keys under `marketing.projects.mutazProject1` in en.json + ar.json,
+    // drop the project image into /public/marketing/site/, then remove this comment.
+    // {
+    //   title: t.marketing.projects.mutazProject1.title,
+    //   description: t.marketing.projects.mutazProject1.description,
+    //   link: "https://TODO",
+    //   image: "/marketing/site/TODO.png",
+    //   date: "2026",
+    //   author: t.marketing.projects.mutazProject1.category,
+    //   category: "company",
+    //   owner: "mutaz",
+    // },
+    // TODO(ibrahim): replace placeholder fields below with Ibrahim's project metadata.
+    // Add matching i18n keys under `marketing.projects.ibrahimProject1` in en.json + ar.json,
+    // drop the project image into /public/marketing/site/, then remove this comment.
+    // {
+    //   title: t.marketing.projects.ibrahimProject1.title,
+    //   description: t.marketing.projects.ibrahimProject1.description,
+    //   link: "https://TODO",
+    //   image: "/marketing/site/TODO.png",
+    //   date: "2026",
+    //   author: t.marketing.projects.ibrahimProject1.category,
+    //   category: "company",
+    //   owner: "ibrahim",
+    // },
   ];
 };
 

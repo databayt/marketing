@@ -26,10 +26,13 @@ import { register } from "./action";
 import { FormError } from "../error/form-error";
 import { FormSuccess } from "../form-success";
 import { Social } from "../social";
+import { useTranslations } from "@/lib/use-translations";
+
 export const RegisterForm = ({
   className,
   ...props
 }: React.ComponentPropsWithoutRef<"div">) => {
+  const { t } = useTranslations();
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
   const [isPending, startTransition] = useTransition();
@@ -68,7 +71,7 @@ export const RegisterForm = ({
             <form onSubmit={form.handleSubmit(onSubmit)} className="grid gap-6">
               <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border">
                 <span className="relative z-10 bg-background px-2 text-muted-foreground">
-                  Or continue with
+                  {t.auth.continueWith}
                 </span>
               </div>
 
@@ -82,7 +85,7 @@ export const RegisterForm = ({
                         <Input
                           {...field}
                           disabled={isPending}
-                          placeholder="Name"
+                          placeholder={t.auth.name}
                         />
                       </FormControl>
                       <FormMessage />
@@ -98,7 +101,7 @@ export const RegisterForm = ({
                         <Input
                           {...field}
                           disabled={isPending}
-                          placeholder="Email"
+                          placeholder={t.auth.email}
                           type="email"
                         />
                       </FormControl>
@@ -115,7 +118,7 @@ export const RegisterForm = ({
                         <Input
                           {...field}
                           disabled={isPending}
-                          placeholder="Password"
+                          placeholder={t.auth.password}
                           type="password"
                         />
                       </FormControl>
@@ -127,18 +130,18 @@ export const RegisterForm = ({
                 <FormError message={error} />
                 <FormSuccess message={success} />
 
-                <Button 
-                  disabled={isPending} 
-                  type="submit" 
+                <Button
+                  disabled={isPending}
+                  type="submit"
                   className="w-full h-11 text-base"
                 >
-                  Join
+                  {t.auth.join}
                 </Button>
               </div>
 
               <div className="text-center text-sm">
                 <Link href="/auth/login" className="hover:underline underline-offset-4">
-                  Already have an account?
+                  {t.auth.alreadyHaveAccount}
                 </Link>
               </div>
             </form>

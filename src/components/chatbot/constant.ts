@@ -1,17 +1,18 @@
 import type { ChatbotConfig, ChatbotDictionary, ChatbotTheme } from './type';
 
+// 'right' / 'left' map to logical end / start so RTL flips automatically.
 export const CHATBOT_POSITIONS = {
-  'bottom-right': 'fixed bottom-1 right-1 sm:bottom-2 sm:right-2',
-  'bottom-left': 'fixed bottom-1 left-1 sm:bottom-2 sm:left-2',
-  'top-right': 'fixed top-1 right-1 sm:top-2 sm:right-2',
-  'top-left': 'fixed top-1 left-1 sm:top-2 sm:left-2',
+  'bottom-right': 'fixed bottom-1 end-1 sm:bottom-2 sm:end-2',
+  'bottom-left': 'fixed bottom-1 start-1 sm:bottom-2 sm:start-2',
+  'top-right': 'fixed top-1 end-1 sm:top-2 sm:end-2',
+  'top-left': 'fixed top-1 start-1 sm:top-2 sm:start-2',
 } as const;
 
 export const CHAT_WINDOW_POSITIONS = {
-  'bottom-right': 'fixed inset-x-4 top-1/2 -translate-y-1/2 sm:inset-x-auto sm:translate-y-0 sm:bottom-4 sm:right-2 sm:top-auto',
-  'bottom-left': 'fixed inset-x-4 top-1/2 -translate-y-1/2 sm:inset-x-auto sm:translate-y-0 sm:bottom-4 sm:left-2 sm:top-auto',
-  'top-right': 'fixed inset-x-4 top-1/2 -translate-y-1/2 sm:inset-x-auto sm:translate-y-0 sm:top-20 sm:right-2',
-  'top-left': 'fixed inset-x-4 top-1/2 -translate-y-1/2 sm:inset-x-auto sm:translate-y-0 sm:top-20 sm:left-2',
+  'bottom-right': 'fixed inset-x-4 top-1/2 -translate-y-1/2 sm:inset-x-auto sm:translate-y-0 sm:bottom-4 sm:end-2 sm:top-auto',
+  'bottom-left': 'fixed inset-x-4 top-1/2 -translate-y-1/2 sm:inset-x-auto sm:translate-y-0 sm:bottom-4 sm:start-2 sm:top-auto',
+  'top-right': 'fixed inset-x-4 top-1/2 -translate-y-1/2 sm:inset-x-auto sm:translate-y-0 sm:top-20 sm:end-2',
+  'top-left': 'fixed inset-x-4 top-1/2 -translate-y-1/2 sm:inset-x-auto sm:translate-y-0 sm:top-20 sm:start-2',
 } as const;
 
 export const CHAT_WINDOW_SIZE = {

@@ -5,6 +5,7 @@ import { OptimizedImage } from '@/components/ui/optimized-image';
 import { useTheme } from "next-themes";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState, memo, useMemo } from "react";
+import { useTranslations } from '@/lib/use-translations';
 import '@/styles/liquid-glass.css';
 
 interface ProjectItem {
@@ -17,7 +18,15 @@ interface ProjectItem {
     imageLight?: string;
     date: string;
     author: string;
+    owner?: 'abdout' | 'mutaz' | 'ibrahim';
 }
+
+const OWNER_LABELS: Record<'mutaz' | 'ibrahim', { en: string; ar: string }> = {
+    mutaz: { en: 'Mutaz', ar: 'معتز' },
+    ibrahim: { en: 'Ibrahim', ar: 'إبراهيم' },
+};
+
+const BY_LABEL = { en: 'by', ar: 'بواسطة' } as const;
 
 interface HoverEffectProps {
     items: ProjectItem[];
@@ -28,6 +37,8 @@ interface HoverEffectProps {
 
 export const HoverEffect = memo(({ items, className, websiteLabel = "Website", mobileLabel = "Mobile" }: HoverEffectProps) => {
     const { resolvedTheme } = useTheme();
+    const { locale } = useTranslations();
+    const lang: 'en' | 'ar' = locale === 'ar' ? 'ar' : 'en';
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
     const getImageSrc = useMemo(() => (item: ProjectItem) => {
@@ -105,6 +116,11 @@ export const HoverEffect = memo(({ items, className, websiteLabel = "Website", m
                             </div>
                             <CardTitle>{item.title}</CardTitle>
                             <CardDescription>{item.description}</CardDescription>
+                            {item.owner && item.owner !== 'abdout' && (
+                                <p className="text-xs text-muted-foreground">
+                                    {BY_LABEL[lang]} {OWNER_LABELS[item.owner][lang]}
+                                </p>
+                            )}
                         </Card>
                     </>
                 );

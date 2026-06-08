@@ -8,9 +8,16 @@ import { ThemeProvider } from "@/components/atom/theme-provider";
 import { ImageKitProvider } from "@/components/ui/imagekit-provider";
 import { Toaster } from "sonner";
 import { getDictionary } from "@/components/internationalization/dictionaries";
-import { type Locale, localeConfig } from "@/components/internationalization/config";
-// import { SessionProvider } from "next-auth/react";
-// import { auth } from "@/auth";
+import { i18n, type Locale, localeConfig } from "@/components/internationalization/config";
+import { SessionProvider } from "next-auth/react";
+import { auth } from "@/auth";
+import { ReportIssue } from "@/components/report-issue";
+
+function resolveLocale(rawLang: string): Locale {
+  return (i18n.locales as readonly string[]).includes(rawLang)
+    ? (rawLang as Locale)
+    : i18n.defaultLocale;
+}
 
 // Configure Rubik font for Arabic
 const rubik = Rubik({
@@ -22,16 +29,15 @@ const rubik = Rubik({
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  maximumScale: 1,
-  userScalable: false,
 };
 
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ lang: Locale }>;
+  params: Promise<{ lang: string }>;
 }): Promise<Metadata> {
-  const { lang } = await params;
+  const { lang: rawLang } = await params;
+  const lang = resolveLocale(rawLang);
   const dict = await getDictionary(lang);
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://databayt.org';
 
@@ -78,13 +84,13 @@ export default async function LocaleLayout({
   params,
 }: Readonly<{
   children: React.ReactNode;
-  params: Promise<{ lang: Locale }>;
+  params: Promise<{ lang: string }>;
 }>) {
-  // const session = await auth();
-  const { lang } = await params;
+  const [{ lang: rawLang }, session] = await Promise.all([params, auth()]);
+  const lang = resolveLocale(rawLang);
   const config = localeConfig[lang];
   const isRTL = config.dir === 'rtl';
-  
+
   return (
     <html lang={lang} dir={config.dir}>
       <body
@@ -95,19 +101,19 @@ export default async function LocaleLayout({
           rubik.variable
         )}
       >
-        {/* <SessionProvider session={session}> */}
-         
-            <ThemeProvider>
-              <ImageKitProvider>
-                <div className="layout-container">
-                  <Toaster position={isRTL ? "bottom-left" : "bottom-right"} />
-                  
-                  {children}
+        <SessionProvider session={session}>
+          <ThemeProvider>
+            <ImageKitProvider>
+              <div className="layout-container">
+                <Toaster position={isRTL ? "bottom-left" : "bottom-right"} />
+                {children}
+                <div className="fixed bottom-4 start-4 z-40 print:hidden">
+                  <ReportIssue variant="icon" />
                 </div>
-              </ImageKitProvider>
-            </ThemeProvider>
-          
-        {/* </SessionProvider> */}
+              </div>
+            </ImageKitProvider>
+          </ThemeProvider>
+        </SessionProvider>
       </body>
     </html>
   );

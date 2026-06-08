@@ -29,15 +29,17 @@ import { login } from "./action";
 import { FormError } from "../error/form-error";
 import { FormSuccess } from "../form-success";
 import { Social } from "../social";
+import { useTranslations } from "@/lib/use-translations";
 
 export const LoginForm = ({
   className,
   ...props
 }: React.ComponentPropsWithoutRef<"div">) => {
+  const { t } = useTranslations();
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl");
   const urlError = searchParams.get("error") === "OAuthAccountNotLinked"
-    ? "Email already in use with different provider!"
+    ? t.auth.somethingWrong
     : "";
 
   const [showTwoFactor, setShowTwoFactor] = useState(false);
@@ -93,7 +95,7 @@ export const LoginForm = ({
             <form onSubmit={form.handleSubmit(onSubmit)} className="grid gap-6">
               <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border">
                 <span className="relative z-10 bg-background px-2 text-muted-foreground">
-                  Or continue with
+                  {t.auth.continueWith}
                 </span>
               </div>
               
@@ -108,7 +110,7 @@ export const LoginForm = ({
                           <Input
                             {...field}
                             disabled={isPending}
-                            placeholder="Two Factor Code"
+                            placeholder={t.auth.twoFactorCode}
                             
                           />
                         </FormControl>
@@ -129,7 +131,7 @@ export const LoginForm = ({
                               id="email"
                               type="email"
                               disabled={isPending}
-                              placeholder="Email"
+                              placeholder={t.auth.email}
                             />
                           </FormControl>
                           <FormMessage />
@@ -147,14 +149,14 @@ export const LoginForm = ({
                               id="password"
                               type="password"
                               disabled={isPending}
-                              placeholder="Password"
+                              placeholder={t.auth.password}
                             />
                           </FormControl>
                           <Link
                             href="/auth/reset"
                             className="text-sm text-start hover:underline underline-offset-4"
                           >
-                            Forgot password?
+                            {t.auth.forgotPassword}
                           </Link>
                           <FormMessage />
                         </FormItem>
@@ -167,13 +169,13 @@ export const LoginForm = ({
                 <FormSuccess message={success} />
                 
                 <Button disabled={isPending} type="submit" className="w-full h-11 text-base">
-                  {showTwoFactor ? "Confirm" : "Login"}
+                  {showTwoFactor ? t.auth.confirm : t.auth.login}
                 </Button>
               </div>
               
               <div className="text-center text-sm">
                 <Link href="/join" className="hover:underline underline-offset-4">
-                  Don&apos;t have an account?
+                  {t.auth.dontHaveAccount}
                 </Link>
               </div>
             </form>
