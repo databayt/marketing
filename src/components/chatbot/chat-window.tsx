@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useEffect, useCallback, memo } from 'react';
+import { useState, useRef, useEffect, useCallback, useMemo, memo } from 'react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -17,6 +17,7 @@ export const ChatWindow = memo(function ChatWindow({
   isLoading,
   error,
   locale,
+  dictionary,
 }: ChatWindowProps) {
   const [input, setInput] = useState('');
   const [isListening, setIsListening] = useState(false);
@@ -26,7 +27,19 @@ export const ChatWindow = memo(function ChatWindow({
   const chatWindowRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const isRTL = locale === 'ar';
-  
+
+  // Preconfigured questions — driven by the dictionary so labels and the
+  // questions they send are localized (Arabic/RTL aware) instead of hardcoded.
+  const quickAskButtons = useMemo(
+    () => [
+      { label: dictionary.qaPricing, question: dictionary.qaPricingQuestion, icon: PriceIcon },
+      { label: dictionary.qaServices, question: dictionary.qaServicesQuestion, icon: ServicesIcon },
+      { label: dictionary.qaTimeline, question: dictionary.qaTimelineQuestion, icon: TimeIcon },
+      { label: dictionary.qaAbout, question: dictionary.qaAboutQuestion, icon: InfoIcon },
+    ],
+    [dictionary]
+  );
+
   // Auto focus input when chat opens on desktop
   useEffect(() => {
     if (isOpen && !isMobile && inputRef.current) {
@@ -127,7 +140,7 @@ export const ChatWindow = memo(function ChatWindow({
 
   const handleVoiceInput = useCallback(() => {
     if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
-      alert('Speech recognition is not supported in your browser.');
+      alert(dictionary.speechNotSupported);
       return;
     }
 
@@ -157,13 +170,13 @@ export const ChatWindow = memo(function ChatWindow({
 
     recognition.onerror = () => {
       setIsListening(false);
-      alert('Speech recognition error. Please try again.');
+      alert(dictionary.speechError);
     };
 
     recognition.onend = () => {
       setIsListening(false);
     };
-  }, [isListening, locale]);
+  }, [isListening, locale, dictionary]);
 
   return (
     <div
@@ -228,51 +241,35 @@ export const ChatWindow = memo(function ChatWindow({
             {messages.length === 0 ? (
               <div className="flex flex-col h-full">
                 {isMobile ? (
-                  <div className="flex-1 flex flex-col items-center justify-center">
-                    <p className="mb-6 text-center text-muted-foreground text-sm font-medium">
-                      <span>Choose a question or type your message</span>
+                  <div className="flex-1 flex flex-col items-center justify-end pb-8">
+                    <p className="mb-2 text-center text-sm font-medium">
+                      {dictionary.welcome}
+                    </p>
+                    <p className="mb-6 text-center text-muted-foreground text-xs">
+                      {dictionary.chooseQuestion}
                     </p>
                     <div className="grid grid-cols-2 gap-2 w-full px-2 max-w-sm">
-                      <Button
-                        variant="secondary"
-                        size="sm"
-                        onClick={() => onSendMessage("What are your pricing options?")}
-                        className="text-xs h-auto py-2.5 px-3 flex items-center gap-2 bg-muted hover:bg-muted/80 border-0"
-                      >
-                        <PriceIcon size={16} />
-                        <span>Pricing</span>
-                      </Button>
-                      <Button
-                        variant="secondary"
-                        size="sm"
-                        onClick={() => onSendMessage("What services do you offer?")}
-                        className="text-xs h-auto py-2.5 px-3 flex items-center gap-2 bg-muted hover:bg-muted/80 border-0"
-                      >
-                        <ServicesIcon size={16} />
-                        <span>Services</span>
-                      </Button>
-                      <Button
-                        variant="secondary"
-                        size="sm"
-                        onClick={() => onSendMessage("How long does a project take?")}
-                        className="text-xs h-auto py-2.5 px-3 flex items-center gap-2 bg-muted hover:bg-muted/80 border-0"
-                      >
-                        <TimeIcon size={16} />
-                        <span>Timeline</span>
-                      </Button>
-                      <Button
-                        variant="secondary"
-                        size="sm"
-                        onClick={() => onSendMessage("Tell me more about your company")}
-                        className="text-xs h-auto py-2.5 px-3 flex items-center gap-2 bg-muted hover:bg-muted/80 border-0"
-                      >
-                        <InfoIcon size={16} />
-                        <span>About Us</span>
-                      </Button>
+                      {quickAskButtons.map((btn, i) => (
+                        <Button
+                          key={i}
+                          variant="secondary"
+                          size="sm"
+                          onClick={() => onSendMessage(btn.question)}
+                          className="text-xs h-auto py-2.5 px-3 flex items-center gap-2 bg-muted hover:bg-muted/80 border-0"
+                        >
+                          <btn.icon size={16} />
+                          <span>{btn.label}</span>
+                        </Button>
+                      ))}
                     </div>
                   </div>
                 ) : (
-                  <div className="flex-1" />
+                  <div className="flex-1 flex flex-col items-center justify-end px-4 pb-8 text-center">
+                    <p className="mb-1 text-sm font-medium">{dictionary.welcome}</p>
+                    <p className="text-muted-foreground text-xs">
+                      {dictionary.chooseQuestion}
+                    </p>
+                  </div>
                 )}
               </div>
             ) : (
@@ -335,61 +332,40 @@ export const ChatWindow = memo(function ChatWindow({
           {!isMobile && messages.length === 0 && (
             <div className="mb-3">
               <div className="grid grid-cols-2 gap-2 w-full">
-                <Button
-                  variant="secondary"
-                  size="sm"
-                  onClick={() => onSendMessage("What are your pricing options?")}
-                  className="text-xs h-auto py-2 px-3 flex items-center gap-2 bg-muted hover:bg-muted/80 border-0"
-                >
-                  <PriceIcon size={14} />
-                  <span>Pricing</span>
-                </Button>
-                <Button
-                  variant="secondary"
-                  size="sm"
-                  onClick={() => onSendMessage("What services do you offer?")}
-                  className="text-xs h-auto py-2 px-3 flex items-center gap-2 bg-muted hover:bg-muted/80 border-0"
-                >
-                  <ServicesIcon size={14} />
-                  <span>Services</span>
-                </Button>
-                <Button
-                  variant="secondary"
-                  size="sm"
-                  onClick={() => onSendMessage("How long does a project take?")}
-                  className="text-xs h-auto py-2 px-3 flex items-center gap-2 bg-muted hover:bg-muted/80 border-0"
-                >
-                  <TimeIcon size={14} />
-                  <span>Timeline</span>
-                </Button>
-                <Button
-                  variant="secondary"
-                  size="sm"
-                  onClick={() => onSendMessage("Tell me more about your company")}
-                  className="text-xs h-auto py-2 px-3 flex items-center gap-2 bg-muted hover:bg-muted/80 border-0"
-                >
-                  <InfoIcon size={14} />
-                  <span>About Us</span>
-                </Button>
+                {quickAskButtons.map((btn, i) => (
+                  <Button
+                    key={i}
+                    variant="secondary"
+                    size="sm"
+                    onClick={() => onSendMessage(btn.question)}
+                    className="text-xs h-auto py-2 px-3 flex items-center gap-2 bg-muted hover:bg-muted/80 border-0"
+                  >
+                    <btn.icon size={14} />
+                    <span>{btn.label}</span>
+                  </Button>
+                ))}
               </div>
             </div>
           )}
           
-          <form onSubmit={handleSubmit} className="flex items-center gap-2">
-            <div className={cn(
-              "flex items-center border border-muted-foreground rounded-lg px-3 bg-background relative",
-              isMobile ? "flex-[0.8]" : "w-[70%]"
-            )}>
+          <form onSubmit={handleSubmit}>
+            {/* Single rounded pill — input with inline voice + send */}
+            <div
+              className={cn(
+                "flex items-center gap-1 rounded-full border border-muted-foreground bg-background",
+                isMobile ? "py-1.5 ps-4 pe-1.5" : "py-1 ps-4 pe-1"
+              )}
+            >
               <input
                 ref={inputRef}
                 type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 disabled={isLoading}
-                placeholder={isMobile ? "" : ""}
+                placeholder={dictionary.placeholder}
                 className={cn(
-                  "w-full bg-transparent border-none outline-none",
-                  isMobile ? "text-[16px] h-10 py-2" : "text-sm py-2 h-8"
+                  "min-w-0 flex-1 border-none bg-transparent outline-none placeholder:text-muted-foreground/60",
+                  isMobile ? "h-9 text-[16px]" : "h-7 text-sm"
                 )}
                 dir={isRTL ? 'rtl' : 'ltr'}
                 autoComplete="off"
@@ -397,32 +373,34 @@ export const ChatWindow = memo(function ChatWindow({
                 autoCapitalize="off"
                 inputMode="text"
               />
-            </div>
-            
-            <div className="flex items-center gap-1 w-[30%] justify-center">
-              <button
-                type="submit"
-                disabled={!input.trim() || isLoading}
-                className={cn(
-                  "hover:scale-110 transition-transform shrink-0 disabled:opacity-50 disabled:hover:scale-100",
-                  isMobile ? "h-12 w-12" : "h-10 w-10"
-                )}
-                title="Send message"
-              >
-                <SendIcon size={isMobile ? 32 : 20} className={cn(isRTL && "scale-x-[-1]")} />
-              </button>
-              
+
+              {/* Voice — ghost icon inside the pill */}
               <button
                 type="button"
                 onClick={handleVoiceInput}
+                aria-label={dictionary.voiceInput}
+                title={dictionary.voiceInput}
                 className={cn(
-                  "hover:scale-110 transition-transform shrink-0",
-                  isMobile ? "h-12 w-12" : "h-10 w-10",
-                  isListening && "text-red-500 animate-pulse"
+                  "flex shrink-0 items-center justify-center rounded-full text-muted-foreground transition-colors hover:text-foreground",
+                  isMobile ? "h-9 w-9" : "h-7 w-7",
+                  isListening && "animate-pulse text-red-500 hover:text-red-500"
                 )}
-                title="Voice input"
               >
-                <VoiceIcon size={isMobile ? 32 : 20} />
+                <VoiceIcon size={isMobile ? 18 : 15} />
+              </button>
+
+              {/* Send — primary filled command button */}
+              <button
+                type="submit"
+                disabled={!input.trim() || isLoading}
+                aria-label={dictionary.sendMessage}
+                title={dictionary.sendMessage}
+                className={cn(
+                  "flex shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground transition-transform hover:scale-105 disabled:opacity-40 disabled:hover:scale-100",
+                  isMobile ? "h-9 w-9" : "h-7 w-7"
+                )}
+              >
+                <SendIcon size={isMobile ? 18 : 15} className={cn(isRTL && "scale-x-[-1]")} />
               </button>
             </div>
           </form>

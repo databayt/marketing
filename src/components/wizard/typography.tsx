@@ -1,8 +1,7 @@
 'use client';
 
-import Image from 'next/image';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { cn } from '@/lib/utils';
-import { Check } from 'lucide-react';
 
 type TypographySelectorProps = {
   selectedTypography?: string;
@@ -10,157 +9,117 @@ type TypographySelectorProps = {
   locale: string;
 };
 
+type Font = {
+  id: string;
+  /** Shown inside the wheel, rendered in its own family */
+  sample: string;
+  style: React.CSSProperties;
+  className?: string;
+};
+
+const FONTS: Font[] = [
+  { id: 'geist', sample: 'Geist', style: { fontFamily: 'var(--font-geist-sans), sans-serif' } },
+  { id: 'inter', sample: 'Inter', style: { fontFamily: 'Inter, sans-serif' } },
+  { id: 'roboto', sample: 'Roboto', style: { fontFamily: 'Roboto, sans-serif' } },
+  { id: 'poppins', sample: 'Poppins', style: { fontFamily: 'Poppins, sans-serif' } },
+  { id: 'playfair', sample: 'Playfair', style: { fontFamily: '"Playfair Display", Georgia, serif' }, className: 'italic' },
+  { id: 'mono', sample: 'Geist Mono', style: { fontFamily: 'var(--font-geist-mono), monospace' } },
+  { id: 'rubik', sample: 'Rubik', style: { fontFamily: 'var(--font-rubik), sans-serif' } },
+  { id: 'cairo', sample: 'القاهرة', style: { fontFamily: 'Cairo, var(--font-rubik), sans-serif' } },
+  { id: 'tajawal', sample: 'تجوال', style: { fontFamily: 'Tajawal, var(--font-rubik), sans-serif' } },
+  { id: 'amiri', sample: 'أميري', style: { fontFamily: 'Amiri, serif' } },
+];
+
+const ITEM_H = 56;
+const VISIBLE = 5;
+const PAD = ((VISIBLE - 1) / 2) * ITEM_H;
+
 export const TypographySelector = ({
   selectedTypography,
   onSelect,
-  locale
 }: TypographySelectorProps) => {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const rafRef = useRef(0);
+  const initial = Math.max(0, FONTS.findIndex((f) => f.id === selectedTypography));
+  const activeRef = useRef(initial);
+  const [active, setActive] = useState(initial);
 
-  // Typography options with placeholder images
-  const typographyOptions = {
-    en: [
-      {
-        id: 'inter',
-        name: 'Inter',
-        imagePath: '/typography/inter.png',
-        description: 'Clean and modern'
-      },
-      {
-        id: 'roboto',
-        name: 'Roboto',
-        imagePath: '/typography/roboto.png',
-        description: 'Google\'s signature font'
-      },
-      {
-        id: 'poppins',
-        name: 'Poppins',
-        imagePath: '/typography/poppins.png',
-        description: 'Geometric and friendly'
-      },
-      {
-        id: 'playfair',
-        name: 'Playfair Display',
-        imagePath: '/typography/playfair.png',
-        description: 'Elegant serif'
-      }
-    ],
-    ar: [
-      {
-        id: 'noto-arabic',
-        name: 'Noto Sans Arabic',
-        imagePath: '/typography/noto-arabic.png',
-        description: 'واضح وحديث'
-      },
-      {
-        id: 'cairo',
-        name: 'Cairo',
-        imagePath: '/typography/cairo.png',
-        description: 'هندسي وودود'
-      },
-      {
-        id: 'amiri',
-        name: 'Amiri',
-        imagePath: '/typography/amiri.png',
-        description: 'كلاسيكي وأنيق'
-      },
-      {
-        id: 'tajawal',
-        name: 'Tajawal',
-        imagePath: '/typography/tajawal.png',
-        description: 'بسيط ومعاصر'
-      }
-    ]
-  };
+  // Center the initial selection and report it once on mount.
+  useEffect(() => {
+    if (scrollRef.current) scrollRef.current.scrollTop = initial * ITEM_H;
+    onSelect(FONTS[initial].id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  const getImageUrl = (imagePath: string) => {
-    const baseUrl = process.env.NEXT_PUBLIC_IMAGEKIT_URL_ENDPOINT || 'https://ik.imagekit.io/databayt';
-    // For now, using placeholder images
-    return `${baseUrl}/project/codebase.jpg?tr=w-300,h-200,q-80`;
-  };
+  const handleScroll = useCallback(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    cancelAnimationFrame(rafRef.current);
+    rafRef.current = requestAnimationFrame(() => {
+      const idx = Math.min(
+        FONTS.length - 1,
+        Math.max(0, Math.round(el.scrollTop / ITEM_H))
+      );
+      // Notify outside of any state updater so we never setState-in-render.
+      if (idx !== activeRef.current) {
+        activeRef.current = idx;
+        setActive(idx);
+        onSelect(FONTS[idx].id);
+      }
+    });
+  }, [onSelect]);
+
+  const scrollTo = (i: number) =>
+    scrollRef.current?.scrollTo({ top: i * ITEM_H, behavior: 'smooth' });
 
   return (
-    <div className="h-full overflow-auto">
-      <div className="space-y-4">
-        {/* English Fonts */}
-        <div>
-          <h3 className="text-lg font-semibold mb-4">English Fonts</h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {typographyOptions.en.map((font) => (
-              <div
-                key={font.id}
-                onClick={() => onSelect(font.id)}
-                className={cn(
-                  "relative cursor-pointer group overflow-hidden rounded-lg border-2 transition-all duration-200",
-                  selectedTypography === font.id
-                    ? "border-primary shadow-lg"
-                    : "border-muted hover:border-muted-foreground/50 hover:shadow-md"
-                )}
+    <div className="flex h-full items-center justify-center">
+      <div
+        className="relative w-80 max-w-[90vw]"
+        style={{ height: VISIBLE * ITEM_H }}
+      >
+        {/* Center selection band */}
+        <div
+          className="pointer-events-none absolute inset-x-0 top-1/2 z-0 -translate-y-1/2 rounded-2xl border-y border-border bg-muted/40"
+          style={{ height: ITEM_H }}
+        />
+
+        {/* iOS-style fade masks (top + bottom) */}
+        <div className="pointer-events-none absolute inset-x-0 top-0 z-20 h-2/5 bg-gradient-to-b from-background to-transparent" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-2/5 bg-gradient-to-t from-background to-transparent" />
+
+        {/* The wheel */}
+        <div
+          ref={scrollRef}
+          onScroll={handleScroll}
+          className="relative z-10 h-full snap-y snap-mandatory overflow-y-scroll [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        >
+          <div style={{ height: PAD }} />
+          {FONTS.map((f, i) => {
+            const dist = Math.abs(i - active);
+            return (
+              <button
+                key={f.id}
+                type="button"
+                onClick={() => scrollTo(i)}
+                className="flex w-full snap-center items-center justify-center"
+                style={{ height: ITEM_H }}
               >
-                {/* Selection indicator */}
-                {selectedTypography === font.id && (
-                  <div className="absolute top-2 right-2 z-10 bg-primary text-primary-foreground rounded-full p-1">
-                    <Check className="w-3 h-3" />
-                  </div>
-                )}
-
-                {/* Font preview image */}
-                <div className="relative aspect-[3/2] overflow-hidden bg-muted">
-                  <div className="absolute inset-0 flex items-center justify-center p-4">
-                    <div className={`text-2xl font-bold`} style={{ fontFamily: font.name }}>
-                      Aa
-                    </div>
-                  </div>
-                </div>
-
-                {/* Font info */}
-                <div className="p-3 bg-background">
-                  <h4 className="font-medium text-sm">{font.name}</h4>
-                  <p className="text-xs text-muted-foreground">{font.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Arabic Fonts */}
-        <div>
-          <h3 className="text-lg font-semibold mb-4">Arabic Fonts / خطوط عربية</h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {typographyOptions.ar.map((font) => (
-              <div
-                key={font.id}
-                onClick={() => onSelect(font.id)}
-                className={cn(
-                  "relative cursor-pointer group overflow-hidden rounded-lg border-2 transition-all duration-200",
-                  selectedTypography === font.id
-                    ? "border-primary shadow-lg"
-                    : "border-muted hover:border-muted-foreground/50 hover:shadow-md"
-                )}
-              >
-                {/* Selection indicator */}
-                {selectedTypography === font.id && (
-                  <div className="absolute top-2 right-2 z-10 bg-primary text-primary-foreground rounded-full p-1">
-                    <Check className="w-3 h-3" />
-                  </div>
-                )}
-
-                {/* Font preview */}
-                <div className="relative aspect-[3/2] overflow-hidden bg-muted">
-                  <div className="absolute inset-0 flex items-center justify-center p-4">
-                    <div className="text-2xl font-bold" dir="rtl">
-                      أبجد
-                    </div>
-                  </div>
-                </div>
-
-                {/* Font info */}
-                <div className="p-3 bg-background">
-                  <h4 className="font-medium text-sm">{font.name}</h4>
-                  <p className="text-xs text-muted-foreground">{font.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+                <span
+                  className={cn('transition-all duration-200', f.className)}
+                  style={{
+                    ...f.style,
+                    fontSize: dist === 0 ? '1.875rem' : dist === 1 ? '1.375rem' : '1.125rem',
+                    opacity: dist === 0 ? 1 : dist === 1 ? 0.45 : 0.2,
+                    fontWeight: dist === 0 ? 600 : 400,
+                  }}
+                >
+                  {f.sample}
+                </span>
+              </button>
+            );
+          })}
+          <div style={{ height: PAD }} />
         </div>
       </div>
     </div>

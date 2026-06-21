@@ -163,7 +163,7 @@ export default function SelectionWizard() {
       />
 
       {/* Main Content */}
-      <div className="flex-1 overflow-hidden px-4 md:px-6">
+      <div className="flex-1 overflow-hidden px-4 md:px-6 py-8 md:py-12">
         <div className="w-full max-w-6xl mx-auto h-full">
             {step === 1 && (
               <BusinessSelector

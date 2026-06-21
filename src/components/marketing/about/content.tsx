@@ -3,85 +3,84 @@
 import React from 'react';
 import { useTranslations } from '@/lib/use-translations';
 
-const Introduction = ({ t }: { t: any }) => {
-    return (
-        <div className='space-y-6'>
-            <h4 className='text-2xl leading-relaxed'>
-                {t.marketing.about.introduction.paragraph1}
-            </h4>
-            <h4 className='text-2xl leading-relaxed'>
-                {t.marketing.about.introduction.paragraph2}
-            </h4>
-            <h4 className='text-2xl leading-relaxed'>
-                {t.marketing.about.introduction.paragraph3}
-            </h4>
-            <h4 className='text-2xl leading-relaxed'>
-                {t.marketing.about.introduction.paragraph4}
-            </h4>
-        </div>
-    )
-}
-
-const WhatWeDo = ({ t }: { t: any }) => {
-    return (
-        <div className='space-y-4 py-10'>
-            <h4 className='text-2xl font-semibold'>{t.marketing.about.whatWeDo.title}</h4>
-            <p className='text-white/80'>{t.marketing.about.whatWeDo.development}</p>
-            <p className='text-white/80'>{t.marketing.about.whatWeDo.automation}</p>
-            <p className='text-white/80'>{t.marketing.about.whatWeDo.consulting}</p>
-            <p className='text-white/80'>{t.marketing.about.whatWeDo.openSource}</p>
-        </div>
-    )
-}
-
-const BusinessModel = ({ t }: { t: any }) => {
-    return (
-        <div className='space-y-4 py-10'>
-            <h4 className='text-2xl font-semibold'>{t.marketing.about.businessModel.title}</h4>
-            <h4 className='text-xl font-medium'>{t.marketing.about.businessModel.perProject.title}</h4>
-            <p className='text-white/80'>{t.marketing.about.businessModel.perProject.description}</p>
-
-            <h4 className='text-xl font-medium'>{t.marketing.about.businessModel.partners.title}</h4>
-            <p className='text-white/80'>{t.marketing.about.businessModel.partners.description}</p>
-
-            <h4 className='text-xl font-medium'>{t.marketing.about.businessModel.codebase.title}</h4>
-            <p className='text-white/80'>{t.marketing.about.businessModel.codebase.description}</p>
-
-            <h4 className='text-xl font-medium'>{t.marketing.about.businessModel.saas.title}</h4>
-            <p className='text-white/80'>{t.marketing.about.businessModel.saas.description}</p>
-        </div>
-    )
-}
-
-const CoreValues = ({ t }: { t: any }) => {
-    return (
-        <div className='space-y-4 py-10'>
-            <h4 className='text-2xl font-semibold'>{t.marketing.about.coreValues.title}</h4>
-            <h4 className='text-xl font-medium'>{t.marketing.about.coreValues.transparency.title}</h4>
-            <p className='text-white/80'>{t.marketing.about.coreValues.transparency.description}</p>
-
-            <h4 className='text-xl font-medium'>{t.marketing.about.coreValues.innovation.title}</h4>
-            <p className='text-white/80'>{t.marketing.about.coreValues.innovation.description}</p>
-
-            <h4 className='text-xl font-medium'>{t.marketing.about.coreValues.growth.title}</h4>
-            <p className='text-white/80'>{t.marketing.about.coreValues.growth.description}</p>
-
-            <h4 className='text-xl font-medium'>{t.marketing.about.coreValues.excellence.title}</h4>
-            <p className='text-white/80'>{t.marketing.about.coreValues.excellence.description}</p>
-        </div>
-    )
-}
-
-export const Content = () => {
-    const { t, isRTL } = useTranslations();
-    
-    return (
-        <div className={`md:max-w-[80%] py-40 ${isRTL ? 'mr-0 ml-auto text-right' : ''}`}>
-            <Introduction t={t} />
-            <WhatWeDo t={t} />
-            <BusinessModel t={t} />
-            <CoreValues t={t} />
-        </div>
-    );
+// Split "Head - detail" strings into a title + muted detail (mirrors the
+// reference's title/detail list rows). Falls back to title-only when there is
+// no separator so it stays safe across locales.
+const splitHeadDetail = (value: string): { head: string; detail: string } => {
+  const idx = value.indexOf(' - ');
+  if (idx === -1) return { head: value, detail: '' };
+  return { head: value.slice(0, idx), detail: value.slice(idx + 3) };
 };
 
+type Pair = { title: string; description: string };
+
+const Item = ({ title, detail }: { title: string; detail?: string }) => (
+  <li className="reveal about-item">
+    <span className="about-item-title">{title}</span>
+    {detail ? <span className="about-item-detail">{detail}</span> : null}
+  </li>
+);
+
+export const Content = () => {
+  const { t } = useTranslations();
+  const a = t.marketing.about;
+
+  const whatWeDo = [
+    a.whatWeDo.development,
+    a.whatWeDo.automation,
+    a.whatWeDo.consulting,
+    a.whatWeDo.openSource,
+  ].map(splitHeadDetail);
+
+  const businessModel: Pair[] = [
+    a.businessModel.perProject,
+    a.businessModel.partners,
+    a.businessModel.codebase,
+    a.businessModel.saas,
+  ];
+
+  const coreValues: Pair[] = [
+    a.coreValues.transparency,
+    a.coreValues.innovation,
+    a.coreValues.growth,
+    a.coreValues.excellence,
+  ];
+
+  return (
+    <div className="about-content">
+      <header className="about-intro">
+        <p className="reveal about-lead">{a.introduction.paragraph1}</p>
+        <p className="reveal about-lead">{a.introduction.paragraph2}</p>
+        <p className="reveal about-lead">{a.introduction.paragraph3}</p>
+        <p className="reveal about-lead">{a.introduction.paragraph4}</p>
+      </header>
+
+      <section className="about-section">
+        <h2 className="reveal about-h2">{a.whatWeDo.title}</h2>
+        <ul className="about-list">
+          {whatWeDo.map((it, i) => (
+            <Item key={i} title={it.head} detail={it.detail} />
+          ))}
+        </ul>
+      </section>
+
+      <section className="about-section">
+        <h2 className="reveal about-h2">{a.businessModel.title}</h2>
+        <ul className="about-list">
+          {businessModel.map((it, i) => (
+            <Item key={i} title={it.title} detail={it.description} />
+          ))}
+        </ul>
+      </section>
+
+      <section className="about-section">
+        <h2 className="reveal about-h2">{a.coreValues.title}</h2>
+        <ul className="about-list">
+          {coreValues.map((it, i) => (
+            <Item key={i} title={it.title} detail={it.description} />
+          ))}
+        </ul>
+      </section>
+    </div>
+  );
+};

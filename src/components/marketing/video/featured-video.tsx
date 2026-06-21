@@ -61,11 +61,17 @@ const FeaturedProjects = memo(({ projectsSection }: FeaturedProjectsProps) => {
         ? projectsSection?.tabsMobile?.health || 'Health'
         : projectsSection?.tabs?.health || 'Health' 
     },
-    { 
-      id: 'ecommerce', 
-      label: isMobile 
+    {
+      id: 'ecommerce',
+      label: isMobile
         ? projectsSection?.tabsMobile?.ecommerce || 'E-comm'
-        : projectsSection?.tabs?.ecommerce || 'E-commerce' 
+        : projectsSection?.tabs?.ecommerce || 'E-commerce'
+    },
+    {
+      id: 'clone',
+      label: isMobile
+        ? projectsSection?.tabsMobile?.clone || 'Clone'
+        : projectsSection?.tabs?.clone || 'Clone'
     },
   ], [isMobile, projectsSection])
   

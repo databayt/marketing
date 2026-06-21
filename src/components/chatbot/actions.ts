@@ -7,17 +7,22 @@ const groq = createGroq({
   apiKey: process.env.GROQ_API_KEY || ''
 });
 
-export async function sendMessage(messages: CoreMessage[]) {
+export async function sendMessage(messages: CoreMessage[], locale: 'en' | 'ar' = 'en') {
   try {
     // Check if API key is available
     const apiKey = process.env.GROQ_API_KEY;
-    
+
     if (!apiKey) {
       return {
         success: false,
         error: 'Groq API key not configured. Please add GROQ_API_KEY to your .env.local file.'
       };
     }
+
+    const languageDirective =
+      locale === 'ar'
+        ? '\n\nIMPORTANT: Reply ONLY in Arabic. Keep prices in USD.'
+        : '\n\nIMPORTANT: Reply ONLY in English.';
 
     const result = await generateText({
       model: groq('llama-3.1-8b-instant'),
@@ -54,7 +59,7 @@ export async function sendMessage(messages: CoreMessage[]) {
 Example: "We offer 2 web design tiers:
 • Basic: $2,000-$5,000 (simple sites)
 • Sophisticated: $10,000+ (custom features)
-Which fits your needs?"`,
+Which fits your needs?"${languageDirective}`,
     });
 
     return {

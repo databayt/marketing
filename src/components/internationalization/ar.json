@@ -159,7 +159,8 @@
         "education": "تعليم",
         "health": "صحة",
         "ecommerce": "تجارة",
-        "states": "حكومي"
+        "states": "حكومي",
+        "clone": "نسخة"
       },
       "tabsMobile": {
         "featured": "مميز",
@@ -167,7 +168,8 @@
         "education": "تعليم",
         "health": "صحة",
         "ecommerce": "تجارة",
-        "states": "حكومي"
+        "states": "حكومي",
+        "clone": "نسخة"
       },
       "more": "المزيد",
       "websiteButton": "الموقع",
@@ -233,6 +235,16 @@
         "title": "تدبير",
         "description": "خدمات العمالة المنزلية، التوظيف، العقود، والإدارة",
         "category": "شركة"
+      },
+      "zenda": {
+        "title": "زندا",
+        "description": "نسخة من تطبيق التواصل ومشاركة الموقع بواجهة عصرية أنيقة",
+        "category": "نسخة"
+      },
+      "apple": {
+        "title": "أبل",
+        "description": "نسخة من موقع أبل بعرض غامر للمنتجات والمؤثرات البصرية",
+        "category": "نسخة"
       }
     },
     "featureCards": {

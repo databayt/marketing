@@ -9,6 +9,7 @@ import { ImageKitProvider } from "@/components/ui/imagekit-provider";
 import { Toaster } from "sonner";
 import { getDictionary } from "@/components/internationalization/dictionaries";
 import { type Locale, localeConfig } from "@/components/internationalization/config";
+import { LoadingWrapper } from "@/components/marketing/loading";
 // import { SessionProvider } from "next-auth/react";
 // import { auth } from "@/auth";
 
@@ -101,8 +102,8 @@ export default async function LocaleLayout({
               <ImageKitProvider>
                 <div className="layout-container">
                   <Toaster position={isRTL ? "bottom-left" : "bottom-right"} />
-                  
-                  {children}
+
+                  <LoadingWrapper>{children}</LoadingWrapper>
                 </div>
               </ImageKitProvider>
             </ThemeProvider>

@@ -30,7 +30,7 @@ export const WizardFooter = ({
   finishText,
 }: WizardFooterProps) => {
   return (
-    <div className="h-16 flex-shrink-0 flex flex-col justify-center px-4 md:px-6 space-y-2">
+    <div className="flex-shrink-0 flex flex-col items-center justify-center px-4 md:px-6 py-6 gap-7">
       {/* Step Indicator */}
       <StepIndicator currentStep={currentStep} totalSteps={totalSteps} />
 

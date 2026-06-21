@@ -1,129 +1,98 @@
 'use client';
 
 import { cn } from '@/lib/utils';
-import { Check, Home, Settings, User, ShoppingCart, Heart, Star, Bell, Search } from 'lucide-react';
+import { Check } from 'lucide-react';
+
+/* ------------------------------------------------------------------ *
+ * Fire icon — four variants of the same glyph.
+ * Original fixed colors are mapped to `currentColor` so the icon
+ * inherits text color and adapts to light/dark + the chosen theme.
+ * ------------------------------------------------------------------ */
+
+const D_FILL =
+  'M10.3671 4.06132C9.6671 4.56707 5 8.15805 5 13.9996C5 14.9188 5.18106 15.8291 5.53284 16.6784C5.88463 17.5277 6.40024 18.2993 7.05025 18.9493C7.70026 19.5993 8.47194 20.115 9.32122 20.4667C10.146 20.8084 11.0282 20.989 11.9203 20.9991C9.74796 20.9567 8 19.1824 8 16.9999C8 16.8024 8.01432 16.6082 8.04197 16.4184C8.04315 16.4071 8.04459 16.3957 8.04628 16.3843C8.3817 14.1305 10.4553 12.2171 11.4581 11.4101C11.7785 11.1523 12.2216 11.1523 12.5421 11.4101C13.5448 12.2171 15.6183 14.1305 15.9537 16.3843C15.9554 16.3957 15.9569 16.4071 15.958 16.4184C15.9857 16.6082 16 16.8024 16 16.9999C16 19.1824 14.252 20.9567 12.0797 20.9991C12.9718 20.989 13.854 20.8084 14.6788 20.4667C15.5281 20.115 16.2997 19.5993 16.9497 18.9493C17.5998 18.2993 18.1154 17.5277 18.4672 16.6784C18.807 15.8579 18.9875 14.9804 18.9994 14.093C18.9998 14.0815 19 14.07 19 14.0584L18.9999 14.0268L19 13.9997C18.9736 9.75902 16.1044 7.4446 15.5813 7.05781C15.5323 7.02155 15.4671 7.02196 15.4181 7.05823C15.2083 7.21337 14.6241 7.67639 13.9967 8.44729C13.9251 8.53521 13.7845 8.5184 13.7361 8.41591C12.5573 5.92135 10.9243 4.40726 10.5386 4.07102C10.4888 4.02764 10.4206 4.02266 10.3671 4.06132Z';
+
+const D_INNER_FLAME =
+  'M8.04628 16.3844C8.3817 14.1306 10.4553 12.2172 11.4581 11.4102C11.7785 11.1523 12.2216 11.1523 12.5421 11.4102C13.5448 12.2172 15.6183 14.1306 15.9537 16.3844C15.9554 16.3958 15.9569 16.4071 15.958 16.4184C15.9857 16.6083 16 16.8025 16 17C16 19.2091 14.2091 21 12 21C9.79086 21 8 19.2091 8 17C8 16.8024 8.01432 16.6083 8.04197 16.4184C8.04315 16.4071 8.04459 16.3958 8.04628 16.3844Z';
+
+const D_OUTER_LINE =
+  'M18.0052 16.4884L17.5433 16.297V16.297L18.0052 16.4884ZM16.5962 18.5971L16.9497 18.9507H16.9497L16.5962 18.5971ZM14.4874 20.0061L14.2961 19.5442L14.2961 19.5442L14.4874 20.0061ZM9.51256 20.0061L9.7039 19.5442H9.7039L9.51256 20.0061ZM7.40381 18.5971L7.75736 18.2436H7.75736L7.40381 18.5971ZM5.99478 16.4884L5.53284 16.6797H5.53284L5.99478 16.4884ZM15.4072 6.58312L15.0664 6.21724L15.4072 6.58312ZM15.5914 6.58184L15.9321 6.21583L15.5914 6.58184ZM14.3536 7.48159L14.7629 7.19445L14.3536 7.48159ZM14.6027 7.48614L14.9998 7.7899L14.6027 7.48614ZM11.4202 4.54841L11.6837 4.97335L11.4202 4.54841ZM11.577 4.5562L11.2775 4.95663L11.577 4.5562ZM11.1567 4.12347C10.7792 4.35757 9.25266 5.35391 7.81554 7.01613C6.37866 8.67808 5 11.043 5 14.0009H6C6 11.3677 7.22635 9.2266 8.57201 7.67016C9.91745 6.11398 11.351 5.1796 11.6837 4.97335L11.1567 4.12347ZM14.7629 7.19445C13.5479 5.46236 12.2233 4.4152 11.8764 4.15577L11.2775 4.95663C11.5755 5.17945 12.8113 6.15362 13.9443 7.76873L14.7629 7.19445ZM14.9998 7.7899C15.3371 7.34891 15.6197 7.06843 15.748 6.94899L15.0664 6.21724C14.9037 6.36877 14.5819 6.69032 14.2055 7.18238L14.9998 7.7899ZM15.2508 6.94784C15.6999 7.36582 18 9.71583 18 13.9999H19C19 9.3298 16.4885 6.73372 15.9321 6.21583L15.2508 6.94784ZM18 13.9999V14.0009H19V13.9999H18ZM18 14.0009C18 14.7888 17.8448 15.5691 17.5433 16.297L18.4672 16.6797C18.8189 15.8304 19 14.9202 19 14.0009H18ZM17.5433 16.297C17.2417 17.025 16.7998 17.6864 16.2426 18.2436L16.9497 18.9507C17.5998 18.3007 18.1154 17.529 18.4672 16.6797L17.5433 16.297ZM16.2426 18.2436C15.6855 18.8007 15.0241 19.2427 14.2961 19.5442L14.6788 20.4681C15.5281 20.1163 16.2997 19.6007 16.9497 18.9507L16.2426 18.2436ZM14.2961 19.5442C13.5681 19.8457 12.7879 20.0009 12 20.0009V21.0009C12.9193 21.0009 13.8295 20.8199 14.6788 20.4681L14.2961 19.5442ZM12 20.0009C11.2121 20.0009 10.4319 19.8457 9.7039 19.5442L9.32122 20.4681C10.1705 20.8199 11.0807 21.0009 12 21.0009V20.0009ZM9.7039 19.5442C8.97595 19.2427 8.31451 18.8007 7.75736 18.2436L7.05025 18.9507C7.70026 19.6007 8.47194 20.1163 9.32122 20.4681L9.7039 19.5442ZM7.75736 18.2436C7.20021 17.6864 6.75825 17.025 6.45672 16.297L5.53284 16.6797C5.88463 17.529 6.40024 18.3007 7.05025 18.9507L7.75736 18.2436ZM6.45672 16.297C6.15519 15.5691 6 14.7888 6 14.0009H5C5 14.9202 5.18106 15.8304 5.53284 16.6797L6.45672 16.297ZM15.748 6.94899C15.6154 7.07251 15.3961 7.08306 15.2508 6.94784L15.9321 6.21583C15.6808 5.98195 15.305 5.995 15.0664 6.21724L15.748 6.94899ZM13.9443 7.76873C14.2 8.13332 14.7335 8.13813 14.9998 7.7899L14.2055 7.18238C14.3456 6.99919 14.6265 6.99994 14.7629 7.19445L13.9443 7.76873ZM11.6837 4.97335C11.5526 5.05465 11.3896 5.04043 11.2775 4.95663L11.8764 4.15577C11.6706 4.00186 11.3873 3.98046 11.1567 4.12347L11.6837 4.97335Z';
+
+const D_INNER_LINE =
+  'M15.4991 16.9218L14.9992 16.932L14.9993 16.9328L15.4991 16.9218ZM8.5 17.0004L9 17.0004L8.5 17.0004ZM12.0859 11.5642L12.388 11.1658L12.0859 11.5642ZM11.6119 11.1658C11.3275 11.3815 10.4392 12.0883 9.61737 13.1C8.80358 14.1019 7.99995 15.4704 7.99994 17.0004L8.99994 17.0004C8.99995 15.8106 9.63467 14.6648 10.3936 13.7305C11.1445 12.806 11.9632 12.1545 12.2162 11.9626L11.6119 11.1658ZM15.999 16.9117C15.9684 15.4034 15.1657 14.0571 14.3586 13.0706C13.5437 12.0747 12.6698 11.3795 12.388 11.1658L11.7837 11.9626C12.0342 12.1525 12.8396 12.7934 13.5847 13.7039C14.3375 14.624 14.9754 15.7547 14.9992 16.932L15.999 16.9117ZM14.9993 16.9328C14.9998 16.9552 15 16.9776 15 17.0001H16C16 16.9703 15.9997 16.9405 15.999 16.9109L14.9993 16.9328ZM15 17.0001C15 18.657 13.6569 20.0001 12 20.0001V21.0001C14.2091 21.0001 16 19.2093 16 17.0001H15ZM12 20.0001C10.3432 20.0001 9.00014 18.6571 9 17.0004L8 17.0005C8.00019 19.2095 9.79098 21.0001 12 21.0001V20.0001ZM7.99994 17.0004C7.99994 17.2754 8.22267 17.5004 8.49997 17.5004V16.5004C8.77723 16.5004 8.99994 16.7254 8.99994 17.0004L7.99994 17.0004ZM9 17.0004C8.99998 16.7293 8.78117 16.5004 8.49997 16.5004V17.5004C8.2188 17.5004 8.00002 17.2715 8 17.0005L9 17.0004ZM12.2162 11.9626C12.0888 12.0593 11.9114 12.0594 11.7837 11.9626L12.388 11.1658C12.1582 10.9915 11.8415 10.9917 11.6119 11.1658L12.2162 11.9626Z';
+
+type IconProps = { className?: string };
+
+const FireDuotoneFill = ({ className }: IconProps) => (
+  <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
+    <path d={D_FILL} fill="currentColor" />
+    <path d={D_INNER_FLAME} fill="currentColor" fillOpacity={0.25} />
+  </svg>
+);
+
+const FireDuotoneLine = ({ className }: IconProps) => (
+  <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
+    <path d={D_INNER_LINE} fill="currentColor" fillOpacity={0.25} />
+    <path d={D_OUTER_LINE} fill="currentColor" />
+  </svg>
+);
+
+const FireFill = ({ className }: IconProps) => (
+  <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
+    <path d={D_FILL} fill="currentColor" />
+  </svg>
+);
+
+const FireLight = ({ className }: IconProps) => (
+  <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
+    <path d={D_OUTER_LINE} fill="currentColor" />
+    <path d={D_INNER_LINE} fill="currentColor" />
+  </svg>
+);
+
+const ICON_VARIANTS = [
+  { id: 'duotone-fill', label: 'Duotone', Icon: FireDuotoneFill },
+  { id: 'duotone-line', label: 'Duotone Line', Icon: FireDuotoneLine },
+  { id: 'fill', label: 'Fill', Icon: FireFill },
+  { id: 'light', label: 'Light', Icon: FireLight },
+] as const;
 
 type IconSelectorProps = {
   selectedStyle?: string;
   onSelect: (styleId: string) => void;
 };
 
-export const IconSelector = ({
-  selectedStyle,
-  onSelect
-}: IconSelectorProps) => {
-
-  const iconStyles = [
-    {
-      id: 'outlined',
-      name: 'Outlined',
-      description: 'Clean line icons',
-      preview: [
-        { Icon: Home, label: 'Home' },
-        { Icon: Settings, label: 'Settings' },
-        { Icon: User, label: 'User' },
-        { Icon: ShoppingCart, label: 'Cart' }
-      ]
-    },
-    {
-      id: 'filled',
-      name: 'Filled',
-      description: 'Solid filled icons',
-      preview: [
-        { Icon: Heart, label: 'Heart' },
-        { Icon: Star, label: 'Star' },
-        { Icon: Bell, label: 'Bell' },
-        { Icon: Search, label: 'Search' }
-      ]
-    }
-  ];
-
+export const IconSelector = ({ selectedStyle, onSelect }: IconSelectorProps) => {
   return (
-    <div className="h-full overflow-auto">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {iconStyles.map((style) => (
-          <div
-            key={style.id}
-            onClick={() => onSelect(style.id)}
-            className={cn(
-              "relative cursor-pointer group overflow-hidden rounded-lg border-2 transition-all duration-200 p-6",
-              selectedStyle === style.id
-                ? "border-primary shadow-lg bg-primary/5"
-                : "border-muted hover:border-muted-foreground/50 hover:shadow-md bg-background"
-            )}
-          >
-            {/* Selection indicator */}
-            {selectedStyle === style.id && (
-              <div className="absolute top-3 right-3 z-10 bg-primary text-primary-foreground rounded-full p-1">
-                <Check className="w-4 h-4" />
-              </div>
-            )}
-
-            {/* Style info */}
-            <div className="mb-6">
-              <h3 className="font-semibold text-xl mb-2">{style.name}</h3>
-              <p className="text-sm text-muted-foreground">{style.description}</p>
-            </div>
-
-            {/* Icon preview grid */}
-            <div className="grid grid-cols-4 gap-4">
-              {style.preview.map(({ Icon, label }, index) => (
-                <div key={index} className="flex flex-col items-center gap-2">
-                  <div className={cn(
-                    "p-3 rounded-lg transition-colors",
-                    selectedStyle === style.id
-                      ? "bg-primary/10"
-                      : "bg-muted hover:bg-muted-foreground/10"
-                  )}>
-                    <Icon
-                      className={cn(
-                        "w-6 h-6",
-                        style.id === 'filled' ? "fill-current" : "",
-                        selectedStyle === style.id
-                          ? "text-primary"
-                          : "text-foreground"
-                      )}
-                      strokeWidth={style.id === 'outlined' ? 1.5 : 2}
-                    />
-                  </div>
-                  <span className="text-xs text-muted-foreground">{label}</span>
+    <div className="flex h-full items-center justify-center">
+      <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
+        {ICON_VARIANTS.map(({ id, label, Icon }) => {
+          const isActive = selectedStyle === id;
+          return (
+            <button
+              key={id}
+              type="button"
+              onClick={() => onSelect(id)}
+              aria-pressed={isActive}
+              className={cn(
+                'group relative flex h-28 w-24 flex-col items-center justify-center gap-3 rounded-2xl border-2 transition-all duration-200 sm:w-28',
+                isActive
+                  ? 'border-primary text-primary shadow-lg ring-2 ring-primary/20'
+                  : 'border-border text-foreground hover:border-muted-foreground/40 hover:shadow-md'
+              )}
+            >
+              {isActive && (
+                <div className="absolute right-2 top-2 rounded-full bg-primary p-0.5 text-primary-foreground">
+                  <Check className="h-3 w-3" />
                 </div>
-              ))}
-            </div>
-
-            {/* Additional preview row */}
-            <div className="mt-6 pt-6 border-t">
-              <div className="flex items-center justify-center gap-4">
-                {['Home', 'Settings', 'User', 'Bell'].map((item, index) => {
-                  const IconComponent = index === 0 ? Home :
-                                       index === 1 ? Settings :
-                                       index === 2 ? User : Bell;
-                  return (
-                    <IconComponent
-                      key={item}
-                      className={cn(
-                        "w-5 h-5 transition-colors",
-                        style.id === 'filled' ? "fill-current" : "",
-                        selectedStyle === style.id
-                          ? "text-primary"
-                          : "text-muted-foreground"
-                      )}
-                      strokeWidth={style.id === 'outlined' ? 1.5 : 2}
-                    />
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* Icon library examples */}
-      <div className="mt-8 p-4 bg-muted/50 rounded-lg">
-        <p className="text-sm text-muted-foreground text-center">
-          Choose between outlined and filled icon styles for your application.
-          This will affect all icons throughout your interface.
-        </p>
+              )}
+              <Icon className="h-11 w-11 transition-transform duration-200 group-hover:scale-110" />
+              <span className="text-[11px] font-medium text-muted-foreground">
+                {label}
+              </span>
+            </button>
+          );
+        })}
       </div>
     </div>
   );

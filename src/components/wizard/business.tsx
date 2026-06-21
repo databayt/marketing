@@ -13,7 +13,7 @@ export const BusinessSelector = ({
 }: BusinessSelectorProps) => {
   return (
     <div className="h-full flex items-center justify-center">
-      <div className="flex flex-wrap justify-center items-center gap-3">
+      <div className="flex flex-wrap justify-center items-center gap-3 w-4/5">
         {businesses.map(({ id, name, popularity }) => (
           <span
             key={id}

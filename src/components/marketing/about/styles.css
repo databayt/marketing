@@ -1,85 +1,201 @@
-.aboutSection {
-  @apply relative min-h-screen w-full py-8;
+/* About page — mirrors camillemormal.com/about
+   Layout: far-side minimap + viewport tracker box, large neo-grotesque
+   content column scrolled with a damped (lerped) virtual scroll. */
+
+.about-root {
+  --content-w: clamp(20rem, 45vw, 46rem);
+  --about-bg: #141414;
+  position: fixed;
+  inset: 0;
+  background: var(--about-bg);
+  color: #fff;
+  overflow: hidden;
+  z-index: 0;
 }
 
-.frameBox {
-  @apply fixed top-0 left-0 w-full h-full pointer-events-none;
-  z-index: 1;
+/* Back link (kept from the original — top, subtle) */
+.about-back {
+  position: absolute;
+  top: 2rem;
+  inset-inline-end: 2.25rem;
+  z-index: 40;
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
+  color: rgba(255, 255, 255, 0.6);
+  transition: color 0.3s ease;
+}
+.about-back:hover {
+  color: #fff;
 }
 
-.smallNav {
-  @apply fixed top-0 left-0 w-full p-8;
-  z-index: 2;
+/* ---------- Content typography (shared by main + minimap) ---------- */
+.about-content {
+  width: 100%;
+  padding-top: 24vh;
+  padding-bottom: 34vh;
+  text-align: start;
 }
 
-.contentItem {
-  @apply mb-16;
+.about-intro {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.4rem, 2.4vw, 2.2rem);
 }
 
-.sectionTitle {
-  @apply text-lg font-semibold mb-4;
+.about-lead {
+  margin: 0;
+  font-size: clamp(1.55rem, 2.7vw, 2.55rem);
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  font-weight: 400;
+  color: #fff;
+  text-wrap: pretty;
 }
 
-.textBox p {
-  @apply mb-4 text-lg leading-relaxed;
+.about-section {
+  margin-top: clamp(7rem, 17vh, 13rem);
 }
 
-.experienceList,
-.awardsList,
-.brandsList,
-.socialList {
-  @apply space-y-6;
+.about-h2 {
+  margin: 0 0 clamp(2rem, 4.5vh, 3.25rem);
+  font-size: clamp(1.55rem, 2.7vw, 2.55rem);
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  font-weight: 400;
+  color: #fff;
 }
 
-.experienceItem,
-.awardItem {
-  @apply space-y-1;
+.about-list {
+  list-style: none;
+  margin: 0;
+  margin-inline-start: clamp(0px, 4vw, 3.5rem);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2rem, 4vh, 3.25rem);
 }
 
-.title {
-  @apply text-base font-medium;
+.about-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
 }
 
-.company,
-.period,
-.detail {
-  @apply text-sm text-muted-foreground;
+.about-item-title {
+  font-size: clamp(1.3rem, 2vw, 1.95rem);
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+  font-weight: 400;
+  color: #fff;
 }
 
-.brandsGrid {
-  @apply grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4;
+.about-item-detail {
+  font-size: clamp(1rem, 1.45vw, 1.35rem);
+  line-height: 1.5;
+  letter-spacing: -0.005em;
+  color: rgba(255, 255, 255, 0.5);
+  text-wrap: pretty;
 }
 
-.brandItem {
-  @apply text-sm text-muted-foreground hover:text-foreground transition-colors;
+/* ---------- Desktop: minimap + tracker ---------- */
+.about-map {
+  position: absolute;
+  top: 120px;
+  inset-inline-start: 40px;
+  z-index: 20;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.5s ease;
 }
 
-.socialLink {
-  @apply text-sm hover:text-foreground transition-colors flex items-center space-x-2;
+.about-map-inner {
+  /* width + scale applied inline from measured content width */
+  pointer-events: none;
+  user-select: none;
 }
 
-/* Animation classes */
-.fadeIn {
-  @apply opacity-0 animate-in fade-in duration-500;
+.about-box {
+  position: absolute;
+  top: 0;
+  z-index: 21;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  cursor: grab;
+  transition: border-color 0.25s ease;
+  will-change: transform;
+}
+.about-map:hover .about-box {
+  border-color: rgba(255, 255, 255, 0.45);
+}
+.about-box:active {
+  cursor: grabbing;
+  border-color: rgba(255, 255, 255, 0.7);
 }
 
-.slideUp {
-  @apply translate-y-4 animate-in slide-in-from-bottom duration-500;
+/* ---------- Main content column ---------- */
+.about-main {
+  position: absolute;
+  top: 0;
+  inset-inline-end: 9vw;
+  height: 100vh;
+  width: var(--content-w);
+  z-index: 10;
 }
 
-/* Responsive adjustments */
-@media (min-width: 768px) {
-  .smallNav {
-    @apply p-12;
-  }
-
-  .textBox p {
-    @apply text-xl;
-  }
+.about-main-inner {
+  will-change: transform;
 }
 
-@media (min-width: 1024px) {
-  .smallNav {
-    @apply p-16;
+/* ---------- Reveal (scoped to the main column only) ---------- */
+.about-main .reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.95s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.95s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.about-main .reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- Mobile / reduced-motion: simple native-scroll layout ---------- */
+.about-mobile {
+  position: relative;
+  inset: auto;
+  min-height: 100vh;
+  overflow: visible;
+}
+.about-mobile .about-main {
+  position: relative;
+  inset-inline-end: auto;
+  height: auto;
+  width: auto;
+  max-width: 44rem;
+  margin-inline: auto;
+  padding-inline: clamp(1.5rem, 6vw, 2.5rem);
+}
+.about-mobile .about-content {
+  padding-top: 18vh;
+  padding-bottom: 18vh;
+}
+.about-mobile .about-lead {
+  font-size: clamp(1.45rem, 6vw, 2rem);
+}
+.about-mobile .about-h2 {
+  font-size: clamp(1.45rem, 6vw, 2rem);
+}
+.about-mobile .about-item-title {
+  font-size: clamp(1.2rem, 4.6vw, 1.6rem);
+}
+.about-mobile .about-item-detail {
+  font-size: clamp(1rem, 3.6vw, 1.2rem);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-main .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 }

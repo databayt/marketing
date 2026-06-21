@@ -4,7 +4,7 @@ import { useEffect, forwardRef, useImperativeHandle } from 'react';
 import { useChatbot } from './use-chatbot';
 import { ChatButton } from './chat-button';
 import { ChatWindow } from './chat-window';
-import { DEFAULT_CONFIG, DEFAULT_DICTIONARY } from './constant';
+import { DEFAULT_CONFIG, DEFAULT_DICTIONARY, DICTIONARY_AR } from './constant';
 import type { ChatbotProps, ChatbotDictionary } from './type';
 import { useLocale } from '@/components/internationalization/use-locale';
 
@@ -24,7 +24,14 @@ export const ChatbotContent = forwardRef<
 }, ref) => {
   const { locale } = useLocale();
   const chatbotConfig = { ...DEFAULT_CONFIG, ...config, locale: locale as 'en' | 'ar' };
-  const fullDictionary = { ...DEFAULT_DICTIONARY, ...dictionary } as ChatbotDictionary;
+  // Base = English defaults, overlaid with Arabic strings when active, then any
+  // explicitly passed dictionary prop (e.g. from the server wrapper) wins last.
+  const localeDictionary = locale === 'ar' ? DICTIONARY_AR : {};
+  const fullDictionary = {
+    ...DEFAULT_DICTIONARY,
+    ...localeDictionary,
+    ...dictionary,
+  } as ChatbotDictionary;
   
   const {
     state,
@@ -32,7 +39,7 @@ export const ChatbotContent = forwardRef<
     openChat,
     closeChat,
     sendMessage,
-  } = useChatbot();
+  } = useChatbot({ locale: chatbotConfig.locale });
 
   useImperativeHandle(ref, () => ({
     openChat,

@@ -159,7 +159,8 @@
         "education": "Education",
         "health": "Health",
         "ecommerce": "E-commerce",
-        "states": "States"
+        "states": "States",
+        "clone": "Clone"
       },
       "tabsMobile": {
         "featured": "Featured",
@@ -167,7 +168,8 @@
         "education": "Edu",
         "health": "Health",
         "ecommerce": "E-comm",
-        "states": "States"
+        "states": "States",
+        "clone": "Clone"
       },
       "more": "More",
       "websiteButton": "Website",
@@ -233,6 +235,16 @@
         "title": "Tadbeer",
         "description": "Domestic worker services, hiring, contracts, and management",
         "category": "Company"
+      },
+      "zenda": {
+        "title": "Zenda",
+        "description": "Location-sharing social app clone with a clean, modern interface",
+        "category": "Clone"
+      },
+      "apple": {
+        "title": "Apple",
+        "description": "Apple website clone with immersive product showcase and visuals",
+        "category": "Clone"
       }
     },
     "featureCards": {

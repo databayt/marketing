@@ -141,6 +141,28 @@ export const getProjects = (locale: Locale = 'en'): ProjectItem[] => {
       date: "2024",
       author: t.marketing.projects.domestic.category,
       category: "company"
+    },
+    {
+      title: t.marketing.projects.zenda.title,
+      description: t.marketing.projects.zenda.description,
+      link: "https://zenda.databayt.org",
+      image: "/marketing/site/zenda.png",
+      imageDark: "/marketing/site/zenda.png",
+      imageLight: "/marketing/site/zenda.png",
+      date: "2024",
+      author: t.marketing.projects.zenda.category,
+      category: "clone"
+    },
+    {
+      title: t.marketing.projects.apple.title,
+      description: t.marketing.projects.apple.description,
+      link: "https://apple.databayt.org",
+      image: "/marketing/site/apple.png",
+      imageDark: "/marketing/site/apple.png",
+      imageLight: "/marketing/site/apple.png",
+      date: "2024",
+      author: t.marketing.projects.apple.category,
+      category: "clone"
     }
   ];
 };

@@ -30,6 +30,51 @@ export const DEFAULT_DICTIONARY: ChatbotDictionary = {
   typing: 'Typing...',
   send: 'Send',
   retry: 'Retry',
+
+  // Empty-state welcome + command-area labels
+  welcome: 'Welcome to databayt',
+  chooseQuestion: 'A great journey is about to begin.',
+  sendMessage: 'Send message',
+  voiceInput: 'Voice input',
+  speechNotSupported: 'Speech recognition is not supported in your browser.',
+  speechError: 'Speech recognition error. Please try again.',
+
+  // Quick-ask buttons (label + the question each one sends)
+  qaPricing: 'Pricing',
+  qaPricingQuestion: 'What are your pricing options?',
+  qaServices: 'Services',
+  qaServicesQuestion: 'What services do you offer?',
+  qaTimeline: 'Timeline',
+  qaTimelineQuestion: 'How long does a project take?',
+  qaAbout: 'About Us',
+  qaAboutQuestion: 'Tell me more about your company',
+};
+
+/**
+ * Arabic overrides. The chatbot is mounted as a self-contained client
+ * component (see (marketing)/layout.tsx) without the server i18n dictionary,
+ * so it carries its own en/ar strings rather than importing the full ~70KB
+ * site dictionaries into the client bundle. `content.tsx` merges these over
+ * DEFAULT_DICTIONARY when the active locale is Arabic.
+ */
+export const DICTIONARY_AR: Partial<ChatbotDictionary> = {
+  openChat: 'افتح المحادثة',
+  closeChat: 'إغلاق المحادثة',
+  placeholder: 'اكتب رسالتك...',
+  welcome: 'مرحباً بك في databayt',
+  chooseQuestion: 'رحلة عظيمة على وشك أن تبدأ.',
+  sendMessage: 'إرسال',
+  voiceInput: 'إدخال صوتي',
+  speechNotSupported: 'التعرف على الصوت غير مدعوم في متصفحك.',
+  speechError: 'حدث خطأ في التعرف على الصوت. حاول مرة أخرى.',
+  qaPricing: 'الأسعار',
+  qaPricingQuestion: 'ما هي خيارات الأسعار لديكم؟',
+  qaServices: 'الخدمات',
+  qaServicesQuestion: 'ما الخدمات التي تقدمونها؟',
+  qaTimeline: 'المدة',
+  qaTimelineQuestion: 'كم يستغرق المشروع؟',
+  qaAbout: 'عن الشركة',
+  qaAboutQuestion: 'أخبرني المزيد عن شركتكم',
 };
 
 export const DEFAULT_THEME: ChatbotTheme = {

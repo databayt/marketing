@@ -5,7 +5,11 @@ import { sendMessage as sendMessageAction } from './actions';
 import type { ChatbotState, ChatMessage } from './type';
 import type { CoreMessage } from 'ai';
 
-export function useChatbot() {
+interface UseChatbotOptions {
+  locale?: 'en' | 'ar';
+}
+
+export function useChatbot({ locale = 'en' }: UseChatbotOptions = {}) {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -46,8 +50,8 @@ export function useChatbot() {
       }));
 
       // Call the server action
-      const result = await sendMessageAction(coreMessages);
-      
+      const result = await sendMessageAction(coreMessages, locale);
+
       if (!result.success) {
         throw new Error(result.error || 'Failed to send message');
       }
@@ -76,7 +80,7 @@ export function useChatbot() {
     } finally {
       setIsLoading(false);
     }
-  }, [messages]);
+  }, [messages, locale]);
 
   const clearMessages = useCallback(() => {
     setMessages([]);
