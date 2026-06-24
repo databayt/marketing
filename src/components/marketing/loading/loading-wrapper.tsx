@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, type ReactNode } from "react";
+import { usePathname } from "next/navigation";
 
 import { LoadingProvider, useLoading } from "./loading-context";
 import { LoadingScreen } from "./loading-screen";
@@ -73,8 +74,9 @@ function LoadingContent({ children }: { children: ReactNode }) {
 }
 
 export function LoadingWrapper({ children }: { children: ReactNode }) {
+  const pathname = usePathname();
   return (
-    <LoadingProvider>
+    <LoadingProvider key={pathname}>
       <LoadingContent>{children}</LoadingContent>
     </LoadingProvider>
   );
