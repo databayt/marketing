@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 import { toast } from 'sonner';
+import { createProjectRequest } from '@/components/wizard/actions';
+import type { ProjectSummary } from '@/components/wizard/start-types';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -13,19 +15,7 @@ import {
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 
-export type ProjectSummary = {
-  business: string;
-  features: string[];
-  template: string;
-  theme: string;
-  typography: string;
-  iconStyle: string;
-  price: number;
-  time: number;
-};
-
-// Where the prefilled project request opens.
-const REPO = 'databayt/marketing';
+export type { ProjectSummary };
 
 type StartDialogProps = {
   open: boolean;
@@ -39,36 +29,31 @@ export const StartDialog = ({
   summary,
 }: StartDialogProps) => {
   const [contact, setContact] = useState('');
+  const [pending, setPending] = useState(false);
 
-  const submit = () => {
-    if (!contact.trim()) {
+  const submit = async () => {
+    const value = contact.trim();
+    if (!value) {
       toast.error('Add your WhatsApp number or email so we can reach you.');
       return;
     }
 
-    const title = `New project request: ${summary.business || 'Website'}`;
-    const body = [
-      '## Project request',
-      '',
-      `- **Business:** ${summary.business || '—'}`,
-      `- **Features:** ${summary.features.length ? summary.features.join(', ') : '—'}`,
-      `- **Template:** ${summary.template || '—'}`,
-      `- **Theme:** ${summary.theme || '—'}`,
-      `- **Typography:** ${summary.typography || '—'}`,
-      `- **Icon style:** ${summary.iconStyle || '—'}`,
-      `- **Estimate:** $${summary.price} • ${summary.time} days`,
-      '',
-      '## Contact',
-      `- **WhatsApp / email:** ${contact.trim()}`,
-    ].join('\n');
+    setPending(true);
+    const res = await createProjectRequest({ contact: value, summary });
+    setPending(false);
 
-    const url = `https://github.com/${REPO}/issues/new?title=${encodeURIComponent(
-      title
-    )}&body=${encodeURIComponent(body)}`;
-    window.open(url, '_blank', 'noopener,noreferrer');
-    onOpenChange(false);
-    setContact('');
-    toast.success('Opening your project request…');
+    if (res.ok) {
+      onOpenChange(false);
+      setContact('');
+      toast.success('Request received — we’ll reach out shortly!');
+      return;
+    }
+
+    toast.error(
+      res.error === 'not-configured'
+        ? 'Requests aren’t set up yet. Please contact us directly.'
+        : 'Something went wrong. Please try again.'
+    );
   };
 
   return (
@@ -85,7 +70,7 @@ export const StartDialog = ({
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            submit();
+            void submit();
           }}
           className="space-y-4"
         >
@@ -94,11 +79,12 @@ export const StartDialog = ({
             placeholder="WhatsApp or email"
             value={contact}
             onChange={(e) => setContact(e.target.value)}
+            disabled={pending}
             autoFocus
           />
           <DialogFooter>
-            <Button type="submit" className="w-full">
-              Start
+            <Button type="submit" className="w-full" disabled={pending}>
+              {pending ? 'Sending…' : 'Start'}
             </Button>
           </DialogFooter>
         </form>
