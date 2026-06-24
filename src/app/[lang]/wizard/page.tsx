@@ -9,7 +9,7 @@ import { TypographySelector } from '@/components/wizard/typography';
 import { IconSelector } from '@/components/wizard/icons';
 import { WizardHeader } from '@/components/template/wizard-header';
 import { WizardFooter } from '@/components/template/wizard-footer';
-import { businesses } from '@/components/wizard/constant';
+import { businesses, getBusinessFeatures } from '@/components/wizard/constant';
 import { WizardSelections } from '@/components/wizard/constant';
 import ThemeSelector from '@/components/wizard/theme';
 import { toast } from 'sonner';
@@ -55,8 +55,9 @@ export default function SelectionWizard() {
     let totalTime = 0;
 
     const selectedBusiness = businesses.find((b) => b.id === selections.business);
+    const featureList = selectedBusiness ? getBusinessFeatures(selectedBusiness) : [];
     featureIds.forEach((featureId) => {
-      const feature = selectedBusiness?.features.find((f) => f.id === featureId);
+      const feature = featureList.find((f) => f.id === featureId);
       if (feature) {
         totalPrice += feature.price;
         totalTime += feature.time;
@@ -95,7 +96,8 @@ export default function SelectionWizard() {
 
     // Only show toast from step 2 onwards
     if (step >= 2) {
-      const feature = selectedBusiness?.features.find((f) => f.id === featureId);
+      const featureList = selectedBusiness ? getBusinessFeatures(selectedBusiness) : [];
+      const feature = featureList.find((f) => f.id === featureId);
       const estimates = calculateEstimates(updatedFeatures);
 
       toast(
@@ -175,7 +177,7 @@ export default function SelectionWizard() {
 
             {step === 2 && selectedBusiness && (
               <FeatureSelector
-                features={selectedBusiness.features}
+                features={getBusinessFeatures(selectedBusiness)}
                 selectedFeatures={selections.features}
                 onToggle={handleFeatureToggle}
                 businessName={selectedBusiness.name}

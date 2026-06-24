@@ -1894,6 +1894,42 @@ export const businesses: Business[] = [
   },
 ];
 
+// Common add-on features available to every business, merged with each
+// business's own specific features so the feature cloud is always rich.
+export const commonFeatures: Feature[] = [
+  { id: "mobile-app", name: "Mobile App", price: 60, time: 6, popularity: 8, description: "Native iOS and Android app" },
+  { id: "online-payments", name: "Online Payments", price: 35, time: 3, popularity: 9, description: "Accept cards and digital wallets" },
+  { id: "analytics-dashboard", name: "Analytics", price: 40, time: 4, popularity: 7, description: "Track your key metrics" },
+  { id: "notifications", name: "Notifications", price: 25, time: 2, popularity: 7, description: "Email and SMS alerts" },
+  { id: "reviews", name: "Reviews", price: 30, time: 3, popularity: 7, description: "Collect ratings and reviews" },
+  { id: "loyalty-program", name: "Loyalty Program", price: 35, time: 3, popularity: 6, description: "Reward repeat customers" },
+  { id: "email-marketing", name: "Email Marketing", price: 35, time: 3, popularity: 6, description: "Campaigns and newsletters" },
+  { id: "customer-crm", name: "Customer CRM", price: 45, time: 4, popularity: 7, description: "Manage customer profiles" },
+  { id: "multi-location", name: "Multi-location", price: 50, time: 5, popularity: 6, description: "Manage multiple branches" },
+  { id: "staff-management", name: "Staff Management", price: 40, time: 4, popularity: 7, description: "Schedules and roles" },
+  { id: "reporting", name: "Reports", price: 35, time: 3, popularity: 6, description: "Exportable business reports" },
+  { id: "live-chat", name: "Live Chat", price: 30, time: 3, popularity: 6, description: "Chat with customers" },
+  { id: "gift-cards", name: "Gift Cards", price: 30, time: 3, popularity: 5, description: "Sell digital gift cards" },
+  { id: "seo", name: "SEO", price: 35, time: 3, popularity: 6, description: "Rank higher on search" },
+  { id: "multilingual", name: "Multi-language", price: 30, time: 3, popularity: 6, description: "Arabic and English support" },
+  { id: "integrations", name: "Integrations", price: 45, time: 4, popularity: 6, description: "Connect third-party tools" },
+  { id: "admin-dashboard", name: "Admin Dashboard", price: 40, time: 4, popularity: 7, description: "Central control panel" },
+  { id: "social-media", name: "Social Media", price: 30, time: 3, popularity: 6, description: "Schedule and post content" },
+];
+
+// A business's own features first (they stay most prominent), then every
+// common add-on that doesn't clash by id or name.
+export function getBusinessFeatures(business: Business): Feature[] {
+  const ids = new Set(business.features.map((f) => f.id));
+  const names = new Set(business.features.map((f) => f.name.toLowerCase()));
+  return [
+    ...business.features,
+    ...commonFeatures.filter(
+      (f) => !ids.has(f.id) && !names.has(f.name.toLowerCase())
+    ),
+  ];
+}
+
 export const templates: Template[] = [
   {
     id: "clinic-modern",
