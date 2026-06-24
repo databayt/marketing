@@ -6,7 +6,7 @@ import {
   type CSSProperties,
   type KeyboardEvent,
 } from 'react';
-import { ArrowRight, Search } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Search } from 'lucide-react';
 import { Feature } from '@/components/wizard/constant';
 import {
   buildRows,
@@ -181,17 +181,28 @@ export const FeatureSelector = ({
                   );
                 })}
 
-                {/* "more →" — last word of the last row flips in fresh tags */}
+                {/* Page arrows — prev / next, one disabled at each end */}
                 {!q && isLastRow && pages > 1 && (
-                  <button
-                    type="button"
-                    onClick={() => setPage((p) => (p + 1) % pages)}
-                    aria-label="Show more feature tags"
-                    className="group ms-1 inline-flex items-center gap-1 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-                  >
-                    more
-                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 rtl:rotate-180 rtl:group-hover:-translate-x-0.5" />
-                  </button>
+                  <span className="ms-2 inline-flex items-center gap-2">
+                    <button
+                      type="button"
+                      onClick={() => setPage((p) => Math.max(0, p - 1))}
+                      disabled={page === 0}
+                      aria-label="Previous feature tags"
+                      className="text-muted-foreground transition-colors hover:text-foreground disabled:pointer-events-none disabled:opacity-30"
+                    >
+                      <ArrowLeft className="h-4 w-4 rtl:rotate-180" />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setPage((p) => Math.min(pages - 1, p + 1))}
+                      disabled={page >= pages - 1}
+                      aria-label="More feature tags"
+                      className="text-muted-foreground transition-colors hover:text-foreground disabled:pointer-events-none disabled:opacity-30"
+                    >
+                      <ArrowRight className="h-4 w-4 rtl:rotate-180" />
+                    </button>
+                  </span>
                 )}
               </div>
             );

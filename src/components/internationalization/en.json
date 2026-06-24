@@ -716,6 +716,7 @@
     },
     "buttons": {
       "back": "Back",
+      "prev": "Prev",
       "next": "Next",
       "finish": "Finish",
       "startProject": "Start Project"

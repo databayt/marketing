@@ -716,6 +716,7 @@
     },
     "buttons": {
       "back": "رجوع",
+      "prev": "السابق",
       "next": "التالي",
       "finish": "إنهاء",
       "startProject": "ابدأ المشروع"

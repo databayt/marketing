@@ -12,7 +12,7 @@ interface WizardFooterProps {
   onBack: () => void;
   onNext: () => void;
   onFinish: () => void;
-  backText: string;
+  prevText: string;
   nextText: string;
   finishText: string;
 }
@@ -25,7 +25,7 @@ export const WizardFooter = ({
   onBack,
   onNext,
   onFinish,
-  backText,
+  prevText,
   nextText,
   finishText,
 }: WizardFooterProps) => {
@@ -42,8 +42,8 @@ export const WizardFooter = ({
           onClick={onBack}
           disabled={currentStep === 1}
         >
-          {isRTL ? <ArrowRight className="mr-2 h-4 w-4" /> : <ArrowLeft className="mr-2 h-4 w-4" />}
-          {backText}
+          {isRTL ? <ArrowRight className="me-2 h-4 w-4" /> : <ArrowLeft className="me-2 h-4 w-4" />}
+          {prevText}
         </Button>
 
         {currentStep < totalSteps ? (
@@ -53,14 +53,14 @@ export const WizardFooter = ({
             disabled={!isStepValid}
           >
             {nextText}
-            {isRTL ? <ArrowLeft className="ml-2 h-4 w-4" /> : <ArrowRight className="ml-2 h-4 w-4" />}
+            {isRTL ? <ArrowLeft className="ms-2 h-4 w-4" /> : <ArrowRight className="ms-2 h-4 w-4" />}
           </Button>
         ) : (
           <Button
             size="sm"
             onClick={onFinish}
           >
-            <Check className="mr-2 h-4 w-4" />
+            <Check className="me-2 h-4 w-4" />
             {finishText}
           </Button>
         )}

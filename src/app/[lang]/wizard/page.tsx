@@ -242,7 +242,7 @@ export default function SelectionWizard() {
             description: `${t.wizard.estimates.totalCost}: $${estimates.price} • ${t.wizard.estimates.timeframe}: ${estimates.time} ${t.wizard.estimates.days}`,
           });
         }}
-        backText={t.wizard.buttons.back}
+        prevText={t.wizard.buttons.prev}
         nextText={t.wizard.buttons.next}
         finishText={t.wizard.buttons.startProject}
       />
