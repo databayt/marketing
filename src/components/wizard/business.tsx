@@ -55,6 +55,30 @@ function buildRows<T>(items: T[]): T[][] {
     .filter((r) => r.length > 0);
 }
 
+// Deal items (passed in descending prominence) round-robin across the rows,
+// so every line receives a slice of the whole popularity range — each row
+// gets a big, strong tag, not just the middle ones. Each row is then ordered
+// biggest-in-the-centre so the prominence sits in the heart of every line.
+function spreadRows<T>(items: T[]): T[][] {
+  const rows: T[][] = ROW_COUNTS.map(() => []);
+  let r = 0;
+  for (const item of items) {
+    let guard = 0;
+    while (rows[r].length >= ROW_COUNTS[r]) {
+      r = (r + 1) % ROW_COUNTS.length;
+      if (++guard > ROW_COUNTS.length) return rows.filter((row) => row.length);
+    }
+    rows[r].push(item);
+    r = (r + 1) % ROW_COUNTS.length;
+  }
+  const center = (row: T[]): T[] => {
+    const out: T[] = [];
+    row.forEach((it, i) => (i % 2 === 0 ? out.push(it) : out.unshift(it)));
+    return out;
+  };
+  return rows.filter((row) => row.length).map(center);
+}
+
 // Split a name around the first match so only the matched letters render blue.
 function highlight(name: string, q: string): ReactNode {
   const i = name.toLowerCase().indexOf(q);
@@ -126,8 +150,10 @@ export const BusinessSelector = ({
         }));
     }
 
-    const start = (page % pages) * PAGE_SIZE;
-    return ranked.slice(start, start + PAGE_SIZE).map((b) => {
+    // Round-robin the ranked deck across pages so every "tab" carries the full
+    // popularity range (not page 1 = all popular, last page = all faint).
+    const cur = page % pages;
+    return ranked.filter((_, i) => i % pages === cur).map((b) => {
       const t = popNorm(b.popularity);
       return {
         b,
@@ -141,7 +167,9 @@ export const BusinessSelector = ({
     });
   }, [q, page, pages, ranked, businesses]);
 
-  const rows = useMemo(() => buildRows(tags), [tags]);
+  // Search keeps the most relevant tag big + centred (radial); browse spreads
+  // the big, strong tags across every line of every page.
+  const rows = useMemo(() => (q ? buildRows(tags) : spreadRows(tags)), [tags, q]);
   const suggestionId = q ? tags[0]?.b.id ?? null : null;
 
   const onKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
