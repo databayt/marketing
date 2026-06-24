@@ -40,8 +40,11 @@ export async function generateMetadata({
     title: dict.metadata.title,
     description: dict.metadata.description,
     icons: {
-      icon: '/logo.png',
-      shortcut: '/logo.png',
+      icon: [
+        { url: '/favicon.ico', sizes: 'any' },
+        { url: '/logo.png', type: 'image/png', sizes: '256x256' },
+      ],
+      shortcut: '/favicon.ico',
       apple: '/logo.png',
     },
     openGraph: {
