@@ -374,21 +374,6 @@ export const ChatWindow = memo(function ChatWindow({
                 inputMode="text"
               />
 
-              {/* Voice — ghost icon inside the pill */}
-              <button
-                type="button"
-                onClick={handleVoiceInput}
-                aria-label={dictionary.voiceInput}
-                title={dictionary.voiceInput}
-                className={cn(
-                  "flex shrink-0 items-center justify-center rounded-full text-muted-foreground transition-colors hover:text-foreground",
-                  isMobile ? "h-9 w-9" : "h-7 w-7",
-                  isListening && "animate-pulse text-red-500 hover:text-red-500"
-                )}
-              >
-                <VoiceIcon size={isMobile ? 18 : 15} />
-              </button>
-
               {/* Send — primary filled command button */}
               <button
                 type="submit"

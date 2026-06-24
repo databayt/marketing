@@ -245,6 +245,21 @@
         "title": "Apple",
         "description": "Apple website clone with immersive product showcase and visuals",
         "category": "Clone"
+      },
+      "dropshipping": {
+        "title": "Drop",
+        "description": "Dropshipping platform connecting suppliers and sellers with streamlined order fulfillment",
+        "category": "E-commerce"
+      },
+      "moalimee": {
+        "title": "Moalimee",
+        "description": "Online tutoring platform connecting students with qualified teachers",
+        "category": "Education"
+      },
+      "sijillee": {
+        "title": "Sijillee",
+        "description": "Accounting and bookkeeping platform for managing records, invoices and finances",
+        "category": "Finance"
       }
     },
     "featureCards": {
@@ -298,54 +313,54 @@
     "about": {
       "backLink": "back",
       "introduction": {
-        "paragraph1": "Automate the boring. at Databayt we're building codebase for business automation, one atomic component at a time. Every line of code is open source, every contribution is valued, and every developer may shape the future of how businesses operate.",
-        "paragraph2": "We sell the origin of all value — we sell Time, the currency that drives the world — what if you could reclaim yours and focus on what truly matters? It's more than a service — it's an escape from the matrix. A restoration of time through the elimination of repetitive tasks, streamlined operations, and automated processes. Break free. Reclaim your hours.",
-        "paragraph3": "The Repository of Wonders. Think of our codebase as a living library where every contribution becomes part of something greater. From atomic components to complete templates, from blocks to micro-services to full automation solutions—we're creating the building blocks that will power tomorrow's businesses.",
-        "paragraph4": "Follow along as we figure this out together. This isn't just about building software; it's about creating a collaborative ecosystem where developers, businesses, and innovators unite to solve real problems. Every contribution you make doesn't just help one project—it becomes part of a growing foundation that serves countless businesses worldwide."
+        "paragraph1": "Automate the boring. Databayt is an open-source, Arabic-first software company building the products that run real-world operations — schools, clinics, shops, and homes — one atomic component at a time. Every line of code is open source, every contribution is owned by the person who made it, and every builder helps shape how these communities work.",
+        "paragraph2": "We sell the origin of all value — Time, the currency that drives the world. What if you could reclaim yours and focus on what truly matters? It's more than a service; it's an escape from the matrix — a restoration of time through the elimination of repetitive tasks, streamlined operations, and automated processes. Break free. Reclaim your hours.",
+        "paragraph3": "The repository of wonders. Think of our codebase as a living library where every contribution becomes part of something greater. From atomic components to templates to blocks to whole products — Hogwarts for schools, Mkan for homes, Souq for shops, Shifa for clinics — we craft the building blocks that power the next thing we make.",
+        "paragraph4": "Follow along as we figure this out together — six people and forty AI agents, building in the open. This isn't only about software; it's a collaborative economy where developers, businesses, and communities unite to solve real problems. Every contribution doesn't just help one project — it compounds into a foundation owned by the people who build it, serving the communities the rest of the industry overlooks."
       },
       "whatWeDo": {
         "title": "What We Do",
-        "development": "Development - Enterprise-grade applications and platforms",
-        "automation": "Automation - Streamlined workflows and process optimization",
-        "consulting": "Consulting - Technical expertise and implementation support", 
-        "openSource": "Open Source - Community-driven development and innovation"
+        "development": "Products - Multi-tenant SaaS that runs schools, rentals, commerce, and care",
+        "automation": "Codebase - One open library of atoms, blocks, and templates behind every product",
+        "consulting": "AI Engine - A small team that ships like a large one — humans design, AI builds within constraints", 
+        "openSource": "Open Source - Public by default, owned by its contributors, licensed to keep the commons open"
       },
       "businessModel": {
         "title": "Business Model",
         "perProject": {
           "title": "Per Project",
-          "description": "Custom solutions tailored to specific client requirements and business processes. Each project delivers unique automation systems designed to solve particular challenges and operational needs."
+          "description": "Custom builds for partners who need a specific operation automated — delivered on our shared foundation so they ship fast and stay maintainable."
         },
         "partners": {
           "title": "Partners", 
-          "description": "Partnership opportunities for businesses seeking to outsource technology development, access specialized talent for temporary projects and specific technical expertise."
+          "description": "Teams outsource product development to us and tap specialized talent for focused work, without standing up an engineering department of their own."
         },
         "codebase": {
           "title": "Codebase",
-          "description": "Codebase executes the majority of the task, through accumulated, reusable components. Contributors who expand this foundation earn a share of the value it generates."
+          "description": "Reusable atoms, blocks, and templates do most of the work. Contributors who extend the foundation earn a share of the value it creates — contributors are owners, not labor."
         },
         "saas": {
           "title": "SaaS",
-          "description": "Ready-to-deploy software products sold to multiple organizations with similar needs. act as a go-to central hub for businesses seeking automation solutions."
+          "description": "Ready-to-deploy products — Hogwarts, Mkan, Souq, Shifa — sold to organizations with the same needs and funded by the customers who use them, not by venture capital."
         }
       },
       "coreValues": {
         "title": "Core Values",
         "transparency": {
           "title": "Transparency",
-          "description": "Every decision, from technical architecture to business strategy, is documented and accessible to the community. We use GitHub to manage our codebase and discussions, ensuring transparency, traceability, and open collaboration. Contributions are publicly tracked, so every developer can see their impact and know the process is clear and fair. We believe this openness builds trust and enables better contributions."
+          "description": "We build in the open. Every decision — from architecture to strategy — lives on GitHub, where contributions are tracked publicly and anyone can see their impact. If it isn't written down, it didn't happen."
         },
         "innovation": {
           "title": "Innovation",
-          "description": "Our best ideas come from our diverse community of developers, business professionals, and users. We actively encourage contributions and value every perspective. We're actively building in: Business Automation, Data Analytics, AI Agents, Blockchain, and Distributed Computing."
+          "description": "Humans design the architecture; AI generates within those constraints. Six people operating like sixty, shipping across education, commerce, rentals, and health — configuration over infrastructure, never rebuilding what others already ship."
         },
         "growth": {
           "title": "Growth",
-          "description": "We balance rapid innovation with long-term sustainability, ensuring our solutions remain robust and our business model benefits all stakeholders."
+          "description": "We play long games with long people. Mission over survival, quality over speed, sustainability over hype — so our products stay robust and the value we create is shared with everyone who builds it."
         },
         "excellence": {
           "title": "Excellence",
-          "description": "Every product we ship meets the highest standards of quality, security, and performance. Our reputation is built on reliable, enterprise-grade solutions."
+          "description": "Every release meets enterprise-grade standards of quality, security, and performance. Community is the moat, and reputation is earned one reliable ship at a time."
         }
       }
     },

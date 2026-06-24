@@ -50,12 +50,12 @@ export default function SelectionWizard() {
   // Total steps: Business, Features, Template, Theme, Branding, Typography, Icons
   const totalSteps = 7;
 
-  const calculateEstimates = () => {
+  const calculateEstimates = (featureIds: string[] = selections.features) => {
     let totalPrice = 0;
     let totalTime = 0;
 
     const selectedBusiness = businesses.find((b) => b.id === selections.business);
-    selections.features.forEach((featureId) => {
+    featureIds.forEach((featureId) => {
       const feature = selectedBusiness?.features.find((f) => f.id === featureId);
       if (feature) {
         totalPrice += feature.price;
@@ -70,9 +70,9 @@ export default function SelectionWizard() {
     }
 
     // Apply discounts for multiple features
-    if (selections.features.length >= 5) {
+    if (featureIds.length >= 5) {
       totalPrice = Math.round(totalPrice * 0.9); // 10% discount
-    } else if (selections.features.length >= 3) {
+    } else if (featureIds.length >= 3) {
       totalPrice = Math.round(totalPrice * 0.95); // 5% discount
     }
 
@@ -96,7 +96,7 @@ export default function SelectionWizard() {
     // Only show toast from step 2 onwards
     if (step >= 2) {
       const feature = selectedBusiness?.features.find((f) => f.id === featureId);
-      const estimates = calculateEstimates();
+      const estimates = calculateEstimates(updatedFeatures);
 
       toast(
         `${feature?.name} ${isSelected ? t.common.delete : t.common.save}`,
@@ -153,7 +153,7 @@ export default function SelectionWizard() {
   };
 
   return (
-    <div className="h-screen flex flex-col bg-background">
+    <div className="h-screen flex flex-col bg-background pt-4 md:pt-8">
       {/* Header */}
       <WizardHeader
         locale={locale}

@@ -135,7 +135,7 @@
 .about-main {
   position: absolute;
   top: 0;
-  inset-inline-end: 9vw;
+  inset-inline-start: clamp(12rem, 15vw, 16rem);
   height: 100vh;
   width: var(--content-w);
   z-index: 10;
@@ -168,7 +168,7 @@
 }
 .about-mobile .about-main {
   position: relative;
-  inset-inline-end: auto;
+  inset-inline-start: auto;
   height: auto;
   width: auto;
   max-width: 44rem;

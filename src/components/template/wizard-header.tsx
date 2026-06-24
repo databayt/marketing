@@ -27,7 +27,7 @@ export const WizardHeader = ({ locale, title, backText }: WizardHeaderProps) => 
 
       {/* Title in the center */}
       {title && (
-        <div className="absolute left-1/2 -translate-x-1/2 top-[calc(50%+6px)] -translate-y-1/2">
+        <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2">
           <h1 className="font-heading text-2xl md:text-3xl lg:text-4xl whitespace-nowrap">
             {title}
           </h1>

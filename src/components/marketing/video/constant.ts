@@ -163,6 +163,39 @@ export const getProjects = (locale: Locale = 'en'): ProjectItem[] => {
       date: "2024",
       author: t.marketing.projects.apple.category,
       category: "clone"
+    },
+    {
+      title: t.marketing.projects.dropshipping.title,
+      description: t.marketing.projects.dropshipping.description,
+      link: "https://dropshipping.ibrahimomer.dev",
+      image: "/marketing/site/dropshipping.png",
+      imageDark: "/marketing/site/dropshipping.png",
+      imageLight: "/marketing/site/dropshipping.png",
+      date: "2024",
+      author: t.marketing.projects.dropshipping.category,
+      category: "ecommerce"
+    },
+    {
+      title: t.marketing.projects.moalimee.title,
+      description: t.marketing.projects.moalimee.description,
+      link: "https://moalimee.com",
+      image: "/marketing/site/moalimee.png",
+      imageDark: "/marketing/site/moalimee.png",
+      imageLight: "/marketing/site/moalimee.png",
+      date: "2024",
+      author: t.marketing.projects.moalimee.category,
+      category: "education"
+    },
+    {
+      title: t.marketing.projects.sijillee.title,
+      description: t.marketing.projects.sijillee.description,
+      link: "https://sijillee.com",
+      image: "/marketing/site/sijillee.png",
+      imageDark: "/marketing/site/sijillee.png",
+      imageLight: "/marketing/site/sijillee.png",
+      date: "2024",
+      author: t.marketing.projects.sijillee.category,
+      category: "company"
     }
   ];
 };
