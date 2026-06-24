@@ -1,7 +1,6 @@
 'use client';
 
 import { cn } from '@/lib/utils';
-import { Check } from 'lucide-react';
 
 /* ------------------------------------------------------------------ *
  * Fire icon — four variants of the same glyph.
@@ -74,15 +73,12 @@ export const IconSelector = ({ selectedStyle, onSelect }: IconSelectorProps) => 
               onClick={() => onSelect(id)}
               aria-pressed={isActive}
               className={cn(
-                'group relative flex h-28 w-24 flex-col items-center justify-center gap-3 rounded-2xl bg-white transition-all duration-200 sm:w-28',
-                isActive ? 'text-primary' : 'text-foreground hover:text-primary/70'
+                'group flex h-28 w-24 flex-col items-center justify-center gap-3 rounded-2xl border bg-white transition-colors duration-200 sm:w-28',
+                isActive
+                  ? 'border-foreground text-primary'
+                  : 'border-transparent text-foreground hover:text-primary/70'
               )}
             >
-              {isActive && (
-                <div className="absolute end-2 top-2 rounded-full bg-primary p-0.5 text-primary-foreground">
-                  <Check className="h-3 w-3" />
-                </div>
-              )}
               <Icon className="h-11 w-11 transition-transform duration-200 group-hover:scale-110" />
               <span className="text-[11px] font-medium text-muted-foreground">
                 {label}

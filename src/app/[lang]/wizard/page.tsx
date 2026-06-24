@@ -94,8 +94,8 @@ export default function SelectionWizard() {
 
   const handleTemplateSelect = (templateId: string) => {
     setSelections({ ...selections, template: templateId });
-    // brief pause so the selected border is visible before advancing
-    setTimeout(() => setStep(4), 350);
+    // hold on the selection long enough to see the border land, then advance
+    setTimeout(() => setStep(4), 700);
   };
 
   const handleThemeSelect = (color: string, radius: number, shadow: string) => {
@@ -105,6 +105,12 @@ export default function SelectionWizard() {
       borderRadius: radius,
       shadow,
     });
+  };
+
+  const handleIconSelect = (iconStyle: string) => {
+    setSelections({ ...selections, iconStyle });
+    // let the selection border land, then open the submit dialog
+    setTimeout(() => setStartOpen(true), 700);
   };
 
   const estimates = calculateEstimates();
@@ -210,7 +216,7 @@ export default function SelectionWizard() {
               <div className="flex h-full items-center justify-center">
                 <IconSelector
                   selectedStyle={selections.iconStyle}
-                  onSelect={(iconStyle) => setSelections({ ...selections, iconStyle })}
+                  onSelect={handleIconSelect}
                 />
               </div>
             )}

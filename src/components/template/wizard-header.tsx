@@ -19,7 +19,7 @@ export const WizardHeader = ({ locale, title, backText }: WizardHeaderProps) => 
         href={`/${locale}`}
         className={cn(
           buttonVariants({ variant: 'ghost', size: 'sm' }),
-          'self-start px-2 text-muted-foreground hover:text-foreground'
+          'self-start -mt-4 px-2 text-muted-foreground hover:text-foreground'
         )}
       >
         {backText}

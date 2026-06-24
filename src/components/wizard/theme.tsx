@@ -78,7 +78,7 @@ const ThemeSelector = ({
                     className={cn(
                       "flex h-9 w-9 items-center justify-center rounded-full transition-transform hover:scale-110",
                       active &&
-                        "ring-2 ring-foreground ring-offset-2 ring-offset-background"
+                        "ring-1 ring-foreground ring-offset-2 ring-offset-background"
                     )}
                     style={{ backgroundColor: c.value }}
                   >
@@ -98,7 +98,7 @@ const ThemeSelector = ({
                 className={cn(
                   "flex h-9 w-9 items-center justify-center rounded-full text-white transition-transform hover:scale-110",
                   isCustom &&
-                    "ring-2 ring-foreground ring-offset-2 ring-offset-background"
+                    "ring-1 ring-foreground ring-offset-2 ring-offset-background"
                 )}
                 style={
                   isCustom
@@ -131,7 +131,7 @@ const ThemeSelector = ({
                     className={cn(
                       "flex h-10 w-12 items-center justify-center border bg-background text-xs font-medium transition-colors",
                       active
-                        ? "border-2 border-primary text-foreground"
+                        ? "border-primary text-foreground"
                         : "border-border text-muted-foreground hover:border-muted-foreground/50"
                     )}
                     style={{ borderRadius: `${r * 0.75}rem` }}
@@ -157,7 +157,7 @@ const ThemeSelector = ({
                       "flex h-10 w-12 items-center justify-center rounded-md border bg-background text-xs font-medium transition-colors",
                       s.cls,
                       active
-                        ? "border-2 border-primary text-foreground"
+                        ? "border-primary text-foreground"
                         : "border-border text-muted-foreground hover:border-muted-foreground/50"
                     )}
                   >
@@ -172,7 +172,7 @@ const ThemeSelector = ({
         {/* Live preview — reflects the chosen color, radius + shadow instantly */}
         <div
           className={cn(
-            "w-full max-w-sm rounded-[var(--r)] border bg-card px-6 py-8",
+            "w-full max-w-[22rem] rounded-[var(--r)] border bg-card px-6 py-10",
             shadowCls
           )}
           style={{ "--r": `${selectedRadius}rem` } as React.CSSProperties}
@@ -222,7 +222,7 @@ const ThemeSelector = ({
 
           <button
             type="button"
-            className="w-full rounded-[var(--r)] py-2 text-sm font-medium text-white transition-colors"
+            className="w-full rounded-[var(--r)] py-2.5 text-sm font-medium text-white transition-colors"
             style={{ backgroundColor: colorValue }}
           >
             Create account
