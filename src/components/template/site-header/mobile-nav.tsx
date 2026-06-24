@@ -22,9 +22,9 @@ export function MobileNav({ className }: { className?: string }) {
   const navItems = React.useMemo(() => [
     { href: `/${locale}`, label: t.common?.home || "Home" },
     { href: `/${locale}/about`, label: t.common?.about || "About" },
-    { href: `/${locale}/service`, label: t.common?.services || "Services" },
+    { href: `/${locale}/design`, label: t.common?.services || "Services" },
     { href: `/${locale}/pricing`, label: t.common?.pricing || "Pricing" },
-    { href: `/${locale}/#`, label: t.common?.platform || "Platform" },
+    { href: `/${locale}/blog`, label: t.common?.blog || "Blog" },
   ], [t, locale])
 
   return (

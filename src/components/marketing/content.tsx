@@ -30,11 +30,13 @@ export default function SiteContent({ dictionary, params }: SiteContentProps) {
       <section className="py-10">
         <div className="container mx-auto space-y-16">
           <VideoCard
-            logo={t.marketing.content.storyTeller.logo}
-            title={t.marketing.content.storyTeller.title}
-            description={t.marketing.content.storyTeller.description}
-            ctaText={t.marketing.content.storyTeller.ctaText}
-            secondaryCtaText={t.marketing.content.storyTeller.secondaryCtaText}
+            logo={t.marketing.content.kun.logo}
+            title={t.marketing.content.kun.title}
+            description={t.marketing.content.kun.description}
+            ctaText={t.marketing.content.kun.ctaText}
+            secondaryCtaText={t.marketing.content.kun.secondaryCtaText}
+            href="https://kun.databayt.org"
+            secondaryHref="https://kun.databayt.org/docs"
             videoSrc="/marketing/site/story.mp4"
             videoPoster="/marketing/sample-poster.jpg"
           />
@@ -59,27 +61,40 @@ export default function SiteContent({ dictionary, params }: SiteContentProps) {
                 {dictionary.marketing?.productsSection?.title || "Product"}
               </h2>
               <p className="max-w-[95%] md:max-w-[65%] leading-normal text-muted-foreground sm:text-lg sm:leading-7 pb-7">
-                {dictionary.marketing?.productsSection?.description || "Innovative automation solutions designed to save the origin of all value, time."}
+                {dictionary.marketing?.productsSection?.description || "That save origin of value, time."}
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <Product
               logo={t.marketing.content.codebase.logo}
+              category={t.marketing.content.codebase.category}
               title={t.marketing.content.codebase.title}
               description={t.marketing.content.codebase.description}
               ctaText={t.marketing.content.codebase.ctaText}
               secondaryCtaText={t.marketing.content.codebase.secondaryCtaText}
-              imageSrc="/marketing/site/codebase.jpg"
-              imageAlt="Codebase automation platform preview"
+              logoSrc="/site/codebase-logo.svg"
+              imageAlt="Codebase logo"
             />
             <Product
               logo={t.marketing.content.acme.logo}
+              category={t.marketing.content.acme.category}
               title={t.marketing.content.acme.title}
               description={t.marketing.content.acme.description}
               ctaText={t.marketing.content.acme.ctaText}
               secondaryCtaText={t.marketing.content.acme.secondaryCtaText}
-              imageSrc="/marketing/site/hogwarts.jpg"
-              imageAlt="Hogwarts education management system preview"
+              logoSrc="/site/hogwarts-logo.png"
+              imageAlt="Hogwarts logo"
+            />
+            <Product
+              logo={t.marketing.content.sijillee.logo}
+              category={t.marketing.content.sijillee.category}
+              title={t.marketing.content.sijillee.title}
+              description={t.marketing.content.sijillee.description}
+              ctaText={t.marketing.content.sijillee.ctaText}
+              secondaryCtaText={t.marketing.content.sijillee.secondaryCtaText}
+              logoSrc="/site/sijillee-logo.png"
+              imageAlt="Sijillee logo"
+              href="https://sijillee.com/"
             />
             </div>
           </div>
@@ -102,7 +117,9 @@ export default function SiteContent({ dictionary, params }: SiteContentProps) {
         </div>
       </section>
       <section className="py-10">
-        <FeatureCards dictionary={dictionary.marketing.featureCards} params={params} />
+        <div className="container mx-auto">
+          <FeatureCards dictionary={dictionary.marketing.featureCards} params={params} />
+        </div>
       </section>
       <section className="py-10">
         <Parallax dictionary={dictionary.marketing.parallax} params={params} />

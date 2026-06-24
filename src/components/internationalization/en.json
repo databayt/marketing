@@ -23,7 +23,7 @@
     "home": "Home",
     "about": "About",
     "contact": "Contact",
-    "services": "Services",
+    "services": "Design",
     "pricing": "Pricing",
     "login": "Login",
     "register": "Register",
@@ -37,12 +37,17 @@
     "dark": "Dark",
     "system": "System",
     "platform": "Platform",
+    "blog": "Blog",
     "brandName": "Databayt"
   },
   "navigation": {
     "menu": "Menu",
     "close": "Close",
     "toggleMenu": "Toggle menu"
+  },
+  "blog": {
+    "subtitle": "Stories, ideas, and lessons from building modern web products.",
+    "backToBlog": "Back to blog"
   },
   "auth": {
     "signIn": "Sign In",
@@ -72,297 +77,6 @@
     "features": {
       "title": "Features",
       "subtitle": "Everything you need to build your next project"
-    },
-    "pricing": {
-      "title": "Pricing",
-      "subtitle": "Choose the plan that works for you",
-      "monthly": "Monthly",
-      "yearly": "Yearly",
-      "free": "Free",
-      "pro": "Pro",
-      "enterprise": "Enterprise"
-    },
-    "logoCloud": {
-      "trustedBy": "Trusted by amazing clients"
-    },
-    "parallax": {
-      "design": "Design",
-      "automate": "Automate", 
-      "analytics": "Analytics",
-      "efficient": "Efficient"
-    },
-    "ready": {
-      "title": "Ready to begin a journey of wonder?",
-      "description": "Every great brand started with a single step. Take yours today and join hundreds of brands who have wrote their story in our magical world of design.",
-      "startJourney": "Let the journey begin",
-      "scheduleMeeting": "Schedule a Meeting"
-    },
-    "openSource": {
-      "title": "Proudly Open Source",
-      "description": "Databayt is open source and powered by open source software.",
-      "descriptionLine2": "The code is available on",
-      "github": "GitHub",
-      "contributors": "Contributors"
-    },
-    "readyToBuild": {
-      "quote": "This platform transformed how we manage client relationships. The intuitive design and powerful features helped us scale from a small agency to serving Fortune 500 companies.",
-      "author": "Ahmed Elardi",
-      "position": "CEO, Pixel Studios"
-    },
-    "footer": {
-      "product": "Product",
-      "company": "Company", 
-      "services": "Services",
-      "support": "Support",
-      "readyToBuild": "Ready to build?",
-      "getStarted": "Get started"
-    },
-    "stack": {
-      "title": "Stack",
-      "descriptionMobile": "Databayt leverages state-of-the-art technology to craft innovative applications.",
-      "description": "Databayt leverages state-of-the-art technology to craft innovative and modern applications, delivering seamless performance.",
-      "nextjs": {
-        "title": "Next.js 16",
-        "description": "App dir, Routing, Layouts, Loading UI and API routes."
-      },
-      "react": {
-        "title": "React 19", 
-        "description": "Server and Client Components.\nUse hook."
-      },
-      "database": {
-        "title": "Database",
-        "description": "ORM using Prisma and deployed on PlanetScale."
-      },
-      "components": {
-        "title": "Components",
-        "description": "UI components built using Radix UI and styled with Tailwind CSS."
-      },
-      "authentication": {
-        "title": "Authentication",
-        "description": "Secure auth using Auth.js with role-based access."
-      },
-      "subscriptions": {
-        "title": "Subscriptions",
-        "description": "Free and paid subscriptions using\nStripe."
-      }
-    },
-    "productsSection": {
-      "title": "Product",
-      "description": "Innovative automation solutions designed to save the origin of all value, time."
-    },
-    "projectsSection": {
-      "title": "Project",
-      "description": "Portfolio showcases, we've crafted for diverse industries.",
-      "tabs": {
-        "featured": "Featured",
-        "company": "Company",
-        "education": "Education",
-        "health": "Health",
-        "ecommerce": "E-commerce",
-        "states": "States",
-        "clone": "Clone"
-      },
-      "tabsMobile": {
-        "featured": "Featured",
-        "company": "Co",
-        "education": "Edu",
-        "health": "Health",
-        "ecommerce": "E-comm",
-        "states": "States",
-        "clone": "Clone"
-      },
-      "more": "More",
-      "websiteButton": "Website",
-      "mobileButton": "Mobile"
-    },
-    "projects": {
-      "mkan": {
-        "title": "Mkan",
-        "description": "Airbnb like Real estate platform, diversity of properties and hotels",
-        "category": "Real Estate Platform"
-      },
-      "hogwarts": {
-        "title": "Hogwarts",
-        "description": "Organization automation, attendance, exams, grades and more",
-        "category": "Education System"
-      },
-      "nmbd": {
-        "title": "NMBD",
-        "description": "Community national movement for building & development",
-        "category": "Development Organization"
-      },
-      "shifa": {
-        "title": "Shifa",
-        "description": "Comprehensive healthcare management system for hospitals and clinics",
-        "category": "Healthcare"
-      },
-      "almersal": {
-        "title": "Almersal",
-        "description": "Creative media production company for video, photography and visual storytelling",
-        "category": "Media Production"
-      },
-      "camille": {
-        "title": "Camille",
-        "description": "Retail e-commerce platform for modern online shopping experience",
-        "category": "E-commerce"
-      },
-      "acme": {
-        "title": "Acme",
-        "description": "Company automation. Managing projects, reports, calculations, and docs",
-        "category": "Company"
-      },
-      "accessories": {
-        "title": "Souq",
-        "description": "Premium tech accessories marketplace with curated collection",
-        "category": "E-commerce"
-      },
-      "nike": {
-        "title": "Nike",
-        "description": "Athletic footwear and apparel with personalized shopping experience",
-        "category": "E-commerce"
-      },
-      "ziara": {
-        "title": "Ziara",
-        "description": "Fashion-forward clothing store featuring the latest trends in apparel and luxury watches",
-        "category": "E-commerce"
-      },
-      "abdout": {
-        "title": "Abdout",
-        "description": "Corporate group website showcasing industrial and commercial business ventures",
-        "category": "Company"
-      },
-      "domestic": {
-        "title": "Tadbeer",
-        "description": "Domestic worker services, hiring, contracts, and management",
-        "category": "Company"
-      },
-      "zenda": {
-        "title": "Zenda",
-        "description": "Location-sharing social app clone with a clean, modern interface",
-        "category": "Clone"
-      },
-      "apple": {
-        "title": "Apple",
-        "description": "Apple website clone with immersive product showcase and visuals",
-        "category": "Clone"
-      },
-      "dropshipping": {
-        "title": "Drop",
-        "description": "Dropshipping platform connecting suppliers and sellers with streamlined order fulfillment",
-        "category": "E-commerce"
-      },
-      "moalimee": {
-        "title": "Moalimee",
-        "description": "Online tutoring platform connecting students with qualified teachers",
-        "category": "Education"
-      },
-      "sijillee": {
-        "title": "Sijillee",
-        "description": "Accounting and bookkeeping platform for managing records, invoices and finances",
-        "category": "Finance"
-      }
-    },
-    "featureCards": {
-      "discovery": {
-        "title": "Discovery",
-        "subtitle": "& Research"
-      },
-      "design": {
-        "title": "Design",
-        "subtitle": "& Prototyping"
-      },
-      "development": {
-        "title": "Development",
-        "subtitle": "& Testing"
-      },
-      "launch": {
-        "title": "Launch",
-        "subtitle": "& Support"
-      }
-    },
-    "content": {
-      "storyTeller": {
-        "logo": "Story TELLER",
-        "title": "AI Story Generation",
-        "description": "Transform your ideas into compelling stories with our talented storytelling team. Create engaging narratives, scripts, and content that captivates your audience.",
-        "ctaText": "Start Writing",
-        "secondaryCtaText": "Learn More"
-      },
-      "dreamMachine": {
-        "logo": "Dream MACHINE",
-        "title": "AI-Powered Video Creation",
-        "description": "Bring your ideas to life — ideate, visualize, and design unique themes with ease. Share your dreams with the world using our intuitive wizard.",
-        "ctaText": "Try Now",
-        "secondaryCtaText": "Get Expert"
-      },
-      "codebase": {
-        "logo": "CODEBASE",
-        "title": "AI Story Generation",
-        "description": "Automate the boring. at Databayt we're building codebase for business automation.",
-        "ctaText": "Codebase",
-        "secondaryCtaText": "Learn more"
-      },
-      "acme": {
-        "logo": "HOGWARTS",
-        "title": "Education Management System",
-        "description": "Education automation. Eliminate repetitive tasks to save time and effort.",
-        "ctaText": "Live Preview",
-        "secondaryCtaText": "Get App"
-      }
-    },
-    "about": {
-      "backLink": "back",
-      "introduction": {
-        "paragraph1": "Automate the boring. Databayt is an open-source, Arabic-first software company building the products that run real-world operations — schools, clinics, shops, and homes — one atomic component at a time. Every line of code is open source, every contribution is owned by the person who made it, and every builder helps shape how these communities work.",
-        "paragraph2": "We sell the origin of all value — Time, the currency that drives the world. What if you could reclaim yours and focus on what truly matters? It's more than a service; it's an escape from the matrix — a restoration of time through the elimination of repetitive tasks, streamlined operations, and automated processes. Break free. Reclaim your hours.",
-        "paragraph3": "The repository of wonders. Think of our codebase as a living library where every contribution becomes part of something greater. From atomic components to templates to blocks to whole products — Hogwarts for schools, Mkan for homes, Souq for shops, Shifa for clinics — we craft the building blocks that power the next thing we make.",
-        "paragraph4": "Follow along as we figure this out together — six people and forty AI agents, building in the open. This isn't only about software; it's a collaborative economy where developers, businesses, and communities unite to solve real problems. Every contribution doesn't just help one project — it compounds into a foundation owned by the people who build it, serving the communities the rest of the industry overlooks."
-      },
-      "whatWeDo": {
-        "title": "What We Do",
-        "development": "Products - Multi-tenant SaaS that runs schools, rentals, commerce, and care",
-        "automation": "Codebase - One open library of atoms, blocks, and templates behind every product",
-        "consulting": "AI Engine - A small team that ships like a large one — humans design, AI builds within constraints", 
-        "openSource": "Open Source - Public by default, owned by its contributors, licensed to keep the commons open"
-      },
-      "businessModel": {
-        "title": "Business Model",
-        "perProject": {
-          "title": "Per Project",
-          "description": "Custom builds for partners who need a specific operation automated — delivered on our shared foundation so they ship fast and stay maintainable."
-        },
-        "partners": {
-          "title": "Partners", 
-          "description": "Teams outsource product development to us and tap specialized talent for focused work, without standing up an engineering department of their own."
-        },
-        "codebase": {
-          "title": "Codebase",
-          "description": "Reusable atoms, blocks, and templates do most of the work. Contributors who extend the foundation earn a share of the value it creates — contributors are owners, not labor."
-        },
-        "saas": {
-          "title": "SaaS",
-          "description": "Ready-to-deploy products — Hogwarts, Mkan, Souq, Shifa — sold to organizations with the same needs and funded by the customers who use them, not by venture capital."
-        }
-      },
-      "coreValues": {
-        "title": "Core Values",
-        "transparency": {
-          "title": "Transparency",
-          "description": "We build in the open. Every decision — from architecture to strategy — lives on GitHub, where contributions are tracked publicly and anyone can see their impact. If it isn't written down, it didn't happen."
-        },
-        "innovation": {
-          "title": "Innovation",
-          "description": "Humans design the architecture; AI generates within those constraints. Six people operating like sixty, shipping across education, commerce, rentals, and health — configuration over infrastructure, never rebuilding what others already ship."
-        },
-        "growth": {
-          "title": "Growth",
-          "description": "We play long games with long people. Mission over survival, quality over speed, sustainability over hype — so our products stay robust and the value we create is shared with everyone who builds it."
-        },
-        "excellence": {
-          "title": "Excellence",
-          "description": "Every release meets enterprise-grade standards of quality, security, and performance. Community is the moat, and reputation is earned one reliable ship at a time."
-        }
-      }
     },
     "pricing": {
       "badge": "ROI Guaranteed",
@@ -529,13 +243,310 @@
             "answer": "Absolutely! For enterprise needs, we offer custom solutions with dedicated teams, SLAs, and specialized support. Contact us for a tailored quote."
           }
         ]
+      },
+      "securePayment": {
+        "title": "Secure Payment",
+        "description": "Your security is our priority. We use industry-leading encryption and security protocols to ensure your payment information is always protected.",
+        "poweredBy": "Powered by"
+      }
+    },
+    "logoCloud": {
+      "trustedBy": "Trusted by amazing clients"
+    },
+    "parallax": {
+      "design": "Design",
+      "automate": "Automate",
+      "analytics": "Analytics",
+      "efficient": "Efficient"
+    },
+    "ready": {
+      "title": "Ready to begin a journey of wonder?",
+      "description": "Every great brand started with a single step. Take yours today and join hundreds of brands who have wrote their story in our magical world of design.",
+      "startJourney": "Let the journey begin",
+      "scheduleMeeting": "Schedule a Meeting"
+    },
+    "openSource": {
+      "title": "Proudly Open Source",
+      "description": "Databayt is open source and powered by open source software.",
+      "descriptionLine2": "The code is available on",
+      "github": "GitHub",
+      "contributors": "Contributors"
+    },
+    "readyToBuild": {
+      "quote": "This platform transformed how we manage client relationships. The intuitive design and powerful features helped us scale from a small agency to serving Fortune 500 companies.",
+      "author": "Ahmed Elardi",
+      "position": "CEO, Pixel Studios"
+    },
+    "footer": {
+      "product": "Product",
+      "company": "Company",
+      "services": "Services",
+      "support": "Support",
+      "readyToBuild": "Ready to build?",
+      "getStarted": "Get started"
+    },
+    "stack": {
+      "title": "Stack",
+      "descriptionMobile": "Databayt leverages state-of-the-art technology to craft innovative applications.",
+      "description": "Databayt leverages state-of-the-art technology to craft innovative and modern applications, delivering seamless performance.",
+      "nextjs": {
+        "title": "Next.js 16",
+        "description": "App dir, Routing, Layouts, Loading UI and API routes."
+      },
+      "react": {
+        "title": "React 19",
+        "description": "Server and Client Components.\nUse hook."
+      },
+      "database": {
+        "title": "Database",
+        "description": "ORM using Prisma and deployed on PlanetScale."
+      },
+      "components": {
+        "title": "Components",
+        "description": "UI components built using Radix UI and styled with Tailwind CSS."
+      },
+      "authentication": {
+        "title": "Authentication",
+        "description": "Secure auth using Auth.js with role-based access."
+      },
+      "subscriptions": {
+        "title": "Subscriptions",
+        "description": "Free and paid subscriptions using\nStripe."
+      }
+    },
+    "productsSection": {
+      "title": "Product",
+      "description": "That save origin of value, time."
+    },
+    "projectsSection": {
+      "title": "Project",
+      "description": "Portfolio showcases, we've crafted for diverse industries.",
+      "tabs": {
+        "featured": "Featured",
+        "company": "Company",
+        "education": "Education",
+        "health": "Health",
+        "ecommerce": "E-commerce",
+        "states": "States",
+        "clone": "Clone"
+      },
+      "tabsMobile": {
+        "featured": "Featured",
+        "company": "Co",
+        "education": "Edu",
+        "health": "Health",
+        "ecommerce": "E-comm",
+        "states": "States",
+        "clone": "Clone"
+      },
+      "more": "See more",
+      "websiteButton": "Website",
+      "mobileButton": "Mobile"
+    },
+    "projects": {
+      "mkan": {
+        "title": "Mkan",
+        "description": "Airbnb like Real estate platform, diversity of properties and hotels",
+        "category": "Real Estate Platform"
+      },
+      "hogwarts": {
+        "title": "Hogwarts",
+        "description": "Organization automation, attendance, exams, grades and more",
+        "category": "Education System"
+      },
+      "nmbd": {
+        "title": "NMBD",
+        "description": "Community national movement for building & development",
+        "category": "Development Organization"
+      },
+      "shifa": {
+        "title": "Shifa",
+        "description": "Comprehensive healthcare management system for hospitals and clinics",
+        "category": "Healthcare"
+      },
+      "almersal": {
+        "title": "Almersal",
+        "description": "Creative media production company for video, photography and visual storytelling",
+        "category": "Media Production"
+      },
+      "camille": {
+        "title": "Camille",
+        "description": "Retail e-commerce platform for modern online shopping experience",
+        "category": "E-commerce"
+      },
+      "acme": {
+        "title": "Acme",
+        "description": "Company automation. Managing projects, reports, calculations, and docs",
+        "category": "Company"
+      },
+      "accessories": {
+        "title": "Souq",
+        "description": "Premium tech accessories marketplace with curated collection",
+        "category": "E-commerce"
+      },
+      "nike": {
+        "title": "Nike",
+        "description": "Athletic footwear and apparel with personalized shopping experience",
+        "category": "E-commerce"
+      },
+      "ziara": {
+        "title": "Ziara",
+        "description": "Fashion-forward clothing store featuring the latest trends in apparel and luxury watches",
+        "category": "E-commerce"
+      },
+      "abdout": {
+        "title": "Abdout",
+        "description": "Corporate group website showcasing industrial and commercial business ventures",
+        "category": "Company"
+      },
+      "domestic": {
+        "title": "Tadbeer",
+        "description": "Domestic worker services, hiring, contracts, and management",
+        "category": "Company"
+      },
+      "zenda": {
+        "title": "Zenda",
+        "description": "Location-sharing social app clone with a clean, modern interface",
+        "category": "Clone"
+      },
+      "apple": {
+        "title": "Apple",
+        "description": "Apple website clone with immersive product showcase and visuals",
+        "category": "Clone"
+      },
+      "dropshipping": {
+        "title": "Drop",
+        "description": "Dropshipping platform connecting suppliers and sellers with streamlined order fulfillment",
+        "category": "E-commerce"
+      },
+      "moalimee": {
+        "title": "Moalimee",
+        "description": "Online tutoring platform connecting students with qualified teachers",
+        "category": "Education"
+      },
+      "sijillee": {
+        "title": "Sijillee",
+        "description": "Accounting and bookkeeping platform for managing records, invoices and finances",
+        "category": "Finance"
+      }
+    },
+    "featureCards": {
+      "discovery": {
+        "title": "Discovery",
+        "subtitle": "& Research"
+      },
+      "design": {
+        "title": "Design",
+        "subtitle": "& Prototyping"
+      },
+      "development": {
+        "title": "Development",
+        "subtitle": "& Testing"
+      },
+      "launch": {
+        "title": "Launch",
+        "subtitle": "& Support"
+      }
+    },
+    "content": {
+      "kun": {
+        "logo": "Kun ENGINE",
+        "title": "Say Be, and It Is",
+        "description": "The engine of incantations. A code machine that collapses the time between idea and shipped product. Magic begins with a word.",
+        "ctaText": "Explore Kun",
+        "secondaryCtaText": "Documentation"
+      },
+      "dreamMachine": {
+        "logo": "Dream MACHINE",
+        "title": "AI-Powered Video Creation",
+        "description": "Bring your ideas to life — ideate, visualize, and design unique themes with ease. Share your dreams with the world using our intuitive wizard.",
+        "ctaText": "Try Now",
+        "secondaryCtaText": "Get Expert"
+      },
+      "codebase": {
+        "logo": "CODEBASE",
+        "category": "Registry",
+        "title": "AI Story Generation",
+        "description": "Beautifully-designed, blazing-fast code. Open Source. Open Code.",
+        "ctaText": "Codebase",
+        "secondaryCtaText": "Learn more"
+      },
+      "acme": {
+        "logo": "HOGWARTS",
+        "category": "Education",
+        "title": "Education Management System",
+        "description": "When schools automate the mundane, what do educators focus on?",
+        "ctaText": "Live Preview",
+        "secondaryCtaText": "Get App"
+      },
+      "sijillee": {
+        "logo": "SIJILLEE",
+        "category": "Finance",
+        "title": "Accounting System",
+        "description": "Sudan-oriented accounting for business — invoices, inventory, debts, and reports.",
+        "ctaText": "Live Preview",
+        "secondaryCtaText": "Learn more"
+      }
+    },
+    "about": {
+      "backLink": "back",
+      "introduction": {
+        "paragraph1": "Automate the boring. Databayt is an open-source, Arabic-first software company building the products that run real-world operations — schools, clinics, shops, and homes — one atomic component at a time. Every line of code is open source, every contribution is owned by the person who made it, and every builder helps shape how these communities work.",
+        "paragraph2": "We sell the origin of all value — Time, the currency that drives the world. What if you could reclaim yours and focus on what truly matters? It's more than a service; it's an escape from the matrix — a restoration of time through the elimination of repetitive tasks, streamlined operations, and automated processes. Break free. Reclaim your hours.",
+        "paragraph3": "The repository of wonders. Think of our codebase as a living library where every contribution becomes part of something greater. From atomic components to templates to blocks to whole products — Hogwarts for schools, Mkan for homes, Souq for shops, Shifa for clinics — we craft the building blocks that power the next thing we make.",
+        "paragraph4": "Follow along as we figure this out together — six people and forty AI agents, building in the open. This isn't only about software; it's a collaborative economy where developers, businesses, and communities unite to solve real problems. Every contribution doesn't just help one project — it compounds into a foundation owned by the people who build it, serving the communities the rest of the industry overlooks."
+      },
+      "whatWeDo": {
+        "title": "What We Do",
+        "development": "Products - Multi-tenant SaaS that runs schools, rentals, commerce, and care",
+        "automation": "Codebase - One open library of atoms, blocks, and templates behind every product",
+        "consulting": "AI Engine - A small team that ships like a large one — humans design, AI builds within constraints",
+        "openSource": "Open Source - Public by default, owned by its contributors, licensed to keep the commons open"
+      },
+      "businessModel": {
+        "title": "Business Model",
+        "perProject": {
+          "title": "Per Project",
+          "description": "Custom builds for partners who need a specific operation automated — delivered on our shared foundation so they ship fast and stay maintainable."
+        },
+        "partners": {
+          "title": "Partners",
+          "description": "Teams outsource product development to us and tap specialized talent for focused work, without standing up an engineering department of their own."
+        },
+        "codebase": {
+          "title": "Codebase",
+          "description": "Reusable atoms, blocks, and templates do most of the work. Contributors who extend the foundation earn a share of the value it creates — contributors are owners, not labor."
+        },
+        "saas": {
+          "title": "SaaS",
+          "description": "Ready-to-deploy products — Hogwarts, Mkan, Souq, Shifa — sold to organizations with the same needs and funded by the customers who use them, not by venture capital."
+        }
+      },
+      "coreValues": {
+        "title": "Core Values",
+        "transparency": {
+          "title": "Transparency",
+          "description": "We build in the open. Every decision — from architecture to strategy — lives on GitHub, where contributions are tracked publicly and anyone can see their impact. If it isn't written down, it didn't happen."
+        },
+        "innovation": {
+          "title": "Innovation",
+          "description": "Humans design the architecture; AI generates within those constraints. Six people operating like sixty, shipping across education, commerce, rentals, and health — configuration over infrastructure, never rebuilding what others already ship."
+        },
+        "growth": {
+          "title": "Growth",
+          "description": "We play long games with long people. Mission over survival, quality over speed, sustainability over hype — so our products stay robust and the value we create is shared with everyone who builds it."
+        },
+        "excellence": {
+          "title": "Excellence",
+          "description": "Every release meets enterprise-grade standards of quality, security, and performance. Community is the moat, and reputation is earned one reliable ship at a time."
+        }
       }
     },
     "services": {
-      "title": "Service",
-      "description": "We offer comprehensive web design and branding solutions to help your business stand out in the digital landscape. From stunning websites to memorable brand identities.",
+      "title": "Design not just what it looks like.\nDesign is how it works.",
+      "description": "By Steve Jobs",
       "design": {
-        "title": "Design",
+        "title": "Graphics",
         "description": "Creating stunning visual designs with modern UI/UX, graphics, and layouts. We bring innovative concepts to life with creative excellence."
       },
       "branding": {

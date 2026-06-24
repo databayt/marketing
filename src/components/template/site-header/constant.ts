@@ -159,8 +159,8 @@ export const marketingConfig: MarketingConfig = {
     },
 
     {
-      title: "Service",
-      href: "/service",
+      title: "Design",
+      href: "/design",
     },
 
     {
@@ -169,8 +169,8 @@ export const marketingConfig: MarketingConfig = {
     },
 
     {
-      title: "Platform",
-      href: "/#",
+      title: "Blog",
+      href: "/blog",
     },
 
   ],

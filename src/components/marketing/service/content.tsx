@@ -8,12 +8,16 @@ import SectionHeading from "./section-heading";
 export default function ServiceContent() {
   return (
     <>
-    <div className="flex w-full flex-col py-14 mt-18 items-center">
-      <SectionHeading />
-      
-      <Design />
-      <Branding />
-      <Creative />
+    <div className="full-bleed">
+      <div className="container-content">
+        <div className="flex w-full flex-col py-14 mt-18">
+          <SectionHeading />
+
+          <Design />
+          <Branding />
+          <Creative />
+        </div>
+      </div>
     </div>
     <Sales />
     </>

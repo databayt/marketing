@@ -48,6 +48,12 @@
     max-width: 1280px; /* xl breakpoint */
   }
 
+  /* Standard content column - 1024px, shared by all marketing service sections */
+  .container-content {
+    @apply w-full mx-auto px-4 sm:px-6 lg:px-8;
+    max-width: 64rem; /* max-w-5xl = 1024px */
+  }
+
   /* Container with extra large max-width */
   .container-xl {
     @apply w-full mx-auto px-4 sm:px-6 lg:px-8 xl:px-12;

@@ -8,7 +8,7 @@ import "./styles.css";
 
 const LERP = 0.09; // damping for the smooth virtual scroll
 const MAP_TOP = 120; // px — minimap distance from the top
-const MAP_MAX_SCALE = 0.19; // never render the minimap larger than this
+const MAP_MAX_SCALE = 0.3; // never render the minimap larger than this
 const BOX_PAD = 16; // px — tracker box padding around the scaled text
 const REVEAL_RATIO = 0.88; // reveal a block once its top passes this much of the viewport
 

@@ -179,6 +179,7 @@ export const getProjects = (locale: Locale = 'en'): ProjectItem[] => {
       title: t.marketing.projects.moalimee.title,
       description: t.marketing.projects.moalimee.description,
       link: "https://moalimee.com",
+      mobileLink: "https://moalimee.com",
       image: "/marketing/site/moalimee.png",
       imageDark: "/marketing/site/moalimee.png",
       imageLight: "/marketing/site/moalimee.png",

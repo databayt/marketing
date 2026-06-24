@@ -57,7 +57,7 @@ export function GetStartedModal({ isOpen, onClose }: GetStartedModalProps) {
   const router = useRouter();
 
   const handleServiceSelect = (serviceId: string) => {
-    router.push(`/${locale}/service#${serviceId}`);
+    router.push(`/${locale}/design#${serviceId}`);
     onClose();
   };
 

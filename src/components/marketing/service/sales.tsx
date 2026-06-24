@@ -12,7 +12,7 @@ export function Sales() {
   
   return (
     <div className="bg-[#0080FF] full-bleed" data-section="sales">
-      <div className="container-responsive">
+      <div className="container-content">
         <div className={`flex flex-col lg:flex-row items-center gap-8 lg:gap-20 ${isRTL ? 'lg:flex-row-reverse font-heading' : ''}`}>
           {/* Content Section - Now on the left */}
           <div className={`flex-1 text-center lg:text-left ${isRTL ? 'lg:pr-12 lg:text-right' : 'lg:pl-12'}`}>
@@ -23,7 +23,7 @@ export function Sales() {
            
             <Button
               onClick={() => setGiftModalOpen(true)}
-              className="bg-white hover:bg-white/90 text-[#0080FF] flex items-center gap-2 mx-auto lg:mx-0 cursor-pointer"
+              className="bg-white hover:bg-white/90 text-black flex items-center gap-2 mx-auto lg:mx-0 cursor-pointer"
             >
               <OptimizedImage
                 src="/marketing/site/b.jpg"

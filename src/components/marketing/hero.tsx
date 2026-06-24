@@ -49,11 +49,11 @@ export function Hero({ dictionary, params }: HeroProps) {
                             <ExpandButton
                                 variant="default"
                                 onClick={() => setAppointmentModalOpen(true)}
-                                className="w-52 md:w-48 hover:shadow-[4px_4px_0px_black] cursor-pointer"
+                                className="w-52 md:w-48 hover:shadow-[4px_4px_0px_theme(colors.foreground)] cursor-pointer"
                             >
                                 {t.appointment}
                             </ExpandButton>
-                            <ExpandButton variant="outline" href="/service" className="w-52 md:w-48 hover:shadow-[4px_4px_0px_black]">
+                            <ExpandButton variant="outline" href="/design" className="w-52 md:w-48 hover:shadow-[4px_4px_0px_theme(colors.foreground)]">
                                 {t.services}
                             </ExpandButton>
                         </div>

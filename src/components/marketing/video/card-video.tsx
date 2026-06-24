@@ -7,6 +7,18 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useState, memo, useMemo } from "react";
 import '@/styles/liquid-glass.css';
 
+const WebsiteIcon = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" aria-hidden="true">
+        <path fill="currentColor" d="M4.616 19q-.691 0-1.153-.462T3 17.384V6.616q0-.691.463-1.153T4.615 5h14.77q.69 0 1.152.463T21 6.616v10.769q0 .69-.463 1.153T19.385 19zm0-1h14.769q.23 0 .423-.192t.192-.424V8H4v9.385q0 .23.192.423t.423.192" />
+    </svg>
+);
+
+const MobileIcon = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" aria-hidden="true">
+        <path fill="currentColor" d="M16.73 2.065H7.27a2.386 2.386 0 0 0-2.24 2.5v14.87a2.386 2.386 0 0 0 2.24 2.5h9.46a2.386 2.386 0 0 0 2.24-2.5V4.565a2.386 2.386 0 0 0-2.24-2.5m1.24 17.37a1.39 1.39 0 0 1-1.24 1.5H7.27a1.39 1.39 0 0 1-1.24-1.5V4.565a1.39 1.39 0 0 1 1.24-1.5H8.8v.51a1 1 0 0 0 1 1h4.4a1 1 0 0 0 1-1v-.51h1.53a1.39 1.39 0 0 1 1.24 1.5Z" />
+    </svg>
+);
+
 interface ProjectItem {
     title: string;
     description: string;
@@ -81,24 +93,28 @@ export const HoverEffect = memo(({ items, className, websiteLabel = "Website", m
                                     style={{ objectFit: 'cover', objectPosition: 'center' }}
                                 />
                                 {hasDualLinks && (
-                                    <div className="absolute bottom-3 left-3 right-3 flex gap-3 z-10">
+                                    <div className="absolute bottom-3 start-3 end-3 flex gap-1.5 justify-end z-10">
                                         <a
                                             href={item.link}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="liquid-glass-button flex-1 text-center"
+                                            className="liquid-glass-button liquid-glass-circle"
+                                            aria-label={websiteLabel}
+                                            title={websiteLabel}
                                             onClick={(e) => e.stopPropagation()}
                                         >
-                                            {websiteLabel}
+                                            <WebsiteIcon />
                                         </a>
                                         <a
                                             href={item.mobileLink}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="liquid-glass-button flex-1 text-center"
+                                            className="liquid-glass-button liquid-glass-circle"
+                                            aria-label={mobileLabel}
+                                            title={mobileLabel}
                                             onClick={(e) => e.stopPropagation()}
                                         >
-                                            {mobileLabel}
+                                            <MobileIcon />
                                         </a>
                                     </div>
                                 )}

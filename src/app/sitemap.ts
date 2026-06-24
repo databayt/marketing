@@ -8,8 +8,9 @@ const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3001';
 const pages = [
   '',        // home page
   '/about',
-  '/pricing', 
-  '/service',
+  '/pricing',
+  '/design',
+  '/blog',
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

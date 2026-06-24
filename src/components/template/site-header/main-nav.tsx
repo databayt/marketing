@@ -20,15 +20,15 @@ export function MainNav() {
     },
     {
       title: t.common.services,
-      href: `/${locale}/service`,
+      href: `/${locale}/design`,
     },
     {
       title: t.common.pricing,
       href: `/${locale}/pricing`,
     },
     {
-      title: t.common.platform,
-      href: `/${locale}/#`,
+      title: t.common.blog,
+      href: `/${locale}/blog`,
     },
   ], [t, locale])
 

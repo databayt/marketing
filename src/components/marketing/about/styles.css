@@ -135,7 +135,7 @@
 .about-main {
   position: absolute;
   top: 0;
-  inset-inline-start: clamp(12rem, 15vw, 16rem);
+  inset-inline-start: clamp(24rem, 34vw, 40rem);
   height: 100vh;
   width: var(--content-w);
   z-index: 10;

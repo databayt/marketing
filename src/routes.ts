@@ -12,18 +12,21 @@ export const publicRoutes = [
   "/setting",
   "/pricing",
   "/about",
-  "/service",
+  "/design",
+  "/blog",
   "/chatbot",
   // Internationalized routes
   "/en",
   "/en/pricing",
-  "/en/about", 
-  "/en/service",
+  "/en/about",
+  "/en/design",
+  "/en/blog",
   "/en/chatbot",
   "/ar",
   "/ar/pricing",
   "/ar/about",
-  "/ar/service",
+  "/ar/design",
+  "/ar/blog",
   "/ar/chatbot"
 ];
 

@@ -1,16 +1,15 @@
 "use client"
 
 import React from 'react'
-import { useTranslations } from '@/lib/use-translations'
-import '@/styles/liquid-glass.css'
 
 export interface ProductProps {
   logo: string
+  category: string
   title: string
   description: string
   ctaText: string
   secondaryCtaText: string
-  imageSrc: string
+  logoSrc: string
   imageAlt?: string
   className?: string
   href?: string
@@ -18,27 +17,22 @@ export interface ProductProps {
 
 const Product = ({
   logo,
-  title,
+  category,
   description,
-  ctaText,
-  secondaryCtaText,
-  imageSrc,
+  logoSrc,
   imageAlt,
   className,
   href
 }: ProductProps) => {
-  const { isRTL, locale } = useTranslations()
+  const isCodebase = logo.toLowerCase().includes('codebase') || logo.includes('مكتبة')
+  const isHogwarts = logo.toLowerCase().includes('hogwarts') || logo.includes('هوجوارتس')
+  const isSijillee = logo.toLowerCase().includes('sijillee') || logo.includes('سجلي')
 
-  // Build ImageKit URL for background image
-  const imagekitEndpoint = 'https://ik.imagekit.io/databayt'
-  const backgroundImageUrl = `${imagekitEndpoint}${imageSrc}?tr=orig-true`
-
-  // Determine if this is the Codebase product
-  const isCodebase = logo.toLowerCase().includes('codebase') || logo.toLowerCase().includes('مكتبة')
+  const iconSize = isHogwarts ? 'h-32' : isSijillee ? 'h-48' : 'h-40'
 
   // Determine URL based on the product
   const getProductUrl = () => {
-    if (logo.toLowerCase().includes('codebase')) {
+    if (isCodebase) {
       return 'https://cb.databayt.org'
     }
     return 'https://ed.databayt.org'
@@ -50,31 +44,27 @@ const Product = ({
 
   return (
     <div
-      className={`relative min-h-[400px] rounded-lg overflow-hidden cursor-pointer ${className || ''}`}
-      style={{
-        backgroundImage: `url(${backgroundImageUrl})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat'
-      }}
+      className={`group relative flex min-h-[460px] cursor-pointer flex-col overflow-hidden rounded-3xl bg-card p-8 text-start text-card-foreground md:p-10 ${className || ''}`}
       onClick={handleClick}
     >
-      {/* Dark overlay for codebase product */}
-      {isCodebase && (
-        <div className="absolute inset-0 bg-black/30" />
-      )}
-      {/* Liquid Glass text overlay - reduced padding from edges */}
-      <div className="absolute bottom-2 left-2 right-2">
-        <div className="liquid-glass-wrapper">
-          <div className={`liquid-glass-content ${isRTL ? 'lg:text-right' : 'lg:text-left'}`}>
-            <h2 className="liquid-glass-title">
-              {logo.toLowerCase()}
-            </h2>
-            <p className={`liquid-glass-description ${isRTL ? 'pl-4' : 'pr-4'}`}>
-              {description}
-            </p>
-          </div>
-        </div>
+      <div>
+        <p className="mb-1 text-sm font-medium tracking-tight text-foreground/80">
+          {category}
+        </p>
+        <h2 className="font-heading text-2xl font-semibold lowercase leading-[1.1] tracking-tight md:text-3xl">
+          {logo.toLowerCase()}
+        </h2>
+        <p className="mt-3 line-clamp-3 min-h-[4.125rem] max-w-sm leading-snug text-foreground/70">
+          {description}
+        </p>
+      </div>
+
+      <div className="pointer-events-none flex flex-1 items-center justify-center py-6">
+        <img
+          src={logoSrc}
+          alt={imageAlt || `${logo} logo`}
+          className={`${iconSize} w-auto object-contain ${isHogwarts ? 'dark:invert' : ''}`}
+        />
       </div>
     </div>
   )

@@ -9,7 +9,7 @@ export default function Design() {
   const { t, isRTL } = useTranslations();
   
   return (
-    <div className={`py-8 ${isRTL ? 'font-heading' : ''}`}>
+    <div className={`w-full py-8 ${isRTL ? 'font-heading' : ''}`}>
       {/* Heading with Icon */}
       <div className="flex items-center justify-center gap-3 mb-8">
         <OptimizedImage
@@ -17,7 +17,7 @@ export default function Design() {
           alt="Design Icon"
           width={32}
           height={32}
-          className="w-8 h-8"
+          className="w-8 h-8 dark:invert"
         />
         <h2 className="text-3xl font-bold text-foreground">{t.marketing.services.design.title}</h2>
       </div>

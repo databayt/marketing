@@ -106,3 +106,42 @@
   box-shadow: 0 2px 8px rgba(31, 38, 135, 0.1),
               inset 0 1px 5px rgba(255, 255, 255, 0.15);
 }
+
+.liquid-glass-circle {
+  flex: 0 0 auto;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border-radius: 9999px;
+  font-size: 1.375rem;
+  color: #000;
+  text-shadow: none;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(8px) saturate(180%);
+  -webkit-backdrop-filter: blur(8px) saturate(180%);
+  box-shadow: 0 4px 16px rgba(31, 38, 135, 0.2),
+              inset 0 2px 10px rgba(255, 255, 255, 0.3);
+}
+
+/* Specular glass highlight clipped to the circle */
+.liquid-glass-circle::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: inset -6px -5px 0px -7px rgba(255, 255, 255, 1),
+              inset 0px -5px 0px -5px rgba(255, 255, 255, 1);
+  opacity: 0.6;
+  filter: blur(1px) brightness(115%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.liquid-glass-circle > svg {
+  position: relative;
+  z-index: 1;
+  stroke: currentColor;
+  stroke-width: 0.5;
+}

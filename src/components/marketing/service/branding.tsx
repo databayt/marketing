@@ -8,7 +8,7 @@ export default function Branding() {
   const { t, isRTL } = useTranslations();
   
   return (
-    <div className={`py-8 ${isRTL ? 'font-heading' : ''}`}>
+    <div className={`w-full py-8 ${isRTL ? 'font-heading' : ''}`}>
       {/* Heading with Icon */}
       <div className="flex items-center justify-center gap-3 mb-4">
         <OptimizedImage

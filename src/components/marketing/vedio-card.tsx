@@ -15,6 +15,8 @@ export interface VideoCardProps {
   videoSrc?: string
   imageSrc?: string
   videoPoster?: string
+  href?: string
+  secondaryHref?: string
   className?: string
 }
 
@@ -27,6 +29,8 @@ const VideoCard = ({
   videoSrc = "/marketing/site/dream.mp4",
   imageSrc,
   videoPoster,
+  href,
+  secondaryHref,
   className
 }: VideoCardProps) => {
   const { isRTL, locale } = useTranslations()
@@ -105,10 +109,12 @@ const VideoCard = ({
                     size="lg"
                     className="bg-black hover:bg-gray-800 text-white font-medium px-6 py-3 rounded-lg"
                     onClick={() => {
-                      if (ctaText.toLowerCase().includes('try now')) {
+                      if (href) {
+                        window.open(href, '_blank')
+                      } else if (ctaText.toLowerCase().includes('try now')) {
                         window.location.href = `/${locale}/wizard`
                       } else if (ctaText.toLowerCase().includes('start writing')) {
-                        window.location.href = '/service'
+                        window.location.href = '/design'
                       } else if (ctaText.toLowerCase().includes('databayt')) {
                         window.open('https://databayt.org', '_blank')
                       } else if (ctaText.toLowerCase().includes('codebase')) {
@@ -125,8 +131,10 @@ const VideoCard = ({
                     size="lg"
                     className="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 font-medium px-6 py-3"
                     onClick={() => {
-                      if (secondaryCtaText.toLowerCase().includes('start writing')) {
-                        window.location.href = '/service'
+                      if (secondaryHref) {
+                        window.open(secondaryHref, '_blank')
+                      } else if (secondaryCtaText.toLowerCase().includes('start writing')) {
+                        window.location.href = '/design'
                       } else if (secondaryCtaText.toLowerCase().includes('databayt')) {
                         window.open('https://databayt.org', '_blank')
                       } else if (secondaryCtaText.toLowerCase().includes('codebase')) {
@@ -145,10 +153,12 @@ const VideoCard = ({
                     size="lg"
                     className="bg-black hover:bg-gray-800 text-white font-medium px-6 py-3 rounded-lg"
                     onClick={() => {
-                      if (ctaText.toLowerCase().includes('try now')) {
+                      if (href) {
+                        window.open(href, '_blank')
+                      } else if (ctaText.toLowerCase().includes('try now')) {
                         window.location.href = `/${locale}/wizard`
                       } else if (ctaText.toLowerCase().includes('start writing')) {
-                        window.location.href = '/service'
+                        window.location.href = '/design'
                       } else if (ctaText.toLowerCase().includes('databayt')) {
                         window.open('https://databayt.org', '_blank')
                       } else if (ctaText.toLowerCase().includes('codebase')) {
@@ -165,10 +175,12 @@ const VideoCard = ({
                     size="lg"
                     className="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 font-medium px-6 py-3"
                     onClick={() => {
-                      if (secondaryCtaText.toLowerCase().includes('get expert')) {
+                      if (secondaryHref) {
+                        window.open(secondaryHref, '_blank')
+                      } else if (secondaryCtaText.toLowerCase().includes('get expert')) {
                         setExpertModalOpen(true)
                       } else if (secondaryCtaText.toLowerCase().includes('start writing')) {
-                        window.location.href = '/service'
+                        window.location.href = '/design'
                       } else if (secondaryCtaText.toLowerCase().includes('databayt')) {
                         window.open('https://databayt.org', '_blank')
                       } else if (ctaText.toLowerCase().includes('codebase')) {
@@ -227,7 +239,7 @@ const VideoCard = ({
                       className="bg-black hover:bg-gray-800 text-white font-medium px-6 py-3 rounded-lg"
                       onClick={() => {
                         if (ctaText.toLowerCase().includes('start writing')) {
-                          window.location.href = '/service'
+                          window.location.href = '/design'
                         } else if (ctaText.toLowerCase().includes('databayt')) {
                           window.open('https://databayt.org', '_blank')
                         } else if (ctaText.toLowerCase().includes('codebase')) {
@@ -245,7 +257,7 @@ const VideoCard = ({
                       className="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 font-medium px-6 py-3"
                       onClick={() => {
                         if (secondaryCtaText.toLowerCase().includes('start writing')) {
-                          window.location.href = '/service'
+                          window.location.href = '/design'
                         } else if (secondaryCtaText.toLowerCase().includes('databayt')) {
                           window.open('https://databayt.org', '_blank')
                         } else if (secondaryCtaText.toLowerCase().includes('codebase')) {
@@ -265,7 +277,7 @@ const VideoCard = ({
                       className="bg-black hover:bg-gray-800 text-white font-medium px-6 py-3 rounded-lg"
                       onClick={() => {
                         if (ctaText.toLowerCase().includes('start writing')) {
-                          window.location.href = '/service'
+                          window.location.href = '/design'
                         } else if (ctaText.toLowerCase().includes('databayt')) {
                           window.open('https://databayt.org', '_blank')
                         } else if (ctaText.toLowerCase().includes('codebase')) {
@@ -283,7 +295,7 @@ const VideoCard = ({
                       className="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 font-medium px-6 py-3"
                       onClick={() => {
                         if (secondaryCtaText.toLowerCase().includes('start writing')) {
-                          window.location.href = '/service'
+                          window.location.href = '/design'
                         } else if (secondaryCtaText.toLowerCase().includes('databayt')) {
                           window.open('https://databayt.org', '_blank')
                         } else if (secondaryCtaText.toLowerCase().includes('codebase')) {
