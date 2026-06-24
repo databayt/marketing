@@ -1,14 +1,23 @@
 // ThemeSelector.tsx
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
+import { Check, Plus } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { Check } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 interface ThemeSelectorProps {
   selectedColor?: string;
   selectedRadius?: number;
-  onSelect: (color: string, radius: number) => void;
+  selectedShadow?: string;
+  onSelect: (color: string, radius: number, shadow: string) => void;
 }
 
 const COLORS: { name: string; value: string }[] = [
@@ -25,29 +34,47 @@ const COLORS: { name: string; value: string }[] = [
 
 const RADII = [0, 0.25, 0.5, 0.75, 1];
 
+const SHADOWS: { id: string; label: string; cls: string }[] = [
+  { id: "none", label: "None", cls: "shadow-none" },
+  { id: "sm", label: "S", cls: "shadow-sm" },
+  { id: "md", label: "M", cls: "shadow-md" },
+  { id: "lg", label: "L", cls: "shadow-lg" },
+  { id: "xl", label: "XL", cls: "shadow-xl" },
+];
+
 const ThemeSelector = ({
   selectedColor = "zinc",
   selectedRadius = 0.5,
+  selectedShadow = "sm",
   onSelect,
 }: ThemeSelectorProps) => {
-  const color = COLORS.find((c) => c.name === selectedColor) ?? COLORS[0];
+  // currentColor is a preset name (e.g. "zinc") or a custom hex (e.g. "#ff0080").
+  const currentColor = selectedColor ?? "zinc";
+  const preset = COLORS.find((c) => c.name === currentColor);
+  const colorValue = preset ? preset.value : currentColor;
+  const isCustom = !preset;
+  const shadowCls =
+    SHADOWS.find((s) => s.id === selectedShadow)?.cls ?? "shadow-sm";
+
+  const [customOpen, setCustomOpen] = useState(false);
+  const [customValue, setCustomValue] = useState("#0ea5e9");
 
   return (
     <div className="flex h-full items-center justify-center">
       <div className="flex w-full max-w-4xl flex-col items-center justify-center gap-10 md:flex-row md:gap-12">
         {/* Controls */}
-        <div className="space-y-8">
+        <div className="space-y-5">
           <div className="space-y-3">
             <p className="text-sm font-medium text-muted-foreground">Color</p>
             <div className="grid w-fit grid-cols-6 gap-3">
               {COLORS.map((c) => {
-                const active = c.name === color.name;
+                const active = c.name === currentColor;
                 return (
                   <button
                     key={c.name}
                     type="button"
                     aria-label={c.name}
-                    onClick={() => onSelect(c.name, selectedRadius)}
+                    onClick={() => onSelect(c.name, selectedRadius, selectedShadow)}
                     className={cn(
                       "flex h-9 w-9 items-center justify-center rounded-full transition-transform hover:scale-110",
                       active &&
@@ -59,6 +86,35 @@ const ThemeSelector = ({
                   </button>
                 );
               })}
+
+              {/* Custom color — opens a picker dialog */}
+              <button
+                type="button"
+                aria-label="Custom color"
+                onClick={() => {
+                  setCustomValue(isCustom ? colorValue : "#0ea5e9");
+                  setCustomOpen(true);
+                }}
+                className={cn(
+                  "flex h-9 w-9 items-center justify-center rounded-full text-white transition-transform hover:scale-110",
+                  isCustom &&
+                    "ring-2 ring-foreground ring-offset-2 ring-offset-background"
+                )}
+                style={
+                  isCustom
+                    ? { backgroundColor: colorValue }
+                    : {
+                        background:
+                          "conic-gradient(from 0deg, #ef4444, #f59e0b, #22c55e, #3b82f6, #8b5cf6, #ef4444)",
+                      }
+                }
+              >
+                {isCustom ? (
+                  <Check className="h-4 w-4" />
+                ) : (
+                  <Plus className="h-4 w-4 drop-shadow" />
+                )}
+              </button>
             </div>
           </div>
 
@@ -71,9 +127,9 @@ const ThemeSelector = ({
                   <button
                     key={r}
                     type="button"
-                    onClick={() => onSelect(color.name, r)}
+                    onClick={() => onSelect(currentColor, r, selectedShadow)}
                     className={cn(
-                      "flex h-10 w-12 items-center justify-center border bg-background text-xs font-medium shadow-sm transition-colors",
+                      "flex h-10 w-12 items-center justify-center border bg-background text-xs font-medium transition-colors",
                       active
                         ? "border-2 border-primary text-foreground"
                         : "border-border text-muted-foreground hover:border-muted-foreground/50"
@@ -86,11 +142,39 @@ const ThemeSelector = ({
               })}
             </div>
           </div>
+
+          <div className="space-y-3">
+            <p className="text-sm font-medium text-muted-foreground">Shadow</p>
+            <div className="flex flex-wrap gap-2">
+              {SHADOWS.map((s) => {
+                const active = s.id === selectedShadow;
+                return (
+                  <button
+                    key={s.id}
+                    type="button"
+                    onClick={() => onSelect(currentColor, selectedRadius, s.id)}
+                    className={cn(
+                      "flex h-10 w-12 items-center justify-center rounded-md border bg-background text-xs font-medium transition-colors",
+                      s.cls,
+                      active
+                        ? "border-2 border-primary text-foreground"
+                        : "border-border text-muted-foreground hover:border-muted-foreground/50"
+                    )}
+                  >
+                    {s.label}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
         </div>
 
-        {/* Live preview — reflects the chosen color + radius instantly */}
+        {/* Live preview — reflects the chosen color, radius + shadow instantly */}
         <div
-          className="w-full max-w-sm rounded-[var(--r)] border bg-card p-6 shadow-sm"
+          className={cn(
+            "w-full max-w-sm rounded-[var(--r)] border bg-card px-6 py-8",
+            shadowCls
+          )}
           style={{ "--r": `${selectedRadius}rem` } as React.CSSProperties}
         >
           <div className="space-y-2 pb-5">
@@ -133,18 +217,54 @@ const ThemeSelector = ({
           <input
             placeholder="Email"
             className="mb-4 w-full rounded-[var(--r)] border bg-background px-3 py-2 text-sm outline-none transition-colors focus:border-[var(--c)]"
-            style={{ "--c": color.value } as React.CSSProperties}
+            style={{ "--c": colorValue } as React.CSSProperties}
           />
 
           <button
             type="button"
             className="w-full rounded-[var(--r)] py-2 text-sm font-medium text-white transition-colors"
-            style={{ backgroundColor: color.value }}
+            style={{ backgroundColor: colorValue }}
           >
             Create account
           </button>
         </div>
       </div>
+
+      <Dialog open={customOpen} onOpenChange={setCustomOpen}>
+        <DialogContent className="sm:max-w-xs">
+          <DialogHeader>
+            <DialogTitle>Custom color</DialogTitle>
+          </DialogHeader>
+          <div className="flex items-center gap-3">
+            <input
+              type="color"
+              value={customValue}
+              onChange={(e) => setCustomValue(e.target.value)}
+              aria-label="Pick a color"
+              className="h-11 w-11 shrink-0 cursor-pointer rounded-md border bg-background p-1"
+            />
+            <input
+              type="text"
+              value={customValue}
+              onChange={(e) => setCustomValue(e.target.value)}
+              aria-label="Hex color"
+              spellCheck={false}
+              className="min-w-0 flex-1 rounded-md border bg-background px-3 py-2 text-sm outline-none transition-colors focus:border-foreground/40"
+            />
+          </div>
+          <DialogFooter>
+            <Button
+              className="w-full"
+              onClick={() => {
+                onSelect(customValue, selectedRadius, selectedShadow);
+                setCustomOpen(false);
+              }}
+            >
+              Apply
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };

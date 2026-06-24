@@ -1,7 +1,6 @@
 'use client';
 
 import { cn } from '@/lib/utils';
-import { Check } from 'lucide-react';
 
 type TemplateSelectorProps = {
   selectedTemplate: string;
@@ -98,17 +97,12 @@ export const TemplateSelector = ({
               onClick={() => onSelect(id)}
               aria-pressed={isActive}
               className={cn(
-                'group relative aspect-[4/3] overflow-hidden rounded-xl border-2 bg-background transition-all duration-200',
+                'aspect-[4/3] overflow-hidden rounded-xl border-2 bg-background transition-colors duration-200',
                 isActive
-                  ? 'border-primary shadow-lg ring-2 ring-primary/20 scale-[1.02]'
-                  : 'border-border hover:border-muted-foreground/40 hover:shadow-md'
+                  ? 'border-foreground'
+                  : 'border-border hover:border-muted-foreground/40'
               )}
             >
-              {isActive && (
-                <div className="absolute right-2 top-2 z-10 rounded-full bg-primary p-1 text-primary-foreground">
-                  <Check className="h-3.5 w-3.5" />
-                </div>
-              )}
               <TemplateMock id={id} />
             </button>
           );

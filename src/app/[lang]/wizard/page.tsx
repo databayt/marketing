@@ -17,6 +17,7 @@ import { useTranslations } from '@/lib/use-translations';
 interface ExtendedWizardSelections extends WizardSelections {
   themeColor?: string;
   borderRadius?: number;
+  shadow?: string;
   typography?: string;
   iconStyle?: string;
 }
@@ -31,6 +32,7 @@ export default function SelectionWizard() {
     template: '',
     themeColor: 'zinc',
     borderRadius: 0.5,
+    shadow: 'sm',
   });
 
   // Steps: Business, Features, Template, Theme, Typography, Icons
@@ -92,10 +94,17 @@ export default function SelectionWizard() {
 
   const handleTemplateSelect = (templateId: string) => {
     setSelections({ ...selections, template: templateId });
+    // brief pause so the selected border is visible before advancing
+    setTimeout(() => setStep(4), 350);
   };
 
-  const handleThemeSelect = (color: string, radius: number) => {
-    setSelections({ ...selections, themeColor: color, borderRadius: radius });
+  const handleThemeSelect = (color: string, radius: number, shadow: string) => {
+    setSelections({
+      ...selections,
+      themeColor: color,
+      borderRadius: radius,
+      shadow,
+    });
   };
 
   const estimates = calculateEstimates();
@@ -112,7 +121,7 @@ export default function SelectionWizard() {
     template: selections.template
       ? selections.template.charAt(0).toUpperCase() + selections.template.slice(1)
       : '',
-    theme: `${selections.themeColor ?? 'zinc'} · radius ${selections.borderRadius ?? 0.5}`,
+    theme: `${selections.themeColor ?? 'zinc'} · radius ${selections.borderRadius ?? 0.5} · shadow ${selections.shadow ?? 'sm'}`,
     typography: selections.typography ?? '',
     iconStyle: selections.iconStyle ?? '',
     price: estimates.price,
@@ -184,6 +193,7 @@ export default function SelectionWizard() {
               <ThemeSelector
                 selectedColor={selections.themeColor}
                 selectedRadius={selections.borderRadius}
+                selectedShadow={selections.shadow}
                 onSelect={handleThemeSelect}
               />
             )}
