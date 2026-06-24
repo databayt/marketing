@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
-import { Rubik } from "next/font/google";
+import { Rubik, Source_Serif_4 } from "next/font/google";
 import "../globals.css";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/atom/theme-provider";
@@ -18,6 +18,13 @@ const rubik = Rubik({
   subsets: ['arabic', 'latin'],
   display: 'swap',
   variable: '--font-rubik',
+});
+
+// Source Serif 4 powers the Medium-style reading experience on the blog (LTR)
+const sourceSerif = Source_Serif_4({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-serif',
 });
 
 export const viewport: Viewport = {
@@ -96,7 +103,8 @@ export default async function LocaleLayout({
           "font-sans antialiased",
           isRTL ? rubik.className : GeistSans.className,
           GeistMono.variable,
-          rubik.variable
+          rubik.variable,
+          sourceSerif.variable
         )}
       >
         {/* <SessionProvider session={session}> */}

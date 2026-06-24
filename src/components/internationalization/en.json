@@ -47,7 +47,18 @@
   },
   "blog": {
     "subtitle": "Stories, ideas, and lessons from building modern web products.",
-    "backToBlog": "Back to blog"
+    "backToBlog": "Back to blog",
+    "topics": "Recommended topics",
+    "staffPicks": "Staff picks",
+    "moreFromBlog": "More from the blog",
+    "writtenBy": "Written by",
+    "aboutAuthor": "About the author",
+    "follow": "Follow",
+    "share": "Share",
+    "copyLink": "Copy link",
+    "linkCopied": "Link copied to clipboard",
+    "save": "Save",
+    "saved": "Saved"
   },
   "auth": {
     "signIn": "Sign In",

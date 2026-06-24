@@ -1,61 +1,120 @@
-"use client";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
+import { cn } from "@/lib/utils";
+import type { Dictionary } from "@/components/internationalization/dictionaries";
+import type { Locale } from "@/components/internationalization/config";
+import { CompactCard, FeedCard } from "./card";
+import { blogPosts, getAllTopics } from "./constant";
 
-import Link from "next/link";
-import { OptimizedImage } from "@/components/ui/optimized-image";
-import { useTranslations } from "@/lib/use-translations";
-import { blogPosts } from "./constant";
-
-export default function BlogContent() {
-  const { t, locale } = useTranslations();
+export default function BlogContent({
+  lang,
+  dict,
+}: {
+  lang: Locale;
+  dict: Dictionary;
+}) {
+  const useSerif = lang === "en";
+  const topics = getAllTopics();
+  const title = dict.common?.blog ?? "Blog";
+  const subtitle =
+    dict.blog?.subtitle ??
+    "Stories, ideas, and lessons from building modern web products.";
 
   return (
     <div className="full-bleed">
       <div className="container-content">
-        <div className="flex w-full flex-col py-14 mt-18">
-          <div className="flex flex-col gap-3">
-            <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
-              {t.common?.blog || "Blog"}
+        <div className="mt-18 py-10 sm:py-14">
+          {/* Masthead */}
+          <header className="border-b border-border pb-8">
+            <h1
+              className={cn(
+                "text-4xl font-bold tracking-tight sm:text-5xl",
+                useSerif && "font-serif"
+              )}
+            >
+              {title}
             </h1>
-            <p className="text-muted-foreground max-w-2xl">
-              {t.blog?.subtitle ||
-                "Stories, ideas, and lessons from building modern web products."}
+            <p className="mt-3 max-w-2xl text-base text-muted-foreground sm:text-lg">
+              {subtitle}
             </p>
-          </div>
 
-          <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {blogPosts.map((post) => (
-              <Link
-                key={post.id}
-                href={`/${locale}/blog/${post.id}`}
-                className="group flex flex-col overflow-hidden rounded-lg border border-border bg-card transition-colors hover:border-foreground/20"
-              >
-                <div className="relative aspect-video w-full overflow-hidden bg-muted">
-                  <OptimizedImage
-                    src={post.cover}
-                    alt={post.title}
-                    width={480}
-                    height={270}
-                    className="h-full w-full object-cover p-10 transition-transform duration-300 group-hover:scale-105 dark:invert"
-                  />
-                </div>
-                <div className="flex flex-1 flex-col gap-2 p-5">
-                  <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
-                    {post.tag}
-                  </span>
-                  <h2 className="text-lg font-semibold leading-snug group-hover:underline">
-                    {post.title}
+            {/* Topic strip (mobile only — sidebar carries it on lg+) */}
+            <div className="no-scrollbar mt-6 flex gap-2 overflow-x-auto lg:hidden">
+              {topics.map((topic) => (
+                <Badge
+                  key={topic}
+                  variant="secondary"
+                  className="shrink-0 rounded-full font-normal text-muted-foreground"
+                >
+                  {topic}
+                </Badge>
+              ))}
+            </div>
+          </header>
+
+          {/* Feed + sidebar */}
+          <div className="mt-4 lg:grid lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-12">
+            <div className="divide-y divide-border">
+              {blogPosts.map((post) => (
+                <FeedCard key={post.id} post={post} locale={lang} />
+              ))}
+            </div>
+
+            <aside className="mt-10 hidden lg:mt-0 lg:block">
+              <div className="space-y-8 py-6 lg:sticky lg:top-24">
+                <section>
+                  <h2 className="text-sm font-bold tracking-tight text-foreground">
+                    {dict.blog?.staffPicks ?? "Staff picks"}
                   </h2>
-                  <p className="line-clamp-2 text-sm text-muted-foreground">
-                    {post.description}
-                  </p>
-                  <div className="mt-auto flex items-center gap-2 pt-3 text-xs text-muted-foreground">
-                    <span>{post.author}</span>
-                    <span aria-hidden>·</span>
-                    <span>{post.readingTime}</span>
+                  <div className="mt-5 space-y-5">
+                    {blogPosts.map((post) => (
+                      <CompactCard key={post.id} post={post} locale={lang} />
+                    ))}
                   </div>
-                </div>
-              </Link>
-            ))}
+                </section>
+
+                <Separator />
+
+                <section>
+                  <h2 className="text-sm font-bold tracking-tight text-foreground">
+                    {dict.blog?.topics ?? "Recommended topics"}
+                  </h2>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {topics.map((topic) => (
+                      <Badge
+                        key={topic}
+                        variant="secondary"
+                        className="rounded-full font-normal text-muted-foreground"
+                      >
+                        {topic}
+                      </Badge>
+                    ))}
+                  </div>
+                </section>
+
+                <Separator />
+
+                <section className="rounded-lg border border-border p-5">
+                  <div className="flex items-center gap-3">
+                    <Avatar className="size-10">
+                      <AvatarFallback className="text-xs">DB</AvatarFallback>
+                    </Avatar>
+                    <div className="text-sm">
+                      <div className="font-semibold text-foreground">
+                        {dict.common?.brandName ?? "Databayt"}
+                      </div>
+                      <div className="text-muted-foreground">
+                        Engineering &amp; Design
+                      </div>
+                    </div>
+                  </div>
+                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                    {subtitle}
+                  </p>
+                </section>
+              </div>
+            </aside>
           </div>
         </div>
       </div>
