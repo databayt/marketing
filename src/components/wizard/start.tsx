@@ -12,7 +12,6 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 
 export type ProjectSummary = {
   business: string;
@@ -28,19 +27,22 @@ export type ProjectSummary = {
 // Where the prefilled project request opens.
 const REPO = 'databayt/marketing';
 
-type StartProjectProps = {
+type StartDialogProps = {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
   summary: ProjectSummary;
-  startLabel: string;
 };
 
-export const StartProject = ({ summary, startLabel }: StartProjectProps) => {
-  const [open, setOpen] = useState(false);
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
+export const StartDialog = ({
+  open,
+  onOpenChange,
+  summary,
+}: StartDialogProps) => {
+  const [contact, setContact] = useState('');
 
   const submit = () => {
-    if (!email.trim() && !phone.trim()) {
-      toast.error('Add a phone number or email so we can reach you.');
+    if (!contact.trim()) {
+      toast.error('Add your WhatsApp number or email so we can reach you.');
       return;
     }
 
@@ -57,76 +59,50 @@ export const StartProject = ({ summary, startLabel }: StartProjectProps) => {
       `- **Estimate:** $${summary.price} • ${summary.time} days`,
       '',
       '## Contact',
-      `- **Email:** ${email.trim() || '—'}`,
-      `- **Phone:** ${phone.trim() || '—'}`,
+      `- **WhatsApp / email:** ${contact.trim()}`,
     ].join('\n');
 
     const url = `https://github.com/${REPO}/issues/new?title=${encodeURIComponent(
       title
     )}&body=${encodeURIComponent(body)}`;
     window.open(url, '_blank', 'noopener,noreferrer');
-    setOpen(false);
+    onOpenChange(false);
+    setContact('');
     toast.success('Opening your project request…');
   };
 
   return (
-    <>
-      <Button
-        size="lg"
-        className="rounded-full px-12"
-        onClick={() => setOpen(true)}
-      >
-        {startLabel}
-      </Button>
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent className="sm:max-w-md">
+        <DialogHeader>
+          <DialogTitle>Start your project</DialogTitle>
+          <DialogDescription>
+            Leave your WhatsApp number or email and we’ll reach out with your
+            plan.
+          </DialogDescription>
+        </DialogHeader>
 
-      <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="sm:max-w-md">
-          <DialogHeader>
-            <DialogTitle>{startLabel}</DialogTitle>
-            <DialogDescription>
-              Leave a phone number or email and we’ll reach out with your plan.
-            </DialogDescription>
-          </DialogHeader>
-
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              submit();
-            }}
-            className="space-y-4"
-          >
-            <div className="space-y-2">
-              <Label htmlFor="start-email">Email</Label>
-              <Input
-                id="start-email"
-                type="email"
-                inputMode="email"
-                placeholder="you@example.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                autoFocus
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="start-phone">Phone</Label>
-              <Input
-                id="start-phone"
-                type="tel"
-                inputMode="tel"
-                placeholder="+1 555 000 0000"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-              />
-            </div>
-
-            <DialogFooter>
-              <Button type="submit" className="w-full">
-                {startLabel}
-              </Button>
-            </DialogFooter>
-          </form>
-        </DialogContent>
-      </Dialog>
-    </>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            submit();
+          }}
+          className="space-y-4"
+        >
+          <Input
+            aria-label="WhatsApp or email"
+            placeholder="WhatsApp or email"
+            value={contact}
+            onChange={(e) => setContact(e.target.value)}
+            autoFocus
+          />
+          <DialogFooter>
+            <Button type="submit" className="w-full">
+              Start
+            </Button>
+          </DialogFooter>
+        </form>
+      </DialogContent>
+    </Dialog>
   );
 };

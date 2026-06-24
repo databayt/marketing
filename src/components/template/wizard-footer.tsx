@@ -11,8 +11,10 @@ interface WizardFooterProps {
   isStepValid: boolean;
   onBack: () => void;
   onNext: () => void;
+  onStart: () => void;
   prevText: string;
   nextText: string;
+  startText: string;
 }
 
 export const WizardFooter = ({
@@ -22,8 +24,10 @@ export const WizardFooter = ({
   isStepValid,
   onBack,
   onNext,
+  onStart,
   prevText,
   nextText,
+  startText,
 }: WizardFooterProps) => {
   return (
     <div className="flex-shrink-0 flex flex-col items-center justify-center px-4 md:px-6 py-6 gap-7">
@@ -42,9 +46,14 @@ export const WizardFooter = ({
           {prevText}
         </Button>
 
-        {currentStep < totalSteps && (
+        {currentStep < totalSteps ? (
           <Button size="sm" onClick={onNext} disabled={!isStepValid}>
             {nextText}
+            {isRTL ? <ArrowLeft className="ms-2 h-4 w-4" /> : <ArrowRight className="ms-2 h-4 w-4" />}
+          </Button>
+        ) : (
+          <Button size="sm" onClick={onStart}>
+            {startText}
             {isRTL ? <ArrowLeft className="ms-2 h-4 w-4" /> : <ArrowRight className="ms-2 h-4 w-4" />}
           </Button>
         )}

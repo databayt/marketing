@@ -14,12 +14,12 @@ interface WizardHeaderProps {
 export const WizardHeader = ({ locale, title, backText }: WizardHeaderProps) => {
   return (
     <div className="h-16 flex-shrink-0 flex items-center px-4 md:px-6 relative">
-      {/* Back link on the left — text only, no icon */}
+      {/* Back link on the left — text only, no icon; sits near the top */}
       <Link
         href={`/${locale}`}
         className={cn(
           buttonVariants({ variant: 'ghost', size: 'sm' }),
-          'px-2 text-muted-foreground hover:text-foreground'
+          'self-start px-2 text-muted-foreground hover:text-foreground'
         )}
       >
         {backText}

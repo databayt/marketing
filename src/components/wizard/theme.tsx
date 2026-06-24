@@ -34,7 +34,7 @@ const ThemeSelector = ({
 
   return (
     <div className="flex h-full items-center justify-center">
-      <div className="grid w-full max-w-4xl grid-cols-1 items-center gap-10 md:grid-cols-2 md:gap-16">
+      <div className="flex w-full max-w-4xl flex-col items-center justify-center gap-10 md:flex-row md:gap-12">
         {/* Controls */}
         <div className="space-y-8">
           <div className="space-y-3">
@@ -73,7 +73,7 @@ const ThemeSelector = ({
                     type="button"
                     onClick={() => onSelect(color.name, r)}
                     className={cn(
-                      "flex h-10 w-12 items-center justify-center border bg-background text-xs font-medium transition-colors",
+                      "flex h-10 w-12 items-center justify-center border bg-background text-xs font-medium shadow-sm transition-colors",
                       active
                         ? "border-2 border-primary text-foreground"
                         : "border-border text-muted-foreground hover:border-muted-foreground/50"
@@ -90,7 +90,7 @@ const ThemeSelector = ({
 
         {/* Live preview — reflects the chosen color + radius instantly */}
         <div
-          className="rounded-[var(--r)] border bg-card p-6 shadow-sm"
+          className="w-full max-w-sm rounded-[var(--r)] border bg-card p-6 shadow-sm"
           style={{ "--r": `${selectedRadius}rem` } as React.CSSProperties}
         >
           <div className="space-y-2 pb-5">

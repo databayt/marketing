@@ -5,7 +5,7 @@ import { FeatureSelector } from '@/components/wizard/feature';
 import { TemplateSelector } from '@/components/wizard/template';
 import { TypographySelector } from '@/components/wizard/typography';
 import { IconSelector } from '@/components/wizard/icons';
-import { StartProject } from '@/components/wizard/start';
+import { StartDialog } from '@/components/wizard/start';
 import { WizardHeader } from '@/components/template/wizard-header';
 import { WizardFooter } from '@/components/template/wizard-footer';
 import { businesses, getBusinessFeatures } from '@/components/wizard/constant';
@@ -24,6 +24,7 @@ interface ExtendedWizardSelections extends WizardSelections {
 export default function SelectionWizard() {
   const { t, locale, isRTL } = useTranslations();
   const [step, setStep] = useState<number>(1);
+  const [startOpen, setStartOpen] = useState(false);
   const [selections, setSelections] = useState<ExtendedWizardSelections>({
     business: '',
     features: [],
@@ -196,14 +197,10 @@ export default function SelectionWizard() {
             )}
 
             {step === 6 && (
-              <div className="flex h-full flex-col items-center justify-center gap-10">
+              <div className="flex h-full items-center justify-center">
                 <IconSelector
                   selectedStyle={selections.iconStyle}
                   onSelect={(iconStyle) => setSelections({ ...selections, iconStyle })}
-                />
-                <StartProject
-                  summary={projectSummary}
-                  startLabel={t.wizard.buttons.startProject}
                 />
               </div>
             )}
@@ -218,8 +215,16 @@ export default function SelectionWizard() {
         isStepValid={isStepValid()}
         onBack={() => step > 1 && setStep(step - 1)}
         onNext={() => setStep(step + 1)}
+        onStart={() => setStartOpen(true)}
         prevText={t.wizard.buttons.prev}
         nextText={t.wizard.buttons.next}
+        startText="Start"
+      />
+
+      <StartDialog
+        open={startOpen}
+        onOpenChange={setStartOpen}
+        summary={projectSummary}
       />
     </div>
   );

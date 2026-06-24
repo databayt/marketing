@@ -88,11 +88,16 @@ export const TypographySelector = ({
         <div className="pointer-events-none absolute inset-x-0 top-0 z-20 h-2/5 bg-gradient-to-b from-background to-transparent" />
         <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-2/5 bg-gradient-to-t from-background to-transparent" />
 
+        {/* Hide the wheel's scrollbar across engines (Tailwind arbitrary
+            variants proved unreliable here, so scope a real rule). */}
+        <style>{`.wheel-scroll::-webkit-scrollbar{display:none;width:0;height:0}`}</style>
+
         {/* The wheel */}
         <div
           ref={scrollRef}
           onScroll={handleScroll}
-          className="relative z-10 h-full snap-y snap-mandatory overflow-y-scroll [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          className="wheel-scroll relative z-10 h-full snap-y snap-mandatory overflow-y-scroll"
+          style={{ scrollbarWidth: 'none' } as React.CSSProperties}
         >
           <div style={{ height: PAD }} />
           {FONTS.map((f, i) => {
