@@ -39,7 +39,7 @@ const ThemeSelector = ({
         <div className="space-y-8">
           <div className="space-y-3">
             <p className="text-sm font-medium text-muted-foreground">Color</p>
-            <div className="flex flex-wrap gap-3">
+            <div className="grid w-fit grid-cols-6 gap-3">
               {COLORS.map((c) => {
                 const active = c.name === color.name;
                 return (

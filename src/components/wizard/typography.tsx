@@ -78,9 +78,9 @@ export const TypographySelector = ({
         className="relative w-80 max-w-[90vw]"
         style={{ height: VISIBLE * ITEM_H }}
       >
-        {/* Center selection band */}
+        {/* Center selection band — borderless, subtle background only */}
         <div
-          className="pointer-events-none absolute inset-x-0 top-1/2 z-0 -translate-y-1/2 rounded-2xl border-y border-border bg-muted/40"
+          className="pointer-events-none absolute inset-x-0 top-1/2 z-0 -translate-y-1/2 rounded-2xl bg-muted/40"
           style={{ height: ITEM_H }}
         />
 

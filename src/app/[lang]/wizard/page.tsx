@@ -3,10 +3,9 @@ import { useState } from 'react';
 import { BusinessSelector } from '@/components/wizard/business';
 import { FeatureSelector } from '@/components/wizard/feature';
 import { TemplateSelector } from '@/components/wizard/template';
-import { EstimatesDisplay } from '@/components/wizard/estimate';
-import { BrandingForm } from '@/components/wizard/branding/form';
 import { TypographySelector } from '@/components/wizard/typography';
 import { IconSelector } from '@/components/wizard/icons';
+import { StartProject } from '@/components/wizard/start';
 import { WizardHeader } from '@/components/template/wizard-header';
 import { WizardFooter } from '@/components/template/wizard-footer';
 import { businesses, getBusinessFeatures } from '@/components/wizard/constant';
@@ -18,13 +17,6 @@ import { useTranslations } from '@/lib/use-translations';
 interface ExtendedWizardSelections extends WizardSelections {
   themeColor?: string;
   borderRadius?: number;
-  branding?: {
-    brandName?: string;
-    tagline?: string;
-    logoUrl?: string;
-    primaryColor?: string;
-    secondaryColor?: string;
-  };
   typography?: string;
   iconStyle?: string;
 }
@@ -38,17 +30,10 @@ export default function SelectionWizard() {
     template: '',
     themeColor: 'zinc',
     borderRadius: 0.5,
-    branding: {
-      brandName: '',
-      tagline: '',
-      logoUrl: '',
-      primaryColor: '#000000',
-      secondaryColor: '#ffffff',
-    }
   });
 
-  // Total steps: Business, Features, Template, Theme, Branding, Typography, Icons
-  const totalSteps = 7;
+  // Steps: Business, Features, Template, Theme, Typography, Icons
+  const totalSteps = 6;
 
   const calculateEstimates = (featureIds: string[] = selections.features) => {
     let totalPrice = 0;
@@ -63,12 +48,6 @@ export default function SelectionWizard() {
         totalTime += feature.time;
       }
     });
-
-    // Add branding costs if brand identity is customized
-    if (selections.branding?.brandName || selections.branding?.logoUrl) {
-      totalPrice += 25; // Base branding cost
-      totalTime += 2; // Additional days for branding
-    }
 
     // Apply discounts for multiple features
     if (featureIds.length >= 5) {
@@ -118,15 +97,26 @@ export default function SelectionWizard() {
     setSelections({ ...selections, themeColor: color, borderRadius: radius });
   };
 
-  const handleBrandingUpdate = (brandingData: any) => {
-    setSelections({
-      ...selections,
-      branding: { ...selections.branding, ...brandingData }
-    });
-  };
-
   const estimates = calculateEstimates();
   const selectedBusiness = businesses.find((b) => b.id === selections.business);
+
+  // Everything the user picked, formatted for the project request issue.
+  const projectSummary = {
+    business: selectedBusiness?.name ?? '',
+    features: selectedBusiness
+      ? getBusinessFeatures(selectedBusiness)
+          .filter((f) => selections.features.includes(f.id))
+          .map((f) => f.name)
+      : [],
+    template: selections.template
+      ? selections.template.charAt(0).toUpperCase() + selections.template.slice(1)
+      : '',
+    theme: `${selections.themeColor ?? 'zinc'} · radius ${selections.borderRadius ?? 0.5}`,
+    typography: selections.typography ?? '',
+    iconStyle: selections.iconStyle ?? '',
+    price: estimates.price,
+    time: estimates.time,
+  };
 
   const getStepTitle = () => {
     switch(step) {
@@ -134,9 +124,8 @@ export default function SelectionWizard() {
       case 2: return 'What features!';
       case 3: return 'What template!';
       case 4: return 'What theme!';
-      case 5: return 'What branding!';
-      case 6: return 'What typography!';
-      case 7: return 'What icons!';
+      case 5: return 'What typography!';
+      case 6: return 'What icons!';
       default: return '';
     }
   };
@@ -147,9 +136,8 @@ export default function SelectionWizard() {
       case 2: return selections.features.length > 0;
       case 3: return !!selections.template;
       case 4: return true; // Theme is optional
-      case 5: return true; // Branding is optional
-      case 6: return true; // Typography is optional
-      case 7: return true; // Icons is optional
+      case 5: return true; // Typography is optional
+      case 6: return true; // Icons is optional
       default: return false;
     }
   };
@@ -200,19 +188,6 @@ export default function SelectionWizard() {
             )}
 
             {step === 5 && (
-              <div className="space-y-4">
-                <BrandingForm
-                  initialData={selections.branding}
-                  onSuccess={() => {
-                    toast.success(t.wizard.branding.title, {
-                      description: 'Brand identity updated successfully',
-                    });
-                  }}
-                />
-              </div>
-            )}
-
-            {step === 6 && (
               <TypographySelector
                 selectedTypography={selections.typography}
                 onSelect={(typography) => setSelections({ ...selections, typography })}
@@ -220,11 +195,17 @@ export default function SelectionWizard() {
               />
             )}
 
-            {step === 7 && (
-              <IconSelector
-                selectedStyle={selections.iconStyle}
-                onSelect={(iconStyle) => setSelections({ ...selections, iconStyle })}
-              />
+            {step === 6 && (
+              <div className="flex h-full flex-col items-center justify-center gap-10">
+                <IconSelector
+                  selectedStyle={selections.iconStyle}
+                  onSelect={(iconStyle) => setSelections({ ...selections, iconStyle })}
+                />
+                <StartProject
+                  summary={projectSummary}
+                  startLabel={t.wizard.buttons.startProject}
+                />
+              </div>
             )}
         </div>
       </div>
@@ -237,14 +218,8 @@ export default function SelectionWizard() {
         isStepValid={isStepValid()}
         onBack={() => step > 1 && setStep(step - 1)}
         onNext={() => setStep(step + 1)}
-        onFinish={() => {
-          toast.success(t.wizard.buttons.finish, {
-            description: `${t.wizard.estimates.totalCost}: $${estimates.price} • ${t.wizard.estimates.timeframe}: ${estimates.time} ${t.wizard.estimates.days}`,
-          });
-        }}
         prevText={t.wizard.buttons.prev}
         nextText={t.wizard.buttons.next}
-        finishText={t.wizard.buttons.startProject}
       />
     </div>
   );

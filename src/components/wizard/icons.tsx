@@ -64,9 +64,8 @@ type IconSelectorProps = {
 
 export const IconSelector = ({ selectedStyle, onSelect }: IconSelectorProps) => {
   return (
-    <div className="flex h-full items-center justify-center">
-      <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
-        {ICON_VARIANTS.map(({ id, label, Icon }) => {
+    <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
+      {ICON_VARIANTS.map(({ id, label, Icon }) => {
           const isActive = selectedStyle === id;
           return (
             <button
@@ -75,14 +74,12 @@ export const IconSelector = ({ selectedStyle, onSelect }: IconSelectorProps) => 
               onClick={() => onSelect(id)}
               aria-pressed={isActive}
               className={cn(
-                'group relative flex h-28 w-24 flex-col items-center justify-center gap-3 rounded-2xl border-2 transition-all duration-200 sm:w-28',
-                isActive
-                  ? 'border-primary text-primary shadow-lg ring-2 ring-primary/20'
-                  : 'border-border text-foreground hover:border-muted-foreground/40 hover:shadow-md'
+                'group relative flex h-28 w-24 flex-col items-center justify-center gap-3 rounded-2xl bg-white transition-all duration-200 sm:w-28',
+                isActive ? 'text-primary' : 'text-foreground hover:text-primary/70'
               )}
             >
               {isActive && (
-                <div className="absolute right-2 top-2 rounded-full bg-primary p-0.5 text-primary-foreground">
+                <div className="absolute end-2 top-2 rounded-full bg-primary p-0.5 text-primary-foreground">
                   <Check className="h-3 w-3" />
                 </div>
               )}
@@ -92,8 +89,7 @@ export const IconSelector = ({ selectedStyle, onSelect }: IconSelectorProps) => 
               </span>
             </button>
           );
-        })}
-      </div>
+      })}
     </div>
   );
 };

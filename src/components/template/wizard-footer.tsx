@@ -2,7 +2,7 @@
 
 import { Button } from '@/components/ui/button';
 import { StepIndicator } from '@/components/wizard/indicator';
-import { ArrowLeft, ArrowRight, Check } from 'lucide-react';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
 
 interface WizardFooterProps {
   currentStep: number;
@@ -11,10 +11,8 @@ interface WizardFooterProps {
   isStepValid: boolean;
   onBack: () => void;
   onNext: () => void;
-  onFinish: () => void;
   prevText: string;
   nextText: string;
-  finishText: string;
 }
 
 export const WizardFooter = ({
@@ -24,10 +22,8 @@ export const WizardFooter = ({
   isStepValid,
   onBack,
   onNext,
-  onFinish,
   prevText,
   nextText,
-  finishText,
 }: WizardFooterProps) => {
   return (
     <div className="flex-shrink-0 flex flex-col items-center justify-center px-4 md:px-6 py-6 gap-7">
@@ -46,22 +42,10 @@ export const WizardFooter = ({
           {prevText}
         </Button>
 
-        {currentStep < totalSteps ? (
-          <Button
-            size="sm"
-            onClick={onNext}
-            disabled={!isStepValid}
-          >
+        {currentStep < totalSteps && (
+          <Button size="sm" onClick={onNext} disabled={!isStepValid}>
             {nextText}
             {isRTL ? <ArrowLeft className="ms-2 h-4 w-4" /> : <ArrowRight className="ms-2 h-4 w-4" />}
-          </Button>
-        ) : (
-          <Button
-            size="sm"
-            onClick={onFinish}
-          >
-            <Check className="me-2 h-4 w-4" />
-            {finishText}
           </Button>
         )}
       </div>
