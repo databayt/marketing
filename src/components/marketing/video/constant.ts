@@ -72,7 +72,7 @@ export const getProjects = (locale: Locale = 'en'): ProjectItem[] => {
       imageLight: "/marketing/site/giats.jpg",
       date: "2024",
       author: t.marketing.projects.almersal.category,
-      category: "ecommerce"
+      category: "clone"
     },
     {
       title: t.marketing.projects.camille.title,
@@ -105,7 +105,7 @@ export const getProjects = (locale: Locale = 'en'): ProjectItem[] => {
       imageLight: "/marketing/site/nike.jpg",
       date: "2024",
       author: t.marketing.projects.nike.category,
-      category: "ecommerce"
+      category: "clone"
     },
     {
       title: t.marketing.projects.ziara.title,
