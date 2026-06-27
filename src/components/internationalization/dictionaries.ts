@@ -9,10 +9,20 @@ const dictionaries = {
 
 export const getDictionary = async (locale: Locale) => {
   try {
-    return await (dictionaries[locale]?.() ?? dictionaries["en"]());
+    const dict = await (dictionaries[locale]?.() ?? dictionaries["en"]());
+    if (!dict) {
+      console.warn(`Dictionary resolved to a falsy value for locale: ${locale}. Falling back to en.`);
+      return await dictionaries["en"]();
+    }
+    return dict;
   } catch (error) {
-    console.warn(`Failed to load dictionary for locale: ${locale}. Falling back to en.`);
-    return await dictionaries["en"]();
+    console.warn(`Failed to load dictionary for locale: ${locale}. Falling back to en.`, error);
+    try {
+      return await dictionaries["en"]();
+    } catch (e) {
+      console.error("Critical: Failed to load fallback dictionary", e);
+      return {} as any;
+    }
   }
 };
 

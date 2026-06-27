@@ -16,9 +16,9 @@ export default function BlogContent({
 }) {
   const useSerif = lang === "en";
   const topics = getAllTopics();
-  const title = dict.common?.blog ?? "Blog";
+  const title = dict?.common?.blog ?? "Blog";
   const subtitle =
-    dict.blog?.subtitle ??
+    dict?.blog?.subtitle ??
     "Stories, ideas, and lessons from building modern web products.";
 
   return (
@@ -65,7 +65,7 @@ export default function BlogContent({
               <div className="space-y-8 py-6 lg:sticky lg:top-24">
                 <section>
                   <h2 className="text-sm font-bold tracking-tight text-foreground">
-                    {dict.blog?.staffPicks ?? "Staff picks"}
+                    {dict?.blog?.staffPicks ?? "Staff picks"}
                   </h2>
                   <div className="mt-5 space-y-5">
                     {blogPosts.map((post) => (
@@ -78,7 +78,7 @@ export default function BlogContent({
 
                 <section>
                   <h2 className="text-sm font-bold tracking-tight text-foreground">
-                    {dict.blog?.topics ?? "Recommended topics"}
+                    {dict?.blog?.topics ?? "Recommended topics"}
                   </h2>
                   <div className="mt-4 flex flex-wrap gap-2">
                     {topics.map((topic) => (
@@ -102,7 +102,7 @@ export default function BlogContent({
                     </Avatar>
                     <div className="text-sm">
                       <div className="font-semibold text-foreground">
-                        {dict.common?.brandName ?? "Databayt"}
+                        {dict?.common?.brandName ?? "Databayt"}
                       </div>
                       <div className="text-muted-foreground">
                         Engineering &amp; Design

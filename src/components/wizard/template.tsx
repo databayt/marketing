@@ -97,10 +97,10 @@ export const TemplateSelector = ({
               onClick={() => onSelect(id)}
               aria-pressed={isActive}
               className={cn(
-                'aspect-[4/3] overflow-hidden rounded-xl border-2 bg-background transition-colors duration-200',
+                'aspect-[4/3] overflow-hidden rounded-2xl border bg-white transition-colors duration-200',
                 isActive
                   ? 'border-foreground'
-                  : 'border-border hover:border-muted-foreground/40'
+                  : 'border-transparent hover:border-border'
               )}
             >
               <TemplateMock id={id} />

@@ -425,6 +425,11 @@
         "description": "Apple website clone with immersive product showcase and visuals",
         "category": "Clone"
       },
+      "topmate": {
+        "title": "Topmate",
+        "description": "Topmate clone for booking 1:1 sessions, mentorship and creator monetization",
+        "category": "Clone"
+      },
       "dropshipping": {
         "title": "Drop",
         "description": "Dropshipping platform connecting suppliers and sellers with streamlined order fulfillment",
@@ -554,7 +559,7 @@
       }
     },
     "services": {
-      "title": "Design not just what it looks like.\nDesign is how it works.",
+      "title": "Design is how it works.",
       "description": "By Steve Jobs",
       "design": {
         "title": "Graphics",

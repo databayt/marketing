@@ -53,7 +53,7 @@ export function Hero({ dictionary, params }: HeroProps) {
                             >
                                 {t.appointment}
                             </ExpandButton>
-                            <ExpandButton variant="outline" href="/design" className="w-52 md:w-48 hover:shadow-[4px_4px_0px_theme(colors.foreground)]">
+                            <ExpandButton variant="outline" href={`/${locale}/design`} className="w-52 md:w-48 hover:shadow-[4px_4px_0px_theme(colors.foreground)]">
                                 {t.services}
                             </ExpandButton>
                         </div>

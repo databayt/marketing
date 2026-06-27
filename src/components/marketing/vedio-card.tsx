@@ -114,7 +114,7 @@ const VideoCard = ({
                       } else if (ctaText.toLowerCase().includes('try now')) {
                         window.location.href = `/${locale}/wizard`
                       } else if (ctaText.toLowerCase().includes('start writing')) {
-                        window.location.href = '/design'
+                        window.location.href = `/${locale}/design`
                       } else if (ctaText.toLowerCase().includes('databayt')) {
                         window.open('https://databayt.org', '_blank')
                       } else if (ctaText.toLowerCase().includes('codebase')) {
@@ -134,7 +134,7 @@ const VideoCard = ({
                       if (secondaryHref) {
                         window.open(secondaryHref, '_blank')
                       } else if (secondaryCtaText.toLowerCase().includes('start writing')) {
-                        window.location.href = '/design'
+                        window.location.href = `/${locale}/design`
                       } else if (secondaryCtaText.toLowerCase().includes('databayt')) {
                         window.open('https://databayt.org', '_blank')
                       } else if (secondaryCtaText.toLowerCase().includes('codebase')) {
@@ -158,7 +158,7 @@ const VideoCard = ({
                       } else if (ctaText.toLowerCase().includes('try now')) {
                         window.location.href = `/${locale}/wizard`
                       } else if (ctaText.toLowerCase().includes('start writing')) {
-                        window.location.href = '/design'
+                        window.location.href = `/${locale}/design`
                       } else if (ctaText.toLowerCase().includes('databayt')) {
                         window.open('https://databayt.org', '_blank')
                       } else if (ctaText.toLowerCase().includes('codebase')) {
@@ -180,7 +180,7 @@ const VideoCard = ({
                       } else if (secondaryCtaText.toLowerCase().includes('get expert')) {
                         setExpertModalOpen(true)
                       } else if (secondaryCtaText.toLowerCase().includes('start writing')) {
-                        window.location.href = '/design'
+                        window.location.href = `/${locale}/design`
                       } else if (secondaryCtaText.toLowerCase().includes('databayt')) {
                         window.open('https://databayt.org', '_blank')
                       } else if (ctaText.toLowerCase().includes('codebase')) {
