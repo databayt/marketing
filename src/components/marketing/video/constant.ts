@@ -168,9 +168,9 @@ export const getProjects = (locale: Locale = 'en'): ProjectItem[] => {
       title: t.marketing.projects.topmate.title,
       description: t.marketing.projects.topmate.description,
       link: "https://tm.databayt.org",
-      image: "/marketing/site/topmate.png",
-      imageDark: "/marketing/site/topmate.png",
-      imageLight: "/marketing/site/topmate.png",
+      image: "/marketing/site/topmate.svg",
+      imageDark: "/marketing/site/topmate.svg",
+      imageLight: "/marketing/site/topmate.svg",
       date: "2024",
       author: t.marketing.projects.topmate.category,
       category: "clone"
