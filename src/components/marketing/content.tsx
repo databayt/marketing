@@ -2,11 +2,10 @@
 
 import { Hero } from "./hero";
 import { Ready } from "./ready";
-import ReadyToBuildSection from "./ready-to-build";
 import Parallax from "./parallax-text";
 import { FeatureCards } from "./card";
 import VideoCard from "./vedio-card";
-import Product from "./product";
+import ProductsCarousel from "./products-carousel";
 import OpenSource from "./open-source";
 import Stack from "./stack";
 import FeaturedProjects from "./video/featured-video";
@@ -64,39 +63,53 @@ export default function SiteContent({ dictionary, params }: SiteContentProps) {
                 {dictionary.marketing?.productsSection?.description || "That save origin of value, time."}
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <Product
-              logo={t.marketing.content.codebase.logo}
-              category={t.marketing.content.codebase.category}
-              title={t.marketing.content.codebase.title}
-              description={t.marketing.content.codebase.description}
-              ctaText={t.marketing.content.codebase.ctaText}
-              secondaryCtaText={t.marketing.content.codebase.secondaryCtaText}
-              logoSrc="/site/codebase-logo.svg"
-              imageAlt="Codebase logo"
+            <ProductsCarousel
+              isRTL={params.lang === 'ar'}
+              products={[
+                {
+                  logo: t.marketing.content.codebase.logo,
+                  category: t.marketing.content.codebase.category,
+                  title: t.marketing.content.codebase.title,
+                  description: t.marketing.content.codebase.description,
+                  ctaText: t.marketing.content.codebase.ctaText,
+                  secondaryCtaText: t.marketing.content.codebase.secondaryCtaText,
+                  logoSrc: "/site/codebase-logo.svg",
+                  imageAlt: "Codebase logo",
+                },
+                {
+                  logo: t.marketing.content.acme.logo,
+                  category: t.marketing.content.acme.category,
+                  title: t.marketing.content.acme.title,
+                  description: t.marketing.content.acme.description,
+                  ctaText: t.marketing.content.acme.ctaText,
+                  secondaryCtaText: t.marketing.content.acme.secondaryCtaText,
+                  logoSrc: "/site/hogwarts-logo.png",
+                  imageAlt: "Hogwarts logo",
+                },
+                {
+                  logo: t.marketing.content.sijillee.logo,
+                  category: t.marketing.content.sijillee.category,
+                  title: t.marketing.content.sijillee.title,
+                  description: t.marketing.content.sijillee.description,
+                  ctaText: t.marketing.content.sijillee.ctaText,
+                  secondaryCtaText: t.marketing.content.sijillee.secondaryCtaText,
+                  logoSrc: "/site/sijillee-logo.png",
+                  imageAlt: "Sijillee logo",
+                  href: "https://sijillee.com/",
+                },
+                {
+                  logo: t.marketing.content.moalimee.logo,
+                  category: t.marketing.content.moalimee.category,
+                  title: t.marketing.content.moalimee.title,
+                  description: t.marketing.content.moalimee.description,
+                  ctaText: t.marketing.content.moalimee.ctaText,
+                  secondaryCtaText: t.marketing.content.moalimee.secondaryCtaText,
+                  logoSrc: "/site/moalimee-logo.svg",
+                  imageAlt: "Moalimee logo",
+                  href: "https://moalimee.com",
+                },
+              ]}
             />
-            <Product
-              logo={t.marketing.content.acme.logo}
-              category={t.marketing.content.acme.category}
-              title={t.marketing.content.acme.title}
-              description={t.marketing.content.acme.description}
-              ctaText={t.marketing.content.acme.ctaText}
-              secondaryCtaText={t.marketing.content.acme.secondaryCtaText}
-              logoSrc="/site/hogwarts-logo.png"
-              imageAlt="Hogwarts logo"
-            />
-            <Product
-              logo={t.marketing.content.sijillee.logo}
-              category={t.marketing.content.sijillee.category}
-              title={t.marketing.content.sijillee.title}
-              description={t.marketing.content.sijillee.description}
-              ctaText={t.marketing.content.sijillee.ctaText}
-              secondaryCtaText={t.marketing.content.sijillee.secondaryCtaText}
-              logoSrc="/site/sijillee-logo.png"
-              imageAlt="Sijillee logo"
-              href="https://sijillee.com/"
-            />
-            </div>
           </div>
         </div>
       </section>
@@ -131,10 +144,9 @@ export default function SiteContent({ dictionary, params }: SiteContentProps) {
         <OpenSource />
       </section>
       <section className="py-10">
-        <Stack dictionary={dictionary.marketing.stack} params={params} />
-      </section>
-      <section className="pt-10">
-        <ReadyToBuildSection dictionary={dictionary.marketing.readyToBuild} params={params} />
+        <div className="container mx-auto">
+          <Stack dictionary={dictionary.marketing.stack} params={params} />
+        </div>
       </section>
     </div>
   );

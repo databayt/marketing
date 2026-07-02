@@ -96,11 +96,11 @@ export function ChatButton({
         >
           <Image
             src="/robot.png"
-            alt="Chatbot"
+            alt="Agents"
             width={56}
             height={56}
             className={cn(
-              "h-full w-full object-contain transition-all duration-500",
+              "h-full w-full object-contain transition-all duration-500 dark:invert",
               shouldInvert && "invert"
             )}
           />

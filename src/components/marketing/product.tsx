@@ -12,6 +12,7 @@ export interface ProductProps {
   logoSrc: string
   imageAlt?: string
   className?: string
+  logoClassName?: string
   href?: string
 }
 
@@ -22,6 +23,7 @@ const Product = ({
   logoSrc,
   imageAlt,
   className,
+  logoClassName,
   href
 }: ProductProps) => {
   const isCodebase = logo.toLowerCase().includes('codebase') || logo.includes('مكتبة')
@@ -63,7 +65,7 @@ const Product = ({
         <img
           src={logoSrc}
           alt={imageAlt || `${logo} logo`}
-          className={`${iconSize} w-auto object-contain ${isHogwarts ? 'dark:invert' : ''}`}
+          className={`${iconSize} w-auto object-contain ${isHogwarts ? 'dark:invert' : ''} ${logoClassName || ''}`}
         />
       </div>
     </div>

@@ -495,6 +495,14 @@
         "ctaText": "معاينة مباشرة",
         "secondaryCtaText": "احصل على التطبيق"
       },
+      "moalimee": {
+        "logo": "معلمي",
+        "category": "التعليم",
+        "title": "منصة الدروس الخصوصية",
+        "description": "منصة تعليمية عبر الإنترنت تربط الطلاب بالمعلمين المؤهلين.",
+        "ctaText": "معاينة مباشرة",
+        "secondaryCtaText": "اعرف المزيد"
+      },
       "sijillee": {
         "logo": "سجلي",
         "category": "المالية",
