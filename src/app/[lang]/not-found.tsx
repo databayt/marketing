@@ -1,12 +1,20 @@
 import Link from 'next/link';
+import { cookies } from 'next/headers';
 import { Button } from '@/components/ui/button';
 import { getDictionary } from '@/components/internationalization/dictionaries';
-import type { Locale } from '@/components/internationalization/config';
+import { i18n, type Locale } from '@/components/internationalization/config';
+
+async function resolveLocale(): Promise<Locale> {
+  const store = await cookies();
+  const cookieLocale = store.get('NEXT_LOCALE')?.value;
+  return (i18n.locales as readonly string[]).includes(cookieLocale ?? '')
+    ? (cookieLocale as Locale)
+    : i18n.defaultLocale;
+}
 
 export default async function NotFound() {
-  // For not-found pages, we can't reliably get locale from params
-  // so we'll default to English and handle this gracefully
-  const dict = await getDictionary('en');
+  const locale = await resolveLocale();
+  const dict = await getDictionary(locale);
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center">
@@ -16,7 +24,7 @@ export default async function NotFound() {
           <h2 className="text-2xl font-bold">{dict.errors.notFound}</h2>
         </div>
         <Button asChild>
-          <Link href="/en">
+          <Link href={`/${locale}`}>
             {dict.common.home}
           </Link>
         </Button>
