@@ -1,21 +1,23 @@
 import { getUploadAuthParams } from "@imagekit/next/server"
+import { auth } from "@/auth"
 
 export async function GET() {
+  const session = await auth()
+  if (!session?.user) {
+    return Response.json({ error: "Unauthorized" }, { status: 401 })
+  }
+
   try {
-    // Add authentication logic here if needed
-    // For example, check if user is logged in or has upload permissions
-    
     const { token, expire, signature } = getUploadAuthParams({
       privateKey: process.env.IMAGEKIT_PRIVATE_KEY as string,
       publicKey: process.env.NEXT_PUBLIC_IMAGEKIT_PUBLIC_KEY as string,
-      // expire: 30 * 60, // Optional: 30 minutes expiry, max 1 hour
     });
 
-    return Response.json({ 
-      token, 
-      expire, 
-      signature, 
-      publicKey: process.env.NEXT_PUBLIC_IMAGEKIT_PUBLIC_KEY 
+    return Response.json({
+      token,
+      expire,
+      signature,
+      publicKey: process.env.NEXT_PUBLIC_IMAGEKIT_PUBLIC_KEY,
     });
   } catch (error) {
     console.error('Upload auth error:', error);
