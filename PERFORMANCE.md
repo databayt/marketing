@@ -7,7 +7,7 @@ This document tracks performance metrics, optimizations, and improvement strateg
 ### Technology Stack Performance Characteristics
 
 **Framework & Build Tools**
-- ✅ **Next.js 15 with App Router**: Server-side rendering, static generation, and optimized routing
+- ✅ **Next.js 16 with App Router**: Server-side rendering, static generation, and optimized routing
 - ✅ **Turbopack**: Fast development builds (up to 10x faster than Webpack)
 - ✅ **pnpm**: Efficient package management with hard links and deduplication
 
