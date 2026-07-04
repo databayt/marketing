@@ -9,10 +9,9 @@ import { useTranslations } from '@/lib/use-translations'
 
 interface RightActionsProps {
   isAuthenticated: boolean;
-  onChatClick?: () => void;
 }
 
-export function RightActions({ isAuthenticated, onChatClick }: RightActionsProps) {
+export function RightActions({ isAuthenticated }: RightActionsProps) {
   const { t, locale } = useTranslations()
 
   return (
