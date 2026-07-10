@@ -1,6 +1,13 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useMotionTemplate,
+  useReducedMotion,
+} from "framer-motion";
 import { GradientAnimation } from "@/components/atom/gradient-animation";
 import { Button } from "../ui/button";
 import type { getDictionary } from "@/components/internationalization/dictionaries";
@@ -20,8 +27,37 @@ export function Ready({ dictionary, params }: ReadyProps) {
   const [appointmentModalOpen, setAppointmentModalOpen] = useState(false);
   const router = useRouter();
 
+  // Apple education-hero scroll effect: the section sits full-edge (100vw) while
+  // it's the focus, then gains horizontal padding + rounded corners — revealing
+  // the page background on the sides — as it scrolls up and away. Driven by a
+  // clip-path inset() linked to scroll progress, mirroring Apple's sticky hero.
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const prefersReducedMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+  // Hold full-bleed through entry + centered, then inset on the way out. The
+  // inset is a % of width so it scales across breakpoints (RTL-safe: symmetric).
+  const insetX = useTransform(
+    scrollYProgress,
+    [0, 0.45, 1],
+    prefersReducedMotion ? ["0%", "0%", "0%"] : ["0%", "0%", "6%"],
+  );
+  const radius = useTransform(
+    scrollYProgress,
+    [0, 0.45, 1],
+    prefersReducedMotion ? [0, 0, 0] : [0, 0, 28],
+  );
+  const clipPath = useMotionTemplate`inset(0px ${insetX} round ${radius}px)`;
+
   return (
-    <div className="full-bleed-enhanced" data-section="ready">
+    <motion.div
+      ref={sectionRef}
+      className="full-bleed-enhanced"
+      data-section="ready"
+      style={{ clipPath, willChange: "clip-path" }}
+    >
       <GradientAnimation height="h-[70vh]">
         <div className="absolute z-50 inset-0 flex items-center justify-center padding-mobile-only py-8 md:py-0">
           <div className="text-center">
@@ -60,6 +96,6 @@ export function Ready({ dictionary, params }: ReadyProps) {
         isOpen={appointmentModalOpen}
         onClose={() => setAppointmentModalOpen(false)}
       />
-    </div>
+    </motion.div>
   );
 }
