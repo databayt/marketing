@@ -27,7 +27,7 @@ export default function ReadySection() {
       <ExpandButton
         variant="white"
         href={`/${locale}/wizard`}
-        className={`group flex items-center mb-6 cursor-pointer bg-[oklch(1_0_0)] text-[oklch(0.145_0_0)] border-[oklch(1_0_0)] w-fit ${isRTL ? "flex-row-reverse" : ""}`}
+        className={`group flex items-center mb-6 cursor-pointer bg-[oklch(1_0_0)] text-[oklch(0.145_0_0)] border-[oklch(1_0_0)] w-1/2 ${isRTL ? "flex-row-reverse" : ""}`}
       >
         <span
           className={`transition-all duration-300 ${isRTL ? "order-2 group-hover:order-1" : "order-1 group-hover:order-2"}`}
