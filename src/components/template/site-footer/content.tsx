@@ -18,7 +18,7 @@ export default function SiteFooter({
   const isCurrentlyDark = resolvedTheme === "dark";
 
   return (
-    <div data-section="footer-bleed" className="mt-10">
+    <div data-section="footer-bleed" className="mt-10 full-bleed-enhanced">
       {prefooter}
       <div className="h-[calc(100vh-3rem)] flex flex-col">
         <section className="px-4 md:px-20 pt-10 transition-colors flex-1 flex flex-col bg-[oklch(0.145_0_0)] text-[oklch(0.97_0_0)] border-[oklch(0.922_0_0)]">
