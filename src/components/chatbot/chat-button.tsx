@@ -1,17 +1,17 @@
-"use client";
+'use client';
 
-import { useEffect, useState, useRef } from "react";
-import { MessageCircle } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { CHATBOT_POSITIONS } from "./constant";
-import type { ChatButtonProps } from "./type";
+import { useEffect, useState, useRef } from 'react';
+import Image from 'next/image';
+import { cn } from '@/lib/utils';
+import { Button } from '@/components/ui/button';
+import { CHATBOT_POSITIONS } from './constant';
+import type { ChatButtonProps } from './type';
 
-export function ChatButton({
-  onClick,
-  isOpen,
-  position = "bottom-right",
-  dictionary,
+export function ChatButton({ 
+  onClick, 
+  isOpen, 
+  position = 'bottom-right',
+  dictionary 
 }: ChatButtonProps) {
   const [shouldInvert, setShouldInvert] = useState(false);
   const checkTimeoutRef = useRef<NodeJS.Timeout>();
@@ -19,7 +19,7 @@ export function ChatButton({
 
   useEffect(() => {
     const checkSections = () => {
-      const button = document.querySelector("[data-chat-button]");
+      const button = document.querySelector('[data-chat-button]');
       if (!button) return;
 
       const buttonRect = button.getBoundingClientRect();
@@ -27,11 +27,11 @@ export function ChatButton({
 
       // Check if button overlaps with dark sections (footer and blue sections)
       const darkSections = document.querySelectorAll(
-        '[data-slot="site-footer"], [data-section="sales"], [data-section="ready"], [data-section="ready-to-build"], [data-section="enterprise"]',
+        '[data-slot="site-footer"], [data-section="sales"], [data-section="ready"], [data-section="ready-to-build"], [data-section="enterprise"]'
       );
 
       let isOverDarkSection = false;
-      darkSections.forEach((section) => {
+      darkSections.forEach(section => {
         const rect = section.getBoundingClientRect();
         if (buttonCenterY >= rect.top && buttonCenterY <= rect.bottom) {
           isOverDarkSection = true;
@@ -46,7 +46,7 @@ export function ChatButton({
       if (checkTimeoutRef.current) {
         clearTimeout(checkTimeoutRef.current);
       }
-
+      
       // Cancel any pending animation frame
       if (rafRef.current) {
         cancelAnimationFrame(rafRef.current);
@@ -62,12 +62,12 @@ export function ChatButton({
     checkSections();
 
     // Check on scroll with debouncing
-    window.addEventListener("scroll", debouncedCheck, { passive: true });
-    window.addEventListener("resize", debouncedCheck);
+    window.addEventListener('scroll', debouncedCheck, { passive: true });
+    window.addEventListener('resize', debouncedCheck);
 
     return () => {
-      window.removeEventListener("scroll", debouncedCheck);
-      window.removeEventListener("resize", debouncedCheck);
+      window.removeEventListener('scroll', debouncedCheck);
+      window.removeEventListener('resize', debouncedCheck);
       if (checkTimeoutRef.current) {
         clearTimeout(checkTimeoutRef.current);
       }
@@ -76,7 +76,7 @@ export function ChatButton({
       }
     };
   }, []);
-
+  
   return (
     <>
       {!isOpen && (
@@ -85,19 +85,23 @@ export function ChatButton({
           data-chat-button
           className={cn(
             CHATBOT_POSITIONS[position],
-            "hidden md:block z-[9999] transition-all duration-700 ease-in-out",
-            "h-12 w-12 md:h-14 md:w-14 p-2 rounded-full",
-            "bg-transparent hover:bg-transparent shadow-none border-none",
-            "hover:scale-105",
+            'hidden md:block z-[9999] transition-all duration-700 ease-in-out',
+            'h-12 w-12 md:h-14 md:w-14 p-2 rounded-full',
+            'bg-transparent hover:bg-transparent shadow-none border-none',
+            'hover:scale-105'
           )}
           aria-label={dictionary.openChat}
           size="icon"
           variant="ghost"
         >
-          <MessageCircle
+          <Image
+            src="/robot.png"
+            alt="Agents"
+            width={56}
+            height={56}
             className={cn(
-              "h-6 w-6 md:h-7 md:w-7 transition-all duration-500 fill-current",
-              shouldInvert && "invert",
+              "h-full w-full object-contain transition-all duration-500 dark:invert",
+              shouldInvert && "invert"
             )}
           />
         </Button>
