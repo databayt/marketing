@@ -7,10 +7,29 @@
   --about-bg: #141414;
   position: fixed;
   inset: 0;
-  background: var(--about-bg);
+  background-color: var(--about-bg);
   color: #fff;
   overflow: hidden;
   z-index: 0;
+  /* Smooth the light→dark entrance: start at the page/theme background and
+     ease into the dark canvas so navigating in doesn't snap. In dark mode
+     --background ≈ --about-bg, so this is a visual no-op. */
+  animation: about-bg-in 0.8s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+@keyframes about-bg-in {
+  from {
+    background-color: var(--background);
+  }
+  to {
+    background-color: var(--about-bg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-root {
+    animation: none;
+  }
 }
 
 /* Back link (kept from the original — top, subtle) */
