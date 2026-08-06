@@ -21,12 +21,12 @@ export function BillingToggle({ isYearly, onChange }: BillingToggleProps) {
         "min-w-[80px] px-3 md:min-w-[148px] md:px-6",
         isYearly ? "text-muted-foreground hover:text-foreground" : "text-foreground",
       )}
-      aria-label="Toggle monthly billing"
+      aria-label={t.expert.toggleMonthlyAria}
     >
       {t.marketing.pricing.constants.monthly.toUpperCase()}
     </ToggleGroupItem>
   );
-  
+
   const yearlyButton = (
     <ToggleGroupItem
       value="yearly"
@@ -35,7 +35,7 @@ export function BillingToggle({ isYearly, onChange }: BillingToggleProps) {
         "min-w-[80px] px-3 md:min-w-[148px] md:px-6",
         isYearly ? "text-foreground" : "text-muted-foreground hover:text-foreground",
       )}
-      aria-label="Toggle yearly billing"
+      aria-label={t.expert.toggleYearlyAria}
     >
       {t.marketing.pricing.constants.yearly.toUpperCase()}
     </ToggleGroupItem>
