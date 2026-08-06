@@ -28,7 +28,7 @@ export const sendVerificationRequest: EmailConfig["sendVerificationRequest"] =
             : identifier,
         subject: authSubject,
         react: MagicLinkEmail({
-          firstName: (user.username ?? "") as string,
+          firstName: (user.name ?? "") as string,
           actionUrl: url,
           mailType: userVerified ? "login" : "register",
           siteName: siteConfig.name,

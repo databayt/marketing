@@ -25,7 +25,7 @@ export async function updateUserName(userId: string, data: FormData) {
         id: userId,
       },
       data: {
-        username: name,
+        name: name,
       },
     })
 

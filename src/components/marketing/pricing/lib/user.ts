@@ -7,7 +7,7 @@ export const getUserByEmail = async (email: string) => {
         email: email,
       },
       select: {
-        username: true,
+        name: true,
         emailVerified: true,
       },
     });
