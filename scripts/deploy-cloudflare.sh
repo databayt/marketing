@@ -11,8 +11,8 @@
 # smoke       docker build (linux/amd64) + run on :3400, print the curl table and peak memory
 # deploy      wrangler deploy from the build dir (builds + pushes the image, needs Workers Paid)
 #
-# CF_SOURCE=<ref>|head|worktree  what to build (default worktree — the CF lane is uncommitted
-#                                until the first deploy proves it).
+# CF_SOURCE=<ref>|head|worktree  what to build (default head, now that the CF lane is committed;
+#                                use worktree to build uncommitted changes).
 # CF_BUILD_DIR, CF_HEAP_MB (3072), NEXT_BUILD_CPUS (2): this 16 GB machine OOM-kills bigger
 #             builds when other sessions are resident.
 set -euo pipefail
@@ -23,7 +23,7 @@ BUILD_DIR=${CF_BUILD_DIR:-${TMPDIR:-/tmp}/marketing-cf-build}
 IMAGE=marketing-cf:local
 
 build() {
-  local SOURCE=${CF_SOURCE:-worktree}
+  local SOURCE=${CF_SOURCE:-head}
   rm -rf "$BUILD_DIR"; mkdir -p "$BUILD_DIR"
   if [[ "$SOURCE" == "worktree" ]]; then
     echo "==> copying the WORKING TREE ($(git rev-parse --short HEAD) + uncommitted changes) to $BUILD_DIR"
