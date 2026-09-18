@@ -1,6 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Cloudflare Containers run the standalone server (scripts/deploy-cloudflare.sh
+  // sets CF_CONTAINER=1). Vercel builds must NOT be standalone.
+  ...(process.env.CF_CONTAINER ? { output: "standalone" as const } : {}),
   typescript: {
     ignoreBuildErrors: true,
   },

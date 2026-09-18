@@ -1,0 +1,37 @@
+{
+  // marketing (databayt.org) on Cloudflare Containers — the same lane as hogwarts,
+  // mkan and kun. A thin Worker forwards every request to one container running the
+  // Next standalone server. The apex and www records in the databayt.org zone are
+  // proxied placeholders (AAAA 100::); these routes are what actually serve them. The
+  // apex 301s to www via a Cloudflare redirect rule, matching the old Vercel behaviour.
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "marketing",
+  "main": "cf/worker.js",
+  "compatibility_date": "2026-09-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": true,
+  "observability": { "enabled": true },
+  "vars": {
+    // next-auth builds its redirects from the request URL, and the standalone server
+    // reports that as 0.0.0.0:3000 (Next standalone quirk); AUTH_URL pins the real
+    // origin. Vercel never needed this.
+    "AUTH_URL": "https://www.databayt.org"
+  },
+  "containers": [
+    {
+      "class_name": "MarketingContainer",
+      "image": "./Dockerfile.cf",
+      "max_instances": 1,
+      // basic = ¼ vCPU / 1 GiB. Bump to standard-1 if the container restarts under load.
+      "instance_type": "basic"
+    }
+  ],
+  "durable_objects": {
+    "bindings": [{ "name": "MARKETING", "class_name": "MarketingContainer" }]
+  },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["MarketingContainer"] }],
+  "routes": [
+    { "pattern": "databayt.org/*", "zone_name": "databayt.org" },
+    { "pattern": "www.databayt.org/*", "zone_name": "databayt.org" }
+  ]
+}
