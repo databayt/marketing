@@ -21,7 +21,7 @@ export const getProjects = (locale: Locale = 'en'): ProjectItem[] => {
     {
       title: t.marketing.projects.mkan.title,
       description: t.marketing.projects.mkan.description,
-      link: "https://mk.databayt.org",
+      link: "https://mkan.sd",
       image: "/marketing/site/airbnb.png",
       imageDark: "/marketing/site/airbnb.png",
       imageLight: "/marketing/site/airbnb.png",
