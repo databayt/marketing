@@ -83,8 +83,9 @@ export default function SiteContent({ dictionary, params }: SiteContentProps) {
                   description: t.marketing.content.acme.description,
                   ctaText: t.marketing.content.acme.ctaText,
                   secondaryCtaText: t.marketing.content.acme.secondaryCtaText,
-                  logoSrc: "/site/hogwarts-logo.png",
-                  imageAlt: "Hogwarts logo",
+                  logoSrc: "/site/balqalam-logo.svg",
+                  imageAlt: "balqalam logo",
+                  href: "https://balqalam.com",
                 },
                 {
                   logo: t.marketing.content.sijillee.logo,

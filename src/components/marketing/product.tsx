@@ -27,17 +27,17 @@ const Product = ({
   href
 }: ProductProps) => {
   const isCodebase = logo.toLowerCase().includes('codebase') || logo.includes('مكتبة')
-  const isHogwarts = logo.toLowerCase().includes('hogwarts') || logo.includes('هوجوارتس')
+  const isBalqalam = logo.toLowerCase().includes('balqalam') || logo.includes('بالقلم')
   const isSijillee = logo.toLowerCase().includes('sijillee') || logo.includes('سجلي')
 
-  const iconSize = isHogwarts ? 'h-32' : isSijillee ? 'h-48' : 'h-40'
+  const iconSize = isBalqalam ? 'h-32' : isSijillee ? 'h-48' : 'h-40'
 
   // Determine URL based on the product
   const getProductUrl = () => {
     if (isCodebase) {
       return 'https://cb.databayt.org'
     }
-    return 'https://ed.databayt.org'
+    return 'https://balqalam.com'
   }
 
   const handleClick = () => {
@@ -65,7 +65,7 @@ const Product = ({
         <img
           src={logoSrc}
           alt={imageAlt || `${logo} logo`}
-          className={`${iconSize} w-auto object-contain ${isHogwarts ? 'dark:invert' : ''} ${logoClassName || ''}`}
+          className={`${iconSize} w-auto object-contain ${isBalqalam ? 'dark:invert' : ''} ${logoClassName || ''}`}
         />
       </div>
     </div>
