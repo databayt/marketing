@@ -111,9 +111,9 @@ export const getProjects = (locale: Locale = 'en'): ProjectItem[] => {
       title: t.marketing.projects.thmanyah.title,
       description: t.marketing.projects.thmanyah.description,
       link: "https://thmanyah.databayt.org",
-      image: "/marketing/site/thmanyah.jpg",
-      imageDark: "/marketing/site/thmanyah.jpg",
-      imageLight: "/marketing/site/thmanyah.jpg",
+      image: "/marketing/site/thmanyah.png",
+      imageDark: "/marketing/site/thmanyah.png",
+      imageLight: "/marketing/site/thmanyah.png",
       date: "2026",
       author: t.marketing.projects.thmanyah.category,
       category: "clone"
