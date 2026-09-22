@@ -83,7 +83,7 @@ export default function SiteContent({ dictionary, params }: SiteContentProps) {
                   description: t.marketing.content.acme.description,
                   ctaText: t.marketing.content.acme.ctaText,
                   secondaryCtaText: t.marketing.content.acme.secondaryCtaText,
-                  logoSrc: "/site/balqalam-logo.svg",
+                  logoSrc: "/site/balqalam-logo.png",
                   imageAlt: "balqalam logo",
                   href: "https://balqalam.com",
                 },
