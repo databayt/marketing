@@ -444,6 +444,11 @@
         "title": "Sijillee",
         "description": "Accounting and bookkeeping platform for managing records, invoices and finances",
         "category": "Finance"
+      },
+      "thmanyah": {
+        "title": "Thmanyah",
+        "description": "Arabic type foundry site clone with a live glyph tester, calligraphic display faces and licensing pages",
+        "category": "Clone"
       }
     },
     "featureCards": {
