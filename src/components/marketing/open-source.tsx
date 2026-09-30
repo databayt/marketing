@@ -15,6 +15,14 @@ interface Contributor {
   contributions: number
 }
 
+// GitHub's avatar CDN resizes on its own (`s=`), so these skip the Next image
+// optimizer and never cost the server a fetch + re-encode.
+function avatarUrl(url: string, size: number) {
+  const u = new URL(url)
+  u.searchParams.set("s", String(size))
+  return u.toString()
+}
+
 async function getContributors(): Promise<Contributor[]> {
   try {
     const res = await fetch(
@@ -77,10 +85,11 @@ export default function OpenSource() {
             ? contributors.map((contributor) => (
                 <Image
                   key={contributor.id}
-                  src={contributor.avatar_url}
+                  src={avatarUrl(contributor.avatar_url, 80)}
                   alt={contributor.login}
                   width={40}
                   height={40}
+                  unoptimized
                   className="border-background rounded-full border-2"
                 />
               ))

@@ -13,7 +13,7 @@ import { Button } from "../ui/button";
 import type { getDictionary } from "@/components/internationalization/dictionaries";
 import type { Locale } from "@/components/internationalization/config";
 import { localeConfig } from "@/components/internationalization/config";
-import { AppointmentModal } from "./appointment-modal";
+import { AppointmentModal } from "./lazy-modals";
 import { useRouter } from "next/navigation";
 
 interface ReadyProps {

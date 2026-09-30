@@ -1,10 +1,12 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { afterLoadIdle } from '@/lib/idle';
 
 export function RiveBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isMobile, setIsMobile] = useState(false);
+  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
     // Check if mobile
@@ -20,11 +22,19 @@ export function RiveBackground() {
 
   useEffect(() => {
     let rive: any = null;
+    let cancelled = false;
+
+    // Decorative: skip it for reduced-motion and data-saver visitors.
+    const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || connection?.saveData) {
+      return;
+    }
 
     const initRive = async () => {
-      if (!canvasRef.current) return;
-
+      // The runtime is ~140 KB of JS plus a 2 MB WASM; nothing on first paint
+      // depends on it, so it loads after the page has.
       const RiveModule = await import('@rive-app/webgl2');
+      if (cancelled || !canvasRef.current) return;
       const { Rive } = RiveModule;
 
       rive = new Rive({
@@ -33,12 +43,15 @@ export function RiveBackground() {
         artboard: 'bubble',
         animations: 'bubble-timeline',
         autoplay: true,
+        onLoad: () => setIsReady(true),
       });
     };
 
-    initRive();
+    const cancelIdle = afterLoadIdle(initRive);
 
     return () => {
+      cancelled = true;
+      cancelIdle();
       if (rive) {
         rive.cleanup();
       }
@@ -74,7 +87,7 @@ export function RiveBackground() {
             {/* Canvas - responsive sizing */}
             <canvas
               ref={canvasRef}
-              className="select-none"
+              className={`select-none transition-opacity duration-700 ${isReady ? 'opacity-100' : 'opacity-0'}`}
               style={{
                 width: isMobile ? '200vw' : '120vw',
                 maxWidth: isMobile ? '120rem' : '80rem',

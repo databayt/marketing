@@ -5,7 +5,6 @@ import { getProjects } from './constant'
 import HoverEffect from '@/components/marketing/video/card-video'
 import { useTranslations } from '@/lib/use-translations'
 import { cn } from '@/lib/utils'
-import { ProjectGallerySkeleton } from '@/components/ui/loading-skeleton'
 
 interface FeaturedProjectsProps {
   dictionary?: any;
@@ -18,7 +17,6 @@ const FeaturedProjects = memo(({ projectsSection }: FeaturedProjectsProps) => {
   const [activeTab, setActiveTab] = useState('featured')
   const [showAll, setShowAll] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
-  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768)
@@ -27,14 +25,6 @@ const FeaturedProjects = memo(({ projectsSection }: FeaturedProjectsProps) => {
     return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
-  // Simulate loading time for projects
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false)
-    }, 1000)
-    return () => clearTimeout(timer)
-  }, [locale])
-  
   // Memoize tabs to prevent recreation on every render
   const tabs = useMemo(() => [
     { 
@@ -118,19 +108,15 @@ const FeaturedProjects = memo(({ projectsSection }: FeaturedProjectsProps) => {
       
       {/* Projects Grid */}
       <div className="-mt-10 overflow-visible">
-        {isLoading ? (
-          <ProjectGallerySkeleton />
-        ) : (
-          <HoverEffect
-            items={displayedProjects}
-            websiteLabel={projectsSection?.websiteButton}
-            mobileLabel={projectsSection?.mobileButton}
-          />
-        )}
+        <HoverEffect
+          items={displayedProjects}
+          websiteLabel={projectsSection?.websiteButton}
+          mobileLabel={projectsSection?.mobileButton}
+        />
       </div>
 
       {/* More Button */}
-      {!isLoading && !showAll && (
+      {!showAll && (
         <div className="flex justify-center mt-8">
           <button
             onClick={() => setShowAll(true)}

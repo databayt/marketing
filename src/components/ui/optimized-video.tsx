@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef, useState } from 'react';
 import { Video as ImageKitVideo } from '@imagekit/next';
 import { imagekitConfig, buildImagekitUrl } from '@/lib/imagekit';
 import type { ComponentProps } from 'react';
@@ -32,13 +33,37 @@ export function OptimizedVideo({
   const videoUrl = `${imagekitConfig.urlEndpoint}${src}?tr=orig-true`;
 
   // Generate poster URL if needed
-  const posterUrl = posterSrc 
+  const posterUrl = posterSrc
     ? buildImagekitUrl({ src: posterSrc })
     : undefined;
 
+  // Autoplaying videos are ambient: fetch them only once they come near the
+  // viewport (instead of megabytes at page load) and pause them while off screen.
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [nearViewport, setNearViewport] = useState(!autoPlay);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!autoPlay || !video) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setNearViewport(true);
+          if (video.currentSrc && video.paused) video.play().catch(() => {});
+        } else if (!video.paused) {
+          video.pause();
+        }
+      },
+      { rootMargin: '200px 0px' }
+    );
+    observer.observe(video);
+    return () => observer.disconnect();
+  }, [autoPlay]);
+
   return (
     <video
-      src={videoUrl}
+      ref={videoRef}
+      src={nearViewport ? videoUrl : undefined}
       width={width}
       height={height}
       className={className}

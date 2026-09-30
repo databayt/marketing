@@ -8,7 +8,8 @@ import {
   useTransform,
   useMotionValue,
   useVelocity,
-  useAnimationFrame
+  useAnimationFrame,
+  useInView
 } from "framer-motion";
 import { useTranslations } from '@/lib/use-translations';
 
@@ -49,7 +50,11 @@ function ParallaxText({ children, baseVelocity = 100, locale }: ParallaxTextProp
   const x = useTransform(baseX, (v) => `${wrap(-20, -45, v)}%`);
 
   const directionFactor = useRef<number>(1);
+  // The rows sit far below the fold: no per-frame work until they're on screen.
+  const rowRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(rowRef);
   useAnimationFrame((t, delta) => {
+    if (!isInView) return;
     let moveBy = directionFactor.current * baseVelocity * (delta / 1000);
 
     /**
@@ -77,7 +82,7 @@ function ParallaxText({ children, baseVelocity = 100, locale }: ParallaxTextProp
    * dynamically generated number of children.
    */
   return (
-    <div className="parallax" dir="ltr">
+    <div ref={rowRef} className="parallax" dir="ltr">
       <motion.div className="scroller" style={{ x }}>
         <span className={`solid ${fontClass}`}>{children} </span>
         <span className={`outline ${fontClass}`}>{children} </span>

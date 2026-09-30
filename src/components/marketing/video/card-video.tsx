@@ -91,7 +91,6 @@ export const HoverEffect = memo(({ items, className, websiteLabel = "Website", m
                                     className="object-cover w-full h-full"
                                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                     placeholder="blur"
-                                    priority={idx < 3}
                                     style={{ objectFit: 'cover', objectPosition: 'center' }}
                                 />
                                 {hasDualLinks && (

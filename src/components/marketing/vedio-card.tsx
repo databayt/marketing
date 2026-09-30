@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button'
 import { OptimizedVideo } from '@/components/ui/optimized-video'
 import { OptimizedImage } from '@/components/ui/optimized-image'
 import { useTranslations } from '@/lib/use-translations'
-import { ExpertModal } from './expert-modal'
+import { ExpertModal } from './lazy-modals'
 
 export interface VideoCardProps {
   logo: string

@@ -1,5 +1,4 @@
-"use client";
-
+import { Suspense } from "react";
 import { Hero } from "./hero";
 import { Ready } from "./ready";
 import Parallax from "./parallax-text";
@@ -18,137 +17,159 @@ interface SiteContentProps {
   params: { lang: Locale };
 }
 
+// A server component: the sections below are client components that receive only
+// their own slice of the dictionary. Each one below the hero sits in its own
+// Suspense boundary so React hydrates them as separate tasks, leaving the main
+// thread free to paint between them instead of one long hydration pass.
 export default function SiteContent({ dictionary, params }: SiteContentProps) {
   const t = dictionary;
   return (
     <div>
       <Hero dictionary={dictionary.marketing.hero} params={params} />
-      <section className="">
-        <LogoCloud dictionary={dictionary.marketing.logoCloud} params={params} />
-      </section>
-      <section className="py-10">
-        <div className="container mx-auto space-y-16">
-          <VideoCard
-            logo={t.marketing.content.kun.logo}
-            title={t.marketing.content.kun.title}
-            description={t.marketing.content.kun.description}
-            ctaText={t.marketing.content.kun.ctaText}
-            secondaryCtaText={t.marketing.content.kun.secondaryCtaText}
-            href="https://kun.databayt.org"
-            secondaryHref="https://kun.databayt.org/docs"
-            videoSrc="/marketing/site/story.mp4"
-            videoPoster="/marketing/sample-poster.jpg"
-          />
-          <VideoCard
-            logo={t.marketing.content.dreamMachine.logo}
-            title={t.marketing.content.dreamMachine.title}
-            description={t.marketing.content.dreamMachine.description}
-            ctaText={t.marketing.content.dreamMachine.ctaText}
-            secondaryCtaText={t.marketing.content.dreamMachine.secondaryCtaText}
-            videoSrc="/marketing/site/dream.mp4"
-            videoPoster="/marketing/sample-poster.jpg"
-          />
-        </div>
-      </section>
+      <Suspense>
+        <section className="">
+          <LogoCloud dictionary={dictionary.marketing.logoCloud} params={params} />
+        </section>
+      </Suspense>
+      <Suspense>
+        <section className="py-10">
+          <div className="container mx-auto space-y-16">
+            <VideoCard
+              logo={t.marketing.content.kun.logo}
+              title={t.marketing.content.kun.title}
+              description={t.marketing.content.kun.description}
+              ctaText={t.marketing.content.kun.ctaText}
+              secondaryCtaText={t.marketing.content.kun.secondaryCtaText}
+              href="https://kun.databayt.org"
+              secondaryHref="https://kun.databayt.org/docs"
+              videoSrc="/marketing/site/story.mp4"
+              videoPoster="/marketing/sample-poster.jpg"
+            />
+            <VideoCard
+              logo={t.marketing.content.dreamMachine.logo}
+              title={t.marketing.content.dreamMachine.title}
+              description={t.marketing.content.dreamMachine.description}
+              ctaText={t.marketing.content.dreamMachine.ctaText}
+              secondaryCtaText={t.marketing.content.dreamMachine.secondaryCtaText}
+              videoSrc="/marketing/site/dream.mp4"
+              videoPoster="/marketing/sample-poster.jpg"
+            />
+          </div>
+        </section>
+      </Suspense>
       
       {/* Products Section */}
-      <section className="py-10">
-        <div className="container mx-auto">
-          <div className="space-y-8">
-            <div className="mx-auto flex max-w-full flex-col items-center space-y-4 text-center">
-              <h2 className={`font-heading text-3xl leading-[1.1] sm:text-3xl md:text-6xl ${params.lang === 'ar' ? 'md:text-7xl' : ''}`}>
-                {dictionary.marketing?.productsSection?.title || "Product"}
-              </h2>
-              <p className="max-w-[95%] md:max-w-[65%] leading-normal text-muted-foreground sm:text-lg sm:leading-7 pb-7">
-                {dictionary.marketing?.productsSection?.description || "That save origin of value, time."}
-              </p>
+      <Suspense>
+        <section className="py-10">
+          <div className="container mx-auto">
+            <div className="space-y-8">
+              <div className="mx-auto flex max-w-full flex-col items-center space-y-4 text-center">
+                <h2 className={`font-heading text-3xl leading-[1.1] sm:text-3xl md:text-6xl ${params.lang === 'ar' ? 'md:text-7xl' : ''}`}>
+                  {dictionary.marketing?.productsSection?.title || "Product"}
+                </h2>
+                <p className="max-w-[95%] md:max-w-[65%] leading-normal text-muted-foreground sm:text-lg sm:leading-7 pb-7">
+                  {dictionary.marketing?.productsSection?.description || "That save origin of value, time."}
+                </p>
+              </div>
+              <ProductsCarousel
+                isRTL={params.lang === 'ar'}
+                products={[
+                  {
+                    logo: t.marketing.content.codebase.logo,
+                    category: t.marketing.content.codebase.category,
+                    title: t.marketing.content.codebase.title,
+                    description: t.marketing.content.codebase.description,
+                    ctaText: t.marketing.content.codebase.ctaText,
+                    secondaryCtaText: t.marketing.content.codebase.secondaryCtaText,
+                    logoSrc: "/site/codebase-logo.svg",
+                    imageAlt: "Codebase logo",
+                  },
+                  {
+                    logo: t.marketing.content.acme.logo,
+                    category: t.marketing.content.acme.category,
+                    title: t.marketing.content.acme.title,
+                    description: t.marketing.content.acme.description,
+                    ctaText: t.marketing.content.acme.ctaText,
+                    secondaryCtaText: t.marketing.content.acme.secondaryCtaText,
+                    logoSrc: "/site/balqalam-logo.png",
+                    imageAlt: "balqalam logo",
+                    href: "https://balqalam.com",
+                  },
+                  {
+                    logo: t.marketing.content.sijillee.logo,
+                    category: t.marketing.content.sijillee.category,
+                    title: t.marketing.content.sijillee.title,
+                    description: t.marketing.content.sijillee.description,
+                    ctaText: t.marketing.content.sijillee.ctaText,
+                    secondaryCtaText: t.marketing.content.sijillee.secondaryCtaText,
+                    logoSrc: "/site/sijillee-logo.webp",
+                    imageAlt: "Sijillee logo",
+                    href: "https://sijillee.com/",
+                  },
+                  {
+                    logo: t.marketing.content.moalimee.logo,
+                    category: t.marketing.content.moalimee.category,
+                    title: t.marketing.content.moalimee.title,
+                    description: t.marketing.content.moalimee.description,
+                    ctaText: t.marketing.content.moalimee.ctaText,
+                    secondaryCtaText: t.marketing.content.moalimee.secondaryCtaText,
+                    logoSrc: "/site/moalimee-logo.svg",
+                    imageAlt: "Moalimee logo",
+                    href: "https://moalimee.com",
+                  },
+                ]}
+              />
             </div>
-            <ProductsCarousel
-              isRTL={params.lang === 'ar'}
-              products={[
-                {
-                  logo: t.marketing.content.codebase.logo,
-                  category: t.marketing.content.codebase.category,
-                  title: t.marketing.content.codebase.title,
-                  description: t.marketing.content.codebase.description,
-                  ctaText: t.marketing.content.codebase.ctaText,
-                  secondaryCtaText: t.marketing.content.codebase.secondaryCtaText,
-                  logoSrc: "/site/codebase-logo.svg",
-                  imageAlt: "Codebase logo",
-                },
-                {
-                  logo: t.marketing.content.acme.logo,
-                  category: t.marketing.content.acme.category,
-                  title: t.marketing.content.acme.title,
-                  description: t.marketing.content.acme.description,
-                  ctaText: t.marketing.content.acme.ctaText,
-                  secondaryCtaText: t.marketing.content.acme.secondaryCtaText,
-                  logoSrc: "/site/balqalam-logo.png",
-                  imageAlt: "balqalam logo",
-                  href: "https://balqalam.com",
-                },
-                {
-                  logo: t.marketing.content.sijillee.logo,
-                  category: t.marketing.content.sijillee.category,
-                  title: t.marketing.content.sijillee.title,
-                  description: t.marketing.content.sijillee.description,
-                  ctaText: t.marketing.content.sijillee.ctaText,
-                  secondaryCtaText: t.marketing.content.sijillee.secondaryCtaText,
-                  logoSrc: "/site/sijillee-logo.png",
-                  imageAlt: "Sijillee logo",
-                  href: "https://sijillee.com/",
-                },
-                {
-                  logo: t.marketing.content.moalimee.logo,
-                  category: t.marketing.content.moalimee.category,
-                  title: t.marketing.content.moalimee.title,
-                  description: t.marketing.content.moalimee.description,
-                  ctaText: t.marketing.content.moalimee.ctaText,
-                  secondaryCtaText: t.marketing.content.moalimee.secondaryCtaText,
-                  logoSrc: "/site/moalimee-logo.svg",
-                  imageAlt: "Moalimee logo",
-                  href: "https://moalimee.com",
-                },
-              ]}
-            />
           </div>
-        </div>
-      </section>
-      <section className="py-10 overflow-visible">
-        <div className="container mx-auto overflow-visible">
-          <div className="space-y-4 overflow-visible">
-            <div className="mx-auto flex max-w-full flex-col items-center text-center">
-              <h2 className={`font-heading text-3xl leading-[1.1] sm:text-3xl mb-2 ${params.lang === 'ar' ? 'md:text-7xl' : 'md:text-6xl'}`}>
-                {dictionary.marketing?.projectsSection?.title || "Project"}
-              </h2>
+        </section>
+      </Suspense>
+      <Suspense>
+        <section className="py-10 overflow-visible">
+          <div className="container mx-auto overflow-visible">
+            <div className="space-y-4 overflow-visible">
+              <div className="mx-auto flex max-w-full flex-col items-center text-center">
+                <h2 className={`font-heading text-3xl leading-[1.1] sm:text-3xl mb-2 ${params.lang === 'ar' ? 'md:text-7xl' : 'md:text-6xl'}`}>
+                  {dictionary.marketing?.projectsSection?.title || "Project"}
+                </h2>
+              </div>
+              <FeaturedProjects
+                dictionary={dictionary.marketing.projects}
+                projectsSection={dictionary.marketing.projectsSection}
+                params={params}
+              />
             </div>
-            <FeaturedProjects
-              dictionary={dictionary.marketing.projects}
-              projectsSection={dictionary.marketing.projectsSection}
-              params={params}
-            />
           </div>
-        </div>
-      </section>
-      <section className="py-10">
-        <div className="container mx-auto">
-          <FeatureCards dictionary={dictionary.marketing.featureCards} params={params} />
-        </div>
-      </section>
-      <section className="py-10">
-        <Parallax dictionary={dictionary.marketing.parallax} params={params} />
-      </section>
-      <section className="py-10">
-        <Ready dictionary={dictionary.marketing.ready} params={params} />
-      </section>
-      <section className="py-10">
-        <OpenSource />
-      </section>
-      <section className="py-10">
-        <div className="container mx-auto">
-          <Stack dictionary={dictionary.marketing.stack} params={params} />
-        </div>
-      </section>
+        </section>
+      </Suspense>
+      <Suspense>
+        <section className="py-10">
+          <div className="container mx-auto">
+            <FeatureCards dictionary={dictionary.marketing.featureCards} params={params} />
+          </div>
+        </section>
+      </Suspense>
+      <Suspense>
+        <section className="py-10">
+          <Parallax dictionary={dictionary.marketing.parallax} params={params} />
+        </section>
+      </Suspense>
+      <Suspense>
+        <section className="py-10">
+          <Ready dictionary={dictionary.marketing.ready} params={params} />
+        </section>
+      </Suspense>
+      <Suspense>
+        <section className="py-10">
+          <OpenSource />
+        </section>
+      </Suspense>
+      <Suspense>
+        <section className="py-10">
+          <div className="container mx-auto">
+            <Stack dictionary={dictionary.marketing.stack} params={params} />
+          </div>
+        </section>
+      </Suspense>
     </div>
   );
 }

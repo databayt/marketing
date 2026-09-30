@@ -65,6 +65,8 @@ const Product = ({
         <img
           src={logoSrc}
           alt={imageAlt || `${logo} logo`}
+          loading="lazy"
+          decoding="async"
           className={`${iconSize} w-auto object-contain ${isBalqalam ? 'dark:invert' : ''} ${logoClassName || ''}`}
         />
       </div>

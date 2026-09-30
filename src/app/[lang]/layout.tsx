@@ -1,15 +1,13 @@
 import type { Metadata, Viewport } from "next";
 import { GeistSans } from "geist/font/sans";
-import { GeistMono } from "geist/font/mono";
+import localFont from "next/font/local";
 import { Rubik, Source_Serif_4 } from "next/font/google";
 import "../globals.css";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/atom/theme-provider";
-import { ImageKitProvider } from "@/components/ui/imagekit-provider";
 import { Toaster } from "sonner";
 import { getDictionary } from "@/components/internationalization/dictionaries";
 import { type Locale, localeConfig } from "@/components/internationalization/config";
-import { LoadingWrapper } from "@/components/marketing/loading";
 // import { SessionProvider } from "next-auth/react";
 // import { auth } from "@/auth";
 
@@ -20,11 +18,25 @@ const rubik = Rubik({
   variable: '--font-rubik',
 });
 
-// Source Serif 4 powers the Medium-style reading experience on the blog (LTR)
+// Source Serif 4 powers the Medium-style reading experience on the blog (LTR).
+// Not preloaded: no first-paint text uses it, so it shouldn't compete with the
+// critical path on every page.
 const sourceSerif = Source_Serif_4({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-serif',
+  preload: false,
+});
+
+// Geist Mono as `geist/font/mono` declares it, minus the preload: only code
+// snippets and coupon codes use it.
+const geistMono = localFont({
+  src: "../../../node_modules/geist/dist/fonts/geist-mono/GeistMono-Variable.woff2",
+  variable: "--font-geist-mono",
+  adjustFontFallback: false,
+  fallback: ["ui-monospace", "SFMono-Regular", "Roboto Mono", "Menlo", "Monaco", "Liberation Mono", "DejaVu Sans Mono", "Courier New", "monospace"],
+  weight: "100 900",
+  preload: false,
 });
 
 export const viewport: Viewport = {
@@ -102,7 +114,7 @@ export default async function LocaleLayout({
         className={cn(
           "font-sans antialiased",
           isRTL ? rubik.className : GeistSans.className,
-          GeistMono.variable,
+          geistMono.variable,
           rubik.variable,
           sourceSerif.variable
         )}
@@ -110,13 +122,11 @@ export default async function LocaleLayout({
         {/* <SessionProvider session={session}> */}
          
             <ThemeProvider>
-              <ImageKitProvider>
-                <div className="layout-container">
-                  <Toaster position={isRTL ? "bottom-left" : "bottom-right"} />
+              <div className="layout-container">
+                <Toaster position={isRTL ? "bottom-left" : "bottom-right"} />
 
-                  <LoadingWrapper>{children}</LoadingWrapper>
-                </div>
-              </ImageKitProvider>
+                {children}
+              </div>
             </ThemeProvider>
           
         {/* </SessionProvider> */}

@@ -5,7 +5,7 @@ import ExpandButton from '@/components/atom/expand-button';
 import type { getDictionary } from '@/components/internationalization/dictionaries';
 import type { Locale } from '@/components/internationalization/config';
 import { localeConfig } from '@/components/internationalization/config';
-import { AppointmentModal } from './appointment-modal';
+import { AppointmentModal } from './lazy-modals';
 import { RiveBackground } from './rive-background';
 
 interface HeroProps {
