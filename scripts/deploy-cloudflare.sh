@@ -48,7 +48,16 @@ build() {
   echo "==> assembling: baked non-secret config"
   node cf/env-split.mjs "$ENV_FILE" config > .next/standalone/env.json
   echo "    env.json: $(node -e 'console.log(Object.keys(require("./.next/standalone/env.json")).length)') config vars"
-  du -sh .next/standalone .next/static public | sed 's/^/    /'
+
+  echo "==> assembling: edge static assets (.cf-assets = /_next/static + /public)"
+  rm -rf .cf-assets && mkdir -p .cf-assets/_next
+  cp -R .next/static .cf-assets/_next/static
+  cp -R public/. .cf-assets/
+  cp cf/_headers .cf-assets/_headers
+  # Workers Static Assets caps a file at 25 MiB; bigger ones stay container-served.
+  find .cf-assets -type f -size +26214400c -print -delete | sed 's/^/    over 25 MiB, left to the container: /'
+  echo "    $(find .cf-assets -type f | wc -l | tr -d ' ') files"
+  du -sh .next/standalone .next/static public .cf-assets | sed 's/^/    /'
 }
 
 smoke() {

@@ -11,6 +11,11 @@
   "compatibility_flags": ["nodejs_compat"],
   "workers_dev": true,
   "observability": { "enabled": true },
+  // Static files — the build's /_next/static and /public — are Workers Static Assets,
+  // served from Cloudflare's edge without a round trip to the container; any request
+  // that matches no file falls through to the Worker. scripts/deploy-cloudflare.sh
+  // assembles the directory (with cf/_headers) after the Next build.
+  "assets": { "directory": "./.cf-assets" },
   "vars": {
     // next-auth builds its redirects from the request URL, and the standalone server
     // reports that as 0.0.0.0:3000 (Next standalone quirk); AUTH_URL pins the real

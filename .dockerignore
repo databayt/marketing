@@ -1,0 +1,2 @@
+# The edge copy of /_next/static + /public (scripts/deploy-cloudflare.sh); the image has its own.
+.cf-assets
