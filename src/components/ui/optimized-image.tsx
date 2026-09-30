@@ -15,6 +15,8 @@ interface OptimizedImageProps extends ComponentProps<'img'> {
   priority?: boolean;
   placeholder?: 'blur' | 'empty';
   blurDataURL?: string;
+  /** The file lives in /public and is served by this site, not the ImageKit library. */
+  local?: boolean;
 }
 
 export function OptimizedImage({
@@ -30,15 +32,18 @@ export function OptimizedImage({
   placeholder,
   blurDataURL,
   loading,
+  local,
   ...props
 }: OptimizedImageProps) {
   // Generate ImageKit image URL with original parameter to bypass restrictions
-  const imageUrl = transformation 
-    ? buildImagekitUrl({ src, transformation })
-    : `${imagekitConfig.urlEndpoint}${src}?tr=orig-true`;
+  const imageUrl = local
+    ? src
+    : transformation
+      ? buildImagekitUrl({ src, transformation })
+      : `${imagekitConfig.urlEndpoint}${src}?tr=orig-true`;
 
   // Generate low quality blur placeholder if needed
-  const blurUrl = placeholder === 'blur' && !blurDataURL 
+  const blurUrl = placeholder === 'blur' && !blurDataURL && !local
     ? `${imagekitConfig.urlEndpoint}${src}?tr=w-10,h-10,bl-10,q-10`
     : blurDataURL;
 

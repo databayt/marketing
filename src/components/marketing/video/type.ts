@@ -6,6 +6,8 @@ export interface ProjectItem {
     image: string;
     imageDark?: string;
     imageLight?: string;
+    /** `image*` are files in /public served by this site, not ImageKit library paths. */
+    imageLocal?: boolean;
     date: string;
     author: string;
     category?: string;

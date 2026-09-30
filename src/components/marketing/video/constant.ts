@@ -30,6 +30,18 @@ export const getProjects = (locale: Locale = 'en'): ProjectItem[] => {
       category: "states"
     },
     {
+      title: t.marketing.projects.charlesBurgers.title,
+      description: t.marketing.projects.charlesBurgers.description,
+      link: "https://bu.databayt.org",
+      image: "/projects/charles-burgers.webp",
+      imageDark: "/projects/charles-burgers.webp",
+      imageLight: "/projects/charles-burgers.webp",
+      imageLocal: true,
+      date: "2026",
+      author: t.marketing.projects.charlesBurgers.category,
+      category: "ecommerce"
+    },
+    {
       title: t.marketing.projects.acme.title,
       description: t.marketing.projects.acme.description,
       link: "https://co.databayt.org",
@@ -111,9 +123,10 @@ export const getProjects = (locale: Locale = 'en'): ProjectItem[] => {
       title: t.marketing.projects.thmanyah.title,
       description: t.marketing.projects.thmanyah.description,
       link: "https://thmanyah.databayt.org",
-      image: "/marketing/site/thmanyah.png",
-      imageDark: "/marketing/site/thmanyah.png",
-      imageLight: "/marketing/site/thmanyah.png",
+      image: "/projects/thmanyah.webp",
+      imageDark: "/projects/thmanyah.webp",
+      imageLight: "/projects/thmanyah.webp",
+      imageLocal: true,
       date: "2026",
       author: t.marketing.projects.thmanyah.category,
       category: "clone"

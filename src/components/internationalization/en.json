@@ -449,6 +449,11 @@
         "title": "Thmanyah",
         "description": "Arabic type foundry site clone with a live glyph tester, calligraphic display faces and licensing pages",
         "category": "Clone"
+      },
+      "charlesBurgers": {
+        "title": "Charles Burgers",
+        "description": "QR menu ordering for a Kigali burger restaurant, with guest checkout, MoMo payments, live order tracking and a kitchen display",
+        "category": "E-commerce"
       }
     },
     "featureCards": {
