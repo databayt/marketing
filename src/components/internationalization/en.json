@@ -360,6 +360,11 @@
         "description": "Airbnb like Real estate platform, diversity of properties and hotels",
         "category": "Real Estate Platform"
       },
+      "burgers": {
+        "title": "Charles Burgers",
+        "description": "QR menu and mobile ordering for a Kigali burger restaurant, in English, Kinyarwanda and Arabic",
+        "category": "Restaurant Ordering"
+      },
       "hogwarts": {
         "title": "Hogwarts",
         "description": "Organization automation, attendance, exams, grades and more",

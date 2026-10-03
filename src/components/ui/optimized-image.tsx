@@ -32,13 +32,20 @@ export function OptimizedImage({
   loading,
   ...props
 }: OptimizedImageProps) {
+  // `site:/path` is served from this site's own public/ (an asset not yet
+  // uploaded to ImageKit — e.g. thmanyah.png, whose ImageKit URL 404ed and
+  // broke the Projects card); absolute URLs pass through; everything else is
+  // an ImageKit path.
+  const local = src.startsWith('site:') ? src.slice(5) : /^https?:\/\//.test(src) ? src : null;
+
   // Generate ImageKit image URL with original parameter to bypass restrictions
-  const imageUrl = transformation 
-    ? buildImagekitUrl({ src, transformation })
-    : `${imagekitConfig.urlEndpoint}${src}?tr=orig-true`;
+  const imageUrl = local
+    ?? (transformation
+      ? buildImagekitUrl({ src, transformation })
+      : `${imagekitConfig.urlEndpoint}${src}?tr=orig-true`);
 
   // Generate low quality blur placeholder if needed
-  const blurUrl = placeholder === 'blur' && !blurDataURL 
+  const blurUrl = placeholder === 'blur' && !blurDataURL && !local
     ? `${imagekitConfig.urlEndpoint}${src}?tr=w-10,h-10,bl-10,q-10`
     : blurDataURL;
 
