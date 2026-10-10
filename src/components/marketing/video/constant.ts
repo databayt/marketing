@@ -119,6 +119,17 @@ export const getProjects = (locale: Locale = 'en'): ProjectItem[] => {
       category: "clone"
     },
     {
+      title: t.marketing.projects.loreal.title,
+      description: t.marketing.projects.loreal.description,
+      link: "https://loreal.databayt.org",
+      image: "site:/marketing/site/loreal.png",
+      imageDark: "site:/marketing/site/loreal.png",
+      imageLight: "site:/marketing/site/loreal.png",
+      date: "2026",
+      author: t.marketing.projects.loreal.category,
+      category: ["clone", "ecommerce"]
+    },
+    {
       title: t.marketing.projects.thmanyah.title,
       description: t.marketing.projects.thmanyah.description,
       link: "https://thmanyah.databayt.org",

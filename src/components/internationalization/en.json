@@ -462,6 +462,11 @@
         "description": "Accounting and bookkeeping platform for managing records, invoices and finances",
         "category": "Finance"
       },
+      "loreal": {
+        "title": "L'Oréal",
+        "description": "Pixel-exact clone of L'Oréal's Essentiality of Beauty site, scroll-driven chapters, art gallery and quiz, in English and French",
+        "category": "Clone"
+      },
       "thmanyah": {
         "title": "Thmanyah",
         "description": "Arabic type foundry site clone with a live glyph tester, calligraphic display faces and licensing pages",

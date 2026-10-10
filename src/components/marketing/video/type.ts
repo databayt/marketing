@@ -8,6 +8,6 @@ export interface ProjectItem {
     imageLight?: string;
     date: string;
     author: string;
-    category?: string;
+    category?: string | string[];
     featured?: boolean;
   }
