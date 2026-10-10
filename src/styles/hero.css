@@ -40,6 +40,10 @@
   font-size: clamp(26px, 7.5vw, 48px);
   row-gap: 0;
 }
+/* Arabic lines are short — keep the reference's fixed sizes. */
+[dir="rtl"] .hero-words {
+  font-size: 48px;
+}
 .hero-line {
   flex-wrap: nowrap;
   white-space: nowrap;
@@ -78,7 +82,9 @@
 }
 .hero-mark {
   position: absolute;
-  inset: 28px -1px 26px 1px;
+  /* em-based (28px / 26px at the reference's 92px) so the bar tracks the
+     scaled headline instead of collapsing at small sizes. */
+  inset: 0.3em -1px 0.28em 1px;
   display: flex;
   flex-flow: row;
   flex: 0 0 auto;
@@ -98,9 +104,6 @@
     gap: 16px;
     height: 1px;
   }
-  .hero-mark {
-    inset: 15px 0 12px;
-  }
 }
 
 @media (min-width: 600px) and (max-width: 809.98px) {
@@ -112,11 +115,6 @@
     max-width: unset;
     height: 1px;
   }
-  .hero-mark {
-    top: 25px;
-    bottom: 23px;
-    right: -1px;
-  }
 }
 
 @media (min-width: 810px) and (max-width: 1199.98px) {
@@ -124,9 +122,6 @@
     flex: 1 0 0px;
     max-width: unset;
     height: 1px;
-  }
-  .hero-mark {
-    inset: 25px 0 22px;
   }
 }
 
@@ -136,6 +131,9 @@
   }
   .hero-words {
     font-size: clamp(48px, 8vw, 80px);
+  }
+  [dir="rtl"] .hero-words {
+    font-size: 80px;
   }
 }
 
@@ -151,6 +149,9 @@
   }
   .hero-words {
     font-size: clamp(80px, 7vw, 120px);
+  }
+  [dir="rtl"] .hero-words {
+    font-size: 92px;
   }
 }
 
