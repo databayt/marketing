@@ -464,12 +464,12 @@
       },
       "loreal": {
         "title": "L'Oréal",
-        "description": "Pixel-exact clone of L'Oréal's Essentiality of Beauty site, scroll-driven chapters, art gallery and quiz, in English and French",
+        "description": "Beauty brand storytelling site with scroll-driven chapters and gallery",
         "category": "Clone"
       },
       "thmanyah": {
         "title": "Thmanyah",
-        "description": "Arabic type foundry site clone with a live glyph tester, calligraphic display faces and licensing pages",
+        "description": "Arabic type foundry site with a live glyph tester and display faces",
         "category": "Clone"
       }
     },
