@@ -79,8 +79,8 @@
   },
   "marketing": {
     "hero": {
-      "title": "Automate the boring,\nelevate the wondrous",
-      "titleMobile": "Automate\nthe boring\nelevate the\nwondrous",
+      "title": "Automate the boring\nelevate the wonders",
+      "titleMobile": "Automate the boring\nelevate the wonders",
       "subtitle": "Building codebase for business automation and open sourcing everything. Follow along as we figure this out together.",
       "appointment": "Appointment",
       "services": "Services",
@@ -88,13 +88,12 @@
       "words": [
         "Automate",
         "the",
-        "boring",
-        "at",
-        "databayt,",
-        "then",
+        "boring"
+      ],
+      "words2": [
         "elevate"
       ],
-      "highlight": "the wondrous",
+      "highlight": "the wonders",
       "cta": "Book an appointment"
     },
     "features": {
@@ -373,8 +372,8 @@
         "category": "Real Estate Platform"
       },
       "burgers": {
-        "title": "Charles Burgers",
-        "description": "QR menu and mobile ordering for a Kigali burger restaurant, in English, Kinyarwanda and Arabic",
+        "title": "Burgers",
+        "description": "QR menu and mobile ordering for a Kigali burger restaurant",
         "category": "Restaurant Ordering"
       },
       "hogwarts": {
