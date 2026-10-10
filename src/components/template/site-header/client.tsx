@@ -8,20 +8,44 @@ import MobileHeader from './mobile-header'
 interface SiteHeaderProps {
   isAuthenticated: boolean
   onChatClick?: () => void
+  /** Keep the header out of sight over the hero; it slides in shortly after scrolling starts. */
+  hideUntilScroll?: boolean
 }
 
-export default function SiteHeaderClient({ isAuthenticated, onChatClick }: SiteHeaderProps) {
+const REVEAL_DELAY_MS = 350
+
+export default function SiteHeaderClient({ isAuthenticated, onChatClick, hideUntilScroll = false }: SiteHeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false)
+  const [revealed, setRevealed] = useState(!hideUntilScroll)
 
   useEffect(() => {
+    let timer: ReturnType<typeof setTimeout> | undefined
+
     const handleScroll = () => {
       const scrollTop = window.scrollY
       setIsScrolled(scrollTop > 400)
+
+      if (!hideUntilScroll) return
+      if (scrollTop > 0) {
+        if (timer === undefined) {
+          timer = setTimeout(() => setRevealed(true), REVEAL_DELAY_MS)
+        }
+      } else {
+        clearTimeout(timer)
+        timer = undefined
+        setRevealed(false)
+      }
     }
 
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+    setRevealed(!hideUntilScroll || window.scrollY > 0)
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => {
+      clearTimeout(timer)
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [hideUntilScroll])
+
+  const hidden = hideUntilScroll && !revealed
 
   return (
     <>
@@ -29,8 +53,9 @@ export default function SiteHeaderClient({ isAuthenticated, onChatClick }: SiteH
       <header 
         className={`
           fixed z-80 left-1/2 transform -translate-x-1/2 w-full hidden md:block
-          transition-[top] duration-700 ease-linear
+          transition-[top,translate,opacity] duration-700 ease-linear
           ${isScrolled ? 'top-0' : 'top-4'}
+          ${hidden ? '-translate-y-[150%] opacity-0 pointer-events-none' : 'translate-y-0 opacity-100'}
         `}
       >
         <div className={`
@@ -50,7 +75,7 @@ export default function SiteHeaderClient({ isAuthenticated, onChatClick }: SiteH
       </header>
 
       {/* Mobile Header - Completely Separate */}
-      <MobileHeader />
+      <MobileHeader hideUntilScroll={hideUntilScroll} hidden={hidden} />
     </>
   )
 }

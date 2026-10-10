@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { GeistSans } from 'geist/font/sans';
 import type { getDictionary } from '@/components/internationalization/dictionaries';
 import type { Locale } from '@/components/internationalization/config';
 import { localeConfig } from '@/components/internationalization/config';
@@ -28,6 +29,15 @@ const H1_STYLE: React.CSSProperties = {
   color: '#000',
 };
 
+// English sets the headline in Geist; Arabic keeps the Thmanyah serif.
+const H1_STYLE_EN: React.CSSProperties = {
+  fontFamily: GeistSans.style.fontFamily,
+  fontWeight: 700,
+  lineHeight: '1.4em',
+  letterSpacing: '-0.04em',
+  color: '#000',
+};
+
 const SANS_STYLE: React.CSSProperties = {
   fontFamily: '"thmanyah sans", sans-serif',
   fontWeight: 400,
@@ -46,6 +56,8 @@ const appear = (y: number) => ({
 export function Hero({ dictionary, params }: HeroProps) {
   const t = dictionary;
   const dir = localeConfig[params.lang]?.dir === 'rtl' ? 'rtl' : 'ltr';
+  const h1Style = dir === 'rtl' ? H1_STYLE : H1_STYLE_EN;
+  const sansStyle = dir === 'rtl' ? SANS_STYLE : { ...SANS_STYLE, fontFamily: GeistSans.style.fontFamily };
   const [appointmentModalOpen, setAppointmentModalOpen] = useState(false);
 
   return (
@@ -55,27 +67,36 @@ export function Hero({ dictionary, params }: HeroProps) {
     >
       <motion.div {...appear(100)} className="hero-text will-change-transform">
         <motion.div {...appear(50)} className="w-full">
-          <h3 className="hero-title w-full text-start text-black" style={SANS_STYLE}>
+          <h3 className="hero-title w-full text-start text-black" style={sansStyle}>
             {t.label}
           </h3>
         </motion.div>
 
-        <div className="hero-words flex flex-row flex-wrap justify-start items-center w-full">
-          {t.words.map((word, i) => (
-            <h1 key={i} className="text-start" style={H1_STYLE}>
-              {word}
-            </h1>
-          ))}
+        <div className="hero-words flex flex-col items-start w-full">
+          <div className="hero-line flex flex-row justify-start items-center">
+            {t.words.map((word: string, i: number) => (
+              <h1 key={i} className="text-start" style={h1Style}>
+                {word}
+              </h1>
+            ))}
+          </div>
 
-          <div className="relative flex flex-row justify-center items-center">
-            <motion.div
-              {...appear(100)}
-              className="hero-mark"
-              aria-hidden
-            />
-            <h1 className="relative text-start" style={H1_STYLE}>
-              {t.highlight}
-            </h1>
+          <div className="hero-line flex flex-row justify-start items-center">
+            {t.words2.map((word: string, i: number) => (
+              <h1 key={i} className="text-start" style={h1Style}>
+                {word}
+              </h1>
+            ))}
+            <div className="relative flex flex-row justify-center items-center">
+              <motion.div
+                {...appear(100)}
+                className="hero-mark"
+                aria-hidden
+              />
+              <h1 className="relative text-start" style={h1Style}>
+                {t.highlight}
+              </h1>
+            </div>
           </div>
         </div>
       </motion.div>
@@ -86,7 +107,7 @@ export function Hero({ dictionary, params }: HeroProps) {
           onClick={() => setAppointmentModalOpen(true)}
           className="inline-flex flex-row items-center justify-center gap-[10px] h-10 px-4 rounded-[20px] bg-black cursor-pointer"
         >
-          <span className="text-[16px] leading-[24px] text-white" style={SANS_STYLE}>
+          <span className="text-[16px] leading-[24px] text-white" style={sansStyle}>
             {t.cta}
           </span>
           <motion.span

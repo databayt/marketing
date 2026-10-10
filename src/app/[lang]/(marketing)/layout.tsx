@@ -31,7 +31,7 @@ export default function SiteLayout({
 
   return (
     <div data-slot="site-layout" className="min-h-screen flex flex-col">
-      <SiteHeader onChatClick={handleChatClick} />
+      <SiteHeader onChatClick={handleChatClick} hideUntilScroll={isHome} />
       <main 
         data-slot="main-content"
         role="main"

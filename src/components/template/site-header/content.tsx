@@ -4,10 +4,11 @@ import SiteHeaderClient from './client'
 
 interface SiteHeaderProps {
   onChatClick?: () => void;
+  hideUntilScroll?: boolean;
 }
 
-export default function SiteHeader({ onChatClick }: SiteHeaderProps) {
+export default function SiteHeader({ onChatClick, hideUntilScroll }: SiteHeaderProps) {
   // const session = await auth();
-  return <SiteHeaderClient isAuthenticated={false} onChatClick={onChatClick} />
+  return <SiteHeaderClient isAuthenticated={false} onChatClick={onChatClick} hideUntilScroll={hideUntilScroll} />
 }
   

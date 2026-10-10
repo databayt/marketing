@@ -35,10 +35,15 @@
   line-height: 1.5em;
 }
 .hero-words {
-  font-size: 48px;
-  max-width: 432px;
-  row-gap: 10px;
-  column-gap: 12px;
+  /* Each line holds on one row — the size scales with the viewport so
+     "Automate the boring" never wraps. */
+  font-size: clamp(26px, 7.5vw, 48px);
+  row-gap: 0;
+}
+.hero-line {
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  column-gap: 0.25em;
 }
 
 /* Text (.framer-1htsxxd) · CTA (.framer-3lvoni) · mark (.framer-whameh) */
@@ -130,9 +135,7 @@
     font-size: 24px;
   }
   .hero-words {
-    font-size: 80px;
-    max-width: 840px;
-    column-gap: 17px;
+    font-size: clamp(48px, 8vw, 80px);
   }
 }
 
@@ -147,7 +150,7 @@
     padding: 132px 60px 60px;
   }
   .hero-words {
-    font-size: 92px;
+    font-size: clamp(80px, 7vw, 120px);
   }
 }
 
