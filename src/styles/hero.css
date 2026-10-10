@@ -1,0 +1,159 @@
+/* ── Homepage hero — the Thmanyah pattern (databayt/thmanyah HeroBlock),
+   measured 1:1 from font.thmanyah.com (.framer-23p5c9).
+   Fonts are fetched at predev/prebuild by scripts/fetch-thmanyah.mjs —
+   never committed (the licence forbids redistribution).
+   Framer breakpoints: phone <810 · tablet 810–1199 · desktop ≥1200      */
+@font-face {
+  font-family: "thmanyah serif display";
+  src: url("/fonts/thmanyah/thmanyah-serif-display-900.woff2") format("woff2");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "thmanyah sans";
+  src: url("/fonts/thmanyah/thmanyah-sans-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+.hero-section {
+  padding: 16px 20px 36px;
+}
+/* The site's global h1/h3 typography (styles/typography.css) would shrink
+   and track the headline — the hero inherits its size from .hero-words. */
+.hero-words h1 {
+  font-size: inherit;
+  letter-spacing: normal;
+}
+.hero-title {
+  letter-spacing: normal;
+}
+.hero-title {
+  font-size: 20px;
+  line-height: 1.5em;
+}
+.hero-words {
+  font-size: 48px;
+  max-width: 432px;
+  row-gap: 10px;
+  column-gap: 12px;
+}
+
+/* Text (.framer-1htsxxd) · CTA (.framer-3lvoni) · mark (.framer-whameh) */
+.hero-text {
+  position: relative;
+  display: flex;
+  flex-flow: column;
+  flex: 0 0 auto;
+  place-content: flex-start center;
+  align-items: flex-start;
+  gap: 24px;
+  width: 100%;
+  min-width: 240px;
+  max-width: 1320px;
+  height: min-content;
+  padding: 0;
+  overflow: visible;
+}
+.hero-cta {
+  position: relative;
+  display: flex;
+  flex-flow: column;
+  flex: 0 0 auto;
+  place-content: flex-start center;
+  align-items: flex-start;
+  gap: 24px;
+  width: 100%;
+  max-width: 1320px;
+  height: min-content;
+  padding: 0;
+  overflow: visible;
+}
+.hero-mark {
+  position: absolute;
+  inset: 28px -1px 26px 1px;
+  display: flex;
+  flex-flow: row;
+  flex: 0 0 auto;
+  place-content: center space-between;
+  align-items: center;
+  padding: 0;
+  background-color: #9fe5b1;
+  overflow: visible;
+}
+
+@media (max-width: 599.98px) {
+  .hero-section {
+    height: 88vh;
+  }
+  .hero-text {
+    flex: 1 0 0px;
+    gap: 16px;
+    height: 1px;
+  }
+  .hero-mark {
+    inset: 15px 0 12px;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 809.98px) {
+  .hero-section {
+    padding: 36px 40px 40px;
+  }
+  .hero-text {
+    flex: 1 0 0px;
+    max-width: unset;
+    height: 1px;
+  }
+  .hero-mark {
+    top: 25px;
+    bottom: 23px;
+    right: -1px;
+  }
+}
+
+@media (min-width: 810px) and (max-width: 1199.98px) {
+  .hero-text {
+    flex: 1 0 0px;
+    max-width: unset;
+    height: 1px;
+  }
+  .hero-mark {
+    inset: 25px 0 22px;
+  }
+}
+
+@media (min-width: 600px) {
+  .hero-title {
+    font-size: 24px;
+  }
+  .hero-words {
+    font-size: 80px;
+    max-width: 840px;
+    column-gap: 17px;
+  }
+}
+
+@media (min-width: 810px) {
+  .hero-section {
+    padding: 80px 40px 40px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .hero-section {
+    padding: 132px 60px 60px;
+  }
+  .hero-words {
+    font-size: 92px;
+  }
+}
+
+@media (min-width: 2637px) {
+  .hero-section {
+    padding: 132px 80px 80px;
+  }
+}
+

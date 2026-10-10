@@ -1,70 +1,116 @@
 'use client';
 
 import React, { useState } from 'react';
-import ExpandButton from '@/components/atom/expand-button';
+import { motion } from 'framer-motion';
 import type { getDictionary } from '@/components/internationalization/dictionaries';
 import type { Locale } from '@/components/internationalization/config';
 import { localeConfig } from '@/components/internationalization/config';
 import { AppointmentModal } from './appointment-modal';
-import { RiveBackground } from './rive-background';
 
 interface HeroProps {
   dictionary: Awaited<ReturnType<typeof getDictionary>>['marketing']['hero'];
   params: { lang: Locale };
 }
 
+/**
+ * The Thmanyah hero pattern (databayt/thmanyah HeroBlock, measured from
+ * font.thmanyah.com): label · word-wrapped serif display headline whose last
+ * phrase sits on a highlight bar · one CTA pinned to the bottom. Copy fills the
+ * same slots with the same word and letter counts. Layout lives in styles/hero.css.
+ * The previous Rive-gradient hero is kept as codebase template hero-04.
+ */
+
+const H1_STYLE: React.CSSProperties = {
+  fontFamily: '"thmanyah serif display", serif',
+  fontWeight: 900,
+  lineHeight: '1.4em',
+  fontFeatureSettings: '"ss01" on',
+  color: '#000',
+};
+
+const SANS_STYLE: React.CSSProperties = {
+  fontFamily: '"thmanyah sans", sans-serif',
+  fontWeight: 400,
+  fontFeatureSettings: '"blwf" on, "cv09" on, "cv03" on, "cv04" on, "cv11" on',
+};
+
+// Every hero block fades in from perspective(1200px) translateY(100px) —
+// the label from 50px — over 1.2s, as on the reference.
+const EASE: [number, number, number, number] = [0.45, 0.4, 0.17, 0.82];
+const appear = (y: number) => ({
+  initial: { opacity: 0.001, y, transformPerspective: 1200 },
+  animate: { opacity: 1, y: 0, transformPerspective: 1200 },
+  transition: { duration: 1.2, ease: EASE, type: 'tween' as const },
+});
+
 export function Hero({ dictionary, params }: HeroProps) {
-    const t = dictionary;
-    const locale = params.lang;
-    const isRTL = localeConfig[locale]?.dir === 'rtl';
-    const [appointmentModalOpen, setAppointmentModalOpen] = useState(false);
+  const t = dictionary;
+  const dir = localeConfig[params.lang]?.dir === 'rtl' ? 'rtl' : 'ltr';
+  const [appointmentModalOpen, setAppointmentModalOpen] = useState(false);
 
-    return (
-        <section className={`tt-hero h-screen relative flex items-center justify-start md:justify-center ${locale === 'ar' ? 'mt-10' : 'mt-6 md:mt-10'}`}>
-            <RiveBackground />
-            {/* Hero Content */}
-            <div className="relative z-10 padding-mobile-only">
-                <div className="text-start md:text-center">
-                    <div className={`flex flex-col items-start md:items-center gap-4 text-start md:text-center ${isRTL ? 'rtl' : ''}`}>
-                        <h1 className={`hidden md:block font-heading font-black text-3xl sm:text-5xl md:text-6xl ${locale === 'ar' ? 'lg:text-8xl' : 'lg:text-[90px] '}`}>
-                            {t.title.split('\n').map((line, index) => (
-                                <React.Fragment key={index}>
-                                    {line}
-                                    {index < t.title.split('\n').length - 1 && <br />}
-                                </React.Fragment>
-                            ))}
-                        </h1>
-                        <h1 className={`block md:hidden font-heading font-black ${locale === 'ar' ? 'text-5xl sm:text-7xl' : 'text-6xl sm:text-8xl'} md:text-6xl lg:text-[80px]`}>
-                            {t.titleMobile.split('\n').map((line, index) => (
-                                <React.Fragment key={index}>
-                                    {line}
-                                    {index < t.titleMobile.split('\n').length - 1 && <br />}
-                                </React.Fragment>
-                            ))}
-                        </h1>
-                        <p className="md:max-w-3xl leading-normal text-muted-foreground sm:text-xl sm:leading-8">
-                            {t.subtitle}
-                        </p>
-                        <div className={`flex flex-col md:flex-row gap-4 items-start md:items-center mt-2 md:mx-auto`}>
-                            <ExpandButton
-                                variant="default"
-                                onClick={() => setAppointmentModalOpen(true)}
-                                className="w-52 md:w-48 hover:shadow-[4px_4px_0px_theme(colors.foreground)] cursor-pointer"
-                            >
-                                {t.appointment}
-                            </ExpandButton>
-                            <ExpandButton variant="outline" href={`/${locale}/design`} className="w-52 md:w-48 hover:shadow-[4px_4px_0px_theme(colors.foreground)]">
-                                {t.services}
-                            </ExpandButton>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  return (
+    <section
+      dir={dir}
+      className="hero-section relative z-0 w-screen ms-[calc(50%-50vw)] h-screen bg-[#00bc6d] flex flex-col justify-between items-center overflow-hidden"
+    >
+      <motion.div {...appear(100)} className="hero-text will-change-transform">
+        <motion.div {...appear(50)} className="w-full">
+          <h3 className="hero-title w-full text-start text-black" style={SANS_STYLE}>
+            {t.label}
+          </h3>
+        </motion.div>
 
-            <AppointmentModal
-                isOpen={appointmentModalOpen}
-                onClose={() => setAppointmentModalOpen(false)}
+        <div className="hero-words flex flex-row flex-wrap justify-start items-center w-full">
+          {t.words.map((word, i) => (
+            <h1 key={i} className="text-start" style={H1_STYLE}>
+              {word}
+            </h1>
+          ))}
+
+          <div className="relative flex flex-row justify-center items-center">
+            <motion.div
+              {...appear(100)}
+              className="hero-mark"
+              aria-hidden
             />
-        </section>
-    );
+            <h1 className="relative text-start" style={H1_STYLE}>
+              {t.highlight}
+            </h1>
+          </div>
+        </div>
+      </motion.div>
+
+      <motion.div {...appear(100)} className="hero-cta">
+        <button
+          type="button"
+          onClick={() => setAppointmentModalOpen(true)}
+          className="inline-flex flex-row items-center justify-center gap-[10px] h-10 px-4 rounded-[20px] bg-black cursor-pointer"
+        >
+          <span className="text-[16px] leading-[24px] text-white" style={SANS_STYLE}>
+            {t.cta}
+          </span>
+          <motion.span
+            className="block w-5 h-5 shrink-0 will-change-transform"
+            animate={{ y: [0, -4, 0] }}
+            transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut' }}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 256 256"
+              className="w-full h-full block"
+              fill="#fff"
+              aria-hidden
+            >
+              <path d="M205.66,149.66l-72,72a8,8,0,0,1-11.32,0l-72-72a8,8,0,0,1,11.32-11.32L120,196.69V40a8,8,0,0,1,16,0V196.69l58.34-58.35a8,8,0,0,1,11.32,11.32Z" />
+            </svg>
+          </motion.span>
+        </button>
+      </motion.div>
+
+      <AppointmentModal
+        isOpen={appointmentModalOpen}
+        onClose={() => setAppointmentModalOpen(false)}
+      />
+    </section>
+  );
 }

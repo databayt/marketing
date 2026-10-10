@@ -83,7 +83,19 @@
       "titleMobile": "Automate\nthe boring\nelevate the\nwondrous",
       "subtitle": "Building codebase for business automation and open sourcing everything. Follow along as we figure this out together.",
       "appointment": "Appointment",
-      "services": "Services"
+      "services": "Services",
+      "label": "Open automation",
+      "words": [
+        "Automate",
+        "the",
+        "boring",
+        "at",
+        "databayt,",
+        "then",
+        "elevate"
+      ],
+      "highlight": "the wondrous",
+      "cta": "Book an appointment"
     },
     "features": {
       "title": "Features",
