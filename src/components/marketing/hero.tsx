@@ -60,6 +60,25 @@ export function Hero({ dictionary, params }: HeroProps) {
   const sansStyle = dir === 'rtl' ? SANS_STYLE : { ...SANS_STYLE, fontFamily: GeistSans.style.fontFamily };
   const [appointmentModalOpen, setAppointmentModalOpen] = useState(false);
 
+  // One headline row; the optional last phrase sits on the highlight bar.
+  const renderLine = (words: string[], highlight?: string, key?: number) => (
+    <div key={key} className="hero-line flex flex-row justify-start items-center">
+      {words.map((word, i) => (
+        <h1 key={i} className="text-start" style={h1Style}>
+          {word}
+        </h1>
+      ))}
+      {highlight && (
+        <div className="relative flex flex-row justify-center items-center">
+          <motion.div {...appear(100)} className="hero-mark" aria-hidden />
+          <h1 className="relative text-start" style={h1Style}>
+            {highlight}
+          </h1>
+        </div>
+      )}
+    </div>
+  );
+
   return (
     <section
       dir={dir}
@@ -72,32 +91,15 @@ export function Hero({ dictionary, params }: HeroProps) {
           </h3>
         </motion.div>
 
-        <div className="hero-words flex flex-col items-start w-full">
-          <div className="hero-line flex flex-row justify-start items-center">
-            {t.words.map((word: string, i: number) => (
-              <h1 key={i} className="text-start" style={h1Style}>
-                {word}
-              </h1>
-            ))}
-          </div>
-
-          <div className="hero-line flex flex-row justify-start items-center">
-            {t.words2.map((word: string, i: number) => (
-              <h1 key={i} className="text-start" style={h1Style}>
-                {word}
-              </h1>
-            ))}
-            <div className="relative flex flex-row justify-center items-center">
-              <motion.div
-                {...appear(100)}
-                className="hero-mark"
-                aria-hidden
-              />
-              <h1 className="relative text-start" style={h1Style}>
-                {t.highlight}
-              </h1>
-            </div>
-          </div>
+        {/* Desktop/tablet: two lines. Phone (<600px): its own line breaks. */}
+        <div className="hero-words hero-desktop flex-col items-start w-full">
+          {renderLine(t.words)}
+          {renderLine(t.words2, t.highlight)}
+        </div>
+        <div className="hero-words hero-mobile flex-col items-start w-full">
+          {t.mobileLines.map((line: string[], i: number) =>
+            renderLine(line, i === t.mobileLines.length - 1 ? t.mobileHighlight : undefined, i),
+          )}
         </div>
       </motion.div>
 
@@ -108,7 +110,8 @@ export function Hero({ dictionary, params }: HeroProps) {
           className="inline-flex flex-row items-center justify-center gap-[10px] h-10 px-4 rounded-[20px] bg-black cursor-pointer"
         >
           <span className="text-[16px] leading-[24px] text-white" style={sansStyle}>
-            {t.cta}
+            <span className="hero-cta-full">{t.cta}</span>
+            <span className="hero-cta-short">{t.appointment}</span>
           </span>
           <motion.span
             className="block w-5 h-5 shrink-0 will-change-transform"

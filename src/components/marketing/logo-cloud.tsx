@@ -12,49 +12,49 @@ const sponsors = [
         src: "/marketing/sponser/faisal.png", 
         width: 120, 
         height: 60, 
-        className: "h-12 w-auto" 
+        className: "h-14 md:h-12 w-auto" 
     },
     { 
         name: "MTDT", 
         src: "/marketing/sponser/mtdt.png", 
         width: 120, 
         height: 60, 
-        className: "h-12 w-auto" 
+        className: "h-14 md:h-12 w-auto" 
     },
     { 
         name: "Zain", 
         src: "/marketing/sponser/zain.png", 
         width: 100, 
         height: 50, 
-        className: "h-10 w-auto" 
+        className: "h-12 md:h-10 w-auto" 
     },
     { 
         name: "Khartoum", 
         src: "/marketing/sponser/khartoum.png", 
         width: 120, 
         height: 60, 
-        className: "h-12 w-auto" 
+        className: "h-14 md:h-12 w-auto" 
     },
     { 
         name: "Dal", 
         src: "/marketing/sponser/dal.png", 
         width: 120, 
         height: 60, 
-        className: "h-12 w-auto" 
+        className: "h-14 md:h-12 w-auto" 
     },
     { 
         name: "249", 
         src: "/marketing/sponser/249.png", 
         width: 100, 
         height: 50, 
-        className: "h-10 w-auto" 
+        className: "h-12 md:h-10 w-auto" 
     },
     { 
         name: "University of Khartoum", 
         src: "/marketing/sponser/uok.png", 
         width: 110, 
         height: 55, 
-        className: "h-11 w-auto" 
+        className: "h-13 md:h-11 w-auto" 
     },
 ]
 
@@ -66,10 +66,10 @@ interface LogoCloudProps {
 // The logos speak for themselves — no "trusted by" title (dictionary kept for the prop contract).
 export default function LogoCloud(_props: LogoCloudProps) {
     return (
-        <section className="overflow-hidden mt-6 md:mt-0 py-8 md:py-16">
+        <section className="overflow-hidden pt-4 pb-6 md:py-16">
             <div className="group relative section-frame">
                 <div className="flex flex-col items-center">
-                    <div className="relative w-full py-6" style={{direction: 'ltr'}}>
+                    <div className="relative w-full py-4 md:py-6" style={{direction: 'ltr'}}>
                         <InfiniteSlider
                             speedOnHover={20}
                             speed={40}

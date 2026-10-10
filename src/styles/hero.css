@@ -51,6 +51,18 @@
   column-gap: 0.25em;
 }
 
+/* Phone gets its own line breaks (hero.tsx renders both blocks). */
+.hero-desktop { display: flex; }
+.hero-mobile { display: none; }
+.hero-cta-short { display: none; }
+@media (max-width: 599.98px) {
+  .hero-desktop { display: none; }
+  .hero-mobile { display: flex; }
+  [dir="ltr"] .hero-mobile { font-size: clamp(28px, 11vw, 48px); }
+  .hero-cta-full { display: none; }
+  .hero-cta-short { display: inline; }
+}
+
 /* Text (.framer-1htsxxd) · CTA (.framer-3lvoni) · mark (.framer-whameh) */
 .hero-text {
   position: relative;

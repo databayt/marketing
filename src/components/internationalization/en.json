@@ -94,6 +94,20 @@
         "elevate"
       ],
       "highlight": "the wonders",
+      "mobileLines": [
+        [
+          "Automate",
+          "the"
+        ],
+        [
+          "boring",
+          "elevate"
+        ],
+        [
+          "the"
+        ]
+      ],
+      "mobileHighlight": "wonders",
       "cta": "Book an appointment"
     },
     "features": {
