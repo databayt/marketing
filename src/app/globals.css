@@ -191,8 +191,8 @@
     body {
       touch-action: pan-y;
       overscroll-behavior-y: none;
-      -webkit-transform: translate3d(0, 0, 0);
-      transform: translate3d(0, 0, 0);
+      /* No transform here: a transformed body becomes the containing block for
+         position:fixed, so the mobile header scrolled away with the page. */
     }
     
     main {

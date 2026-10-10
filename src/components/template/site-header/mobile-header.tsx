@@ -14,10 +14,10 @@ export default function MobileHeader({ hideUntilScroll = false, hidden = false }
   return (
     <header
       className={cn(
-        'bg-background top-0 z-[9999] w-screen md:hidden px-3 sm:px-10',
+        'bg-background top-0 z-[9999] w-screen md:hidden px-[var(--gutter)]',
         hideUntilScroll
           ? 'fixed inset-x-0 transition-[translate,opacity] duration-500 ease-out'
-          : 'sticky -mx-3 sm:-mx-10',
+          : 'sticky mx-[calc(-1*var(--gutter))]',
         hidden && '-translate-y-full opacity-0 pointer-events-none'
       )}
     >

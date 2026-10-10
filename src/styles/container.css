@@ -1,39 +1,37 @@
 /* Container Styles - Responsive & Reusable */
 
+
+:root {
+  --gutter: 20px;
+  --frame: 1320px;
+}
+@media (min-width: 640px) {
+  :root { --gutter: 40px; }
+}
+@media (min-width: 1280px) {
+  :root { --gutter: 60px; }
+}
+
 @layer components {
-  /* Main layout container - use once in layout for global padding control */
+  /* Main layout container - use once in layout for global padding control.
+     One gutter for the whole site (the hero's measured 20 / 40 / 60px), and one
+     content frame (1320px) — every section's edge lands on the same line. */
   .layout-container {
     @apply w-full;
-    padding-left: 0.75rem !important; /* px-3 = 12px */
-    padding-right: 0.75rem !important;
+    padding-left: var(--gutter) !important;
+    padding-right: var(--gutter) !important;
   }
 
-  @media (min-width: 640px) {
-    .layout-container {
-      padding-left: 2.5rem !important; /* sm:px-4 = 16px */
-      padding-right: 2.5rem !important;
-    }
+  /* A section's content column inside .layout-container */
+  .section-frame {
+    width: 100%;
+    max-width: var(--frame);
+    margin-inline: auto;
   }
 
-  @media (min-width: 768px) {
-    .layout-container {
-      padding-left: 4rem !important; /* md:px-6 = 24px */
-      padding-right: 4rem !important;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .layout-container {
-      padding-left: 4rem !important; /* lg:px-8 = 32px */
-      padding-right: 4rem !important;
-    }
-  }
-
-  @media (min-width: 1280px) {
-    .layout-container {
-      padding-left: 4rem !important; /* xl:px-10 = 40px */
-      padding-right: 4rem !important;
-    }
+  /* Full-bleed bands (footer, prefooter): pad so content meets the same line */
+  .bleed-frame-x {
+    padding-inline: max(var(--gutter), calc((100vw - var(--frame)) / 2));
   }
 
   /* Centered container with max-width for content sections */

@@ -27,7 +27,7 @@ export default function SiteContent({ dictionary, params }: SiteContentProps) {
         <LogoCloud dictionary={dictionary.marketing.logoCloud} params={params} />
       </section>
       <section className="py-10">
-        <div className="container mx-auto space-y-16">
+        <div className="section-frame space-y-16">
           <VideoCard
             logo={t.marketing.content.kun.logo}
             title={t.marketing.content.kun.title}
@@ -53,7 +53,7 @@ export default function SiteContent({ dictionary, params }: SiteContentProps) {
       
       {/* Products Section */}
       <section className="py-10">
-        <div className="container mx-auto">
+        <div className="section-frame">
           <div className="space-y-8">
             <div className="mx-auto flex max-w-full flex-col items-center space-y-4 text-center">
               <h2 className={`font-heading text-3xl leading-[1.1] sm:text-3xl md:text-6xl ${params.lang === 'ar' ? 'md:text-7xl' : ''}`}>
@@ -115,7 +115,7 @@ export default function SiteContent({ dictionary, params }: SiteContentProps) {
         </div>
       </section>
       <section className="py-10 overflow-visible">
-        <div className="container mx-auto overflow-visible">
+        <div className="section-frame overflow-visible">
           <div className="space-y-4 overflow-visible">
             <div className="mx-auto flex max-w-full flex-col items-center text-center">
               <h2 className={`font-heading text-3xl leading-[1.1] sm:text-3xl mb-2 ${params.lang === 'ar' ? 'md:text-7xl' : 'md:text-6xl'}`}>
@@ -131,7 +131,7 @@ export default function SiteContent({ dictionary, params }: SiteContentProps) {
         </div>
       </section>
       <section className="py-10">
-        <div className="container mx-auto">
+        <div className="section-frame">
           <FeatureCards dictionary={dictionary.marketing.featureCards} params={params} />
         </div>
       </section>
@@ -145,7 +145,7 @@ export default function SiteContent({ dictionary, params }: SiteContentProps) {
         <OpenSource />
       </section>
       <section className="py-10">
-        <div className="container mx-auto">
+        <div className="section-frame">
           <Stack dictionary={dictionary.marketing.stack} params={params} />
         </div>
       </section>

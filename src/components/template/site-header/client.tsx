@@ -17,15 +17,24 @@ const REVEAL_DELAY_MS = 350
 export default function SiteHeaderClient({ isAuthenticated, onChatClick, hideUntilScroll = false }: SiteHeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false)
   const [revealed, setRevealed] = useState(!hideUntilScroll)
+  // Mobile shows the header only while scrolling up, never at the very top.
+  const [scrollingUp, setScrollingUp] = useState(false)
 
   useEffect(() => {
     let timer: ReturnType<typeof setTimeout> | undefined
+    let lastY = window.scrollY
 
     const handleScroll = () => {
       const scrollTop = window.scrollY
       setIsScrolled(scrollTop > 400)
 
       if (!hideUntilScroll) return
+
+      const delta = scrollTop - lastY
+      if (scrollTop <= 0) setScrollingUp(false)
+      else if (delta < -4) setScrollingUp(true)
+      else if (delta > 4) setScrollingUp(false)
+      if (Math.abs(delta) > 4 || scrollTop <= 0) lastY = scrollTop
       if (scrollTop > 0) {
         if (timer === undefined) {
           timer = setTimeout(() => setRevealed(true), REVEAL_DELAY_MS)
@@ -46,6 +55,7 @@ export default function SiteHeaderClient({ isAuthenticated, onChatClick, hideUnt
   }, [hideUntilScroll])
 
   const hidden = hideUntilScroll && !revealed
+  const mobileHidden = hideUntilScroll && !scrollingUp
 
   return (
     <>
@@ -75,7 +85,7 @@ export default function SiteHeaderClient({ isAuthenticated, onChatClick, hideUnt
       </header>
 
       {/* Mobile Header - Completely Separate */}
-      <MobileHeader hideUntilScroll={hideUntilScroll} hidden={hidden} />
+      <MobileHeader hideUntilScroll={hideUntilScroll} hidden={mobileHidden} />
     </>
   )
 }
