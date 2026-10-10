@@ -6,6 +6,8 @@ import HoverEffect from '@/components/marketing/video/card-video'
 import { useTranslations } from '@/lib/use-translations'
 import { cn } from '@/lib/utils'
 import { ProjectGallerySkeleton } from '@/components/ui/loading-skeleton'
+import { InfiniteSlider } from '@/components/atom/infinite-slider'
+import { ProgressiveBlur } from '@/components/atom/progressive-blur'
 
 interface FeaturedProjectsProps {
   dictionary?: any;
@@ -94,28 +96,39 @@ const FeaturedProjects = memo(({ projectsSection }: FeaturedProjectsProps) => {
     setActiveTab(tabId)
   }
   
+  const tabButtons = tabs.map((tab) => (
+    <button
+      key={tab.id}
+      onClick={() => handleTabClick(tab.id)}
+      className={cn(
+        "shrink-0 whitespace-nowrap text-sm font-medium transition-colors duration-200 pb-2 border-b-2",
+        activeTab === tab.id && !showAll
+          ? "text-foreground border-foreground"
+          : "text-muted-foreground border-transparent hover:text-foreground"
+      )}
+    >
+      {tab.label}
+    </button>
+  ))
+
   return (
     <div>
-      {/* Tabs */}
-      <div className="flex justify-center mb-8">
-        <div className="inline-flex flex-wrap gap-6">
-          {tabs.map((tab) => (
-            <button
-              key={tab.id}
-              onClick={() => handleTabClick(tab.id)}
-              className={cn(
-                "text-sm font-medium transition-colors duration-200 pb-2 border-b-2",
-                activeTab === tab.id && !showAll
-                  ? "text-foreground border-foreground"
-                  : "text-muted-foreground border-transparent hover:text-foreground"
-              )}
-            >
-              {tab.label}
-            </button>
-          ))}
-        </div>
+      {/* Tabs — desktop: one centered row */}
+      <div className="hidden md:flex justify-center mb-8">
+        <div className="inline-flex flex-wrap gap-6">{tabButtons}</div>
       </div>
-      
+
+      {/* Tabs — phone: one row looping slowly, faded at both ends like the logo strip */}
+      <div className="md:hidden relative mb-8 px-3" style={{ direction: 'ltr' }}>
+        <InfiniteSlider speed={12} speedOnHover={4} gap={24}>
+          {tabButtons}
+        </InfiniteSlider>
+        <div className="bg-gradient-to-r from-background absolute inset-y-0 left-0 w-12 pointer-events-none" />
+        <div className="bg-gradient-to-l from-background absolute inset-y-0 right-0 w-12 pointer-events-none" />
+        <ProgressiveBlur className="pointer-events-none absolute left-0 top-0 h-full w-12" direction="left" blurIntensity={1} />
+        <ProgressiveBlur className="pointer-events-none absolute right-0 top-0 h-full w-12" direction="right" blurIntensity={1} />
+      </div>
+
       {/* Projects Grid */}
       <div className="-mt-10 overflow-visible">
         {isLoading ? (
