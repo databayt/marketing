@@ -87,8 +87,9 @@ const FeaturedProjects = memo(({ projectsSection }: FeaturedProjectsProps) => {
       : allProjects.filter(project => [project.category].flat().includes(activeTab))
   }, [activeTab, allProjects])
 
-  // Displayed projects: show all when showAll is true, otherwise filtered
-  const displayedProjects = showAll ? allProjects : filteredProjects
+  // A short first look; the rest of the tab sits behind "Read more"
+  const INITIAL_COUNT = 6
+  const displayedProjects = showAll ? filteredProjects : filteredProjects.slice(0, INITIAL_COUNT)
 
   // Handle tab click: reset showAll and switch tab
   const handleTabClick = (tabId: string) => {
@@ -102,7 +103,7 @@ const FeaturedProjects = memo(({ projectsSection }: FeaturedProjectsProps) => {
       onClick={() => handleTabClick(tab.id)}
       className={cn(
         "shrink-0 whitespace-nowrap text-sm font-medium transition-colors duration-200 pb-2 border-b-2",
-        activeTab === tab.id && !showAll
+        activeTab === tab.id
           ? "text-foreground border-foreground"
           : "text-muted-foreground border-transparent hover:text-foreground"
       )}
@@ -143,7 +144,7 @@ const FeaturedProjects = memo(({ projectsSection }: FeaturedProjectsProps) => {
       </div>
 
       {/* More Button */}
-      {!isLoading && !showAll && (
+      {!isLoading && !showAll && filteredProjects.length > INITIAL_COUNT && (
         <div className="flex justify-center mt-8">
           <button
             onClick={() => setShowAll(true)}
@@ -152,7 +153,7 @@ const FeaturedProjects = memo(({ projectsSection }: FeaturedProjectsProps) => {
               "text-muted-foreground border-transparent hover:text-foreground hover:border-foreground"
             )}
           >
-            {projectsSection?.more || 'More'}
+            {projectsSection?.more || 'Read more'}
           </button>
         </div>
       )}
