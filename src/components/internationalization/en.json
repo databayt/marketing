@@ -1,7 +1,30 @@
 {
   "metadata": {
-    "title": "Databayt",
-    "description": "Automate the boring"
+    "title": "Databayt — Automate the boring",
+    "titleTemplate": "%s | Databayt",
+    "description": "Databayt builds open-source software that automates business operations — school management, rentals, e-commerce and custom web apps, in Arabic and English.",
+    "pages": {
+      "home": {
+        "title": "Databayt — Business automation, open source",
+        "description": "Databayt builds open-source software that automates business operations — school management, rentals, e-commerce and custom web apps, in Arabic and English."
+      },
+      "about": {
+        "title": "About",
+        "description": "Who we are and why we open-source everything: Databayt builds the codebase for business automation, in the open."
+      },
+      "pricing": {
+        "title": "Pricing",
+        "description": "Simple, transparent pricing for websites and business automation. Every component is open source — you pay for a working product and its reliability."
+      },
+      "design": {
+        "title": "Design services",
+        "description": "Web design, branding, business cards and creative work from Databayt — bilingual, responsive and built on an open-source codebase."
+      },
+      "blog": {
+        "title": "Blog",
+        "description": "Stories, ideas and lessons from building modern web products with Next.js, React and open source."
+      }
+    }
   },
   "chatbot": {
     "title": "Chat Assistant",

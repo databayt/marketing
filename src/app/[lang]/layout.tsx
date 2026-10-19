@@ -10,6 +10,8 @@ import { Toaster } from "sonner";
 import { getDictionary } from "@/components/internationalization/dictionaries";
 import { type Locale, localeConfig } from "@/components/internationalization/config";
 import { LoadingWrapper } from "@/components/marketing/loading";
+import { OG_LOCALE, ogImages, SITE_NAME, SITE_URL } from "@/lib/seo";
+import { JsonLd, organizationJsonLd, websiteJsonLd } from "@/components/atom/json-ld";
 // import { SessionProvider } from "next-auth/react";
 // import { auth } from "@/auth";
 
@@ -30,8 +32,7 @@ const sourceSerif = Source_Serif_4({
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  maximumScale: 1,
-  userScalable: false,
+  themeColor: '#00bc6d',
 };
 
 export async function generateMetadata({
@@ -41,11 +42,16 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { lang } = await params;
   const dict = await getDictionary(lang);
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://databayt.org';
+  const { title, titleTemplate, description } = dict.metadata;
 
+  // Site-wide defaults only. Canonical, hreflang and og:url are per page
+  // (lib/seo pageMetadata) so a page without them never inherits the home URL.
   return {
-    title: dict.metadata.title,
-    description: dict.metadata.description,
+    metadataBase: new URL(SITE_URL),
+    title: { default: title, template: titleTemplate },
+    description,
+    applicationName: SITE_NAME,
+    robots: { index: true, follow: true },
     icons: {
       icon: [
         { url: '/favicon.ico', sizes: 'any' },
@@ -55,31 +61,18 @@ export async function generateMetadata({
       apple: '/logo.png',
     },
     openGraph: {
-      title: dict.metadata.title,
-      description: dict.metadata.description,
-      locale: lang,
-      alternateLocale: lang === 'en' ? 'ar' : 'en',
-      images: [
-        {
-          url: `${baseUrl}/logo.png`,
-          width: 512,
-          height: 512,
-          alt: 'Databayt',
-        },
-      ],
+      type: 'website',
+      siteName: SITE_NAME,
+      locale: OG_LOCALE[lang],
+      title,
+      description,
+      images: ogImages(lang),
     },
     twitter: {
-      card: 'summary',
-      title: dict.metadata.title,
-      description: dict.metadata.description,
-      images: [`${baseUrl}/logo.png`],
-    },
-    alternates: {
-      languages: {
-        en: `${baseUrl}/en`,
-        ar: `${baseUrl}/ar`,
-        'x-default': `${baseUrl}/en`,
-      },
+      card: 'summary_large_image',
+      title,
+      description,
+      images: ogImages(lang).map((i) => i.url),
     },
   };
 }
@@ -107,6 +100,7 @@ export default async function LocaleLayout({
           sourceSerif.variable
         )}
       >
+        <JsonLd data={[organizationJsonLd(), websiteJsonLd(lang)]} />
         {/* <SessionProvider session={session}> */}
          
             <ThemeProvider>

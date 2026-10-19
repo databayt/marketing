@@ -64,16 +64,16 @@ export function Hero({ dictionary, params }: HeroProps) {
   const renderLine = (words: string[], highlight?: string, key?: number) => (
     <div key={key} className="hero-line flex flex-row justify-start items-center">
       {words.map((word, i) => (
-        <h1 key={i} className="text-start" style={h1Style}>
+        <span key={i} className="hero-word text-start" style={h1Style}>
           {word}
-        </h1>
+        </span>
       ))}
       {highlight && (
         <div className="relative flex flex-row justify-center items-center">
           <motion.div {...appear(100)} className="hero-mark" aria-hidden />
-          <h1 className="relative text-start" style={h1Style}>
+          <span className="hero-word relative text-start" style={h1Style}>
             {highlight}
-          </h1>
+          </span>
         </div>
       )}
     </div>
@@ -91,12 +91,15 @@ export function Hero({ dictionary, params }: HeroProps) {
           </h3>
         </motion.div>
 
+        {/* One h1 for search engines and screen readers; the word-by-word
+            layouts below are visual only. */}
+        <h1 className="sr-only">{t.title.replace(/\n/g, ' ')}</h1>
         {/* Desktop/tablet: two lines. Phone (<600px): its own line breaks. */}
-        <div className="hero-words hero-desktop flex-col items-start w-full">
+        <div aria-hidden className="hero-words hero-desktop flex-col items-start w-full">
           {renderLine(t.words)}
           {renderLine(t.words2, t.highlight)}
         </div>
-        <div className="hero-words hero-mobile flex-col items-start w-full">
+        <div aria-hidden className="hero-words hero-mobile flex-col items-start w-full">
           {t.mobileLines.map((line: string[], i: number) =>
             renderLine(line, i === t.mobileLines.length - 1 ? t.mobileHighlight : undefined, i),
           )}

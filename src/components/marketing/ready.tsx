@@ -61,9 +61,9 @@ export function Ready({ dictionary, params }: ReadyProps) {
       <GradientAnimation height="h-[70vh]">
         <div className="absolute z-50 inset-0 flex items-center justify-center padding-mobile-only py-8 md:py-0">
           <div className="text-center">
-            <h1 className="text-4xl font-bold text-primary-foreground dark:invert">
+            <h2 className="text-4xl font-bold text-primary-foreground dark:invert">
               {t.title}
-            </h1>
+            </h2>
             <p className="py-4 max-w-2xl mx-auto text-primary-foreground/80 dark:invert">
               {t.description}
             </p>

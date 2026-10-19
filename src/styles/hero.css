@@ -22,9 +22,8 @@
   padding: 16px 20px 36px;
   padding-inline: var(--gutter) !important; /* the site gutter (container.css) */
 }
-/* The site's global h1/h3 typography (styles/typography.css) would shrink
-   and track the headline — the hero inherits its size from .hero-words. */
-.hero-words h1 {
+/* The headline words inherit their size from .hero-words. */
+.hero-words .hero-word {
   font-size: inherit;
   letter-spacing: normal;
 }

@@ -1,3 +1,9 @@
+import type { Metadata } from "next";
+
+// Sign-in and account pages carry no search value.
+export const metadata: Metadata = {
+  robots: { index: false, follow: false },
+};
 
 const AuthLayout = ({ 
   children
