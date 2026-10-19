@@ -20,11 +20,12 @@ export function localeUrl(lang: Locale, path = "") {
 }
 
 /**
- * The share card (app/[lang]/opengraph-image.tsx). Set explicitly because a
- * page-level `openGraph` replaces the inherited one, image included.
+ * The share card per locale (public/og/<lang>.png, rendered by
+ * scripts/og-cards.cjs). Set explicitly because a page-level `openGraph`
+ * replaces the inherited one, image included.
  */
 export function ogImages(lang: Locale) {
-  return [{ url: localeUrl(lang, "/opengraph-image"), width: 1200, height: 630, alt: SITE_NAME }];
+  return [{ url: `${SITE_URL}/og/${lang}.png`, width: 1200, height: 630, alt: SITE_NAME }];
 }
 
 /** hreflang map for one path across every locale, plus x-default. */

@@ -23,6 +23,10 @@
       "blog": {
         "title": "Blog",
         "description": "Stories, ideas and lessons from building modern web products with Next.js, React and open source."
+      },
+      "wizard": {
+        "title": "Start a project",
+        "description": "Pick your business, features, template and style — get an instant estimate of cost and timeline from Databayt."
       }
     }
   },

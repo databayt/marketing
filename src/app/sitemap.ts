@@ -3,13 +3,14 @@ import { i18n } from '@/components/internationalization/config';
 import { blogPosts } from '@/components/marketing/blog/constant';
 import { languageAlternates, localeUrl } from '@/lib/seo';
 
-// Indexable marketing pages. Auth, chatbot and wizard stay out on purpose.
+// Indexable marketing pages. Auth and chatbot stay out on purpose.
 const pages: { path: string; priority: number; changeFrequency: 'weekly' | 'monthly' }[] = [
   { path: '', priority: 1, changeFrequency: 'weekly' },
   { path: '/pricing', priority: 0.9, changeFrequency: 'monthly' },
   { path: '/design', priority: 0.8, changeFrequency: 'monthly' },
   { path: '/about', priority: 0.7, changeFrequency: 'monthly' },
   { path: '/blog', priority: 0.7, changeFrequency: 'weekly' },
+  { path: '/wizard', priority: 0.6, changeFrequency: 'monthly' },
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
