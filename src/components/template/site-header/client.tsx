@@ -8,54 +8,65 @@ import MobileHeader from './mobile-header'
 interface SiteHeaderProps {
   isAuthenticated: boolean
   onChatClick?: () => void
-  /** Keep the header out of sight over the hero; it slides in shortly after scrolling starts. */
+  /** Keep the header out of sight; it appears only at the very top, once the visitor pushes upward there. */
   hideUntilScroll?: boolean
 }
-
-const REVEAL_DELAY_MS = 350
 
 export default function SiteHeaderClient({ isAuthenticated, onChatClick, hideUntilScroll = false }: SiteHeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false)
   const [revealed, setRevealed] = useState(!hideUntilScroll)
-  // Mobile shows the header only while scrolling up, never at the very top.
-  const [scrollingUp, setScrollingUp] = useState(false)
 
   useEffect(() => {
-    let timer: ReturnType<typeof setTimeout> | undefined
     let lastY = window.scrollY
+    let touchY = 0
 
     const handleScroll = () => {
       const scrollTop = window.scrollY
       setIsScrolled(scrollTop > 400)
-
       if (!hideUntilScroll) return
 
-      const delta = scrollTop - lastY
-      if (scrollTop <= 0) setScrollingUp(false)
-      else if (delta < -4) setScrollingUp(true)
-      else if (delta > 4) setScrollingUp(false)
-      if (Math.abs(delta) > 4 || scrollTop <= 0) lastY = scrollTop
-      if (scrollTop > 0) {
-        if (timer === undefined) {
-          timer = setTimeout(() => setRevealed(true), REVEAL_DELAY_MS)
-        }
-      } else {
-        clearTimeout(timer)
-        timer = undefined
-        setRevealed(false)
-      }
+      // Anywhere below the top hides it; arriving back at the top by scrolling up shows it.
+      if (scrollTop > 0) setRevealed(false)
+      else if (lastY > 0) setRevealed(true)
+      lastY = scrollTop
     }
 
-    setRevealed(!hideUntilScroll || window.scrollY > 0)
+    // Already at the top (the hero edge): an upward push reveals, a downward one hides.
+    const handleWheel = (e: WheelEvent) => {
+      if (window.scrollY > 0) return
+      if (e.deltaY < 0) setRevealed(true)
+      else if (e.deltaY > 0) setRevealed(false)
+    }
+    const handleTouchStart = (e: TouchEvent) => { touchY = e.touches[0].clientY }
+    const handleTouchMove = (e: TouchEvent) => {
+      if (window.scrollY > 0) return
+      if (e.touches[0].clientY - touchY > 10) setRevealed(true)
+    }
+
+    // Every load starts at the hero edge, not wherever the last visit left off.
+    if (hideUntilScroll) {
+      history.scrollRestoration = 'manual'
+      window.scrollTo(0, 0)
+      lastY = 0
+    }
+    setRevealed(!hideUntilScroll)
     window.addEventListener('scroll', handleScroll, { passive: true })
+    if (hideUntilScroll) {
+      window.addEventListener('wheel', handleWheel, { passive: true })
+      window.addEventListener('touchstart', handleTouchStart, { passive: true })
+      window.addEventListener('touchmove', handleTouchMove, { passive: true })
+    }
     return () => {
-      clearTimeout(timer)
+      if (hideUntilScroll) history.scrollRestoration = 'auto'
       window.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('wheel', handleWheel)
+      window.removeEventListener('touchstart', handleTouchStart)
+      window.removeEventListener('touchmove', handleTouchMove)
     }
   }, [hideUntilScroll])
 
   const hidden = hideUntilScroll && !revealed
-  const mobileHidden = hideUntilScroll && !scrollingUp
+  const mobileHidden = hidden
 
   return (
     <>
