@@ -1,0 +1,3 @@
+# Workers Static Assets cap a file at 25 MiB; these two are unreferenced by the app.
+site/acme.mp4
+site/codebase.mp4
