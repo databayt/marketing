@@ -1,31 +1,62 @@
-import { PrismaClient } from "@/generated/prisma/client";
+import { getCloudflareContext } from "@opennextjs/cloudflare";
+import { PrismaNeon } from "@prisma/adapter-neon";
 import { PrismaPg } from "@prisma/adapter-pg";
 
-// Get connection string from environment variables
-const connectionString = process.env.DATABASE_URL as string;
+import { PrismaClient } from "@/generated/prisma/client";
 
-// Create adapter for PostgreSQL
-const adapter = new PrismaPg({ connectionString });
+/**
+ * Two runtimes, one `db`:
+ *
+ * - Cloudflare Workers (production, CF_WORKERS=1): Neon's serverless driver. A Worker's
+ *   socket belongs to the request that opened it — reusing it from a later request hangs —
+ *   so each request gets its own client, keyed on the per-request ctx object.
+ *   (Same recipe as food, space and co.)
+ * - Node (local dev, scripts): one client over direct TCP (`pg`).
+ */
 
-// PrismaClient is attached to the `global` object in development to prevent
-// exhausting your database connection limit.
-// Learn more: https://pris.ly/d/help/next-js-best-practices
+function nodeClient() {
+  const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL as string });
+  return new PrismaClient({ adapter });
+}
 
-const globalForPrisma = global as unknown as { db: PrismaClient };
+function workerClient() {
+  return new PrismaClient({
+    adapter: new PrismaNeon({ connectionString: process.env.DATABASE_URL as string }),
+    log: ["error", "warn"],
+    errorFormat: "minimal",
+  });
+}
 
-export const db = globalForPrisma.db || new PrismaClient({ adapter });
-
-if (process.env.NODE_ENV !== "production") globalForPrisma.db = db;
-
-// For debugging Prisma issues
-export function debugPrismaEngine() {
+function workerCtx(): object | undefined {
+  if (!process.env.CF_WORKERS) return undefined;
   try {
-    console.log("Prisma connection URL:", connectionString?.substring(0, 20) + "...");
-    console.log("NODE_ENV:", process.env.NODE_ENV);
-
-    return { status: "ok" };
-  } catch (error) {
-    console.error("Failed to debug Prisma engine:", error);
-    return { error: error?.toString() };
+    return getCloudflareContext().ctx;
+  } catch {
+    return undefined;
   }
 }
+
+const perRequest = new WeakMap<object, PrismaClient>();
+const globalForPrisma = globalThis as unknown as { prisma?: PrismaClient };
+
+function currentClient(): PrismaClient {
+  const ctx = workerCtx();
+  if (ctx) {
+    let client = perRequest.get(ctx);
+    if (!client) {
+      client = workerClient();
+      perRequest.set(ctx, client);
+    }
+    return client;
+  }
+  globalForPrisma.prisma ??= nodeClient();
+  return globalForPrisma.prisma;
+}
+
+export const db = new Proxy({} as PrismaClient, {
+  get(_target, prop) {
+    const client = currentClient();
+    const value = Reflect.get(client, prop, client);
+    return typeof value === "function" ? value.bind(client) : value;
+  },
+});

@@ -44,3 +44,8 @@ src/generated/
 
 # Thmanyah fonts — license forbids redistribution; fetched from the official host by scripts/fetch-thmanyah.mjs
 public/fonts/thmanyah/
+
+# cloudflare / opennext
+/.open-next/
+/.wrangler/
+.dev.vars
