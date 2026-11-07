@@ -1,0 +1,11 @@
+BEGIN:VCARD
+VERSION:3.0
+FN:Databayt
+ORG:Databayt
+EMAIL;TYPE=WORK:support@databayt.org
+URL:https://databayt.org
+URL:https://github.com/databayt
+URL:https://www.linkedin.com/company/databayt-auto
+NOTE:Automate the boring
+PHOTO;VALUE=URI:https://databayt.org/logo.png
+END:VCARD

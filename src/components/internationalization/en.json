@@ -27,6 +27,10 @@
       "wizard": {
         "title": "Start a project",
         "description": "Pick your business, features, template and style — get an instant estimate of cost and timeline from Databayt."
+      },
+      "card": {
+        "title": "Business card",
+        "description": "Databayt's business card — print-ready PDF and a contact you can save."
       }
     }
   },
