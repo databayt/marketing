@@ -54,27 +54,19 @@ export function CardBack({ className }: { className?: string }) {
       style={{ fontFamily: GeistSans.style.fontFamily }}
       className={cn(face, "items-center justify-between bg-white px-[7mm] text-black", className)}
     >
-      <div className="flex flex-col gap-[4mm]">
-        <div className="flex items-center gap-[1.5mm]">
-          <Hexagon className="size-[4.5mm]" />
-          <span className="text-[9.5pt] font-bold leading-none tracking-[-0.04em]">Databayt</span>
-        </div>
-        <ul className="flex flex-col gap-[1.8mm]">
-          {CARD_CONTACTS.map(({ icon: Icon, label, href }) => (
-            <li key={label}>
-              <a href={href} className="flex items-center gap-[1.8mm] text-[7pt] font-medium leading-none !text-black no-underline">
-                <Icon className="size-[2.8mm] shrink-0" strokeWidth={1.75} />
-                {label}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div className="flex flex-col items-center gap-[1.2mm]">
-        {/* eslint-disable-next-line @next/next/no-img-element -- static SVG, must print crisp */}
-        <img src="/card/qr.svg" alt="QR code to databayt.org" className="size-[22mm]" />
-        <span className="text-[5.5pt] uppercase leading-none tracking-[0.2em] text-neutral-500">Scan</span>
-      </div>
+      {/* The list spans exactly the QR's height: first line flush with its top, last with its bottom. */}
+      <ul className="flex h-[22mm] flex-col justify-between">
+        {CARD_CONTACTS.map(({ icon: Icon, label, href }) => (
+          <li key={label}>
+            <a href={href} className="flex items-center gap-[2mm] text-[8pt] font-medium leading-none !text-black no-underline">
+              <Icon className="size-[3.2mm] shrink-0" strokeWidth={1.75} />
+              {label}
+            </a>
+          </li>
+        ))}
+      </ul>
+      {/* eslint-disable-next-line @next/next/no-img-element -- static SVG, must print crisp */}
+      <img src="/card/qr.svg" alt="QR code to databayt.org" className="size-[22mm]" />
     </div>
   );
 }
