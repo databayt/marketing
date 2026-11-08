@@ -31,6 +31,14 @@
       "card": {
         "title": "Business card",
         "description": "Databayt's business card — print-ready PDF and a contact you can save."
+      },
+      "contract": {
+        "title": "Contract",
+        "description": "The one-page Balqalam subscription agreement, filled for a school and ready to print."
+      },
+      "invoice": {
+        "title": "Invoice",
+        "description": "A Balqalam subscription invoice for a school, ready to print."
       }
     }
   },
