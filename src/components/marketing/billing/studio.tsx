@@ -6,12 +6,10 @@ import { Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { cn } from "@/lib/utils";
+import "./billing.css";
 import { COPY } from "./copy";
 import { ContractSheet, InvoiceSheet } from "./sheets";
-import { type Deal, PRESETS, formatDate, schedule, usd } from "./terms";
-
-type Lang = "ar" | "en";
+import { type Deal, type Lang, PRESETS, formatDate, money, schedule } from "./terms";
 
 // Print: only the sheet portal reaches the paper, one A4 page.
 const PRINT_CSS = `
@@ -20,6 +18,8 @@ const PRINT_CSS = `
   html, body { margin: 0 !important; padding: 0 !important; background: #fff !important; }
   body > *:not([data-slot="billing-print-sheet"]) { display: none !important; }
   [data-slot="billing-print-sheet"] { display: block !important; }
+  [data-slot="billing-print-sheet"] > article { break-after: page; page-break-after: always; }
+  [data-slot="billing-print-sheet"] > article:last-child { break-after: auto; page-break-after: auto; }
 }
 `;
 
@@ -72,7 +72,7 @@ export default function BillingStudio({ kind, lang }: { kind: "contract" | "invo
       <style>{PRINT_CSS}</style>
 
       <aside className="flex w-full flex-col gap-4 lg:sticky lg:top-24 lg:w-80 lg:shrink-0">
-        <h1 className="text-2xl font-semibold tracking-tight">{COPY[lang][kind].title}</h1>
+        <h1 className="text-2xl font-semibold tracking-tight">{f.heading[kind]}</h1>
 
         {field(
           f.school,
@@ -104,7 +104,7 @@ export default function BillingStudio({ kind, lang }: { kind: "contract" | "invo
                     size="sm"
                     variant={p.n === n ? "default" : "outline"}
                     onClick={() => setN(p.n)}
-                    title={`${formatDate(p.date, lang)} · ${usd(p.amount)}`}
+                    title={`${formatDate(p.date, lang)} · ${money(p.amount, lang)}`}
                   >
                     {p.n}
                   </Button>
@@ -126,7 +126,7 @@ export default function BillingStudio({ kind, lang }: { kind: "contract" | "invo
 
       {/* Real A4 markup, zoomed down to fit narrow screens. */}
       <div className="flex min-w-0 flex-1 justify-center">
-        <div className={cn("shadow-xl ring-1 ring-black/5", "[zoom:0.42] sm:[zoom:0.75] lg:[zoom:0.62] xl:[zoom:0.75] 2xl:[zoom:0.9]")}>{sheet}</div>
+        <div className="flex flex-col gap-[8mm] [zoom:0.42] sm:[zoom:0.75] lg:[zoom:0.62] xl:[zoom:0.75] 2xl:[zoom:0.9] [&>article]:shadow-xl [&>article]:ring-1 [&>article]:ring-black/5">{sheet}</div>
       </div>
 
       {mounted &&

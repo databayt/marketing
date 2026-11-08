@@ -94,9 +94,24 @@ const round2 = (n: number) => Math.round(n * 100) / 100;
 export const usd = (n: number) =>
   `$${n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 
-export const formatDate = (iso: string, lang: "ar" | "en") =>
+export type Lang = "ar" | "en";
+
+// The Figma template sets Arabic in Arabic-Indic digits; English keeps Latin ones.
+const locale = (lang: Lang) => (lang === "ar" ? "ar-u-nu-arab" : "en-US");
+
+export const num = (n: number, lang: Lang, decimals = 0) =>
+  n.toLocaleString(locale(lang), { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+
+export const money = (n: number, lang: Lang) => (lang === "ar" ? `${num(n, lang, 2)} دولار` : `$${num(n, lang, 2)}`);
+
+export const pct = (share: number, lang: Lang) => {
+  const v = share * 100;
+  return lang === "ar" ? `${num(v, lang, v % 1 ? 1 : 0)}٪` : `${v}%`;
+};
+
+export const formatDate = (iso: string, lang: Lang) =>
   iso
-    ? new Date(`${iso}T00:00:00Z`).toLocaleDateString(lang === "ar" ? "ar-SD-u-nu-latn" : "en-GB", {
+    ? new Date(`${iso}T00:00:00Z`).toLocaleDateString(lang === "ar" ? "ar-u-nu-arab" : "en-GB", {
         day: "numeric",
         month: "long",
         year: "numeric",

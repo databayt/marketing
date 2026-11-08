@@ -35,6 +35,8 @@ const outDir = path.resolve(__dirname, '..', 'public', 'fonts', 'thmanyah');
 const MANIFEST_VERSION = 'original-2026-07-13';
 const MANIFEST = {
   'thmanyah-sans-400.woff2': 'https://framerusercontent.com/assets/x6EBzvXf1Fi35XhsRoHxePDVo.woff2',
+  'thmanyah-sans-500.woff2': 'https://framerusercontent.com/assets/oE98mOPE28KTzUeptOLRIaqW1I.woff2',
+  'thmanyah-sans-700.woff2': 'https://framerusercontent.com/assets/LZvgFRUsP7pGWYj3tKxMUrKuhSY.woff2',
   'thmanyah-serif-display-900.woff2': 'https://framerusercontent.com/assets/a9r2dKNoQcqFiTkwxTUnXgAfjws.woff2',
 };
 

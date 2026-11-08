@@ -1,0 +1,43 @@
+/* Thmanyah Sans — the face of the Balqalam A4 template (Figma «A4 — بالقلم»).
+   Files are fetched at predev/prebuild by scripts/fetch-thmanyah.mjs; the
+   licence forbids committing or rehosting them. */
+@font-face {
+  font-family: "thmanyah sans";
+  src: url("/fonts/thmanyah/thmanyah-sans-400.woff2") format("woff2");
+  font-weight: 400;
+  font-display: block;
+}
+@font-face {
+  font-family: "thmanyah sans";
+  src: url("/fonts/thmanyah/thmanyah-sans-500.woff2") format("woff2");
+  font-weight: 500;
+  font-display: block;
+}
+@font-face {
+  font-family: "thmanyah sans";
+  src: url("/fonts/thmanyah/thmanyah-sans-700.woff2") format("woff2");
+  font-weight: 700;
+  font-display: block;
+}
+
+/* The site's base typography greys p/th, fixes p line-height and pads cells.
+   Inside a document sheet the template rules instead; kept in the base layer
+   so the sheet's own utilities still win. */
+@layer base {
+  [data-doc] :where(p, h1, h2, th, td, span) {
+    color: inherit;
+    line-height: inherit;
+  }
+  [data-doc] :where(th, td) {
+    height: auto;
+    padding: 0;
+    text-align: start;
+    vertical-align: top;
+  }
+  [data-doc] tr:hover {
+    background: transparent;
+  }
+  [data-doc] tbody tr:last-child {
+    border-bottom-width: 1px;
+  }
+}
