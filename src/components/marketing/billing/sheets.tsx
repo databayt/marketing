@@ -172,13 +172,23 @@ export function ContractSheet({ deal, lang }: { deal: Deal; lang: Lang }) {
         <Section lang={lang} n={4} title={t.signatures}>
           <div className="grid grid-cols-2 gap-[12mm] text-[10.5pt]">
             {[
-              [t.signFor(t.providerShort), "Osman Abdout"],
-              [t.signFor(school), deal.signatory],
-            ].map(([who, name]) => (
+              { who: t.signFor(t.providerShort), name: lang === "ar" ? "عثمان عبدوت" : "Osman Abdout", signed: true },
+              { who: t.signFor(school), name: deal.signatory, signed: false },
+            ].map(({ who, name, signed }) => (
               <div key={who} className="space-y-[3.5mm]">
                 <p className="font-bold">{who}</p>
                 <p className="border-b border-neutral-300 pb-[1mm]">{t.name}: {name}</p>
-                <p className="border-b border-neutral-300 pb-[1mm]">{t.signature}:</p>
+                <p className="relative border-b border-neutral-300 pb-[1mm]">
+                  {t.signature}:
+                  {signed && (
+                    // eslint-disable-next-line @next/next/no-img-element -- must print crisp
+                    <img
+                      src="/marketing/signature.png"
+                      alt=""
+                      className="absolute -bottom-[1.5mm] start-[20mm] h-[14mm] w-auto"
+                    />
+                  )}
+                </p>
                 <p className="border-b border-neutral-300 pb-[1mm]">{t.date}:</p>
               </div>
             ))}
