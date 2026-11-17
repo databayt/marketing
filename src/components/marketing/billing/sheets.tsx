@@ -141,7 +141,7 @@ export function ContractSheet({ deal, lang }: { deal: Deal; lang: Lang }) {
 
   return (
     <>
-      <Page lang={lang} n={1} of={3}>
+      <Page lang={lang} n={1} of={4}>
         <Letterhead lang={lang} />
         <Title>{t.title}</Title>
         <Section lang={lang} n={1} title={t.parties} first>
@@ -155,13 +155,13 @@ export function ContractSheet({ deal, lang }: { deal: Deal; lang: Lang }) {
           />
         </Section>
         <Section lang={lang} n={2} title={t.terms}>
-          <Table head={t.termCols} widths={widths} rows={termRows.slice(0, 5)} />
+          <Table head={t.termCols} widths={widths} rows={termRows.slice(0, 6)} />
         </Section>
       </Page>
 
-      <Page lang={lang} n={2} of={3} running={t.title}>
+      <Page lang={lang} n={2} of={4} running={t.title}>
         <div className="mt-[10mm]">
-          <Table head={t.termCols} widths={widths} rows={termRows.slice(5)} />
+          <Table head={t.termCols} widths={widths} rows={termRows.slice(6)} />
         </div>
         <Section lang={lang} n={3} title={t.schedule}>
           <Table
@@ -200,17 +200,42 @@ export function ContractSheet({ deal, lang }: { deal: Deal; lang: Lang }) {
         </Section>
       </Page>
 
-      <Page lang={lang} n={3} of={3} running={t.title}>
-        <AnnexBody lang={lang} deal={deal} />
+      <Page lang={lang} n={3} of={4} running={t.title}>
+        <AnnexBody lang={lang} deal={deal} part={1} />
+      </Page>
+
+      <Page lang={lang} n={4} of={4} running={t.title}>
+        <AnnexBody lang={lang} deal={deal} part={2} />
       </Page>
     </>
   );
 }
 
-function AnnexBody({ lang, deal }: { lang: Lang; deal: Deal }) {
+// The annex runs over two A4 pages: what is included + support, then fair use + paid extras.
+function AnnexBody({ lang, deal, part }: { lang: Lang; deal: Deal; part: 1 | 2 }) {
   const a = COPY[lang].contract.annex;
   const idx = (rows: string[][]) => rows.map((r, i) => [num(i + 1, lang), ...r]);
   const w3 = ["7%", "26%", "67%"];
+  if (part === 2)
+    return (
+      <div className="mt-[6mm]">
+        <Section lang={lang} n={3} title={a.fair} first>
+          <p className="mb-[2mm]">{a.fairText}</p>
+          <Table
+            head={a.fairCols}
+            widths={["50%", "50%"]}
+            bold={-1}
+            rows={a.fairSizes.map((s, i) => [s, a.hours(num([100, 200, 400][i], lang))])}
+          />
+          <p className="mt-[2.5mm] text-[9.5pt] text-neutral-500">
+            {a.fairMore} {lang === "ar" ? "حصة مدرستكم:" : "Your school:"} {a.hours(num(liveHours(deal.students), lang))}
+          </p>
+        </Section>
+        <Section lang={lang} n={4} title={a.paid}>
+          <Table head={["#", lang === "ar" ? "البند" : "Item"]} widths={["7%", "93%"]} bold={-1} rows={idx(a.paidRows)} />
+        </Section>
+      </div>
+    );
   return (
     <>
       <h1 className="mt-[8mm] text-[15pt] font-bold leading-tight">{a.title}</h1>
@@ -220,21 +245,6 @@ function AnnexBody({ lang, deal }: { lang: Lang; deal: Deal }) {
       <Section lang={lang} n={2} title={a.support}>
         <p className="mb-[2mm]">{a.supportText}</p>
         <Table head={a.supportCols} widths={["38%", "26%", "36%"]} bold={0} rows={a.supportRows} />
-      </Section>
-      <Section lang={lang} n={3} title={a.fair}>
-        <p className="mb-[2mm]">{a.fairText}</p>
-        <Table
-          head={a.fairCols}
-          widths={["50%", "50%"]}
-          bold={-1}
-          rows={a.fairSizes.map((s, i) => [s, a.hours(num([100, 200, 400][i], lang))])}
-        />
-        <p className="mt-[2.5mm] text-[9.5pt] text-neutral-500">
-          {a.fairMore} {lang === "ar" ? "حصة مدرستكم:" : "Your school:"} {a.hours(num(liveHours(deal.students), lang))}
-        </p>
-      </Section>
-      <Section lang={lang} n={4} title={a.paid}>
-        <Table head={["#", lang === "ar" ? "البند" : "Item"]} widths={["7%", "93%"]} bold={-1} rows={idx(a.paidRows)} />
       </Section>
     </>
   );
