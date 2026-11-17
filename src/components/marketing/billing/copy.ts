@@ -9,7 +9,7 @@ export interface Clause {
   trialEnd: string; // the day billing starts
   freeMonths: string;
   hasFree: boolean;
-  rates: [string, string, string]; // SAR a student: first 250, 251-500, above 500
+  rate: string; // SAR a student a year
   students: string;
   total: string;
   custom: boolean; // over 1,000 students: its own contract
@@ -44,7 +44,7 @@ export const COPY = {
           c.hasFree && ["الفترة المجانية", `من ${c.start} حتى ${c.trialEnd} (${c.freeMonths}) دون أي مقابل.`],
           [
             "السعر",
-            `${c.rates[0]} ريالًا للطالب في السنة لأول ٢٥٠ طالبًا، و${c.rates[1]} ريالًا للطلاب من ٢٥١ إلى ٥٠٠، و${c.rates[2]} ريالًا فوق ٥٠٠، شاملة كل شيء. ` +
+            `${c.rate} ريالًا لكل طالب في السنة، شاملة كل شيء. ` +
               (c.custom
                 ? `فوق ١٬٠٠٠ طالب يكون لها عقد خاص: عند ${c.students} طالبًا تكون قيمة السنة ${c.total}. `
                 : `عند ${c.students} طالبًا تكون قيمة السنة ${c.total}. `) +
@@ -165,7 +165,7 @@ export const COPY = {
           c.hasFree && ["Free period", `From ${c.start} to ${c.trialEnd} (${c.freeMonths}), at no cost.`],
           [
             "Price",
-            `${c.rates[0]} SAR per student a year for the first 250 students, ${c.rates[1]} SAR for students 251-500, and ${c.rates[2]} SAR above 500, all-in. ` +
+            `${c.rate} SAR per student a year, all-in. ` +
               (c.custom
                 ? `Above 1,000 students the school has its own contract: at ${c.students} students the year comes to ${c.total}. `
                 : `At ${c.students} students the year comes to ${c.total}. `) +

@@ -1,6 +1,6 @@
 // Per-student pricing and the schools already on Balqalam. Mirrors kun decision
-// D-20261117-pricing-proportional-sar (supersedes D-20261108): one annual price in Saudi
-// riyals, graduated by student (no cliffs), all-in, no VAT line. 50% when billing
+// D-20261117-pricing-proportional-sar (supersedes D-20261108): 24 SAR per student a
+// year, every student, all-in, no VAT line (6,000 SAR at 250 students). 50% when billing
 // starts (the end of the free period, or signing if there is none), then
 // 4 x 12.5% spread evenly between that date and the end of the school year.
 
@@ -9,12 +9,10 @@ export interface Tier {
   rate: number; // SAR a student a year
 }
 
-// Students 1-250 at 24, 251-500 at 16, 501 and above at 14.
-export const TIERS: readonly Tier[] = [
-  { upTo: 250, rate: 24 },
-  { upTo: 500, rate: 16 },
-  { upTo: Infinity, rate: 14 },
-];
+// One rate for every student: 24 SAR a year (6,000 SAR ÷ 250 students). Kept as a
+// one-tier table so the invoice basis reads "48 × 24".
+export const SAR_PER_STUDENT_YEAR = 24;
+export const TIERS: readonly Tier[] = [{ upTo: Infinity, rate: SAR_PER_STUDENT_YEAR }];
 export const OWN_CONTRACT_OVER = 1000; // above this a school gets its own contract (customSAR may override)
 export const FIRST_SHARE = 0.5;
 export const INSTALMENT_SHARE = 0.125;

@@ -129,7 +129,7 @@ export function ContractSheet({ deal, lang }: { deal: Deal; lang: Lang }) {
     trialEnd: formatDate(pay[0].date, lang),
     freeMonths: t.months(deal.freeMonths),
     hasFree: deal.freeMonths > 0,
-    rates: [num(TIERS[0].rate, lang), num(TIERS[1].rate, lang), num(TIERS[2].rate, lang)],
+    rate: num(TIERS[0].rate, lang),
     students: num(deal.students, lang),
     total: sar(annualSAR(deal), lang),
     custom: isCustom(deal),
@@ -250,7 +250,7 @@ function AnnexBody({ lang, deal, part }: { lang: Lang; deal: Deal; part: 1 | 2 }
   );
 }
 
-// "250 × 24 + 50 × 16": the students in each tier times its rate.
+// "48 × 24": the students times the rate.
 function tierParts(students: number, lang: Lang) {
   const parts: string[] = [];
   let from = 0;
