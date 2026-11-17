@@ -6,7 +6,7 @@
 
 import { cn } from "@/lib/utils";
 import { BRAND, COPY } from "./copy";
-import { type Deal, type Lang, USD_PER_STUDENT_YEAR, annualUSD, formatDate, money, num, pct, schedule } from "./terms";
+import { type Deal, type Lang, TIERS, annualSAR, formatDate, isCustom, liveHours, num, pct, sar, schedule } from "./terms";
 
 const FONT = { fontFamily: '"thmanyah sans", var(--font-rubik), system-ui, sans-serif' };
 
@@ -128,16 +128,20 @@ export function ContractSheet({ deal, lang }: { deal: Deal; lang: Lang }) {
     start: formatDate(deal.start, lang),
     trialEnd: formatDate(pay[0].date, lang),
     freeMonths: t.months(deal.freeMonths),
-    rate: money(USD_PER_STUDENT_YEAR, lang),
+    hasFree: deal.freeMonths > 0,
+    rates: [num(TIERS[0].rate, lang), num(TIERS[1].rate, lang), num(TIERS[2].rate, lang)],
     students: num(deal.students, lang),
-    total: money(annualUSD(deal.students), lang),
+    total: sar(annualSAR(deal), lang),
+    custom: isCustom(deal),
+    yearEnd: formatDate(deal.yearEnd, lang),
+    payIn: deal.payIn,
   });
   const termRows = clauses.map(([head, body], i) => [num(i + 1, lang), head, body]);
   const widths = ["7%", "22%", "71%"];
 
   return (
     <>
-      <Page lang={lang} n={1} of={2}>
+      <Page lang={lang} n={1} of={3}>
         <Letterhead lang={lang} />
         <Title>{t.title}</Title>
         <Section lang={lang} n={1} title={t.parties} first>
@@ -151,13 +155,13 @@ export function ContractSheet({ deal, lang }: { deal: Deal; lang: Lang }) {
           />
         </Section>
         <Section lang={lang} n={2} title={t.terms}>
-          <Table head={t.termCols} widths={widths} rows={termRows.slice(0, 6)} />
+          <Table head={t.termCols} widths={widths} rows={termRows.slice(0, 5)} />
         </Section>
       </Page>
 
-      <Page lang={lang} n={2} of={2} running={t.title}>
+      <Page lang={lang} n={2} of={3} running={t.title}>
         <div className="mt-[10mm]">
-          <Table head={t.termCols} widths={widths} rows={termRows.slice(6)} />
+          <Table head={t.termCols} widths={widths} rows={termRows.slice(5)} />
         </div>
         <Section lang={lang} n={3} title={t.schedule}>
           <Table
@@ -165,7 +169,7 @@ export function ContractSheet({ deal, lang }: { deal: Deal; lang: Lang }) {
             widths={["7%", "40%", "20%", "33%"]}
             bold={-1}
             numeric={[3]}
-            rows={pay.map((p) => [num(p.n, lang), formatDate(p.date, lang), pct(p.share, lang), money(p.amount, lang)])}
+            rows={pay.map((p) => [num(p.n, lang), formatDate(p.date, lang), pct(p.share, lang), sar(p.amount, lang)])}
           />
           <p className="mt-[2.5mm] text-[9.5pt] text-neutral-500">{t.estimate}</p>
         </Section>
@@ -195,8 +199,57 @@ export function ContractSheet({ deal, lang }: { deal: Deal; lang: Lang }) {
           </div>
         </Section>
       </Page>
+
+      <Page lang={lang} n={3} of={3} running={t.title}>
+        <AnnexBody lang={lang} deal={deal} />
+      </Page>
     </>
   );
+}
+
+function AnnexBody({ lang, deal }: { lang: Lang; deal: Deal }) {
+  const a = COPY[lang].contract.annex;
+  const idx = (rows: string[][]) => rows.map((r, i) => [num(i + 1, lang), ...r]);
+  const w3 = ["7%", "26%", "67%"];
+  return (
+    <>
+      <h1 className="mt-[8mm] text-[15pt] font-bold leading-tight">{a.title}</h1>
+      <Section lang={lang} n={1} title={a.included} first>
+        <Table head={lang === "ar" ? ["#", "البند", "التفاصيل"] : ["#", "Item", "Details"]} widths={w3} rows={idx(a.includedRows)} />
+      </Section>
+      <Section lang={lang} n={2} title={a.support}>
+        <p className="mb-[2mm]">{a.supportText}</p>
+        <Table head={a.supportCols} widths={["38%", "26%", "36%"]} bold={0} rows={a.supportRows} />
+      </Section>
+      <Section lang={lang} n={3} title={a.fair}>
+        <p className="mb-[2mm]">{a.fairText}</p>
+        <Table
+          head={a.fairCols}
+          widths={["50%", "50%"]}
+          bold={-1}
+          rows={a.fairSizes.map((s, i) => [s, a.hours(num([100, 200, 400][i], lang))])}
+        />
+        <p className="mt-[2.5mm] text-[9.5pt] text-neutral-500">
+          {a.fairMore} {lang === "ar" ? "حصة مدرستكم:" : "Your school:"} {a.hours(num(liveHours(deal.students), lang))}
+        </p>
+      </Section>
+      <Section lang={lang} n={4} title={a.paid}>
+        <Table head={["#", lang === "ar" ? "البند" : "Item"]} widths={["7%", "93%"]} bold={-1} rows={idx(a.paidRows)} />
+      </Section>
+    </>
+  );
+}
+
+// "250 × 24 + 50 × 16": the students in each tier times its rate.
+function tierParts(students: number, lang: Lang) {
+  const parts: string[] = [];
+  let from = 0;
+  for (const { upTo, rate } of TIERS) {
+    const count = Math.min(students, upTo) - from;
+    if (count > 0) parts.push(`${num(count, lang)} × ${num(rate, lang)}`);
+    from = upTo;
+  }
+  return parts.join(" + ") || "—";
 }
 
 export function invoiceNumber(deal: Deal, n: number) {
@@ -207,6 +260,7 @@ export function InvoiceSheet({ deal, lang, n, issued }: { deal: Deal; lang: Lang
   const t = COPY[lang].invoice;
   const p = schedule(deal)[n - 1];
   const no = invoiceNumber(deal, n);
+  const basis = isCustom(deal) && deal.customSAR ? t.custom : t.basis(num(deal.students, lang), tierParts(deal.students, lang));
 
   return (
     <Page lang={lang} n={1} of={1}>
@@ -231,16 +285,16 @@ export function InvoiceSheet({ deal, lang, n, issued }: { deal: Deal; lang: Lang
           head={t.cols}
           widths={["7%", "38%", "25%", "10%", "20%"]}
           numeric={[4]}
-          rows={[[num(1, lang), t.line(n), t.basis(num(deal.students, lang), money(USD_PER_STUDENT_YEAR, lang)), pct(p.share, lang), money(p.amount, lang)]]}
+          rows={[[num(1, lang), t.line(n), basis, pct(p.share, lang), sar(p.amount, lang)]]}
         />
         <div className="flex items-baseline justify-between border-b-2 border-black py-[3mm]">
           <span className="text-[12pt] font-bold">{t.total}</span>
-          <span className="text-[15pt] font-bold tabular-nums">{money(p.amount, lang)}</span>
+          <span className="text-[15pt] font-bold tabular-nums">{sar(p.amount, lang)}</span>
         </div>
       </Section>
 
       <Section lang={lang} n={3} title={t.payment}>
-        <p>{t.pay}</p>
+        <p>{t.pay(deal.payIn)}</p>
         <p className="mt-[2mm] text-[13pt] font-bold tabular-nums">
           {deal.bankAccount ? <bdi dir="ltr">{deal.bankAccount}</bdi> : <span className="text-[10.5pt] font-normal text-neutral-500">{t.noAccount}</span>}
         </p>

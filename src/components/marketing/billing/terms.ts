@@ -1,12 +1,34 @@
-// The one price and the schools already on Balqalam. Mirrors hogwarts
-// `saas-marketing/pricing/rates.ts` and kun decision D-20261108-pricing-one-month-trial:
-// $6.40 per student a year from student 1, half when the free period ends,
-// then 12.5% at months 3, 6, 9 and 12, paid in SDG at the bank rate on the day.
+// Per-student pricing and the schools already on Balqalam. Mirrors kun decision
+// D-20261117-pricing-proportional-sar (supersedes D-20261108): one annual price in Saudi
+// riyals, graduated by student (no cliffs), all-in, no VAT line. 50% when billing
+// starts (the end of the free period, or signing if there is none), then
+// 4 x 12.5% spread evenly between that date and the end of the school year.
 
-export const USD_PER_STUDENT_YEAR = 6.4;
+export interface Tier {
+  upTo: number; // students up to here (inclusive) cost `rate` each
+  rate: number; // SAR a student a year
+}
+
+// Students 1-250 at 24, 251-500 at 16, 501 and above at 14.
+export const TIERS: readonly Tier[] = [
+  { upTo: 250, rate: 24 },
+  { upTo: 500, rate: 16 },
+  { upTo: Infinity, rate: 14 },
+];
+export const OWN_CONTRACT_OVER = 1000; // above this a school gets its own contract (customSAR may override)
 export const FIRST_SHARE = 0.5;
 export const INSTALMENT_SHARE = 0.125;
-export const INSTALMENT_MONTHS = [3, 6, 9, 12] as const;
+export const INSTALMENTS = 4;
+
+// Live-class fair use, hours a month, by school size.
+export const LIVE_HOURS = [
+  { upTo: 250, hours: 100 },
+  { upTo: 500, hours: 200 },
+  { upTo: Infinity, hours: 400 },
+] as const;
+export const liveHours = (students: number) => LIVE_HOURS.find((l) => students <= l.upTo)!.hours;
+
+export type PayIn = "sar-bank" | "sdg-bankak";
 
 export interface Deal {
   school: string; // the school's legal name, in the document's language
@@ -15,8 +37,13 @@ export interface Deal {
   students: number;
   start: string; // setup day, YYYY-MM-DD
   freeMonths: number;
-  bankAccount: string; // the Bankak account payments go to
+  yearEnd: string; // last day of the school year, YYYY-MM-DD
+  payIn: PayIn;
+  customSAR?: number; // the agreed annual amount when the school is over 1,000 students
+  bankAccount: string; // the account payments go to (bank IBAN, or Bankak)
 }
+
+const YEAR_END = "2027-06-30";
 
 type Preset = { id: string; label: { ar: string; en: string }; deal: { ar: Deal; en: Deal } };
 
@@ -27,11 +54,11 @@ const both = (base: Omit<Deal, "school" | "signatory">, ar: [string, string], en
 
 export const PRESETS: Preset[] = [
   {
-    // Joined 2026-09-19 under the 3-month pilot, which the reset honours: first bill 12-19.
+    // Dammam, KSA. No free period: billing starts 2026-11-20, paid in riyals by bank transfer.
     id: "alabidae",
     label: { ar: "مدارس الإبداع", en: "Al-Ibda Schools" },
     deal: both(
-      { subdomain: "alabidae", students: 48, start: "2026-09-19", freeMonths: 3, bankAccount: "" },
+      { subdomain: "alabidae", students: 48, start: "2026-11-20", freeMonths: 0, yearEnd: YEAR_END, payIn: "sar-bank", bankAccount: "" },
       ["مدارس الإبداع أونلاين", ""],
       ["Al-Ibda Online Schools", ""],
     ),
@@ -40,7 +67,7 @@ export const PRESETS: Preset[] = [
     id: "kingfahd",
     label: { ar: "مدارس الملك فهد", en: "King Fahd Schools" },
     deal: both(
-      { subdomain: "kingfahd", students: 14, start: "2026-11-08", freeMonths: 1, bankAccount: "" },
+      { subdomain: "kingfahd", students: 14, start: "2026-11-08", freeMonths: 1, yearEnd: YEAR_END, payIn: "sdg-bankak", bankAccount: "" },
       ["مدارس الملك فهد", "أحمد بهاء"],
       ["King Fahd Schools", "Ahmed Baha"],
     ),
@@ -49,7 +76,7 @@ export const PRESETS: Preset[] = [
     id: "new",
     label: { ar: "مدرسة جديدة", en: "New school" },
     deal: both(
-      { subdomain: "", students: 100, start: new Date().toISOString().slice(0, 10), freeMonths: 1, bankAccount: "" },
+      { subdomain: "", students: 100, start: new Date().toISOString().slice(0, 10), freeMonths: 1, yearEnd: YEAR_END, payIn: "sar-bank", bankAccount: "" },
       ["", ""],
       ["", ""],
     ),
@@ -68,21 +95,37 @@ export interface Payment {
   n: number; // 1-based
   date: string;
   share: number;
-  amount: number; // USD, for the student count in the deal
+  amount: number; // SAR
 }
 
-export function annualUSD(students: number): number {
-  return round2(Math.max(0, students) * USD_PER_STUDENT_YEAR);
+export const isCustom = (deal: Deal) => deal.students > OWN_CONTRACT_OVER;
+
+export function annualSAR(deal: Deal): number {
+  if (isCustom(deal) && deal.customSAR) return round2(deal.customSAR);
+  let total = 0;
+  let from = 0;
+  for (const { upTo, rate } of TIERS) {
+    total += Math.max(0, Math.min(deal.students, upTo) - from) * rate;
+    from = upTo;
+  }
+  return round2(total);
 }
 
+const DAY = 86_400_000;
+const dayMs = (iso: string) => Date.parse(`${iso}T00:00:00Z`);
+const addDays = (iso: string, days: number) => new Date(dayMs(iso) + days * DAY).toISOString().slice(0, 10);
+
+// Billing starts when the free period ends; four instalments then fall evenly
+// across the days up to the end of the school year, the last one on yearEnd.
 export function schedule(deal: Deal): Payment[] {
   const first = addMonths(deal.start, deal.freeMonths);
-  const total = annualUSD(deal.students);
+  const span = Math.max(0, Math.round((dayMs(deal.yearEnd) - dayMs(first)) / DAY));
+  const total = annualSAR(deal);
   return [
     { n: 1, date: first, share: FIRST_SHARE, amount: round2(total * FIRST_SHARE) },
-    ...INSTALMENT_MONTHS.map((m, i) => ({
+    ...Array.from({ length: INSTALMENTS }, (_, i) => ({
       n: i + 2,
-      date: addMonths(first, m),
+      date: addDays(first, Math.floor((span * (i + 1)) / INSTALMENTS)),
       share: INSTALMENT_SHARE,
       amount: round2(total * INSTALMENT_SHARE),
     })),
@@ -90,9 +133,6 @@ export function schedule(deal: Deal): Payment[] {
 }
 
 const round2 = (n: number) => Math.round(n * 100) / 100;
-
-export const usd = (n: number) =>
-  `$${n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 
 export type Lang = "ar" | "en";
 
@@ -102,7 +142,11 @@ const locale = (lang: Lang) => (lang === "ar" ? "ar-u-nu-arab" : "en-US");
 export const num = (n: number, lang: Lang, decimals = 0) =>
   n.toLocaleString(locale(lang), { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
 
-export const money = (n: number, lang: Lang) => (lang === "ar" ? `${num(n, lang, 2)} دولار` : `$${num(n, lang, 2)}`);
+// Whole riyals print bare; a fraction keeps two decimals.
+export const sar = (n: number, lang: Lang) => {
+  const d = n % 1 ? 2 : 0;
+  return lang === "ar" ? `${num(n, lang, d)} ريال` : `${num(n, lang, d)} SAR`;
+};
 
 export const pct = (share: number, lang: Lang) => {
   const v = share * 100;

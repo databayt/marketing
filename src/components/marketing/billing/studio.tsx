@@ -9,7 +9,7 @@ import { Label } from "@/components/ui/label";
 import "./billing.css";
 import { COPY } from "./copy";
 import { ContractSheet, InvoiceSheet } from "./sheets";
-import { type Deal, type Lang, PRESETS, formatDate, money, schedule } from "./terms";
+import { type Deal, type Lang, PRESETS, formatDate, isCustom, sar, schedule } from "./terms";
 
 // Print: only the sheet portal reaches the paper, one A4 page.
 const PRINT_CSS = `
@@ -91,7 +91,32 @@ export default function BillingStudio({ kind, lang }: { kind: "contract" | "invo
           {field(f.students, <Input type="number" min={0} value={deal.students} onChange={(e) => set("students", Number(e.target.value) || 0)} />)}
           {field(f.start, <Input type="date" value={deal.start} onChange={(e) => e.target.value && set("start", e.target.value)} />)}
           {field(f.freeMonths, <Input type="number" min={0} max={12} value={deal.freeMonths} onChange={(e) => set("freeMonths", Number(e.target.value) || 0)} />)}
+          {field(f.yearEnd, <Input type="date" value={deal.yearEnd} onChange={(e) => e.target.value && set("yearEnd", e.target.value)} />)}
+          {isCustom(deal) &&
+            field(
+              f.customSAR,
+              <Input
+                type="number"
+                min={0}
+                value={deal.customSAR ?? ""}
+                onChange={(e) => set("customSAR", e.target.value ? Number(e.target.value) : undefined)}
+              />,
+            )}
         </div>
+        {field(
+          f.payIn,
+          <select
+            value={deal.payIn}
+            onChange={(e) => set("payIn", e.target.value as Deal["payIn"])}
+            className="h-9 w-full rounded-md border border-input bg-transparent px-3 text-sm shadow-xs outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50"
+          >
+            {(Object.keys(f.payOptions) as Deal["payIn"][]).map((k) => (
+              <option key={k} value={k}>
+                {f.payOptions[k]}
+              </option>
+            ))}
+          </select>,
+        )}
 
         {kind === "invoice" && (
           <>
@@ -104,7 +129,7 @@ export default function BillingStudio({ kind, lang }: { kind: "contract" | "invo
                     size="sm"
                     variant={p.n === n ? "default" : "outline"}
                     onClick={() => setN(p.n)}
-                    title={`${formatDate(p.date, lang)} · ${money(p.amount, lang)}`}
+                    title={`${formatDate(p.date, lang)} · ${sar(p.amount, lang)}`}
                   >
                     {p.n}
                   </Button>
